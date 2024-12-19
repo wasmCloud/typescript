@@ -1,0 +1,16 @@
+# CODEOWNERS
+
+## Default to org or maintainer
+
+* @wasmCloud/org-maintainers @wasmCloud/typescript-maintainers
+
+## GitHub CI
+
+.github @wasmCloud/ci-maintainers
+.github/CODEOWNERS @wasmCloud/org-maintainers
+
+## Projects
+
+examples @wasmCloud/examples-maintainers @wasmCloud/typescript-maintainers
+examples/**/README.md @wasmCloud/docs-maintainers
+apps/washboard-ui @wasmCloud/washboard-maintainers @wasmCloud/typescript-maintainers

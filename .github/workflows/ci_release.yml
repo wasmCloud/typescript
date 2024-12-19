@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  workflow_call:
+    secrets:
+      NPM_TOKEN:
+        required: false
+        description: NPM token for publishing packages
+
+permissions:
+  contents: read
+
+jobs:
+  changesets:
+    permissions:
+      contents: write       # Needed to commit changesets
+      pull-requests: write  # Needed to create pull requests
+      id-token: write       # Needed for npm provenance
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Setup Node, Yarn, and Turbo
+        uses: ./.github/actions/ts-setup
+        with:
+          npm-token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build
+        run: yarn build
+
+      - name: Version or Publish
+        id: changesets
+        uses: changesets/action@c8bada60c408975afd1a20b3db81d6eee6789308
+        with:
+          title: 'chore: update versions'
+          commit: 'chore: update versions'
+          version: yarn ci:version
+          publish: yarn ci:publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Parse Published Packages
+        if: ${{ steps.changesets.outputs.published == 'true' }}
+        id: parse
+        run: |
+          # Parse Published Packages
+          PACKAGE_VERSIONS=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -c 'map({name: .name, value: .version}) | from_entries')
+          echo "packageVersions=$PACKAGE_VERSIONS" >> $GITHUB_OUTPUT
+          echo "::group::Published Packages"
+          echo $PACKAGE_VERSIONS | jq
+          echo "::endgroup::"
+
+    outputs:
+      # array of objects with name and version
+      publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}
+      # object with package name as key and version as value
+      packageVersions: ${{ steps.parse.outputs.packageVersions }}
+
+  washboard-ui:
+    needs: [changesets]
+    if: ${{ contains(fromJson(needs.changesets.outputs.publishedPackages).*.name, 'washboard-ui') }}
+    permissions:
+      contents: write
+    uses: ./.github/workflows/release_washboard-ui.yml
+    with:
+      version: ${{ fromJson(needs.changesets.outputs.packageVersions).washboard-ui }}
+      

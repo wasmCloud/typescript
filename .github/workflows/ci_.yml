@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: washboard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: ./.github/workflows/ci_build.yml
+
+  test:
+    uses: ./.github/workflows/ci_test.yml
+
+  release:
+    uses: ./.github/workflows/ci_release.yml
+    # Only run on main repo, don't try to release on forks
+    if: github.repository == 'wasmCloud/typescript'
+    needs: [build, test]
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    permissions:
+      contents: write       # Needed to commit changesets
+      pull-requests: write  # Needed to create pull requests
+      id-token: write       # Needed for npm provenance

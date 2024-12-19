@@ -6,8 +6,13 @@
   "author": "wasmCloud",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wasmcloud/wasmcloud.git",
-    "directory": "typescript/packages/lattice-client-react"
+    "url": "https://github.com/wasmCloud/typescript",
+    "directory": "packages/lattice-client-react"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true,
+    "directory": "package.tgz"
   },
   "type": "module",
   "exports": {
@@ -34,7 +39,7 @@
     "dev": "vite build --watch --emptyOutDir false --clearScreen false",
     "build": "vite build",
     "prepack": "yarn build",
-    "publish": "yarn npm publish --access public"
+    "prepare-release": "yarn pack"
   },
   "devDependencies": {
     "@types/eslint": "~8.56.10",

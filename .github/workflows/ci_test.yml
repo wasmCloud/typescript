@@ -1,0 +1,91 @@
+name: Test
+
+on:
+  workflow_call: {}
+
+env:
+  TURBO_CACHE_DIR: ./.turbo/cache
+  TURBO_TELEMETRY_DISABLED: true
+  TURBO_RUN_SUMMARY: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test:format-lint-unit
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Setup
+        uses: ./.github/actions/ts-setup
+        with:
+          npm-token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Run Tests
+        run: yarn turbo lint format test:unit
+
+  wash-versions:
+    name: test:get-wash-versions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Fetch Latest Wash Versions
+        id: fetch
+        uses: ./.github/actions/wash-versions
+        with:
+          crate: wash-cli
+
+    outputs:
+      versions: ${{ steps.fetch.outputs.versions }}
+
+  e2e:
+    name: ${{ format('e2e:wash@{0}', matrix.wash) }}
+
+    runs-on: ubuntu-latest
+
+    needs: [wash-versions]
+
+    strategy:
+      matrix:
+        wash: ${{ fromJson(needs.wash-versions.outputs.versions) }}
+
+    env:
+      # store browsers in the node_modules folder
+      PLAYWRIGHT_BROWSERS_PATH: 0
+      WASH_VERSION: ${{ matrix.wash }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Setup Node, Yarn, and Turbo
+        uses: ./.github/actions/ts-setup
+        with:
+          cache-key: ${{ format('e2e-wash-{0}', matrix.wash) }}
+
+      - name: Install `wash` CLI
+        uses: taiki-e/install-action@ed8c79bccf0b1cb1544a358f81684d3acaa5133f
+        with:
+          tool: wash-cli@${{ matrix.wash }}
+
+      - name: Run Playwright Tests
+        run: yarn test:e2e
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
+        if: always()
+        env:
+          WASH_VERSION: ${{ matrix.wash }}
+        with:
+          name: playwright-report-${{ matrix.wash }}
+          retention-days: 30
+          path: |
+            ./apps/washboard-ui/playwright-report
+            ./apps/washboard-ui/test-results

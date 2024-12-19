@@ -15,11 +15,9 @@
       "dependsOn": ["^format:fix"]
     },
     "test:e2e": {
-      "dependsOn": ["test:e2e:setup"],
-      "outputs": ["playwright-report", "test-results"]
-    },
-    "test:e2e:setup": {
-      "dependsOn": ["^test:e2e:setup", "^build"]
+      "dependsOn": ["^build"],
+      "outputs": ["playwright-report", "test-results"],
+      "env": ["WASH_VERSION"]
     },
     "test:unit": {
       "outputs": []
@@ -38,6 +36,10 @@
         ".env.production",
         ".env"
       ]
+    },
+    "prepare-release": {
+      "outputs": ["package.tgz"],
+      "dependsOn": ["^prepare-release"]
     },
     "dev": {
       "dependsOn": ["build", "^build"],

@@ -1,0 +1,30 @@
+name: Tag Push - washboard-ui
+
+on:
+  push:
+    tags:
+      - 'washboard-ui@**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Setup Node, Yarn, and Turbo
+        uses: ./.github/actions/ts-setup
+
+      - name: Build
+        run: yarn turbo build --filter=washboard-ui
+
+      - name: Upload Build
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
+        with:
+          name: build-assets
+          path: 
+            ./**/dist/
+
+      - name: Update Release
+        uses: ./.github/workflows/release_washboard-ui.yml
