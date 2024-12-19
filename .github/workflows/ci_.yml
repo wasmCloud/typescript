@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: washboard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: ./.github/workflows/ci_build.yml
+
+  test:
+    uses: ./.github/workflows/ci_test.yml
+
+  release:
+    uses: ./.github/workflows/ci_release.yml
+    # Only run on main repo, don't try to release on forks
+    if: github.repository == 'wasmCloud/typescript'
+    needs: [build, test]
+    permissions:
+      contents: write
+      pull-requests: write

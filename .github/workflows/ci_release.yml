@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  workflow_call: {}
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    permissions:
+      contents: write       # Needed to commit changesets
+      pull-requests: write  # Needed to create pull requests
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Setup
+        uses: ./.github/actions/ts-setup
+
+      - name: Build
+        run: yarn build
+
+      - name: Version or Publish
+        id: changesets
+        uses: changesets/action@c8bada60c408975afd1a20b3db81d6eee6789308
+        with:
+          title: 'chore: update versions'
+          commit: 'chore: update versions'
+          version: yarn ci:version
+          publish: yarn ci:publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  release:
+    if: startswith(github.ref, 'refs/tags/washboard-ui')
+    permissions:
+      contents: write
+    uses: ./.github/workflows/release_washboard-ui.yml

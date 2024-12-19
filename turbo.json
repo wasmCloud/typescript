@@ -39,6 +39,9 @@
         ".env"
       ]
     },
+    "prepare-release": {
+      "dependsOn": ["^prepare-release"]
+    },
     "dev": {
       "dependsOn": ["build", "^build"],
       "cache": false,

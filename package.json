@@ -14,7 +14,7 @@
     "test": "turbo run test",
     "test:e2e": "turbo run test:e2e",
     "test:unit": "turbo run test:unit",
-    "turbo:build": "turbo run build --cache-dir .turbo/cache",
+    "turbo:build": "turbo run build",
     "turbo:dev": "turbo run dev",
     "turbo:lint": "turbo run lint",
     "turbo:lint:fix": "turbo run lint:fix",
@@ -24,9 +24,14 @@
     "turbo:test:e2e": "turbo run test:e2e",
     "turbo:test:unit": "turbo run test:unit",
     "format": "prettier --ignore-unknown --no-error-on-unmatched-pattern '**/*' --check",
-    "format:fix": "yarn format:prettier --write"
+    "format:fix": "yarn format:prettier --write",
+    "changeset": "changeset",
+    "ci:version": "changeset version && yarn ci:update-lockfile",
+    "ci:update-lockfile": "yarn install --mode=update-lockfile",
+    "ci:publish": "turbo run prepare-release && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.11",
     "@types/node": "^20.17.10",
     "@wasmcloud/prettier-config": "workspace:*",
     "eslint": "^8.57.0",

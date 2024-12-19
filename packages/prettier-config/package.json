@@ -1,8 +1,8 @@
 {
   "name": "@wasmcloud/prettier-config",
-  "version": "0.1.0",
-  "description": "Prettier configuration",
+  "version": "0.0.0",
   "private": true,
+  "description": "Prettier configuration",
   "type": "module",
   "exports": {
     ".": "./index.js"
