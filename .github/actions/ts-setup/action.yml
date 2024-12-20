@@ -31,6 +31,16 @@ runs:
         NODE_AUTH_TOKEN: ${{ inputs.npm-token }}
         NPM_CONFIG_ALWAYS_AUTH: ${{ inputs.npm-token != '' }}
 
+    - name: Copy NPM Auth config
+      shell: bash
+      if: ${{ inputs.npm-token != '' }}
+      run: |
+        echo "copying .npmrc file to home directory"
+        echo "  - NPM_CONFIG_USERCONFIG=$NPM_CONFIG_USERCONFIG"
+        echo "  - HOME=$HOME"
+        cp $NPM_CONFIG_USERCONFIG $HOME/.npmrc
+        cat $HOME/.npmrc
+
     - name: Setup Package Manager
       shell: bash
       working-directory: ${{ inputs.working-directory }}
