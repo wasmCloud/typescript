@@ -33,13 +33,17 @@ runs:
 
     - name: Copy NPM Auth config
       shell: bash
-      if: ${{ inputs.npm-token != '' }}
       run: |
-        echo "copying .npmrc file to home directory"
+        echo "attempting copy of .npmrc file to home directory"
         echo "  - NPM_CONFIG_USERCONFIG=$NPM_CONFIG_USERCONFIG"
         echo "  - HOME=$HOME"
         cp $NPM_CONFIG_USERCONFIG $HOME/.npmrc
-        cat $HOME/.npmrc
+        if [ -f $HOME/.npmrc ]; then
+          echo "successfully copied .npmrc file to home directory"
+          cat $HOME/.npmrc
+        else
+          echo "failed to copy .npmrc file to home directory"
+        fi
 
     - name: Setup Package Manager
       shell: bash

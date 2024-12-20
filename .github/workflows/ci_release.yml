@@ -1,7 +1,11 @@
 name: Release
 
 on:
-  workflow_call: {}
+  workflow_call:
+    secrets:
+      NPM_TOKEN:
+        required: false
+        description: NPM token for publishing packages
 
 permissions:
   contents: read

@@ -29,6 +29,8 @@ jobs:
     # Only run on main repo, don't try to release on forks
     if: github.repository == 'wasmCloud/typescript'
     needs: [build, test]
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     permissions:
       contents: write       # Needed to commit changesets
       pull-requests: write  # Needed to create pull requests
