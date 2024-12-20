@@ -22,6 +22,9 @@ runs:
       with:
         node-version-file: ${{ inputs.working-directory }}/.tool-versions
         cache-dependency-path: ${{ inputs.working-directory }}/yarn.lock
+        registry-url: 'https://registry.npmjs.org'
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Setup Package Manager
       shell: bash
