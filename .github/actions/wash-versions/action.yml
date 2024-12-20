@@ -1,0 +1,35 @@
+name: crate-versions
+
+description: |
+  Get the latest versions of the `wash` CLI and `wash` Playwright tests
+
+branding:
+  icon: settings
+  color: blue
+
+inputs:
+  crate:
+    description: Name of the crate of which to fetch versions for
+    required: true
+
+runs:
+  using: composite
+  
+  steps:
+    - name: Fetch crate versions
+      id: fetch_versions
+      run: |
+        CRATE_NAME=${{ inputs.crate }}
+        # Fetch the crate information from crates.io
+        RESPONSE=$(curl -s -H "User-Agent: wasmCloud-github-actions/1.0 (slack.wasmcloud.com)" "https://crates.io/api/v1/crates/$CRATE_NAME")
+        # Extract all versions that are not yanked
+        ALL_VERSIONS=$(echo $RESPONSE | jq -r '.versions | map(select(.yanked | not)) | map(.num) | map(select(test("^[0-9]+\\.[0-9]+\\.[0-9]+$")))')
+        # Extract the latest 3 major versions (or minor versions if the crate is in the 0.x range)
+        LAST_3_VERSIONS=$(echo $ALL_VERSIONS | jq -r 'unique_by(if . | startswith("0.") then split(".")[1] else split(".")[0] end) | sort_by(split(".") | map(tonumber)) | reverse | .[0:3]')
+        echo "::set-output name=versions::$LAST_3_VERSIONS"
+      shell: bash
+
+outputs:
+  versions:
+    description: The latest 3 major versions of the crate.
+    value: ${{ steps.fetch_versions.outputs.versions }}
