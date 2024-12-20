@@ -12,6 +12,10 @@ inputs:
     description: Working directory
     required: false
     default: ./
+  npm-token:
+    description: NPM token
+    required: false
+    default: ''
 
 runs:
   using: composite
@@ -24,7 +28,8 @@ runs:
         cache-dependency-path: ${{ inputs.working-directory }}/yarn.lock
         registry-url: 'https://registry.npmjs.org'
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ inputs.npm-token }}
+        NPM_CONFIG_ALWAYS_AUTH: ${{ inputs.npm-token != '' }}
 
     - name: Setup Package Manager
       shell: bash
