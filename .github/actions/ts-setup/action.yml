@@ -26,24 +26,20 @@ runs:
       with:
         node-version-file: ${{ inputs.working-directory }}/.tool-versions
         cache-dependency-path: ${{ inputs.working-directory }}/yarn.lock
-        registry-url: 'https://registry.npmjs.org'
-      env:
-        NODE_AUTH_TOKEN: ${{ inputs.npm-token }}
-        NPM_CONFIG_ALWAYS_AUTH: ${{ inputs.npm-token != '' }}
 
-    - name: Copy NPM Auth config
+    - name: Configure .npmrc File
+      if: ${{ inputs.npm-token != '' }}
       shell: bash
       run: |
-        echo "attempting copy of .npmrc file to home directory"
-        echo "  - NPM_CONFIG_USERCONFIG=$NPM_CONFIG_USERCONFIG"
-        echo "  - HOME=$HOME"
-        cp $NPM_CONFIG_USERCONFIG $HOME/.npmrc
-        if [ -f $HOME/.npmrc ]; then
-          echo "successfully copied .npmrc file to home directory"
-          cat $HOME/.npmrc
-        else
-          echo "failed to copy .npmrc file to home directory"
-        fi
+        echo "::group::Creating .npmrc file to home directory"
+        echo "//registry.npmjs.org/:_authToken=${{ inputs.npm-token }}" > $HOME/.npmrc
+        echo "registry=https://registry.npmjs.org/" >> $HOME/.npmrc
+        echo "always-auth=true" >> $HOME/.npmrc
+        echo "======================"
+        echo ".npmrc file contents:"
+        cat $HOME/.npmrc
+        echo "======================"
+        echo "::endgroup::"
 
     - name: Setup Package Manager
       shell: bash
