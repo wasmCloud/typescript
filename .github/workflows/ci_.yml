@@ -30,5 +30,6 @@ jobs:
     if: github.repository == 'wasmCloud/typescript'
     needs: [build, test]
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write       # Needed to commit changesets
+      pull-requests: write  # Needed to create pull requests
+      id-token: write       # Needed for npm provenance
