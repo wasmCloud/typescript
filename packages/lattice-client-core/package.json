@@ -6,8 +6,13 @@
   "author": "wasmCloud",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wasmcloud/wasmcloud.git",
-    "directory": "typescript/packages/lattice-client-core"
+    "url": "https://github.com/wasmCloud/typescript",
+    "directory": "packages/lattice-client-core"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true,
+    "directory": "package.tgz"
   },
   "homepage": "http://wasmcloud.com",
   "type": "module",
@@ -57,10 +62,5 @@
   },
   "resolutions": {
     "cross-spawn": "^7.0.5"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true,
-    "directory": "package.tgz"
   }
 }
