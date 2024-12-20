@@ -52,7 +52,7 @@ jobs:
 
     strategy:
       matrix:
-        wash: ${{ needs.wash-versions.outputs.versions }}
+        wash: ${{ fromJson(needs.wash-versions.outputs.versions) }}
 
     env:
       # store browsers in the node_modules folder
