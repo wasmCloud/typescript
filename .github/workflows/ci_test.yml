@@ -68,7 +68,7 @@ jobs:
       - name: Install `wash` CLI
         uses: taiki-e/install-action@ed8c79bccf0b1cb1544a358f81684d3acaa5133f
         with:
-          tool: wash-cli@${{ matrix.wash.version }}
+          tool: wash-cli@${{ matrix.wash }}
 
       - name: Run Playwright Tests
         run: yarn test:e2e
@@ -77,7 +77,7 @@ jobs:
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
         if: always()
         with:
-          name: playwright-report-${{ matrix.wash.version }}
+          name: playwright-report-${{ matrix.wash }}
           retention-days: 30
           path: |
             ./apps/washboard-ui/playwright-report
