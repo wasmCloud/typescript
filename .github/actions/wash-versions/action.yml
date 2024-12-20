@@ -23,10 +23,10 @@ runs:
         # Fetch the crate information from crates.io
         RESPONSE=$(curl -s -H "User-Agent: wasmCloud-github-actions/1.0 (slack.wasmcloud.com)" "https://crates.io/api/v1/crates/$CRATE_NAME")
         # Extract all versions that are not yanked
-        ALL_VERSIONS=$(echo $RESPONSE | jq -r '.versions | map(select(.yanked | not)) | map(.num) | map(select(test("^[0-9]+\\.[0-9]+\\.[0-9]+$")))')
+        ALL_VERSIONS=$(echo $RESPONSE | jq -c -r '.versions | map(select(.yanked | not)) | map(.num) | map(select(test("^[0-9]+\\.[0-9]+\\.[0-9]+$")))')
         # Extract the latest 3 major versions (or minor versions if the crate is in the 0.x range)
-        LAST_3_VERSIONS=$(echo $ALL_VERSIONS | jq -r 'unique_by(if . | startswith("0.") then split(".")[1] else split(".")[0] end) | sort_by(split(".") | map(tonumber)) | reverse | .[0:3]')
-        echo "::set-output name=versions::$LAST_3_VERSIONS"
+        LAST_3_VERSIONS=$(echo $ALL_VERSIONS | jq -c -r 'unique_by(if . | startswith("0.") then split(".")[1] else split(".")[0] end) | sort_by(split(".") | map(tonumber)) | reverse | .[0:3]')
+        echo "versions=$LAST_3_VERSIONS" >> $GITHUB_OUTPUT
       shell: bash
 
 outputs:
