@@ -1,0 +1,94 @@
+name: Examples
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  meta:
+    runs-on: ubuntu-latest
+    outputs:
+      changes: ${{ steps.changes.outputs.changed_keys }}
+      changed-components: ${{ contains(steps.changes.outputs.changed_keys, 'components') }}
+      changed-providers: ${{ contains(steps.changes.outputs.changed_keys, 'providers') }}
+      changed-ci: ${{ contains(steps.changes.outputs.changed_keys, 'ci') }}
+      wash-version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Check for changes
+        id: changes
+        uses: tj-actions/changed-files@bab30c2299617f6615ec02a68b9a40d10bd21366 # v45.0.5
+        with:
+          matrix: true
+          dir_names: true
+          dir_names_max_depth: 3
+          files_yaml: |
+            ci:
+              - .github/workflows/examples_.yml
+              - .github/workflows/examples_component.yml
+              - .github/workflows/examples_provider.yml
+            components:
+              - examples/components/**
+            providers:
+              - examples/providers/**
+
+      - name: Install `wash` CLI
+        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
+        with: { tool: wash }
+
+      - name: Get Installed wash Version
+        id: version
+        # Update to use json output after https://github.com/wasmCloud/wasmCloud/issues/3884 is resolved
+        run: |
+          # Get the installed wash version
+          echo "version=$(wash -V | head -n 1 | awk '{gsub(/v/, ""); print $2}')" >> $GITHUB_OUTPUT
+
+  components:
+    name: ${{ format('example:component:{0}', matrix.project.folder) }}
+    needs: [meta]
+    if: needs.meta.outputs.changed-ci == 'true' || needs.meta.outputs.changed-components == 'true'
+    secrets: inherit
+    uses: ./.github/workflows/examples_component.yml
+    with:
+      folder: ${{ matrix.project.folder }}
+      wasm-bin: ${{ matrix.project.wasm-bin }}
+      test-command: ${{ matrix.project.test-command }}
+      force: ${{ needs.meta.outputs.changed-ci == 'true' }}
+      wash-version: ${{ needs.meta.outputs.wash-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          # Sample matrix entry for examples
+          # - folder: http-hello-world                # Folder name of the example within examples/components/*
+          #   wasm-bin: dist/http-hello-world.wasm    # Path to the wasm binary after build
+          #   test-command: TEST_RESULT=1             # Some command that will set TEST_RESULT to 0 or 1
+
+          - folder: http-hello-world
+            wasm-bin: http_hello_world_s.wasm
+            test-command: |
+              RESPONSE=$(curl http://127.0.0.1:8000 || echo '')
+              [[ "$RESPONSE" == 'Hello from Typescript!' ]] && TEST_RESULT=1 || TEST_RESULT=0
+
+          - folder: http-password-checker
+            wasm-bin: http_password_checker_s.wasm
+            test-command: |
+              RESPONSE=$(curl http://127.0.0.1:8000/api/v1/check -d '{"value": "test"}' | jq -r '.status' || echo '')
+              [[ "$RESPONSE" == 'success' ]] && TEST_RESULT=1 || TEST_RESULT=0
+
+  examples-check:
+    needs: [components]
+    if: ${{ always() }}
+    uses: ./.github/workflows/workflow_check.yml
+    with:
+      pass-condition: ${{ contains(needs.*.result, 'failure') == false }}

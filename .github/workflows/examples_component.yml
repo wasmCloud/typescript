@@ -1,0 +1,231 @@
+name: ci
+
+on:
+  workflow_call:
+    inputs:
+      folder:
+        type: string
+        required: true
+      wasm-bin:
+        type: string
+        required: true
+      test-command:
+        type: string
+        default: ''
+      force:
+        type: boolean
+        description: Force the build and test steps to run, even if no changes are detected
+        default: false
+      wash-version:
+        type: string
+        required: true
+
+env:
+  DEPLOY_RETRIES: 60
+  DEPLOY_TIMEOUT: 1
+  TEST_RETRIES: 60
+  TEST_TIMEOUT: 1
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      run-build: ${{ steps.force.outputs.force || steps.check-example-changes.outputs.changed_keys.components }}
+    steps:
+      - name: Force build if needed
+        id: force
+        if: inputs.force
+        run: |
+          # Force build if needed
+          # This is a workaround since at least one step must run in a job
+          echo "force=true" >> $GITHUB_OUTPUT
+
+      - name: Checkout
+        if: ${{ !inputs.force }}
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Check for Example Changes
+        id: check-example-changes
+        if : ${{ !inputs.force }}
+        uses: tj-actions/changed-files@bab30c2299617f6615ec02a68b9a40d10bd21366 # v45.0.5
+        with:
+          files: |
+            .github/workflows/ci_examples.yml
+            .github/workflows/example_component.yml
+            examples/components/${{ inputs.folder }}/** 
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [check]
+    if: needs.check.outputs.run-build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Setup Node
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          cache: 'npm'
+          cache-dependency-path: './examples/components/${{ inputs.folder }}/package-lock.json'
+          node-version-file: './examples/components/${{ inputs.folder }}/.nvmrc'
+
+      - name: Install Wash
+        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
+        with:
+          tool: wash@${{ inputs.wash-version }}
+
+      - name: Install JS Wasm Tools
+        run: |
+          npm install -g @bytecodealliance/jco
+          npm install -g @bytecodealliance/componentize-js
+
+      - name: wash build
+        working-directory: "./examples/components/${{ inputs.folder }}"
+        run: wash build
+
+      - name: run tests
+        working-directory: "./examples/components/${{ inputs.folder }}"
+        run: npm run test
+
+      - name: upload
+        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
+        with:
+          name: ${{ inputs.folder }}-wasm-bin
+          path: ./examples/components/${{ inputs.folder }}/build/${{ inputs.wasm-bin }}
+
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Install Wash
+        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
+        with:
+          tool: wash@${{ inputs.wash-version }}
+
+      - name: Download wasm-bin
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        with:
+          name: ${{ inputs.folder }}-wasm-bin
+          path: ./examples/components/${{ inputs.folder }}/build/
+
+      # Run the wadm file and make sure it deploys
+      - name: Test Deployment
+        shell: bash
+        working-directory: "./examples/components/${{ inputs.folder }}"
+        run: |
+          set -xe
+          wash up -d;
+          wash app deploy ./local.wadm.yaml;
+          sleep 1;
+          TRIES=0
+          while [[ $(wash get inventory --output=json | jq '.inventories[0].components | length') -eq 0 ]] ; do
+            if [[ $TRIES -gt $DEPLOY_RETRIES ]]; then
+              echo "❌ failed to find component in inventory output after deploying example manifest";
+              exit -1;
+            fi
+            TRIES=$((TRIES+$DEPLOY_TIMEOUT));
+            echo $(wash app list --output json | jq -r '.applications[0]')
+            sleep 1;
+          done;
+          echo "✅ successfully started at least one component";
+      
+      - name: Test Functionality
+        shell: bash
+        if: inputs.test-command != ''
+        working-directory: "./examples/components/${{ inputs.folder }}"
+        run: |
+          set -xe
+          TRIES=0
+          TEST_RESULT=0
+          while [[ $TEST_RESULT -eq 0 ]] ; do
+            if [[ $TRIES -gt $TEST_RETRIES ]]; then
+              echo "❌ failed to find component in inventory output after deploying example manifest";
+              exit -1;
+            fi
+            
+            # Test command should update the TEST_RESULT variable to 0 or 1 based on the test result
+            ${{ inputs.test-command }}
+
+            TRIES=$((TRIES+$TEST_TIMEOUT));
+            sleep 1;
+          done;
+          echo "✅ successfully ran test command";
+
+      - name: Cleanup Deployment
+        if: always()
+        working-directory: "./examples/components/${{ inputs.folder }}"
+        run: |
+          wash app delete ./local.wadm.yaml;
+          wash down --all;
+          exit 0;
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Download wasm-bin
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        with:
+          name: ${{ inputs.folder }}-wasm-bin
+          path: ./examples/components/${{ inputs.folder }}/build/
+
+      # Determine tag version (if this is a release tag), without the 'v'
+      - name: Determine version
+        id: meta
+        shell: bash
+        env:
+          REF: ${{ github.ref }}
+          REF_PREFIX: ${{ format('refs/tags/component-{0}-v', inputs.folder) }}
+        run: |
+          export VERSION=${REF#$REF_PREFIX};
+          echo -e "version=${VERSION}" >> $GITHUB_OUTPUT;
+          echo "bin-name=wash-build-${{ inputs.wash-version }}-typescript-component-${{ inputs.folder }}/${{ inputs.wasm-bin }}" >> $GITHUB_OUTPUT;
+          echo "ref-prefix=$REF_PREFIX" >> $GITHUB_OUTPUT;
+          echo "wasmcloud-toml-path=examples/typescript/components/${{ inputs.folder }}/wasmcloud.toml" >> $GITHUB_OUTPUT;
+
+      - name: Install Wash
+        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
+        with:
+          tool: wash@${{ inputs.wash-version }}
+
+      # Push the project to GitHub Container Registry under various tags, if this is a release tag
+      - name: Push SHA-tagged WebAssembly binary to GHCR
+        if: ${{ startsWith(github.ref, steps.meta.outputs.ref-prefix) }}
+        env:
+          WASH_REG_USER: ${{ github.repository_owner }}
+          WASH_REG_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          wash push ghcr.io/${{ github.repository_owner }}/components/${{ inputs.folder }}-typescript:${{ github.sha }} artifacts/${{ steps.meta.outputs.bin-name }}
+
+      - name: Push version-tagged WebAssembly binary to GHCR
+        if: ${{ startsWith(github.ref, steps.meta.outputs.ref-prefix) }}
+        env:
+          WASH_REG_USER: ${{ github.repository_owner }}
+          WASH_REG_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          wash push ghcr.io/${{ github.repository_owner }}/components/${{ inputs.folder }}-typescript:${{ steps.meta.outputs.version }} artifacts/${{ steps.meta.outputs.bin-name }}
+
+      # (wasmCloud/wasmCloud repository only)
+      # Push the project to Azure Container Registry under various tags, if this is a release tag
+      - name: Push SHA-tagged WebAssembly binary to AzureCR
+        if: ${{ startsWith(github.ref, steps.meta.outputs.ref-prefix) && github.repository_owner == 'wasmCloud' }}
+        run: |
+          wash push wasmcloud.azurecr.io/${{ github.repository_owner }}/components/${{ inputs.folder }}-typescript:${{ github.sha }} artifacts/${{ steps.meta.outputs.bin-name }}
+        env:
+          WASH_REG_USER: ${{ secrets.AZURECR_PUSH_USER }}
+          WASH_REG_PASSWORD: ${{ secrets.AZURECR_PUSH_PASSWORD }}
+
+      - name: Push version-tagged WebAssembly binary to AzureCR
+        if: ${{ startsWith(github.ref, steps.meta.outputs.ref-prefix) && github.repository_owner == 'wasmCloud' }}
+        run: |
+          wash push wasmcloud.azurecr.io/${{ github.repository_owner }}/components/${{ inputs.folder }}-typescript:${{ steps.meta.outputs.version }} artifacts/${{ steps.meta.outputs.bin-name }}
+        env:
+          WASH_REG_USER: ${{ secrets.AZURECR_PUSH_USER }}
+          WASH_REG_PASSWORD: ${{ secrets.AZURECR_PUSH_PASSWORD }}
