@@ -8,7 +8,7 @@ on:
         description: NPM token for publishing packages
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   changesets:
