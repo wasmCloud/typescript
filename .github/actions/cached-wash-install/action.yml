@@ -1,0 +1,54 @@
+name: crate-versions
+
+description: |
+  Get the 3 latest versions of the specified crate from crates.io.
+
+branding:
+  icon: settings
+  color: blue
+
+inputs:
+  version:
+    description: Version of wash-cli to install and cache
+    default: 'latest'
+
+outputs:
+  version:
+    description: Selected wash-cli to install and cache
+    value: ${{ steps.versions.outputs.latest }}
+
+runs:
+  using: composite
+  
+  steps:
+    - name: Get Latest wash-cli Version
+      if: ${{ inputs.version == 'latest' }}
+      uses: ./.github/actions/crate-versions
+      id: versions
+      with:
+        crate: wash-cli
+
+    - name: Set Version
+      shell: bash
+      run: |
+        # Set WASH_VERSION
+        echo "WASH_VERSION=${{ inputs.version == 'latest' && steps.versions.outputs.latest || inputs.version }}" >> $GITHUB_ENV
+
+    - name: Restore Cache
+      id: restore
+      uses: actions/cache/restore@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+      with:
+        key: ${{ runner.os }}-restore-wash-cli-${{ env.WASH_VERSION }}
+        path: ~/.cargo/bin/wash
+
+    - name: Install wash-cli
+      if: ${{ steps.restore.outputs.cache-hit != 'true' }}
+      uses: taiki-e/install-action@8484225d9734e230a8bf38421a4ffec1cc249372 # v2.46.20
+      with:
+        tool: ${{ format('wash-cli@{0}', env.WASH_VERSION) }}
+
+    - uses: actions/cache/save@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+      if: ${{ always() && steps.restore.outputs.cache-hit != 'true' }}
+      with:
+        key: ${{ steps.cache-primes-restore.outputs.cache-primary-key }}
+        path: ~/.cargo/bin/wash

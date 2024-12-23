@@ -21,8 +21,6 @@ jobs:
 
       - name: Setup Node, Yarn, and Turbo
         uses: ./.github/actions/ts-setup
-        with:
-          npm-token: ${{ secrets.NPM_TOKEN }}
 
       - name: Build
         run: yarn turbo build
