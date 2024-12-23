@@ -1,7 +1,7 @@
 name: crate-versions
 
 description: |
-  Get the latest versions of the `wash` CLI and `wash` Playwright tests
+  Get the 3 latest versions of the specified crate from crates.io.
 
 branding:
   icon: settings
