@@ -52,7 +52,7 @@ export const incomingHandler = {
         // Perform the check
         try {
           const result = await handlePasswordCheck(cr);
-          return await sendResponseJSON(resp, 200, Response.ok(result));
+          return await sendResponseJSON(resp, 200, result);
         } catch (err) {
           return await sendResponseJSON(
             resp,
