@@ -71,9 +71,9 @@ jobs:
           cache-key: ${{ format('e2e-wash-{0}', matrix.wash) }}
 
       - name: Install `wash` CLI
-        uses: taiki-e/install-action@ed8c79bccf0b1cb1544a358f81684d3acaa5133f
+        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
         with:
-          tool: wash-cli@${{ matrix.wash }}
+          tool: wash@${{ matrix.wash }}
 
       - name: Run Playwright Tests
         run: yarn test:e2e

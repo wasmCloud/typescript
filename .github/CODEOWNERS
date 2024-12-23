@@ -6,7 +6,7 @@
 
 ## GitHub CI
 
-.github @wasmCloud/ci-maintainers
+.github/** @wasmCloud/ci-maintainers
 .github/CODEOWNERS @wasmCloud/org-maintainers
 
 ## Projects

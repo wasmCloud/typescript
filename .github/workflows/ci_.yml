@@ -27,7 +27,10 @@ jobs:
   release:
     uses: ./.github/workflows/ci_release.yml
     # Only run on main repo, don't try to release on forks
-    if: github.repository == 'wasmCloud/typescript'
+    # Also only run on pushes to main branch, i.e. PRs and merge groups should not run this step
+    if: |
+      (github.repository == 'wasmCloud/typescript') &&
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
     needs: [build, test]
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -35,3 +38,10 @@ jobs:
       contents: write       # Needed to commit changesets
       pull-requests: write  # Needed to create pull requests
       id-token: write       # Needed for npm provenance
+
+  ci-check:
+    needs: [build, test]
+    if: ${{ always() }}
+    uses: ./.github/workflows/workflow_check.yml
+    with:
+      pass-condition: ${{ contains(needs.*.result, 'failure') == false }}

@@ -39,6 +39,11 @@ runs:
         cache-dependency-path: ${{ inputs.working-directory }}/yarn.lock
         cache: yarn
 
+    - name: Skip .npmrc File Configuration
+      if: ${{ inputs.npm-token == '' }}
+      shell: bash
+      run: echo "Skipping NPM token setup"
+
     - name: Configure .npmrc File
       if: ${{ inputs.npm-token != '' }}
       shell: bash

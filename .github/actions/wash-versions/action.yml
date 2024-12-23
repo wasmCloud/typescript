@@ -1,7 +1,7 @@
 name: crate-versions
 
 description: |
-  Get the 3 latest versions of the specified crate from crates.io.
+  Get the latest versions of the `wash` CLI and `wash` Playwright tests
 
 branding:
   icon: settings
@@ -19,24 +19,17 @@ runs:
     - name: Fetch crate versions
       id: fetch_versions
       run: |
-        # Fetch the crate information from crates.io
         CRATE_NAME=${{ inputs.crate }}
+        # Fetch the crate information from crates.io
         RESPONSE=$(curl -s -H "User-Agent: wasmCloud-github-actions/1.0 (slack.wasmcloud.com)" "https://crates.io/api/v1/crates/$CRATE_NAME")
         # Extract all versions that are not yanked
         ALL_VERSIONS=$(echo $RESPONSE | jq -c -r '.versions | map(select(.yanked | not)) | map(.num) | map(select(test("^[0-9]+\\.[0-9]+\\.[0-9]+$")))')
         # Extract the latest 3 major versions (or minor versions if the crate is in the 0.x range)
         LAST_3_VERSIONS=$(echo $ALL_VERSIONS | jq -c -r 'unique_by(if . | startswith("0.") then split(".")[1] else split(".")[0] end) | sort_by(split(".") | map(tonumber)) | reverse | .[0:3]')
         echo "versions=$LAST_3_VERSIONS" >> $GITHUB_OUTPUT
-        echo "latest=$(echo $LAST_3_VERSIONS | jq -r '.[0]')" >> $GITHUB_OUTPUT
-        echo "::group::Latest 3 versions of $CRATE_NAME"
-        echo $LAST_3_VERSIONS | jq
-        echo "::endgroup::"
       shell: bash
 
 outputs:
   versions:
     description: The latest 3 major versions of the crate.
     value: ${{ steps.fetch_versions.outputs.versions }}
-  latest:
-    description: The latest version of the crate.
-    value: ${{ steps.fetch_versions.outputs.latest }}
