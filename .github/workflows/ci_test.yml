@@ -38,7 +38,7 @@ jobs:
 
       - name: Fetch Latest Wash Versions
         id: fetch
-        uses: ./.github/actions/wash-versions
+        uses: ./.github/actions/crate-versions
         with:
           crate: wash-cli
 
