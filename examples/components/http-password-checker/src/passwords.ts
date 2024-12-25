@@ -25,20 +25,20 @@ export const PASSWORD_CHECK_RULES: PasswordCheckOptions<PasswordStrength> = [
   },
   {
     id: 1,
-    value: PasswordStrength.VeryWeak,
-    minDiversity: 1,
-    minLength: 8,
+    value: PasswordStrength.Weak,
+    minDiversity: 2,
+    minLength: 6,
   },
   {
     id: 2,
-    value: PasswordStrength.VeryWeak,
-    minDiversity: 3,
-    minLength: 10,
+    value: PasswordStrength.Medium,
+    minDiversity: 4,
+    minLength: 8,
   },
   {
     id: 3,
-    value: PasswordStrength.VeryWeak,
+    value: PasswordStrength.Strong,
     minDiversity: 4,
-    minLength: 15,
+    minLength: 10,
   },
 ];
