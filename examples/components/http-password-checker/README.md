@@ -24,10 +24,17 @@ This example also serves as a great example of using JS ecosystem projects, nota
 
 # Dependencies
 
-This relies on the following installed software:
+> ![WARN]
+> When building this project, ensure you are using a stable NodeJS release.
+>
+> Use of node version management tools (ex. [`nvm`](https://github.com/nvm-sh/nvm) or more newer NVM
+> compatible tools like [`fnm`](https://github.com/Schniz/fnm)) are recommended -- a `.nvmrc` file is
+> included for easy use.
+
+Building this project relies on the following installed software:
 
 | Name   | Description                                                                                                 |
-| ------ | ----------------------------------------------------------------------------------------------------------- |
+|--------|-------------------------------------------------------------------------------------------------------------|
 | `wash` | [Wasmcloud Shell][wash] controls your [wasmcloud][wasmcloud] host instances and enables building components |
 | `npm`  | [Node Package Manager (NPM)][npm] which manages packages for for the NodeJS ecosystem                       |
 | `node` | [NodeJS runtime][nodejs] (see `.nvmrc` for version)                                                         |
