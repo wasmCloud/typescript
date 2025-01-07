@@ -30,7 +30,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     outputs:
-      run-build: ${{ steps.force.outputs.force || steps.check-example-changes.outputs.changed_keys.components }}
+      run-build: ${{ steps.force.outputs.force || steps.check-example-changes.outputs.any_changed }}
     steps:
       - name: Force build if needed
         id: force
