@@ -3221,6 +3221,7 @@ __metadata:
     "@types/eslint": "npm:~8.56.10"
     "@wasmcloud/eslint-config": "workspace:*"
     "@wasmcloud/tsconfig": "workspace:*"
+    eslint: "npm:^8.57.0"
     nats.ws: "npm:^1.29.2"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tsup: "npm:^8.3.5"
@@ -3228,9 +3229,6 @@ __metadata:
     vite: "npm:^6.0.3"
     vite-plugin-dts: "npm:^4.3.0"
     vite-tsconfig-paths: "npm:^5.1.4"
-  peerDependencies:
-    eslint: ^8.57.0
-    tailwindcss: ^3.4.3
   languageName: unknown
   linkType: soft
 

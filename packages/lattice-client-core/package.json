@@ -42,14 +42,11 @@
     "prepack": "yarn build",
     "prepare-release": "yarn pack"
   },
-  "peerDependencies": {
-    "eslint": "^8.57.0",
-    "tailwindcss": "^3.4.3"
-  },
   "devDependencies": {
     "@types/eslint": "~8.56.10",
     "@wasmcloud/eslint-config": "workspace:*",
     "@wasmcloud/tsconfig": "workspace:*",
+    "eslint": "^8.57.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "tsup": "^8.3.5",
     "type-fest": "^4.30.1",
