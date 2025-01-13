@@ -1,4 +1,4 @@
-name: ci
+name: Examples - Component
 
 on:
   workflow_call:
