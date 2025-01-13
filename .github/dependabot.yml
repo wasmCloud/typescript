@@ -1,7 +1,16 @@
 version: 2
 updates:
+  # GitHub Actions/Workflows
+  - package-ecosystem: 'github-actions'
+    directory: '/.github'
+    schedule:
+      interval: 'daily'
+
+  # Published Packages
   - package-ecosystem: 'npm'
-    directory: '/'
+    directories: 
+      - '/packages/lattice-client-core'
+      - '/packages/lattice-client-react'
     schedule:
       interval: 'weekly'
       day: 'monday'
@@ -18,14 +27,47 @@ updates:
         update-types:
           - minor
           - patch
-  - package-ecosystem: 'github-actions'
-    directory: '/.github'
+
+  # Internal Packages
+  - package-ecosystem: 'npm'
+    directories: 
+      - '/packages/eslint-config'
+      - '/packages/prettier-config'
+      - '/packages/tsconfig'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'America/New_York'
     groups:
-      workflows:
-        patterns:
-          - '.github/workflows/*.yml'
-      actions:
-        patterns:
-          - '.github/actions/**/*.yml'
+      dev-dependencies:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+      prod-dependencies:
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
+
+  # Apps
+  # - washboard-ui
+  - package-ecosystem: 'npm'
+    directory: '/apps/washboard'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'America/New_York'
+    groups:
+      dev-dependencies:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+      prod-dependencies:
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
