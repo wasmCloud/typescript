@@ -17,25 +17,12 @@ permissions:
   contents: read
 
 jobs:
-  meta:
+  changesets:
     # Only run on main repo, don't try to release on forks
     # Also only run on pushes to main branch, i.e. PRs and merge groups should not run this step
     if: |
       (github.repository == 'wasmCloud/typescript') &&
       (github.event_name == 'push' && github.ref == 'refs/heads/main')
-    runs-on: ubuntu-latest
-    outputs:
-      GH_TOKEN: ${{ steps.app-token.outputs.token }}
-    steps:
-      - name: Generate App Token
-        id: app-token
-        uses: actions/create-github-app-token@5d869da34e18e7287c1daad50e0b8ea0f506ce69 # v1.11.0
-        with:
-          app-id: ${{ secrets.BOT_APP_ID }}
-          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
-
-  changesets:
-    needs: [meta]
 
     permissions:
       contents: write       # Needed to commit changesets
@@ -56,6 +43,13 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: meta
+        id: app-token
+        uses: actions/create-github-app-token@5d869da34e18e7287c1daad50e0b8ea0f506ce69 # v1.11.0
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+
       - name: Version or Publish
         id: changesets
         uses: changesets/action@c8bada60c408975afd1a20b3db81d6eee6789308
@@ -65,7 +59,7 @@ jobs:
           version: yarn ci:version
           publish: yarn ci:publish
         env:
-          GITHUB_TOKEN: ${{ needs.meta.outputs.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Parse Published Packages
