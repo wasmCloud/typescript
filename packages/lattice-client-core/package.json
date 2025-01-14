@@ -43,7 +43,7 @@
     "prepare-release": "yarn pack"
   },
   "devDependencies": {
-    "@types/eslint": "~8.56.10",
+    "@types/eslint": "~9.6.1",
     "@wasmcloud/eslint-config": "workspace:*",
     "@wasmcloud/tsconfig": "workspace:*",
     "eslint": "^8.57.0",
