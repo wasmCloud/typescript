@@ -49,13 +49,13 @@
     "eslint": "^8.57.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "tsup": "^8.3.5",
-    "type-fest": "^4.32.0",
     "vite": "^6.0.7",
     "vite-plugin-dts": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
-    "nats.ws": "^1.30.0"
+    "nats.ws": "^1.30.0",
+    "type-fest": "^4.32.0"
   },
   "resolutions": {
     "cross-spawn": "^7.0.5"

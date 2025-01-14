@@ -1,8 +1,8 @@
 ---
-'@wasmcloud/lattice-client-react': minor
-'@wasmcloud/lattice-client-core': minor
-'@wasmcloud/eslint-config': minor
-'washboard-ui': minor
+'@wasmcloud/lattice-client-react': patch
+'@wasmcloud/lattice-client-core': patch
+'@wasmcloud/eslint-config': patch
+'washboard-ui': patch
 ---
 
 Update dependencies
