@@ -54,7 +54,7 @@ updates:
   # Apps
   # - washboard-ui
   - package-ecosystem: 'npm'
-    directory: '/apps/washboard'
+    directory: '/apps/washboard-ui'
     schedule:
       interval: 'weekly'
       day: 'monday'
