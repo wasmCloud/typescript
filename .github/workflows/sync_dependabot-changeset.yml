@@ -1,0 +1,92 @@
+name: Sync - Dependabot Changeset
+
+# This workflow is triggered by Dependabot PRs and generates a changeset for
+# them. It will pull the changes from the PR and generate a changeset file
+# then commit and push the changeset file back to the PR.
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/sync_dependabot-changeset.yml'
+      - '**/yarn.lock'
+
+jobs:
+  generate-changeset:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]' && github.repository == 'wasmCloud/typescript'
+    steps:
+      - name: Get App Token
+        id: app-token
+        uses: actions/create-github-app-token@5d869da34e18e7287c1daad50e0b8ea0f506ce69 # v1.11.0
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 2
+          ref: ${{ github.head_ref }}
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Generate changeset
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          # Taken from backstage/backstage
+          # https://github.com/backstage/backstage/blob/2c14b301a29879ff9e78868d9d5375f592cd3fe6/.github/workflows/sync_dependabot-changesets.yml#L31-L83
+          script: |
+            const { promises: fs } = require('fs');
+
+            // Parses package.json files and returns the package names
+            async function getPackagesNames(files) {
+              const names = [];
+              for (const file of files) {
+                const data = JSON.parse(await fs.readFile(file, 'utf8'));
+                if (!data.private) {
+                  names.push(data.name);
+                }
+              }
+              return names;
+            }
+
+            async function createChangeset(fileName, commitMessage, packages) {
+              const pkgs = packages.map(pkg => `'${pkg}': patch`).join('\n');
+              const message = commitMessage.replace(/([bB])ump ([\S]+)/, '$1ump `$2`').trim();
+              const body = `---\n${pkgs}\n---\n\n${message}\n`;
+              await fs.writeFile(fileName, body);
+            }
+
+            const branch = await exec.getExecOutput('git branch --show-current');
+            if (!branch.stdout.startsWith('dependabot/')) {
+              console.log('Not a dependabot branch, skipping');
+              return;
+            }
+
+            const diffOutput = await exec.getExecOutput('git diff --name-only HEAD~1');
+            const diffFiles = diffOutput.stdout.split('\n');
+
+            if (diffFiles.find(f => f.startsWith('.changeset') && f.endsWith('.md'))) {
+              console.log('Changeset already exists, skipping');
+              return;
+            }
+
+            const files = diffFiles
+              .filter(file => file !== 'package.json') // skip root package.json
+              .filter(file => file.includes('package.json'));
+
+            const packageNames = await getPackagesNames(files);
+            if (!packageNames.length) {
+              console.log('No package.json changes to published packages, skipping');
+              return;
+            }
+
+            const { stdout: shortHash } = await exec.getExecOutput('git rev-parse --short HEAD');
+            const fileName = `.changeset/dependabot-${shortHash.trim()}.md`;
+            const { stdout: commitMessage } = await exec.getExecOutput('git show --pretty=format:%s -s HEAD');
+            await createChangeset(fileName, commitMessage, packageNames);
+            await exec.exec('git', ['add', fileName]);
+            await exec.exec('git commit -C HEAD --amend --no-edit');
+            await exec.exec('git push --force');
