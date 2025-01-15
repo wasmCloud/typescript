@@ -1,0 +1,38 @@
+name: Automate - Changeset Feedback
+
+on:
+  pull_request_target:
+    branches:
+      - main
+
+permissions:
+  pull-requests: write
+  contents: none
+
+jobs:
+  feedback:
+    # Prevent running on forks
+    if: github.repository == 'wasmCloud/typescript'
+    runs-on: ubuntu-latest
+    steps:
+      # Comparing target commit ref to base ref means minimal history is needed for comparison
+      - name: Checkout PR
+        # Fetch the PR commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: 'refs/pull/${{ github.event.pull_request.number }}/merge'
+
+      - name: Fetch Base ref
+        # Fetch the base ref
+        run: git fetch --depth 1 origin ${{ github.base_ref }}
+
+      # Feedback is applied only to PR's that actually change code that would be part of a release
+      - name: Generate feedback
+        uses: backstage/actions/changeset-feedback@b3c1841fd69e1658ac631afafd0fb140a2309024 # v0.6.17
+        with:
+          diff-ref: origin/main
+          issue-number: ${{ github.event.pull_request.number }}
+          bot-username: wasmcloud-automation-app[bot]
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+          installation-id: ${{ secrets.BOT_APP_INSTALLATION_ID }}
