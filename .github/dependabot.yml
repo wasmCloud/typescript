@@ -2,7 +2,7 @@ version: 2
 updates:
   # GitHub Actions/Workflows
   - package-ecosystem: 'github-actions'
-    directory: '/.github'
+    directory: '/'
     schedule:
       interval: 'daily'
 
