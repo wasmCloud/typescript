@@ -40,12 +40,15 @@ jobs:
           script: |
             const { promises: fs } = require('fs');
 
+            const changesetJson = JSON.parse(await fs.readFile('.changeset/config.json', 'utf8'));
+            const shouldVersionPrivatePackages = changesetJson?.privatePackages?.version || false;
+
             // Parses package.json files and returns the package names
             async function getPackagesNames(files) {
               const names = [];
               for (const file of files) {
                 const data = JSON.parse(await fs.readFile(file, 'utf8'));
-                if (!data.private) {
+                if (!data.private || shouldVersionPrivatePackages) {
                   names.push(data.name);
                 }
               }
