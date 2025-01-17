@@ -3370,7 +3370,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.4"
     eslint-plugin-react-hooks: "npm:^5.1.0"
     eslint-plugin-react-refresh: "npm:^0.4.18"
-    eslint-plugin-tailwindcss: "npm:3.17.5"
+    eslint-plugin-tailwindcss: "npm:3.18.0"
     eslint-plugin-unicorn: "npm:^56.0.1"
     typescript: "npm:^5.7.3"
   peerDependencies:
@@ -3387,7 +3387,7 @@ __metadata:
     "@wasmcloud/eslint-config": "workspace:*"
     "@wasmcloud/tsconfig": "workspace:*"
     eslint: "npm:^8.57.1"
-    nats.ws: "npm:^1.30.0"
+    nats.ws: "npm:^1.30.1"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tsup: "npm:^8.3.5"
     type-fest: "npm:^4.32.0"
@@ -5344,15 +5344,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-tailwindcss@npm:3.17.5, eslint-plugin-tailwindcss@npm:^3.17.5":
-  version: 3.17.5
-  resolution: "eslint-plugin-tailwindcss@npm:3.17.5"
+"eslint-plugin-tailwindcss@npm:3.18.0, eslint-plugin-tailwindcss@npm:^3.18.0":
+  version: 3.18.0
+  resolution: "eslint-plugin-tailwindcss@npm:3.18.0"
   dependencies:
     fast-glob: "npm:^3.2.5"
     postcss: "npm:^8.4.4"
   peerDependencies:
     tailwindcss: ^3.4.0
-  checksum: 10/6d3dd00c65873064fd7e3c3146b289e4ca67fd3ab5140f4bc0fb6d618e822e71361fdc9d600be2658c04251a3e0d9ac7c50173fecb58ff825577faaa7b01fe44
+  checksum: 10/5145aa8884e5a4c699305c9cc1546ef30904bd11b0ef2779cace23ed1676688c5956f5fb68bc70e7ac1b48b185d3239923813df2cf19c1df720caa4d0965b7a3
   languageName: node
   linkType: hard
 
@@ -7267,12 +7267,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.471.1":
-  version: 0.471.1
-  resolution: "lucide-react@npm:0.471.1"
+"lucide-react@npm:^0.473.0":
+  version: 0.473.0
+  resolution: "lucide-react@npm:0.473.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10/a75d7202387e0be0620ea6ba9e48db4cfee3f8170400c79607dc071240f8973fad42bc657ace44ab32cffc8fe4f7dd4eb0fe77823160aaff362d608440d20b5a
+  checksum: 10/e2d2248c451b2c378e02b26727b8e7a2e810a1c2b42efedc2388b423b3d64634e27e69f818a39ddcd0c0fa3aa513ce24d0e389e26c8f1b88fa49f99fd3626ad1
   languageName: node
   linkType: hard
 
@@ -7523,15 +7523,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nats.ws@npm:^1.30.0":
-  version: 1.30.0
-  resolution: "nats.ws@npm:1.30.0"
+"nats.ws@npm:^1.30.1":
+  version: 1.30.1
+  resolution: "nats.ws@npm:1.30.1"
   dependencies:
     nkeys.js: "npm:1.1.0"
   dependenciesMeta:
     nkeys.js:
       optional: true
-  checksum: 10/42a745b6e9209bf3c449eff2d5c2b6c56dd456969db8509f664814093a0fef6a253014e4211ab2a761ed8a3b29fc1ca0e293518b0b032ad588d61148270fef54
+  checksum: 10/d9770f52f06fdaaca3ea14d8eb32feea6eef284ce4ae70825e97d152536e81b5e7a812b34d31c26efb9085d721b589b174ed6df1be99c1385ab1a5cd5132f4d5
   languageName: node
   linkType: hard
 
@@ -10443,12 +10443,12 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.4"
     eslint-plugin-react-hooks: "npm:^5.1.0"
     eslint-plugin-react-refresh: "npm:^0.4.18"
-    eslint-plugin-tailwindcss: "npm:^3.17.5"
+    eslint-plugin-tailwindcss: "npm:^3.18.0"
     eslint-plugin-unicorn: "npm:^56.0.1"
     execa: "npm:^9.5.2"
     get-port: "npm:^7.1.0"
-    lucide-react: "npm:^0.471.1"
-    nats.ws: "npm:^1.30.0"
+    lucide-react: "npm:^0.473.0"
+    nats.ws: "npm:^1.30.1"
     pino: "npm:^9.6.0"
     postcss: "npm:^8.5.1"
     prettier: "npm:^3.4.2"
