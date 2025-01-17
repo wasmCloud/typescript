@@ -47,7 +47,7 @@ jobs:
       - name: Check for Example Changes
         id: check-example-changes
         if : ${{ !inputs.force }}
-        uses: tj-actions/changed-files@bab30c2299617f6615ec02a68b9a40d10bd21366 # v45.0.5
+        uses: tj-actions/changed-files@d6e91a2266cdb9d62096cebf1e8546899c6aa18f # v45.0.6
         with:
           files: |
             .github/workflows/ci_examples.yml
@@ -70,7 +70,7 @@ jobs:
           node-version-file: './examples/components/${{ inputs.folder }}/.nvmrc'
 
       - name: Install Wash
-        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
+        uses: taiki-e/install-action@d125c0a83576d3c0c86ac610c708b38d3565af4e # v2.47.15
         with:
           tool: wash@${{ inputs.wash-version }}
 
@@ -88,7 +88,7 @@ jobs:
         run: npm run test
 
       - name: upload
-        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
         with:
           name: ${{ inputs.folder }}-wasm-bin
           path: ./examples/components/${{ inputs.folder }}/build/${{ inputs.wasm-bin }}
@@ -101,7 +101,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Install Wash
-        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
+        uses: taiki-e/install-action@d125c0a83576d3c0c86ac610c708b38d3565af4e # v2.47.15
         with:
           tool: wash@${{ inputs.wash-version }}
 
@@ -191,7 +191,7 @@ jobs:
           echo "wasmcloud-toml-path=examples/typescript/components/${{ inputs.folder }}/wasmcloud.toml" >> $GITHUB_OUTPUT;
 
       - name: Install Wash
-        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
+        uses: taiki-e/install-action@d125c0a83576d3c0c86ac610c708b38d3565af4e # v2.47.15
         with:
           tool: wash@${{ inputs.wash-version }}
 

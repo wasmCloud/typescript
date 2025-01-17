@@ -71,7 +71,7 @@ jobs:
           cache-key: ${{ format('e2e-wash-{0}', matrix.wash) }}
 
       - name: Install `wash` CLI
-        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
+        uses: taiki-e/install-action@d125c0a83576d3c0c86ac610c708b38d3565af4e # v2.47.15
         with:
           tool: wash@${{ matrix.wash }}
 
@@ -79,7 +79,7 @@ jobs:
         run: yarn test:e2e
 
       - name: Upload Test Results
-        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08
         if: always()
         env:
           WASH_VERSION: ${{ matrix.wash }}

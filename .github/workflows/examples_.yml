@@ -27,7 +27,7 @@ jobs:
 
       - name: Check for changes
         id: changes
-        uses: tj-actions/changed-files@bab30c2299617f6615ec02a68b9a40d10bd21366 # v45.0.5
+        uses: tj-actions/changed-files@d6e91a2266cdb9d62096cebf1e8546899c6aa18f # v45.0.6
         with:
           matrix: true
           dir_names: true
@@ -43,7 +43,7 @@ jobs:
               - examples/providers/**
 
       - name: Install `wash` CLI
-        uses: taiki-e/install-action@acd25891978b4cdaebd139d3efef606d26513b14 # v2.47.0
+        uses: taiki-e/install-action@d125c0a83576d3c0c86ac610c708b38d3565af4e # v2.47.15
         with: { tool: wash }
 
       - name: Get Installed wash Version
