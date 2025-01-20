@@ -92,7 +92,7 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3",
     "uuid": "^11.0.5",
-    "vite": "^6.0.7",
+    "vite": "^6.0.9",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
