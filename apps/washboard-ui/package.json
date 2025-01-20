@@ -71,7 +71,7 @@
     "@wasmcloud/eslint-config": "workspace:^",
     "@wasmcloud/prettier-config": "workspace:^",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.1",
+    "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-absolute-imports-only": "^1.0.1",
