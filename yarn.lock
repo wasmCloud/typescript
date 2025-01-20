@@ -8463,21 +8463,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^7.1.2":
-  version: 7.1.2
-  resolution: "react-router-dom@npm:7.1.2"
+"react-router-dom@npm:^7.1.3":
+  version: 7.1.3
+  resolution: "react-router-dom@npm:7.1.3"
   dependencies:
-    react-router: "npm:7.1.2"
+    react-router: "npm:7.1.3"
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: 10/db30013180005eb4522213ada597e9e1bd9195720b052d0988cbca9b0074074fad6deb1f98616be29f7a8434cca2dbc8a221df64bf1411d1f300d16679f66dba
+  checksum: 10/c98f8eb3ee6d36c164444711b378cd63e6cdd67629b5300eb4d16d3183304ff978a892f593518cdd23323fe66ee92de4fbd7a61af582b08b94f94ff48462dbf2
   languageName: node
   linkType: hard
 
-"react-router@npm:7.1.2":
-  version: 7.1.2
-  resolution: "react-router@npm:7.1.2"
+"react-router@npm:7.1.3":
+  version: 7.1.3
+  resolution: "react-router@npm:7.1.3"
   dependencies:
     "@types/cookie": "npm:^0.6.0"
     cookie: "npm:^1.0.1"
@@ -8489,7 +8489,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10/be9c9ef3aad8d6d04b0caa9ad832b075ddc0f33263b4002c9c8bf8416772b72af6f965b956c035fe4b1629bd817bf28666116971ef0d79deed2ed504419ad556
+  checksum: 10/84b292e4947e5f9e0c5bae4059f28faf0b4c21944dc27707563188f001f006e2a62f0b5cfefda925f890629f40a237230c4e2a8572a64763e2cf809b504c0d87
   languageName: node
   linkType: hard
 
@@ -10482,7 +10482,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     react-hook-form: "npm:^7.54.2"
-    react-router-dom: "npm:^7.1.2"
+    react-router-dom: "npm:^7.1.3"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tailwind-merge: "npm:^2.6.0"
     tailwindcss: "npm:^3.4.17"
