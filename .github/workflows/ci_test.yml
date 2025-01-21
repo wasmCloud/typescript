@@ -71,7 +71,7 @@ jobs:
           cache-key: ${{ format('e2e-wash-{0}', matrix.wash) }}
 
       - name: Install `wash` CLI
-        uses: taiki-e/install-action@a7adeb15af2926b0ac7478ad165047cd2d8ba350 # v2.47.18
+        uses: taiki-e/install-action@da41fb311fbbcecf899732e575aaeaa2fe65c934 # v2.47.21
         with:
           tool: wash@${{ matrix.wash }}
 
