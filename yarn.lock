@@ -418,9 +418,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/apply-release-plan@npm:^7.0.7":
-  version: 7.0.7
-  resolution: "@changesets/apply-release-plan@npm:7.0.7"
+"@changesets/apply-release-plan@npm:^7.0.8":
+  version: 7.0.8
+  resolution: "@changesets/apply-release-plan@npm:7.0.8"
   dependencies:
     "@changesets/config": "npm:^3.0.5"
     "@changesets/get-version-range-type": "npm:^0.4.0"
@@ -435,7 +435,7 @@ __metadata:
     prettier: "npm:^2.7.1"
     resolve-from: "npm:^5.0.0"
     semver: "npm:^7.5.3"
-  checksum: 10/665490b0739075c50f037ae2bd4e8f7ea2c8815c120cafe91f56f15057f1e0a6f9088dc99e5e249e9c70502f072c8b93fca9f4f7173b9843c2e13a62b5931129
+  checksum: 10/ab7dcf8759ebf807c12d8657b7cc5db445f2f3255dc6bd7832c3c5353f4b587f4eadb87746401683296270221f11d6c7b10451b3e0e8fa7ccf5da511ebd95de3
   languageName: node
   linkType: hard
 
@@ -473,11 +473,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/cli@npm:^2.27.11":
-  version: 2.27.11
-  resolution: "@changesets/cli@npm:2.27.11"
+"@changesets/cli@npm:^2.27.12":
+  version: 2.27.12
+  resolution: "@changesets/cli@npm:2.27.12"
   dependencies:
-    "@changesets/apply-release-plan": "npm:^7.0.7"
+    "@changesets/apply-release-plan": "npm:^7.0.8"
     "@changesets/assemble-release-plan": "npm:^6.0.5"
     "@changesets/changelog-git": "npm:^0.2.0"
     "@changesets/config": "npm:^3.0.5"
@@ -507,7 +507,7 @@ __metadata:
     term-size: "npm:^2.1.0"
   bin:
     changeset: bin.js
-  checksum: 10/9072efec5e23ce71095462c8b8cda5d44adbe04dca68d36d5fd3d8eedaf9de39bd386840f3a57dfef87d3e3ca065cabe2d0aaaf8cf47a9ed743340c723e451ac
+  checksum: 10/06618abc60ddd9bb82d0380ee6bdea926cce8ebd76e18eb38487fa2501ee1386ffaf55042c8d052d783bcfd2669c51f3eef8b0b0cfc7624486bcec42ac0da9da
   languageName: node
   linkType: hard
 
@@ -1328,14 +1328,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.49.1":
-  version: 1.49.1
-  resolution: "@playwright/test@npm:1.49.1"
+"@playwright/test@npm:^1.50.0":
+  version: 1.50.0
+  resolution: "@playwright/test@npm:1.50.0"
   dependencies:
-    playwright: "npm:1.49.1"
+    playwright: "npm:1.50.0"
   bin:
     playwright: cli.js
-  checksum: 10/bb0d5eda58ee0b5bbca732d2aa57782fadf420d101e08e16d5760179459c667907bd8d224ee3d6f43f3088378e377ef63d32ed605fec37605debf217c3efe8da
+  checksum: 10/1fec2ed986205b57b03f24392bb01c6454c1f0a5c14204ce921afd51c3f5d61f20eddb3a18d36a02b19b3e3d731c7ff6bb7ba3c622aabc8fa3802021aef7d21b
   languageName: node
   linkType: hard
 
@@ -2952,12 +2952,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.10.7":
-  version: 22.10.7
-  resolution: "@types/node@npm:22.10.7"
+"@types/node@npm:^22.10.10":
+  version: 22.10.10
+  resolution: "@types/node@npm:22.10.10"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: 10/64cde1c2f5e5f7d597d3bd462f52c3c2d688a66623eb75d25e1d1d63d384ef553a27100635ad0dbb7d74da517048aa636947863eb624cf85f25d2f22370ce474
+  checksum: 10/61559b62bc7e62b947876e097c99472dd01317dd3b5916b538e2c40db8d68a1fc23c8de48149ef04cd2790a97bf2c005ea60cbb067e55ddbefd013d73da7a147
   languageName: node
   linkType: hard
 
@@ -3354,7 +3354,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@wasmcloud/eslint-config@workspace:packages/eslint-config"
   dependencies:
-    "@types/node": "npm:^22.10.7"
+    "@types/node": "npm:^22.10.10"
     "@typescript-eslint/eslint-plugin": "npm:^8.20.0"
     "@typescript-eslint/parser": "npm:^8.20.0"
     eslint-config-prettier: "npm:^10.0.1"
@@ -3389,9 +3389,9 @@ __metadata:
     eslint: "npm:^8.57.1"
     nats.ws: "npm:^1.30.1"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
-    tsup: "npm:^8.3.5"
+    tsup: "npm:^8.3.6"
     type-fest: "npm:^4.32.0"
-    vite: "npm:^6.0.9"
+    vite: "npm:^6.0.11"
     vite-plugin-dts: "npm:^4.5.0"
     vite-tsconfig-paths: "npm:^5.1.4"
   languageName: unknown
@@ -3411,8 +3411,8 @@ __metadata:
     eslint: "npm:^8.57.1"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tailwindcss: "npm:^3.4.17"
-    tsup: "npm:^8.3.5"
-    vite: "npm:^6.0.9"
+    tsup: "npm:^8.3.6"
+    vite: "npm:^6.0.11"
     vite-plugin-dts: "npm:^4.5.0"
     vite-tsconfig-paths: "npm:^5.1.4"
   peerDependencies:
@@ -3425,13 +3425,13 @@ __metadata:
   resolution: "@wasmcloud/monorepo@workspace:."
   dependencies:
     "@changesets/changelog-github": "npm:^0.5.0"
-    "@changesets/cli": "npm:^2.27.11"
-    "@types/node": "npm:^22.10.7"
+    "@changesets/cli": "npm:^2.27.12"
+    "@types/node": "npm:^22.10.10"
     "@wasmcloud/prettier-config": "workspace:*"
     eslint: "npm:^8.57.1"
     eslint-config-turbo: "npm:^2.3.3"
     prettier: "npm:^3.4.2"
-    turbo: "npm:^2.3.3"
+    turbo: "npm:^2.3.4"
     typescript: "npm:^5.7.3"
   languageName: unknown
   linkType: soft
@@ -8132,27 +8132,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.49.1":
-  version: 1.49.1
-  resolution: "playwright-core@npm:1.49.1"
+"playwright-core@npm:1.50.0":
+  version: 1.50.0
+  resolution: "playwright-core@npm:1.50.0"
   bin:
     playwright-core: cli.js
-  checksum: 10/baa39a53024ec7744708410f2b952ac3aa2e1a6d311dabfa303523712848eba142fce5c20f1b2ed2a66fbd9a415d22ea8642b0f70423360aaebd4b41c47d364e
+  checksum: 10/0d27e52164bcc37ed5aeaa0c7efa6a0b3616cfbb01e206c26572bff8b8e5f0923a993369c826056cd7bee4b975508a1ec257b533098ee9db7bc5b75832110e4d
   languageName: node
   linkType: hard
 
-"playwright@npm:1.49.1":
-  version: 1.49.1
-  resolution: "playwright@npm:1.49.1"
+"playwright@npm:1.50.0":
+  version: 1.50.0
+  resolution: "playwright@npm:1.50.0"
   dependencies:
     fsevents: "npm:2.3.2"
-    playwright-core: "npm:1.49.1"
+    playwright-core: "npm:1.50.0"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 10/49fb063f4a107b8090f66d2d351ebd51fbb66843a8f95a161fa0c0e0b5156515961e75cc10f4249f61b9d2af51f762dda505c62b096d8f61cd47d1ff73ab39d2
+  checksum: 10/53521f05c48ab51a37d6fa280a7c1e6486e2879f9997e877227517945faf195ce16829cf144709bba292c3023bcd07cf44a4dd965458c9adc30ea6fbe1f0f74a
   languageName: node
   linkType: hard
 
@@ -9827,9 +9827,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^8.3.5":
-  version: 8.3.5
-  resolution: "tsup@npm:8.3.5"
+"tsup@npm:^8.3.6":
+  version: 8.3.6
+  resolution: "tsup@npm:8.3.6"
   dependencies:
     bundle-require: "npm:^5.0.0"
     cac: "npm:^6.7.14"
@@ -9864,34 +9864,34 @@ __metadata:
   bin:
     tsup: dist/cli-default.js
     tsup-node: dist/cli-node.js
-  checksum: 10/8cf694d5fe7923c47273388f7fb203fe64fe66efb65a96829d361de3360d4db4299e7f82f4e6354716b580c9a1eadb336a25759f90fdc61fe816d5d7d9a28003
+  checksum: 10/ee70995a5d155ea7d9d1e0491f46520fe250393ed7935d8776956fc3380d3c992b06e6a01223187712eb32f52ff06dbc66c60cbe5dc91c4bd1415ad6d238b517
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-darwin-64@npm:2.3.3"
+"turbo-darwin-64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-darwin-64@npm:2.3.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-darwin-arm64@npm:2.3.3"
+"turbo-darwin-arm64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-darwin-arm64@npm:2.3.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-linux-64@npm:2.3.3"
+"turbo-linux-64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-linux-64@npm:2.3.4"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-linux-arm64@npm:2.3.3"
+"turbo-linux-arm64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-linux-arm64@npm:2.3.4"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
@@ -9903,30 +9903,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-windows-64@npm:2.3.3"
+"turbo-windows-64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-windows-64@npm:2.3.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-windows-arm64@npm:2.3.3"
+"turbo-windows-arm64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-windows-arm64@npm:2.3.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.3.3":
-  version: 2.3.3
-  resolution: "turbo@npm:2.3.3"
+"turbo@npm:^2.3.4":
+  version: 2.3.4
+  resolution: "turbo@npm:2.3.4"
   dependencies:
-    turbo-darwin-64: "npm:2.3.3"
-    turbo-darwin-arm64: "npm:2.3.3"
-    turbo-linux-64: "npm:2.3.3"
-    turbo-linux-arm64: "npm:2.3.3"
-    turbo-windows-64: "npm:2.3.3"
-    turbo-windows-arm64: "npm:2.3.3"
+    turbo-darwin-64: "npm:2.3.4"
+    turbo-darwin-arm64: "npm:2.3.4"
+    turbo-linux-64: "npm:2.3.4"
+    turbo-linux-arm64: "npm:2.3.4"
+    turbo-windows-64: "npm:2.3.4"
+    turbo-windows-arm64: "npm:2.3.4"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -9942,7 +9942,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10/580203a335321aa77bc04a1db46fe34504dce32c3b22f593044330403915b47f5b10d41158131007ed7a518ff5e8f739f6feb311fa139aa029cd904f398944d3
+  checksum: 10/e1ea94c1977c7d907dff50796b09dca8dc4713590ef0f3a5697abb2de41b9a465e6ca25b8d417d12cadb4db5e65a2c247dd60486c85eaaf69a1888ff9f0d604a
   languageName: node
   linkType: hard
 
@@ -10362,9 +10362,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.0.9":
-  version: 6.0.9
-  resolution: "vite@npm:6.0.9"
+"vite@npm:^6.0.11":
+  version: 6.0.11
+  resolution: "vite@npm:6.0.11"
   dependencies:
     esbuild: "npm:^0.24.2"
     fsevents: "npm:~2.3.3"
@@ -10410,7 +10410,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/6f4f27c602f997537df26cc9665763b402f5978a7381146f6c0b146888ee257484a7f140df79e495b922082ca608bd1f563b0be9e272d22c689aad2b1e1da440
+  checksum: 10/753d06b07a4d90863d3478162cfb18fa5cd7f6eb22a74525348a8fd46593a82875d0f92352c2f4833e15cb6581fc97d6ab434c0c5d83d8d58cfbbe6e7267726d
   languageName: node
   linkType: hard
 
@@ -10426,7 +10426,7 @@ __metadata:
   resolution: "washboard-ui@workspace:apps/washboard-ui"
   dependencies:
     "@hookform/resolvers": "npm:^3.10.0"
-    "@playwright/test": "npm:^1.49.1"
+    "@playwright/test": "npm:^1.50.0"
     "@radix-ui/react-accordion": "npm:^1.2.2"
     "@radix-ui/react-alert-dialog": "npm:^1.1.4"
     "@radix-ui/react-checkbox": "npm:^1.1.3"
@@ -10445,7 +10445,7 @@ __metadata:
     "@radix-ui/react-toggle": "npm:^1.1.1"
     "@radix-ui/react-tooltip": "npm:^1.1.6"
     "@tanstack/react-table": "npm:^8.20.6"
-    "@types/node": "npm:^22.10.7"
+    "@types/node": "npm:^22.10.10"
     "@types/react": "npm:^18.3.18"
     "@types/react-dom": "npm:^18.3.5"
     "@types/uuid": "npm:^10.0.0"
@@ -10490,7 +10490,7 @@ __metadata:
     typescript: "npm:^5.7.3"
     usehooks-ts: "npm:^3.1.0"
     uuid: "npm:^11.0.5"
-    vite: "npm:^6.0.9"
+    vite: "npm:^6.0.11"
     vite-plugin-svgr: "npm:^4.3.0"
     vite-tsconfig-paths: "npm:^5.1.4"
     zod: "npm:^3.24.1"
