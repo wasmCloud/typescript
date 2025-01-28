@@ -43,7 +43,7 @@ jobs:
               - examples/providers/**
 
       - name: Install `wash` CLI
-        uses: taiki-e/install-action@1936c8cfe365805f86ceb097d570620cc3a19932 # v2.47.25
+        uses: taiki-e/install-action@3e9c6e343dada95d5274bc0f134b25ec8a72f3bc # v2.47.28
         with: { tool: wash }
 
       - name: Get Installed wash Version
