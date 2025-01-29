@@ -8,7 +8,6 @@ const config = {
   },
   settings: {
     tailwindcss: {
-      config: path.resolve(__dirname, './tailwind.config.ts'),
       callees: ['classnames', 'clsx', 'ctl', 'cn', 'cva'],
     },
     'import/resolver': {
