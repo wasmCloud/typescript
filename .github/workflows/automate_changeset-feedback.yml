@@ -11,8 +11,10 @@ permissions:
 
 jobs:
   feedback:
-    # Prevent running on forks
-    if: github.repository == 'wasmCloud/typescript'
+    # Prevent running on forks and on PRs from the bot
+    if: |
+      (github.repository == 'wasmCloud/typescript') &&
+      (github.event.pull_request.user.login != 'wasmcloud-automation-app[bot]')
     runs-on: ubuntu-latest
     steps:
       # Comparing target commit ref to base ref means minimal history is needed for comparison
