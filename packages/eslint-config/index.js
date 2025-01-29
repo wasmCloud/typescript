@@ -8,7 +8,9 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
-    'plugin:tailwindcss/recommended',
+    // TODO: Disabled until update to support TailwindCSS v4
+    // https://github.com/francoismassart/eslint-plugin-tailwindcss/issues/325
+    // 'plugin:tailwindcss/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
@@ -149,7 +151,6 @@ module.exports = {
     },
     tailwindcss: {
       cssFiles: [],
-      config: path.join(__dirname, './tailwind.config.ts'),
       callees: ['classnames', 'clsx', 'ctl', 'cn', 'cva'],
     },
   },
