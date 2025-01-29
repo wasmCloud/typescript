@@ -10,6 +10,15 @@ permissions:
   contents: none
 
 jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug
+        run: |
+          echo "::group::GitHub Context"
+          echo '${{ toJson(github) }}' | jq .
+          echo "::endgroup::"
+
   feedback:
     # Prevent running on forks
     if: github.repository == 'wasmCloud/typescript'
