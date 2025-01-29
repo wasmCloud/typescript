@@ -1,79 +1,94 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin 'tailwindcss-animate';
 
-:root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+@custom-variant dark (&:is(.dark *));
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
 
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
 
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
 
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
 
-  --accent: 165, 100%, 89%;
-  --accent-foreground: 165, 100%, 16%;
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
 
-  --brand: 165, 100%, 37%;
-  --brand-foreground: 167, 100%, 5%;
+  --color-brand: hsl(var(--brand));
+  --color-brand-foreground: hsl(var(--brand-foreground));
 
-  --ring: 215 20.2% 65.1%;
+  --color-seafoam-50: #e7fff9;
+  --color-seafoam-100: #c6fff1;
+  --color-seafoam-200: #84ffe1;
+  --color-seafoam-300: #42ffd1;
+  --color-seafoam-400: #00fec0;
+  --color-seafoam-500: #00bc8e;
+  --color-seafoam-600: #009873;
+  --color-seafoam-700: #007558;
+  --color-seafoam-800: #00513d;
+  --color-seafoam-900: #002d22;
+  --color-seafoam-950: #001b15;
+  --color-seafoam: #00bc8e;
 
-  --radius: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
-.dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
-
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
-
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-
-  --primary: 210 40% 98%;
-  --primary-foreground: 222.2 47.4% 11.2%;
-
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-
-  --accent: 165, 100%, 9%;
-  --accent-foreground: 165, 100%, 89%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-
-  --brand: 165, 100%, 23%;
-  --brand-foreground: 165, 100%, 95%;
-
-  --ring: 217.2 32.6% 17.5%;
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
 }
 
 @layer base {
-  * {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
     @apply border-border;
   }
   body,
@@ -84,8 +99,78 @@
     @apply bg-background text-foreground;
   }
   #root {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
+    @apply flex flex-col overflow-auto;
+  }
+}
+
+@layer utilities {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 165, 100%, 89%;
+    --accent-foreground: 165, 100%, 16%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --brand: 165, 100%, 37%;
+    --brand-foreground: 167, 100%, 5%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 165, 100%, 9%;
+    --accent-foreground: 165, 100%, 89%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --brand: 165, 100%, 23%;
+    --brand-foreground: 165, 100%, 95%;
+
+    --ring: 217.2 32.6% 17.5%;
   }
 }
