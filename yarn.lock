@@ -1328,14 +1328,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.50.0":
-  version: 1.50.0
-  resolution: "@playwright/test@npm:1.50.0"
+"@playwright/test@npm:^1.50.1":
+  version: 1.50.1
+  resolution: "@playwright/test@npm:1.50.1"
   dependencies:
-    playwright: "npm:1.50.0"
+    playwright: "npm:1.50.1"
   bin:
     playwright: cli.js
-  checksum: 10/1fec2ed986205b57b03f24392bb01c6454c1f0a5c14204ce921afd51c3f5d61f20eddb3a18d36a02b19b3e3d731c7ff6bb7ba3c622aabc8fa3802021aef7d21b
+  checksum: 10/0d8d2291d6554c492cb163b4d463e1e9cc6d3ae50680d790473f693f36a243c16c3620406849dd40115046c47a6ad5cc36a24511caec6d054dc1a1d9fffb4138
   languageName: node
   linkType: hard
 
@@ -2833,109 +2833,109 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/node@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/node@npm:4.0.0"
+"@tailwindcss/node@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/node@npm:4.0.3"
   dependencies:
     enhanced-resolve: "npm:^5.18.0"
     jiti: "npm:^2.4.2"
-    tailwindcss: "npm:4.0.0"
-  checksum: 10/44edd1a455844dee8e263ed5b9ab35eb7fa2e698135ce960eb003b722e384abe41278b79365f177ff22d813c23986e43a8d4426be72cd842c405324680d58c71
+    tailwindcss: "npm:4.0.3"
+  checksum: 10/7a2d79298aaa09804a28b291e5bdeab978383367e137ef1e2f04f10cfe3dbd71597fce408c275852a6f7ea12f5120372707040f9c9dade59ff7d55c1728921f1
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-android-arm64@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-android-arm64@npm:4.0.0"
+"@tailwindcss/oxide-android-arm64@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-android-arm64@npm:4.0.3"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-darwin-arm64@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-darwin-arm64@npm:4.0.0"
+"@tailwindcss/oxide-darwin-arm64@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-darwin-arm64@npm:4.0.3"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-darwin-x64@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-darwin-x64@npm:4.0.0"
+"@tailwindcss/oxide-darwin-x64@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-darwin-x64@npm:4.0.3"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-freebsd-x64@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-freebsd-x64@npm:4.0.0"
+"@tailwindcss/oxide-freebsd-x64@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-freebsd-x64@npm:4.0.3"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-arm-gnueabihf@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-linux-arm-gnueabihf@npm:4.0.0"
+"@tailwindcss/oxide-linux-arm-gnueabihf@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-linux-arm-gnueabihf@npm:4.0.3"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-arm64-gnu@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-linux-arm64-gnu@npm:4.0.0"
+"@tailwindcss/oxide-linux-arm64-gnu@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-linux-arm64-gnu@npm:4.0.3"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-arm64-musl@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-linux-arm64-musl@npm:4.0.0"
+"@tailwindcss/oxide-linux-arm64-musl@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-linux-arm64-musl@npm:4.0.3"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-x64-gnu@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-linux-x64-gnu@npm:4.0.0"
+"@tailwindcss/oxide-linux-x64-gnu@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-linux-x64-gnu@npm:4.0.3"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-linux-x64-musl@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-linux-x64-musl@npm:4.0.0"
+"@tailwindcss/oxide-linux-x64-musl@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-linux-x64-musl@npm:4.0.3"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-win32-arm64-msvc@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-win32-arm64-msvc@npm:4.0.0"
+"@tailwindcss/oxide-win32-arm64-msvc@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-win32-arm64-msvc@npm:4.0.3"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide-win32-x64-msvc@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide-win32-x64-msvc@npm:4.0.0"
+"@tailwindcss/oxide-win32-x64-msvc@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide-win32-x64-msvc@npm:4.0.3"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/oxide@npm:4.0.0"
+"@tailwindcss/oxide@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/oxide@npm:4.0.3"
   dependencies:
-    "@tailwindcss/oxide-android-arm64": "npm:4.0.0"
-    "@tailwindcss/oxide-darwin-arm64": "npm:4.0.0"
-    "@tailwindcss/oxide-darwin-x64": "npm:4.0.0"
-    "@tailwindcss/oxide-freebsd-x64": "npm:4.0.0"
-    "@tailwindcss/oxide-linux-arm-gnueabihf": "npm:4.0.0"
-    "@tailwindcss/oxide-linux-arm64-gnu": "npm:4.0.0"
-    "@tailwindcss/oxide-linux-arm64-musl": "npm:4.0.0"
-    "@tailwindcss/oxide-linux-x64-gnu": "npm:4.0.0"
-    "@tailwindcss/oxide-linux-x64-musl": "npm:4.0.0"
-    "@tailwindcss/oxide-win32-arm64-msvc": "npm:4.0.0"
-    "@tailwindcss/oxide-win32-x64-msvc": "npm:4.0.0"
+    "@tailwindcss/oxide-android-arm64": "npm:4.0.3"
+    "@tailwindcss/oxide-darwin-arm64": "npm:4.0.3"
+    "@tailwindcss/oxide-darwin-x64": "npm:4.0.3"
+    "@tailwindcss/oxide-freebsd-x64": "npm:4.0.3"
+    "@tailwindcss/oxide-linux-arm-gnueabihf": "npm:4.0.3"
+    "@tailwindcss/oxide-linux-arm64-gnu": "npm:4.0.3"
+    "@tailwindcss/oxide-linux-arm64-musl": "npm:4.0.3"
+    "@tailwindcss/oxide-linux-x64-gnu": "npm:4.0.3"
+    "@tailwindcss/oxide-linux-x64-musl": "npm:4.0.3"
+    "@tailwindcss/oxide-win32-arm64-msvc": "npm:4.0.3"
+    "@tailwindcss/oxide-win32-x64-msvc": "npm:4.0.3"
   dependenciesMeta:
     "@tailwindcss/oxide-android-arm64":
       optional: true
@@ -2959,21 +2959,21 @@ __metadata:
       optional: true
     "@tailwindcss/oxide-win32-x64-msvc":
       optional: true
-  checksum: 10/36fdafe852f3997d47ced47c7f8483f065e18ea3876fc51e0663ec4aa4eea21b2b88b18f8d7514859918e407c8999333110eb4c4b0eca7f002c08f762cac45ae
+  checksum: 10/86fedaf133df200fa06a12fc22f9bd3a07f85b1250876f04546685225828ce30476cca3a0fffa4f4b1417634b2874e3e1c74162faa4c6fb6759c21529c67cde1
   languageName: node
   linkType: hard
 
-"@tailwindcss/vite@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@tailwindcss/vite@npm:4.0.0"
+"@tailwindcss/vite@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "@tailwindcss/vite@npm:4.0.3"
   dependencies:
-    "@tailwindcss/node": "npm:^4.0.0"
-    "@tailwindcss/oxide": "npm:^4.0.0"
+    "@tailwindcss/node": "npm:^4.0.3"
+    "@tailwindcss/oxide": "npm:^4.0.3"
     lightningcss: "npm:^1.29.1"
-    tailwindcss: "npm:4.0.0"
+    tailwindcss: "npm:4.0.3"
   peerDependencies:
     vite: ^5.2.0 || ^6
-  checksum: 10/9dc6d1fcc67049ff4e1add837f963277228a84303ecc1a0daf2cf45cb359991018d2ff4ddea7c6b5abf3e2293c0c74d80ea6bb7aa8853a6c3722f208b93a4382
+  checksum: 10/1d91415d964147edece3829f0484cce951fa7ad94027a23e4aba1ef0c2c3ea8086327e8e66e051b1b169cfa9164077b1d05989f728a31317fe772362086852c9
   languageName: node
   linkType: hard
 
@@ -3096,12 +3096,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.10.10":
-  version: 22.10.10
-  resolution: "@types/node@npm:22.10.10"
+"@types/node@npm:^22.13.0":
+  version: 22.13.0
+  resolution: "@types/node@npm:22.13.0"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: 10/61559b62bc7e62b947876e097c99472dd01317dd3b5916b538e2c40db8d68a1fc23c8de48149ef04cd2790a97bf2c005ea60cbb067e55ddbefd013d73da7a147
+  checksum: 10/a7563e57df48cb7e28f936dbabe228316dcdb4c7c3a88a6c1659fae898ffde2647a7193a9e29e0cbcb7dacc05a91fb3bc30c1a1d6fc9294694a734ff71a5f12e
   languageName: node
   linkType: hard
 
@@ -3499,7 +3499,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@wasmcloud/eslint-config@workspace:packages/eslint-config"
   dependencies:
-    "@types/node": "npm:^22.10.10"
+    "@types/node": "npm:^22.13.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.22.0"
     "@typescript-eslint/parser": "npm:^8.22.0"
     eslint-config-prettier: "npm:^10.0.1"
@@ -3570,12 +3570,12 @@ __metadata:
   dependencies:
     "@changesets/changelog-github": "npm:^0.5.0"
     "@changesets/cli": "npm:^2.27.12"
-    "@types/node": "npm:^22.10.10"
+    "@types/node": "npm:^22.13.0"
     "@wasmcloud/prettier-config": "workspace:*"
     eslint: "npm:^8.57.1"
     eslint-config-turbo: "npm:^2.3.4"
     prettier: "npm:^3.4.2"
-    turbo: "npm:^2.3.4"
+    turbo: "npm:^2.4.0"
     typescript: "npm:^5.7.3"
   languageName: unknown
   linkType: soft
@@ -8376,27 +8376,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.50.0":
-  version: 1.50.0
-  resolution: "playwright-core@npm:1.50.0"
+"playwright-core@npm:1.50.1":
+  version: 1.50.1
+  resolution: "playwright-core@npm:1.50.1"
   bin:
     playwright-core: cli.js
-  checksum: 10/0d27e52164bcc37ed5aeaa0c7efa6a0b3616cfbb01e206c26572bff8b8e5f0923a993369c826056cd7bee4b975508a1ec257b533098ee9db7bc5b75832110e4d
+  checksum: 10/9a310b8a66bf7fd926e620c1c8e27be29bdbdce91640e5f975b2fd4dc706d0307faec2bb0456cc8e7dedb1e71c0b5eb35c6a58acd5cedc7d8fd849a9067e637b
   languageName: node
   linkType: hard
 
-"playwright@npm:1.50.0":
-  version: 1.50.0
-  resolution: "playwright@npm:1.50.0"
+"playwright@npm:1.50.1":
+  version: 1.50.1
+  resolution: "playwright@npm:1.50.1"
   dependencies:
     fsevents: "npm:2.3.2"
-    playwright-core: "npm:1.50.0"
+    playwright-core: "npm:1.50.1"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 10/53521f05c48ab51a37d6fa280a7c1e6486e2879f9997e877227517945faf195ce16829cf144709bba292c3023bcd07cf44a4dd965458c9adc30ea6fbe1f0f74a
+  checksum: 10/a3687614ac3238a81cbe3018e4f4a2ae92c71f3f65110cc6087068c020f6134f0628308da33177b9b08102644706e835d4053f6890beeb4a935f433bc4ac107a
   languageName: node
   linkType: hard
 
@@ -9829,10 +9829,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:4.0.0, tailwindcss@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "tailwindcss@npm:4.0.0"
-  checksum: 10/3491d86a7c3ad08209eb988fcf36d893e5f5a4c48c63da706a8788f6111e141386e1b5c8fa46f2650b08200c1b8011251d97b6d65514bdc14aa06597871d1f7d
+"tailwindcss@npm:4.0.3":
+  version: 4.0.3
+  resolution: "tailwindcss@npm:4.0.3"
+  checksum: 10/d9c464b205df6169aab7bf05b158562ec15820c47ad7e9fff2419c98d2040ef53ff5689a8f57b80510576311e356fbb02ab7c47b3868885fe39dc3d1bd83b543
   languageName: node
   linkType: hard
 
@@ -9866,6 +9866,13 @@ __metadata:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
   checksum: 10/b0e00533ae3800223b5b71af9cb1dd9bfea5ef5ffa01300f1ced99de9511487aa41e03106173e4168c56c8f6600ee21c98c1d75a5def23cddf9b39b4ad71210d
+  languageName: node
+  linkType: hard
+
+"tailwindcss@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "tailwindcss@npm:4.0.0"
+  checksum: 10/3491d86a7c3ad08209eb988fcf36d893e5f5a4c48c63da706a8788f6111e141386e1b5c8fa46f2650b08200c1b8011251d97b6d65514bdc14aa06597871d1f7d
   languageName: node
   linkType: hard
 
@@ -10097,30 +10104,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-darwin-64@npm:2.3.4"
+"turbo-darwin-64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-darwin-64@npm:2.4.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-darwin-arm64@npm:2.3.4"
+"turbo-darwin-arm64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-darwin-arm64@npm:2.4.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-linux-64@npm:2.3.4"
+"turbo-linux-64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-linux-64@npm:2.4.0"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-linux-arm64@npm:2.3.4"
+"turbo-linux-arm64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-linux-arm64@npm:2.4.0"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
@@ -10132,30 +10139,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-windows-64@npm:2.3.4"
+"turbo-windows-64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-windows-64@npm:2.4.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.3.4":
-  version: 2.3.4
-  resolution: "turbo-windows-arm64@npm:2.3.4"
+"turbo-windows-arm64@npm:2.4.0":
+  version: 2.4.0
+  resolution: "turbo-windows-arm64@npm:2.4.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.3.4":
-  version: 2.3.4
-  resolution: "turbo@npm:2.3.4"
+"turbo@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "turbo@npm:2.4.0"
   dependencies:
-    turbo-darwin-64: "npm:2.3.4"
-    turbo-darwin-arm64: "npm:2.3.4"
-    turbo-linux-64: "npm:2.3.4"
-    turbo-linux-arm64: "npm:2.3.4"
-    turbo-windows-64: "npm:2.3.4"
-    turbo-windows-arm64: "npm:2.3.4"
+    turbo-darwin-64: "npm:2.4.0"
+    turbo-darwin-arm64: "npm:2.4.0"
+    turbo-linux-64: "npm:2.4.0"
+    turbo-linux-arm64: "npm:2.4.0"
+    turbo-windows-64: "npm:2.4.0"
+    turbo-windows-arm64: "npm:2.4.0"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -10171,7 +10178,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10/e1ea94c1977c7d907dff50796b09dca8dc4713590ef0f3a5697abb2de41b9a465e6ca25b8d417d12cadb4db5e65a2c247dd60486c85eaaf69a1888ff9f0d604a
+  checksum: 10/074e612c5258132e52d1aeed3152178c6f8b2a8c77625ec734b5eb71a77ab123639446404b6c9ea126a382594359e4a095c4fafa860c2bc451dbec8846cebdab
   languageName: node
   linkType: hard
 
@@ -10655,7 +10662,7 @@ __metadata:
   resolution: "washboard-ui@workspace:apps/washboard-ui"
   dependencies:
     "@hookform/resolvers": "npm:^3.10.0"
-    "@playwright/test": "npm:^1.50.0"
+    "@playwright/test": "npm:^1.50.1"
     "@radix-ui/react-accordion": "npm:^1.2.2"
     "@radix-ui/react-alert-dialog": "npm:^1.1.5"
     "@radix-ui/react-checkbox": "npm:^1.1.3"
@@ -10673,9 +10680,9 @@ __metadata:
     "@radix-ui/react-toast": "npm:^1.2.5"
     "@radix-ui/react-toggle": "npm:^1.1.1"
     "@radix-ui/react-tooltip": "npm:^1.1.7"
-    "@tailwindcss/vite": "npm:^4.0.0"
+    "@tailwindcss/vite": "npm:^4.0.3"
     "@tanstack/react-table": "npm:^8.20.6"
-    "@types/node": "npm:^22.10.10"
+    "@types/node": "npm:^22.13.0"
     "@types/react": "npm:19.0.0"
     "@types/react-dom": "npm:19.0.0"
     "@types/uuid": "npm:^10.0.0"
