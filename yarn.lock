@@ -3503,7 +3503,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^8.22.0"
     "@typescript-eslint/parser": "npm:^8.22.0"
     eslint-config-prettier: "npm:^10.0.1"
-    eslint-config-turbo: "npm:^2.3.4"
+    eslint-config-turbo: "npm:^2.4.0"
     eslint-config-xo: "npm:^0.46.0"
     eslint-config-xo-react: "npm:^0.28.0"
     eslint-config-xo-typescript: "npm:^7.0.0"
@@ -3573,7 +3573,7 @@ __metadata:
     "@types/node": "npm:^22.13.0"
     "@wasmcloud/prettier-config": "workspace:*"
     eslint: "npm:^8.57.1"
-    eslint-config-turbo: "npm:^2.3.4"
+    eslint-config-turbo: "npm:^2.4.0"
     prettier: "npm:^3.4.2"
     turbo: "npm:^2.4.0"
     typescript: "npm:^5.7.3"
@@ -5248,15 +5248,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-turbo@npm:^2.3.4":
-  version: 2.3.4
-  resolution: "eslint-config-turbo@npm:2.3.4"
+"eslint-config-turbo@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "eslint-config-turbo@npm:2.4.0"
   dependencies:
-    eslint-plugin-turbo: "npm:2.3.4"
+    eslint-plugin-turbo: "npm:2.4.0"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/91cdf4cf81c8af61736dfa384aef9865659a2eb1c0cfb1b301ae9c39f612b1c2733b0178f3d2b8b2fac1425be0058d31df491ff0f0d4c18f22cf54478421d826
+  checksum: 10/e97478ea5991548ec2329a75b000a2748666835d9778ec29b2d23091be1cac43d125daaf488c679ec9bcd74a9af4aaeec5563232bd191aefb8dc62d09c5d6542
   languageName: node
   linkType: hard
 
@@ -5510,15 +5510,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-turbo@npm:2.3.4":
-  version: 2.3.4
-  resolution: "eslint-plugin-turbo@npm:2.3.4"
+"eslint-plugin-turbo@npm:2.4.0":
+  version: 2.4.0
+  resolution: "eslint-plugin-turbo@npm:2.4.0"
   dependencies:
     dotenv: "npm:16.0.3"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/c562ab07d6c7da1c16d85a2437b13aeed0d172274c9474abeb7f5556cbd4dc835420b1d022668d7708d034c63b140bc7019ccbd72775462b9b8e4d513a971c11
+  checksum: 10/931d2e9d327a5843e6bd1fff1a30a9840d4ea56d8ebb4e5a50a5e7438cbf6e4f9dcf18451fc614d2af87b15d00f56ac5a2d6f2b6c311ecf839e3aba96c97de6d
   languageName: node
   linkType: hard
 
@@ -8706,21 +8706,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^7.1.3":
-  version: 7.1.3
-  resolution: "react-router-dom@npm:7.1.3"
+"react-router-dom@npm:^7.1.5":
+  version: 7.1.5
+  resolution: "react-router-dom@npm:7.1.5"
   dependencies:
-    react-router: "npm:7.1.3"
+    react-router: "npm:7.1.5"
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: 10/c98f8eb3ee6d36c164444711b378cd63e6cdd67629b5300eb4d16d3183304ff978a892f593518cdd23323fe66ee92de4fbd7a61af582b08b94f94ff48462dbf2
+  checksum: 10/caf34daec7ef6fdd4043dd56295fe6d5de4a2bfbbd650897b8cde23571a51f73f2b0ef2681a55f46ef524dc7e360b1f6c55d5b5bb1875196b48917042b52d82d
   languageName: node
   linkType: hard
 
-"react-router@npm:7.1.3":
-  version: 7.1.3
-  resolution: "react-router@npm:7.1.3"
+"react-router@npm:7.1.5":
+  version: 7.1.5
+  resolution: "react-router@npm:7.1.5"
   dependencies:
     "@types/cookie": "npm:^0.6.0"
     cookie: "npm:^1.0.1"
@@ -8732,7 +8732,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10/84b292e4947e5f9e0c5bae4059f28faf0b4c21944dc27707563188f001f006e2a62f0b5cfefda925f890629f40a237230c4e2a8572a64763e2cf809b504c0d87
+  checksum: 10/3802ff0e0419aa53c1824b1ad2ebac6facb918306c67ff64ed86b5cbc49197c15f077b84e425f57beb24dd01cd5818a100da5269b8e160deee62b06fda008b56
   languageName: node
   linkType: hard
 
@@ -10718,7 +10718,7 @@ __metadata:
     react: "npm:19.0.0"
     react-dom: "npm:19.0.0"
     react-hook-form: "npm:^7.54.2"
-    react-router-dom: "npm:^7.1.3"
+    react-router-dom: "npm:^7.1.5"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tailwind-merge: "npm:^2.6.0"
     tailwindcss: "npm:^4.0.0"
