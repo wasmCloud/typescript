@@ -1,4 +1,4 @@
-export namespace WasmcloudSecretsReveal {
+declare module 'wasmcloud:secrets/reveal@0.1.0-draft' {
   /**
    * Reveals the value of a secret to the caller.
    * This lets you easily audit your code to discover where secrets are being used.

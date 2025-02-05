@@ -1,4 +1,4 @@
-export namespace WasmcloudSecretsStore {
+declare module 'wasmcloud:secrets/store@0.1.0-draft' {
   /**
    * Gets a single opaque secrets value set at the given key if it exists
    */
