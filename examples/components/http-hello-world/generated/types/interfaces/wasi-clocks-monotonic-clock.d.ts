@@ -1,4 +1,4 @@
-declare module 'wasi:clocks/monotonic-clock@0.2.0' {
+declare module 'wasi:clocks/monotonic-clock@0.2.2' {
   export function now(): Instant;
   export function resolution(): Duration;
   export function subscribeInstant(when: Instant): Pollable;
