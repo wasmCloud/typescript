@@ -1,4 +1,4 @@
-export namespace WasiIoStreams {
+declare module 'wasi:io/streams@0.2.2' {
   export { InputStream };
   export { OutputStream };
 }
