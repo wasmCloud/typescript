@@ -8,7 +8,7 @@
     "postinstall": "npm run generate:types -o types",
     "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "build:ts": "rollup -c",
-    "build:js": "jco componentize -w wit -o dist/http-password-checker.wasm dist/http-password-checker.js",
+    "build:js": "jco componentize --disable http -w wit -o dist/http-password-checker.wasm dist/http-password-checker.js",
     "build:component": "wash build --sign-only --config-path wasmcloud.toml",
     "build": "npm run generate:types && npm run build:ts && npm run build:js && npm run build:component",
     "install-and-build": "npm install && npm run build",

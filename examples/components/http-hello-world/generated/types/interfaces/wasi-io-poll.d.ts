@@ -1,4 +1,4 @@
-declare module 'wasi:io/poll@0.2.2' {
+export namespace WasiIoPoll {
   export { Pollable };
   export function poll(in_: Array<Pollable>): Uint32Array;
 }
