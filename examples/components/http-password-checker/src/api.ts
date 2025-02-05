@@ -9,19 +9,14 @@ import { passwordStrength } from "check-password-strength";
 // NOTE import paths are aliased in tsconfig.json
 import {
   IncomingRequest,
-  ResponseOutparam,
-  OutgoingBody,
-  OutgoingResponse,
-  Fields,
-  InputStream,
 } from "wasi:http/types@0.2.2";
 import { reveal as revealSecret } from "wasmcloud:secrets/reveal@0.1.0-draft";
 import { Secret, get as getSecret } from "wasmcloud:secrets/store@0.1.0-draft";
 /**  END wasi generated imports */
 
 import { PasswordStrength, PASSWORD_CHECK_RULES } from "./passwords.js";
-import { readInputStream, sendResponseJSON } from "./wasi.js";
-import { ResponseStatus, Response } from "./http.js";
+import { readInputStream } from "./wasi.js";
+import { Response } from "./http.js";
 
 /**
  * Represents an API request for checking a password
