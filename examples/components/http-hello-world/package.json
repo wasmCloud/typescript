@@ -4,9 +4,9 @@
   "description": "A WebAssembly Component that responds to HTTP requests using the `wasi:http` WIT interface",
   "main": "dist/http-hello-world.js",
   "scripts": {
-    "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
     "build:tsc": "tsc",
-    "build:js": "jco componentize -w wit -o dist/http-hello-world.wasm dist/http-hello-world.js",
+    "build:js": "jco componentize --disable http -w wit -o dist/http-hello-world.wasm dist/http-hello-world.js",
     "build:component": "wash build --sign-only --config-path wasmcloud.toml",
     "build": "npm run generate:types && npm run build:tsc && npm run build:js && npm run build:component",
     "install-and-build": "npm install && npm run build",
