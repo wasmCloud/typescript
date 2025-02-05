@@ -5,7 +5,7 @@
 import * as v from "valibot";
 
 /** START wasi generated imports (see tsconfig.json for aliases) */
-import { IncomingRequest, ResponseOutparam } from "wasi:http/types@0.2.0";
+import { IncomingRequest, ResponseOutparam } from "wasi:http/types@0.2.2";
 /**  END wasi generated imports */
 
 import { sendResponseJSON } from "./wasi.js";

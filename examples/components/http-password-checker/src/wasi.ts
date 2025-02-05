@@ -9,7 +9,7 @@ import {
   OutgoingResponse,
   Fields,
   InputStream,
-} from "wasi:http/types@0.2.0";
+} from "wasi:http/types@0.2.2";
 /**  END wasi generated imports */
 
 /** Amount to read from a wasi:io stream */
