@@ -1,9 +1,12 @@
-export namespace WasiIoPoll {
-  export { Pollable };
+declare module 'wasi:io/poll@0.2.2' {
   export function poll(in_: Array<Pollable>): Uint32Array;
-}
-
-export class Pollable {
-  ready(): boolean;
-  block(): void;
+  
+  export class Pollable {
+    /**
+     * This type does not have a public constructor.
+     */
+    private constructor();
+    ready(): boolean;
+    block(): void;
+  }
 }

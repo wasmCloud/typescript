@@ -26,5 +26,5 @@ world component {
   /// For more information on the wasmcloud:secrets interface:
   ///   https://github.com/WebAssembly/wasi-http/tree/v0.2.2/wit
   ///
-  export wasi:http/incoming-handler@0.2.0;
+  export wasi:http/incoming-handler@0.2.2;
 }
