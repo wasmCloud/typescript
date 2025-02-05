@@ -4,10 +4,11 @@
   "description": "A WebAssembly Component that responds to HTTP requests using the `wasi:http` WIT interface",
   "main": "dist/http-hello-world.js",
   "scripts": {
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
     "build:tsc": "tsc",
     "build:js": "jco componentize -w wit -o dist/http-hello-world.wasm dist/http-hello-world.js",
     "build:component": "wash build --sign-only --config-path wasmcloud.toml",
-    "build": "npm run build:tsc && npm run build:js && npm run build:component",
+    "build": "npm run generate:types && npm run build:tsc && npm run build:js && npm run build:component",
     "install-and-build": "npm install && npm run build",
     "component:start": "wash start component file://build/http_hello_world_s.wasm --auction-timeout-ms 10000 --timeout-ms 10000",
     "component:stop": "wash stop component typescript-hello-world",
@@ -22,9 +23,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/componentize-js": "^0.15.0",
-    "@bytecodealliance/jco": "^1.8.1",
+    "@bytecodealliance/jco": "^1.10.2",
     "@types/node": "^22.7.6",
+    "rimraf": "^6.0.1",
     "typescript": "^5.6.3"
   }
 }
