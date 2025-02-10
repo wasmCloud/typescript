@@ -1096,12 +1096,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hookform/resolvers@npm:^3.10.0":
-  version: 3.10.0
-  resolution: "@hookform/resolvers@npm:3.10.0"
+"@hookform/resolvers@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@hookform/resolvers@npm:4.0.0"
   peerDependencies:
     react-hook-form: ^7.0.0
-  checksum: 10/92d3601b2cedb4f52e9e086cc4bd6a20b493f59ecfb1af8b8e465057f0445aa83cf5a6d482a831cdf5d1321a73269173633222eefde0adb515d3820c1525b0cb
+  checksum: 10/48990cb7b4eaad76c0cce76c135ac7110eeeda16d1ab9dfcc5fd994c9f94c5af604e4ed6395f7c1d007b05378306057f029ee7a67d2b495f3f17deadfdca0760
   languageName: node
   linkType: hard
 
@@ -10671,7 +10671,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "washboard-ui@workspace:apps/washboard-ui"
   dependencies:
-    "@hookform/resolvers": "npm:^3.10.0"
+    "@hookform/resolvers": "npm:^4.0.0"
     "@playwright/test": "npm:^1.50.1"
     "@radix-ui/react-accordion": "npm:^1.2.2"
     "@radix-ui/react-alert-dialog": "npm:^1.1.5"
