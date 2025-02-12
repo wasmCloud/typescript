@@ -9,19 +9,14 @@ import { passwordStrength } from "check-password-strength";
 // NOTE import paths are aliased in tsconfig.json
 import {
   IncomingRequest,
-  ResponseOutparam,
-  OutgoingBody,
-  OutgoingResponse,
-  Fields,
-  InputStream,
-} from "wasi:http/types@0.2.0";
-import * as wasmcloudSecretsReveal from "wasmcloud:secrets/reveal@0.1.0-draft";
-import * as wasmcloudSecretsStore from "wasmcloud:secrets/store@0.1.0-draft";
+} from "wasi:http/types@0.2.2";
+import { reveal as revealSecret } from "wasmcloud:secrets/reveal@0.1.0-draft";
+import { Secret, get as getSecret } from "wasmcloud:secrets/store@0.1.0-draft";
 /**  END wasi generated imports */
 
 import { PasswordStrength, PASSWORD_CHECK_RULES } from "./passwords.js";
-import { readInputStream, sendResponseJSON } from "./wasi.js";
-import { ResponseStatus, Response } from "./http.js";
+import { readInputStream } from "./wasi.js";
+import { Response } from "./http.js";
 
 /**
  * Represents an API request for checking a password
@@ -120,17 +115,16 @@ export async function handlePasswordCheck(
     }
 
     // Retrieve the secret
-    let secret: wasmcloudSecretsStore.Secret;
+    let secret: Secret;
     try {
-      secret = wasmcloudSecretsStore.WasmcloudSecretsStore.get(cr.secret.key);
+      secret = getSecret(cr.secret.key);
     } catch (err) {
       throw new Error("failed to get secret");
     }
 
     // Reveal the secret
     try {
-      const revealed =
-        wasmcloudSecretsReveal.WasmcloudSecretsReveal.reveal(secret);
+      const revealed = revealSecret(secret);
       if (revealed.tag != "string") {
         throw new Error("unexpected tag, secret should be a string");
       }
