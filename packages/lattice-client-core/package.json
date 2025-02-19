@@ -54,8 +54,8 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
-    "nats.ws": "^1.30.1",
-    "type-fest": "^4.34.1"
+    "nats.ws": "^1.30.2",
+    "type-fest": "^4.35.0"
   },
   "resolutions": {
     "cross-spawn": "^7.0.5"
