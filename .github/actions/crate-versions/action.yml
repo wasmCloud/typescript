@@ -39,7 +39,7 @@ runs:
 
 outputs:
   versions:
-    description: The latest ${{ inputs.lookback }} major versions of the crate.
+    description: The latest major versions of the crate.
     value: ${{ steps.fetch_versions.outputs.versions }}
   latest:
     description: The latest version of the crate.
