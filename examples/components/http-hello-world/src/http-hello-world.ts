@@ -4,7 +4,7 @@ import {
   OutgoingBody,
   OutgoingResponse,
   Fields,
-} from 'wasi:http/types@0.2.0';
+} from 'wasi:http/types@0.2.3';
 
 // Implementation of wasi-http incoming-handler
 //

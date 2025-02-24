@@ -1,4 +1,4 @@
-declare module 'wasi:io/error@0.2.2' {
+export namespace WasiIoError {
   export { Error };
 }
 
