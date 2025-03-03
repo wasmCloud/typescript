@@ -23,7 +23,7 @@ inputs:
 
 runs:
   using: composite
-  
+
   steps:
     - name: Setup Package Manager
       shell: bash
@@ -59,7 +59,7 @@ runs:
         echo "::endgroup::"
 
     - name: Cache Turbo Build
-      uses: actions/cache@2cdf405574d6ef1f33a1d12acccd3ae82f47b3f2
+      uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
       with:
         path: ${{ inputs.working-directory }}/.turbo
         key: ${{ runner.os }}-turbo-${{ github.sha }}-${{ github.workflow }}-${{ inputs.cache-key || github.job || 'main' }}
