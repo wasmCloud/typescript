@@ -87,6 +87,12 @@ jobs:
               RESPONSE=$(curl http://127.0.0.1:8000/api/v1/check -d '{"value": "test"}' | jq -r '.status' || echo '')
               [[ "$RESPONSE" == 'success' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
+          - folder: http-streaming
+            wasm-bin: http_streaming_s.wasm
+            test-command: |
+              RESPONSE=$(curl http://127.0.0.1:8000 | base64 -d | wc -c)
+              [[ "$RESPONSE" == '1048576' ]] && TEST_RESULT=1 || TEST_RESULT=0
+
   examples-check:
     needs: [components]
     if: ${{ always() }}

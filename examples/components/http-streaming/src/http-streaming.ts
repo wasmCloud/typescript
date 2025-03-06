@@ -22,7 +22,11 @@ import { getRandomBytes } from "wasi:random/random@0.2.3";
  * Generate random data to send over the write as our streaming workload
  */
 function generateData(n: bigint): string {
-  return btoa(getRandomBytes(n).toString());
+  let binaryString = '';
+  getRandomBytes(n).forEach(byte => {
+      binaryString += String.fromCharCode(byte);
+  });
+  return btoa(binaryString);
 }
 
 /**
@@ -45,7 +49,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
   //
   // The amount to send is arbitrarily chosen, but over 4096 to make
   // things more interesting than using `wasi:io/streams.blocking-write-and-flush`
-  let text = generateData(8192n);
+  let text = generateData(1024n * 1024n);
   let data = new Uint8Array(new TextEncoder().encode(text));
 
   // Retrieve a Preview 2 I/O pollable to coordinate writing to the output stream
@@ -69,13 +73,8 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
       continue;
     }
 
-    outputStream.write(
-      new Uint8Array(
-        data.buffer,
-        Number(written),
-        Number((written += writableByteCount)) // NOTE: written is updated
-      )
-    );
+    outputStream.write(new Uint8Array(data.buffer, Number(written), Number(writableByteCount)));
+    written += writableByteCount
     remaining -= written;
 
     // While we can track *when* to flush separately and implement our own logic,
