@@ -1,0 +1,31 @@
+{
+  "name": "http-streaming",
+  "version": "0.1.0",
+  "description": "A WebAssembly Component that responds to HTTP requests using the `wasi:http` WIT interface",
+  "main": "dist/http-streaming.js",
+  "scripts": {
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "build:tsc": "tsc",
+    "build:js": "jco componentize -w wit -o dist/http-streaming.wasm dist/http-streaming.js",
+    "build:component": "wash build --sign-only --config-path wasmcloud.toml",
+    "build": "npm run generate:types && npm run build:tsc && npm run build:js && npm run build:component",
+    "install-and-build": "npm install && npm run build",
+    "component:start": "wash start component file://build/http_hello_world_s.wasm --auction-timeout-ms 10000 --timeout-ms 10000",
+    "component:stop": "wash stop component typescript-streaming",
+    "wadm:start": "wash app deploy wadm.yaml",
+    "wadm:stop": "wash app delete typescript-streaming v0.0.1",
+    "start": "npm run build && npm run wadm:start",
+    "reload": "npm run build && npm run wadm:stop && npm run wadm:start",
+    "stop": "npm run wadm:stop",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.10.2",
+    "@types/node": "^22.7.6",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.3"
+  }
+}
