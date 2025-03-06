@@ -1,17 +1,18 @@
-# Typescript HTTP Hello World
+# Typescript HTTP Streaming
 
-This repository contains a hello world HTTP component, written in [Typescript][ts].
+This repository contains a HTTP component that performs a streaming response using WASI I/O and HTTP Preview2 primitives, written in [Typescript][ts].
 
 This component:
 
 - Uses [Typescript][ts] for it's implementation
-- Uses the [`wasi:http`][wasi-http] standard WIT definitions
+- Uses the [`wasi:http`][wasi-http] and [`wasi:io`][wasi-io] standard WIT definitions
 - Relies on the [`httpserver` capability provider][httpserver-provider] (which exposes the [`wasmcloud:httpserver` interface][httpserver-interface])
-- Returns `"hello from Typescript"` to all HTTP requests
+- Streams bytes in response to all HTTP requests
 - Can be declaratively provisioned with [`wadm`][wadm]
 
 [ts]: https://www.typescriptlang.org/
 [wasi-http]: https://github.com/WebAssembly/wasi-http
+[wasi-io]: https://github.com/WebAssembly/wasi-io
 [httpserver-provider]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/providers/http-server
 [httpserver-interface]: https://github.com/wasmCloud/interfaces/tree/main/httpserver
 [wadm]: https://github.com/wasmCloud/wadm
