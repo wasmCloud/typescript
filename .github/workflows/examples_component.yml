@@ -30,7 +30,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     outputs:
-      run-build: ${{ steps.force.outputs.force || steps.check-example-changes.outputs.any_changed }}
+      run-build: ${{ steps.force.outputs.force || steps.check-example-changes.outputs.changed == 'true' }}
     steps:
       - name: Force build if needed
         id: force
@@ -47,12 +47,13 @@ jobs:
       - name: Check for Example Changes
         id: check-example-changes
         if : ${{ !inputs.force }}
-        uses: tj-actions/changed-files@9200e69727eb73eb060652b19946b8a2fdfb654b # v45.0.8
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
         with:
-          files: |
-            .github/workflows/ci_examples.yml
-            .github/workflows/example_component.yml
-            examples/components/${{ inputs.folder }}/** 
+          filters: |
+            changed:
+              - '.github/workflows/ci_examples.yml'
+              - '.github/workflows/example_component.yml'
+              - 'examples/components/${{ inputs.folder }}/**'
 
   build:
     runs-on: ubuntu-latest
