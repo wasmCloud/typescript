@@ -73,7 +73,7 @@
     "@wasmcloud/prettier-config": "workspace:^",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.1",
-    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-import-resolver-typescript": "^4.1.1",
     "eslint-plugin-absolute-imports-only": "^1.0.1",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.31.0",
