@@ -82,7 +82,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "eslint-plugin-tailwindcss": "^3.18.0",
-    "eslint-plugin-unicorn": "^56.0.1",
+    "eslint-plugin-unicorn": "^58.0.0",
     "execa": "^9.5.2",
     "get-port": "^7.1.0",
     "pino": "^9.6.0",

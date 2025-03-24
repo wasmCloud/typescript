@@ -27,7 +27,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "eslint-plugin-tailwindcss": "3.18.0",
-    "eslint-plugin-unicorn": "^56.0.1"
+    "eslint-plugin-unicorn": "^58.0.0"
   },
   "resolutions": {
     "cross-spawn": "^7.0.5"
