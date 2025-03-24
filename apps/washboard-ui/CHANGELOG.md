@@ -1,5 +1,16 @@
 # washboard-ui
 
+## 0.7.1
+
+### Patch Changes
+
+- [#153](https://github.com/wasmCloud/typescript/pull/153) [`c424873`](https://github.com/wasmCloud/typescript/commit/c424873ac8ae60949aef8d1bb4e48dfd27cd3fe0) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 4 updates
+
+- [#154](https://github.com/wasmCloud/typescript/pull/154) [`cb08fb0`](https://github.com/wasmCloud/typescript/commit/cb08fb09cb7437ed388aab94b11b6f57adf635c1) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 6 updates
+
+- Updated dependencies [[`c424873`](https://github.com/wasmCloud/typescript/commit/c424873ac8ae60949aef8d1bb4e48dfd27cd3fe0)]:
+  - @wasmcloud/lattice-client-react@0.5.4
+
 ## 0.7.0
 
 ### Minor Changes
