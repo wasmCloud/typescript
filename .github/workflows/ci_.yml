@@ -37,6 +37,7 @@ jobs:
       BOT_APP_ID: ${{ secrets.BOT_APP_ID }}
       BOT_APP_PRIVATE_KEY: ${{ secrets.BOT_APP_PRIVATE_KEY }}
     permissions:
+      actions: write        # Needed to create releases
       contents: write       # Needed to commit changesets
       pull-requests: write  # Needed to create pull requests
       id-token: write       # Needed for npm provenance
