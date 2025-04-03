@@ -58,9 +58,10 @@ wash dev
 - Watches your code for changes and re-deploys when necessary.
 
 > [!NOTE]
-> To do things more manually, see [`docs/slow-start.md`](./docs/slow-start.md).
+> To do things more manually, see [`docs/slow-start.md`][slow-start-docs].
 
 [wasmcloud-host]: https://wasmcloud.com/docs/concepts/hosts
+[slow-start-docs]: https://github.com/wasmCloud/typescript/tree/main/examples/components/http-streaming/docs
 
 ## Send a request to the running component
 
