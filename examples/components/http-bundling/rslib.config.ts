@@ -6,7 +6,7 @@ export default defineConfig({
   plugins:[pluginNodePolyfill()],
   source: {
     entry: {
-      "http-bundling": './src/http-bundling.ts',
+      "bundled-rsbuild": './src/bundled-rsbuild.ts',
     },
   },
   lib: [

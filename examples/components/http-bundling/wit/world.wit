@@ -1,5 +1,9 @@
 package wasmcloud:hello;
 
+interface csv-utils {
+  calculate-score: func(data: string) -> u32;
+}
+
 world hello {
-  export wasi:http/incoming-handler@0.2.3;
+  export csv-utils;
 }

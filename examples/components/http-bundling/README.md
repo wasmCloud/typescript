@@ -1,20 +1,14 @@
-# Typescript HTTP Hello World
+# Typescript component bundled with rslib
 
 This repository contains a hello world HTTP component, written in [Typescript][ts].
 
 This component:
 
 - Uses [Typescript][ts] for it's implementation
-- Uses the [`wasi:http`][wasi-http] standard WIT definitions
-- Relies on the [`httpserver` capability provider][httpserver-provider] (which exposes the [`wasmcloud:httpserver` interface][httpserver-interface])
-- Returns `"hello from Typescript"` to all HTTP requests
-- Can be declaratively provisioned with [`wadm`][wadm]
+- Bundles with [rslib][rslib]
 
 [ts]: https://www.typescriptlang.org/
-[wasi-http]: https://github.com/WebAssembly/wasi-http
-[httpserver-provider]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/providers/http-server
-[httpserver-interface]: https://github.com/wasmCloud/interfaces/tree/main/httpserver
-[wadm]: https://github.com/wasmCloud/wadm
+[rslib]: https://lib.rsbuild.dev/
 
 # Dependencies
 
@@ -39,37 +33,22 @@ Building this project relies on the following software:
 
 # Quickstart
 
-To get started developing this repository quickly, clone the repo and run `wash dev`:
+To get started developing this repository quickly, clone the repo and run `npm start`:
 
 ```console
-wash dev
+npm start
 ```
 
-`wash dev` does many things for you:
+This results that the output of the `demo.js` script is printed to the console.
 
-- Starts the [wasmCloud host][wasmcloud-host] that can run your WebAssembly component
-- Builds this project (including necessary `npm` script targets)
-- Builds a declarative WADM manifest consisting of:
-  - Your locally built component
-  - A [HTTP server provider][httpserver-provider] which will receive requests from the outside world (on port 8000 by default)
-  - Necessary links between providers and your component so your component can handle web traffic
-- Deploys the built manifest (i.e all dependencies to run this application) locally
-- Watches your code for changes and re-deploys when necessary.
+# Details
 
-> [!NOTE]
-> To do things more manually, see [`docs/slow-start.md`][slow-start-docs].
+See package.json for the exact commands being run. But what `npm start` does is:
+- `npm install` to download all dependencies
+- building the component
+- transpiling the component so it can be called from javascript
+- running the demo.js script
 
-[wasmcloud-host]: https://wasmcloud.com/docs/concepts/hosts
-[slow-start-docs]: https://github.com/wasmCloud/typescript/tree/main/examples/components/http-hello-world/docs/slow-start.md
+## Bundling
 
-## Send a request to the running component
-
-Once `wash dev` is serving your component, to send a request to the running component (via the HTTP server provider):
-
-```console
-curl localhost:8000
-```
-
-## Adding Capabilities
-
-To learn how to extend this example with additional capabilities, see the [Adding Capabilities](https://wasmcloud.com/docs/tour/adding-capabilities?lang=typescript) section of the wasmCloud documentation.
+It uses rslib to bundling the javascript together with the dependencies. See [rslib.config.rs](./rslib.config.rs) file for more details.
