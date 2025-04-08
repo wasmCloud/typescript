@@ -1,4 +1,4 @@
-# Typescript component bundled with rslib
+# Typescript component bundled with rslib/rsbuild
 
 This repository contains a hello world HTTP component, written in [Typescript][ts].
 
@@ -52,3 +52,7 @@ See package.json for the exact commands being run. But what `npm start` does is:
 ## Bundling
 
 It uses rslib to bundling the javascript together with the dependencies. See [rslib.config.rs](./rslib.config.rs) file for more details.
+
+# Further Reading
+
+For more information how a http component works with bundling see [http-password-checker](https://github.com/wasmCloud/typescript/blob/main/examples/components/http-password-checker/) example.
