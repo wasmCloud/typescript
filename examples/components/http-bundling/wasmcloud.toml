@@ -1,4 +1,4 @@
-name = "typescript-http-bundling"
+name = "typescript-bundled-rsbuild"
 language = "typescript"
 type = "component"
 version = "0.1.0"
@@ -8,5 +8,5 @@ wit_world = "hello"
 wasm_target = "wasm32-wasip2"
 
 build_command = "npm run install-and-build"
-build_artifact = "dist/http-bundling.wasm"
-destination = "build/http_bundling_s.wasm"
+build_artifact = "dist/bundled-rsbuild.wasm"
+destination = "build/bundled_rsbuild_s.wasm"
