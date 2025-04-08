@@ -1,7 +1,7 @@
 import csv from "csvtojson";
 import jsonpath from "jsonpath";
 import * as R from "remeda";
-import { InputData } from "wasmcloud:hello/csvUtils";
+import { InputData } from "wasmcloud:hello/dataUtils";
 
 async function calculateScore(data: InputData): Promise<number> {
   let json = {};
@@ -20,6 +20,6 @@ async function calculateScore(data: InputData): Promise<number> {
   return total;
 }
 
-export const csvUtils = {
+export const dataUtils = {
   calculateScore,
 };

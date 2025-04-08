@@ -1,6 +1,6 @@
 package wasmcloud:hello;
 
-interface csv-utils {
+interface data-utils {
   variant input-data {
     csv(string),
     json(string),
@@ -10,5 +10,5 @@ interface csv-utils {
 }
 
 world hello {
-  export csv-utils;
+  export data-utils;
 }
