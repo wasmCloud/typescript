@@ -89,8 +89,8 @@ jobs:
               RESPONSE=$(curl http://127.0.0.1:8000 | base64 -d | wc -c)
               [[ "$RESPONSE" == '1048576' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
-          - folder: http-bundling
-            wasm-bin: http_bundling_s.wasm
+          - folder: bundled-rsbuild
+            wasm-bin: bundled_rsbuild_s.wasm
             test-command: |
               npm run install-and-build && npm run transpile
               RESPONSE=$(npm run --silent demo)
