@@ -1,7 +1,12 @@
 package wasmcloud:hello;
 
 interface csv-utils {
-  calculate-score: func(data: string) -> u32;
+  variant input-data {
+    csv(string),
+    json(string),
+  }
+
+  calculate-score: func(data: input-data) -> u32;
 }
 
 world hello {
