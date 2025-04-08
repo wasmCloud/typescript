@@ -1,4 +1,4 @@
-/** @module Interface wasmcloud:hello/csv-utils **/
+/** @module Interface wasmcloud:hello/data-utils **/
 export function calculateScore(data: InputData): number;
 export type InputData = InputDataCsv | InputDataJson;
 export interface InputDataCsv {

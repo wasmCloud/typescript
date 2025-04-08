@@ -1,2 +1,2 @@
 // world wasmcloud:hello/hello
-export * as csvUtils from './interfaces/wasmcloud-hello-csv-utils.js'; // export wasmcloud:hello/csv-utils
+export * as dataUtils from './interfaces/wasmcloud-hello-data-utils.js'; // export wasmcloud:hello/data-utils
