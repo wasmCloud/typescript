@@ -92,7 +92,8 @@ jobs:
           - folder: http-bundling
             wasm-bin: http_bundling_s.wasm
             test-command: |
-              RESPONSE=$(curl http://127.0.0.1:8000)
+              npm run install-and-build && npm run transpile
+              RESPONSE=$(npm run --silent demo)
               [[ "$RESPONSE" == '15' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
   examples-check:
