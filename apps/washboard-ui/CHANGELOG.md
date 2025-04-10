@@ -1,5 +1,24 @@
 # washboard-ui
 
+## 0.7.2
+
+### Patch Changes
+
+- [#176](https://github.com/wasmCloud/typescript/pull/176) [`5e85aa5`](https://github.com/wasmCloud/typescript/commit/5e85aa5cdbc919c1030c38133029a11643b371a7) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `@hookform/resolvers` from 4.0.0 to 5.0.1
+
+- [#175](https://github.com/wasmCloud/typescript/pull/175) [`9cec6d1`](https://github.com/wasmCloud/typescript/commit/9cec6d1740fdf2edb2f9980a55a5980383d125fc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 5 updates
+
+- [#165](https://github.com/wasmCloud/typescript/pull/165) [`c537875`](https://github.com/wasmCloud/typescript/commit/c5378759ba4994ef5f45cc292cf9bfac5671875d) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 7 updates
+
+- [#177](https://github.com/wasmCloud/typescript/pull/177) [`0ffa9f1`](https://github.com/wasmCloud/typescript/commit/0ffa9f1afc5a492867df2404e1d92fbddd9b769c) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 8 updates
+
+- [#172](https://github.com/wasmCloud/typescript/pull/172) [`cd2cf93`](https://github.com/wasmCloud/typescript/commit/cd2cf93e7d49fb6994b6d5c2a52af7565733a52f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `vite` from 6.2.4 to 6.2.5 in the npm_and_yarn group
+
+- [#164](https://github.com/wasmCloud/typescript/pull/164) [`61054f3`](https://github.com/wasmCloud/typescript/commit/61054f3cf376a44d60e588952de6fa830ac4f334) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- Updated dependencies [[`9cec6d1`](https://github.com/wasmCloud/typescript/commit/9cec6d1740fdf2edb2f9980a55a5980383d125fc), [`cd2cf93`](https://github.com/wasmCloud/typescript/commit/cd2cf93e7d49fb6994b6d5c2a52af7565733a52f), [`61054f3`](https://github.com/wasmCloud/typescript/commit/61054f3cf376a44d60e588952de6fa830ac4f334)]:
+  - @wasmcloud/lattice-client-react@0.5.5
+
 ## 0.7.1
 
 ### Patch Changes
