@@ -51,4 +51,4 @@ See package.json for the exact commands being run. But what `npm start` does is:
 
 ## Bundling
 
-It uses rslib to bundling the javascript together with the dependencies. See [rslib.config.rs](./rslib.config.rs) file for more details.
+It uses rslib to bundling the javascript together with the dependencies. See the [`rslib.config.rs`](https://github.com/wasmCloud/typescript/blob/main/examples/components/bundled-rsbuild/rslib.config.ts) file in the example folder for more details.
