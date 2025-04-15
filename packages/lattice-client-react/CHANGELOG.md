@@ -1,5 +1,22 @@
 # @wasmcloud/lattice-client-react
 
+## 0.5.5
+
+### Patch Changes
+
+- [#175](https://github.com/wasmCloud/typescript/pull/175) [`9cec6d1`](https://github.com/wasmCloud/typescript/commit/9cec6d1740fdf2edb2f9980a55a5980383d125fc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 5 updates
+
+- [#183](https://github.com/wasmCloud/typescript/pull/183) [`fd8c993`](https://github.com/wasmCloud/typescript/commit/fd8c9930faf7cd1f7f34ad4e175d48a267592edc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `vite` from 6.2.5 to 6.2.6 in the npm_and_yarn group
+
+- [#186](https://github.com/wasmCloud/typescript/pull/186) [`4e48be8`](https://github.com/wasmCloud/typescript/commit/4e48be85543af7c67f3ff0688746ea65f0dfc2f2) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#172](https://github.com/wasmCloud/typescript/pull/172) [`cd2cf93`](https://github.com/wasmCloud/typescript/commit/cd2cf93e7d49fb6994b6d5c2a52af7565733a52f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `vite` from 6.2.4 to 6.2.5 in the npm_and_yarn group
+
+- [#164](https://github.com/wasmCloud/typescript/pull/164) [`61054f3`](https://github.com/wasmCloud/typescript/commit/61054f3cf376a44d60e588952de6fa830ac4f334) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- Updated dependencies [[`9cec6d1`](https://github.com/wasmCloud/typescript/commit/9cec6d1740fdf2edb2f9980a55a5980383d125fc), [`c537875`](https://github.com/wasmCloud/typescript/commit/c5378759ba4994ef5f45cc292cf9bfac5671875d), [`fd8c993`](https://github.com/wasmCloud/typescript/commit/fd8c9930faf7cd1f7f34ad4e175d48a267592edc), [`0ffa9f1`](https://github.com/wasmCloud/typescript/commit/0ffa9f1afc5a492867df2404e1d92fbddd9b769c), [`4e48be8`](https://github.com/wasmCloud/typescript/commit/4e48be85543af7c67f3ff0688746ea65f0dfc2f2), [`cd2cf93`](https://github.com/wasmCloud/typescript/commit/cd2cf93e7d49fb6994b6d5c2a52af7565733a52f), [`61054f3`](https://github.com/wasmCloud/typescript/commit/61054f3cf376a44d60e588952de6fa830ac4f334)]:
+  - @wasmcloud/lattice-client-core@0.5.5
+
 ## 0.5.4
 
 ### Patch Changes
