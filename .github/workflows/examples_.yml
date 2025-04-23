@@ -107,6 +107,14 @@ jobs:
               RESPONSE=$(npm run --silent demo)
               [[ "$RESPONSE" == '15' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
+          - folder: bundled-esbuild
+            wasm-bin: bundled_esbuild_s.wasm
+            skip-wadm: true
+            test-command: |
+              npm run install-and-build && npm run transpile
+              RESPONSE=$(npm run --silent demo)
+              [[ "$RESPONSE" == '8' ]] && TEST_RESULT=1 || TEST_RESULT=0
+
   examples-check:
     needs: [components]
     if: ${{ always() }}
