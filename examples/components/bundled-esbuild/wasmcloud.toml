@@ -1,0 +1,12 @@
+name = "bundled-esbuild"
+language = "typescript"
+type = "component"
+version = "0.1.0"
+
+[component]
+wit_world = "hello"
+wasm_target = "wasm32-wasip2"
+
+build_command = "npm run install-and-build"
+build_artifact = "dist/bundled-esbuild.wasm"
+destination = "build/bundled_esbuild_s.wasm"

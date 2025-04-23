@@ -1,0 +1,35 @@
+{
+  "name": "bundled-esbuild",
+  "version": "0.1.0",
+  "description": "A WebAssembly Component implements a custom interface and uses npm dependencies",
+  "type": "module",
+  "main": "demo.js",
+  "scripts": {
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "build:tsc": "tsc --noEmit",
+    "build:bundle:file": "node build.js",
+    "build:bundle": "esbuild --bundle src/bundled-esbuild.ts --outfile=dist/bundled-esbuild.js --platform=node --format=esm --external:wasi:*",
+    "build:js": "jco componentize -w wit -o dist/bundled-esbuild.wasm dist/bundled-esbuild.js",
+    "build:component": "wash build --sign-only --config-path wasmcloud.toml",
+    "build": "npm run generate:types && npm run build:tsc && npm run build:bundle && npm run build:js && npm run build:component",
+    "transpile": "jco transpile build/bundled_esbuild_s.wasm -o dist/transpiled/",
+    "demo": "node demo.js",
+    "start": "npm run install-and-build && npm run transpile && npm run demo",
+    "install-and-build": "npm install && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.10.2",
+    "@types/jsonpath": "^0.2.4",
+    "@types/node": "^22.7.6",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.2.1",
+    "remeda": "^2.21.3"
+  }
+}

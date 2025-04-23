@@ -1,0 +1,14 @@
+package wasmcloud:hello;
+
+interface data-utils {
+  variant input-data {
+    json(string),
+    xml(string),
+  }
+
+  calculate-score: func(data: input-data) -> u32;
+}
+
+world hello {
+  export data-utils;
+}
