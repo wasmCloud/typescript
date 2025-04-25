@@ -96,10 +96,10 @@ jobs:
 
   washboard-ui:
     needs: [changesets]
-    if: ${{ contains(fromJson(needs.changesets.outputs.publishedPackages).*.name, 'washboard-ui') }}
+    if: ${{ contains(fromJson(needs.changesets.outputs.publishedPackages || '{}').*.name, 'washboard-ui') }}
     permissions:
       contents: write
     uses: ./.github/workflows/release_washboard-ui.yml
     with:
-      version: ${{ fromJson(needs.changesets.outputs.packageVersions).washboard-ui }}
+      version: ${{ fromJson(needs.changesets.outputs.packageVersions || '{}').washboard-ui }}
       
