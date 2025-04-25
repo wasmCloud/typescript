@@ -1,7 +1,7 @@
 {
   "name": "bundled-esbuild",
   "version": "0.1.0",
-  "description": "A WebAssembly Component implements a custom interface and uses npm dependencies",
+  "description": "A WebAssembly Component which showcases how to include external npm dependencies with esbuild",
   "type": "module",
   "main": "demo.js",
   "scripts": {
