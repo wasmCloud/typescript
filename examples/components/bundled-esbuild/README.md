@@ -1,4 +1,4 @@
-# Typescript component bundled with rslib/rsbuild
+# Typescript component bundled with esbuild
 
 This repository contains a custom wasm component, written in [Typescript][ts].
 
@@ -43,7 +43,9 @@ This results that the output of the `demo.js` script is printed to the console.
 
 # Details
 
-See package.json for the exact commands being run. But what `npm start` does is:
+See package.json for the exact commands being run. 
+
+The main entry point is the `start` script (i.e. `npm start`) which performs the following steps:
 - `npm install` to download all dependencies
 - building the component
 - transpiling the component so it can be called from javascript
@@ -51,5 +53,5 @@ See package.json for the exact commands being run. But what `npm start` does is:
 
 ## Bundling
 
-It uses esbuild to bundling the javascript together with the dependencies. Some libaries are not compatible with esbuild, see the other examples for other bundlers that support plugins.
+It uses `esbuild` to bundling the javascript together with the dependencies. Some libaries are not compatible with `esbuild`, see the other examples for other bundlers that support plugins.
 
