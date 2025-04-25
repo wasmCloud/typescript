@@ -75,7 +75,7 @@ jobs:
           node-version-file: './examples/components/${{ inputs.folder }}/.nvmrc'
 
       - name: Install Wash
-        uses: taiki-e/install-action@9903ab6feadaec33945de535fe9d181b91802a55 # v2.50.0
+        uses: taiki-e/install-action@067268f3aa4f1f3c2becf69d7454955cfab17334 # v2.50.1
         with:
           tool: wash@${{ inputs.wash-version }}
 
@@ -106,7 +106,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Install Wash
-        uses: taiki-e/install-action@9903ab6feadaec33945de535fe9d181b91802a55 # v2.50.0
+        uses: taiki-e/install-action@067268f3aa4f1f3c2becf69d7454955cfab17334 # v2.50.1
         with:
           tool: wash@${{ inputs.wash-version }}
 
@@ -208,7 +208,7 @@ jobs:
           echo "wasmcloud-toml-path=examples/typescript/components/${{ inputs.folder }}/wasmcloud.toml" >> $GITHUB_OUTPUT;
 
       - name: Install Wash
-        uses: taiki-e/install-action@9903ab6feadaec33945de535fe9d181b91802a55 # v2.50.0
+        uses: taiki-e/install-action@067268f3aa4f1f3c2becf69d7454955cfab17334 # v2.50.1
         with:
           tool: wash@${{ inputs.wash-version }}
 
