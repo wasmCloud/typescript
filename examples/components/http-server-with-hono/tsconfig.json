@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "outDir": "./dist/",
+    "rootDir": "src",
+    "paths": {
+      "wasi:config/runtime@0.2.0-draft": ["./generated/types/interfaces/wasi-config-runtime.d.ts"],
+      "wasi:http/incoming-handler@0.2.3": [
+        "./generated/types/interfaces/wasi-http-incoming-handler.d.ts"
+      ],
+      "wasi:http/types@0.2.3": ["./generated/types/interfaces/wasi-http-types.d.ts"],
+      "wasi:io/streams@0.2.3": ["./generated/types/interfaces/wasi-io-streams.d.ts"],
+      "wasi:logging/logging@0.1.0-draft": ["./generated/types/interfaces/wasi-logging-logging.d.ts"]
+    },
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "generated/types/**/*.d.ts"]
+}

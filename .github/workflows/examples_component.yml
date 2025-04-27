@@ -13,8 +13,8 @@ on:
         type: string
         default: ''
       skip-wadm:
-        type: string
-        description: Whether to skip WADM-related testing ('true'/'false')
+        type: boolean
+        description: Whether to skip WADM-related testing (`true`/`false`)
         default: false
       force:
         type: boolean
