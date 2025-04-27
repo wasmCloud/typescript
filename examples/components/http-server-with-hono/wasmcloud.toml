@@ -1,0 +1,12 @@
+name = "typescript-http-server-with-hono"
+language = "typescript"
+type = "component"
+version = "0.1.0"
+
+[component]
+wit_world = "router"
+wasm_target = "wasm32-wasip2"
+
+build_command = "npm run install-and-build"
+build_artifact = "dist/http_server_with_hono.wasm"
+destination = "dist/http_server_with_hono_s.wasm"

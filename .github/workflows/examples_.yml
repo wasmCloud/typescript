@@ -84,6 +84,13 @@ jobs:
               RESPONSE=$(curl http://127.0.0.1:8000/api/v1/check -d '{"value": "test"}' | jq -r '.status' || echo '')
               [[ "$RESPONSE" == 'success' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
+          - folder: http-server-with-hono
+            wasm-bin: http_server-with-hono_s.wasm
+            test-command: |
+              EXPECTED="This is some JSON data."
+              RESPONSE=$(curl http://127.0.0.1:8000/api/data | jq -r '.message')
+              [[ "$RESPONSE" == "$EXPECTED" ]] && TEST_RESULT=1 || TEST_RESULT=0
+
           - folder: http-streaming
             wasm-bin: http_streaming_s.wasm
             test-command: |

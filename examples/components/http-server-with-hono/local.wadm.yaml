@@ -1,0 +1,48 @@
+---
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: typescript-http-server-with-hono # Updated name
+  annotations:
+    description: 'Demo of Typescript HTTP router component using Hono' # Updated description
+    wasmcloud.dev/authors: wasmCloud team
+    # Updated URLs
+    wasmcloud.dev/source-url: https://github.com/wasmCloud/wasmCloud/blob/main/examples/typescript/components/http-server-with-hono/local.wadm.yaml
+    wasmcloud.dev/readme-md-url: https://github.com/wasmCloud/wasmCloud/blob/main/examples/typescript/components/http-server-with-hono/README.md
+    wasmcloud.dev/homepage: https://github.com/wasmCloud/wasmCloud/tree/main/examples/typescript/components/http-server-with-hono
+    wasmcloud.dev/categories: |
+      http,http-server,typescript,example,router # Added router category
+spec:
+  components:
+    # Updated component name and image path
+    - name: http-server-with-hono
+      type: component
+      properties:
+        image: file://./dist/http_server_with_hono_s.wasm
+        config:
+          - name: custom-config
+            properties:
+              example: 'example'
+              log_level: 'info'
+      traits:
+        - type: spreadscaler
+          properties:
+            instances: 1
+
+    - name: http-server-capability
+      type: capability
+      properties:
+        image: ghcr.io/wasmcloud/http-server:0.23.2
+      traits:
+        - type: link
+          properties:
+            target:
+              name: http-server-with-hono # Updated target name
+            namespace: wasi
+            package: http
+            interfaces: [incoming-handler]
+            source:
+              config:
+                - name: default-http
+                  properties:
+                    address: 0.0.0.0:8000

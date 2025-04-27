@@ -1,0 +1,34 @@
+{
+  "name": "http-server-with-hono",
+  "version": "0.0.1",
+  "description": "A wasmCloud component using Hono for HTTP routing based on wasi:http.",
+  "main": "dist/index.bundled.js",
+  "scripts": {
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "build:bundle": "rollup -c rollup.config.mjs",
+    "build:js": "jco componentize -w wit -o dist/http_server_with_hono.wasm dist/index.bundled.js",
+    "build:component": "wash build --sign-only --config-path wasmcloud.toml",
+    "build": "npm run generate:types && npm run build:bundle && npm run build:js && npm run build:component",
+    "install-and-build": "npm install && npm run build",
+    "wadm:start": "wash app deploy local.wadm.yaml",
+    "wadm:stop": "wash app delete typescript-http-server-with-hono v0.1.0",
+    "start": "npm run build && npm run wadm:start",
+    "reload": "npm run build && npm run wadm:stop && npm run wadm:start",
+    "stop": "npm run wadm:stop",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "dependencies": {
+    "hono": "^4.4.13"
+  },
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.10.2",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.7.6",
+    "abstract-winston-transport": "^0.5.1",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.40.0",
+    "typescript": "^5.6.3"
+  }
+}
