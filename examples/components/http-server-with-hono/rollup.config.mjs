@@ -2,7 +2,6 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
-import json from '@rollup/plugin-json';
 
 export default {
   input: 'src/index.ts', // Entry point is the TypeScript source
@@ -24,6 +23,5 @@ export default {
       browser: true, // Treat as browser environment for dependencies
     }),
     commonjs(), // Convert CommonJS modules to ES modules
-    json(), // Handle JSON imports
   ],
 };

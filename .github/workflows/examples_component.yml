@@ -121,11 +121,11 @@ jobs:
         shell: bash
         working-directory: "./examples/components/${{ inputs.folder }}"
         env:
-          SKIP_WADM: ${{ inputs.skip-wadm == 'true' && 'true' || 'false' }}
+          SKIP_WADM: ${{ inputs.skip-wadm == true && 'true' || 'false' }}
         run: |
           set -xe
 
-          if [ "$SKIP_WADM" == "true" ]; then
+          if [[ "$SKIP_WADM" == "true" ]]; then
             exit 0;
           fi
 

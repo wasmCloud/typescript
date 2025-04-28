@@ -60,7 +60,7 @@ jobs:
       folder: ${{ matrix.project.folder }}
       wasm-bin: ${{ matrix.project.wasm-bin }}
       test-command: ${{ matrix.project.test-command }}
-      skip-wadm: ${{ matrix.project.skip-wadm && 'true' || 'false' }}
+      skip-wadm: ${{ matrix.project.skip-wadm && true || false }}
       force: ${{ needs.meta.outputs.changed-ci == 'true' }}
       wash-version: ${{ needs.meta.outputs.wash-version }}
     strategy:
