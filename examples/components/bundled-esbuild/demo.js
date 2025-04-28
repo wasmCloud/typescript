@@ -5,4 +5,4 @@ const XML_DATA = "<item><title>Hello</title><score>3</score></item><item><title>
 
 const jsonScore = dataUtils.calculateScore({ tag: "json", val: JSON_DATA });
 const xmlScore = dataUtils.calculateScore({ tag: "xml", val: XML_DATA });
-console.log(`${jsonScore}${xmlScore}`);
+console.log(jsonScore + xmlScore);
