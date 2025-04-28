@@ -27,16 +27,16 @@
   "license": "ISC",
   "devDependencies": {
     "@bytecodealliance/jco": "^1.10.2",
-    "@rollup/plugin-node-resolve": "^15.3.0",
-    "@rollup/plugin-typescript": "^12.1.1",
-    "@types/node": "^22.7.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.15.3",
     "rimraf": "^6.0.1",
-    "rollup": "^4.24.0",
-    "tslib": "^2.8.0",
-    "typescript": "^5.6.3"
+    "rollup": "^4.40.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "check-password-strength": "^2.0.10",
-    "valibot": "^0.42.1"
+    "check-password-strength": "^3.0.0",
+    "valibot": "^1.0.0"
   }
 }

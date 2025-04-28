@@ -23,15 +23,15 @@
   "devDependencies": {
     "@bytecodealliance/jco": "^1.10.2",
     "@rsbuild/plugin-node-polyfill": "^1.3.0",
-    "@rslib/core": "^0.6.1",
+    "@rslib/core": "^0.6.7",
     "@types/jsonpath": "^0.2.4",
-    "@types/node": "^22.7.6",
+    "@types/node": "^22.15.3",
     "rimraf": "^6.0.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "csvtojson": "^2.0.10",
     "jsonpath": "^1.1.1",
-    "remeda": "^2.21.0"
+    "remeda": "^2.21.3"
   }
 }
