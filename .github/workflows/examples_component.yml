@@ -5,23 +5,31 @@ on:
     inputs:
       folder:
         type: string
+        description: The folder name of the example component, relative to the ./examples/components folder
+        required: true
+      build-path:
+        type: string
+        description: The build path of the example component, relative to the ./examples/components folder
         required: true
       wasm-bin:
         type: string
+        description: name of the wasm binary found inside the build folder
         required: true
       test-command:
         type: string
-        default: ''
+        description: Command to run the test. The command should set TEST_RESULT to 0 or 1 based on the test result
+        required: true
       skip-wadm:
         type: boolean
         description: Whether to skip WADM-related testing (`true`/`false`)
-        default: false
+        required: true
       force:
         type: boolean
         description: Force the build and test steps to run, even if no changes are detected
-        default: false
+        required: true
       wash-version:
         type: string
+        description: The version of Wash to use for the build and test steps
         required: true
 
 env:
@@ -96,7 +104,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ inputs.folder }}-wasm-bin
-          path: ./examples/components/${{ inputs.folder }}/build/${{ inputs.wasm-bin }}
+          path: ./examples/components/${{ inputs.folder }}/${{ inputs.build-path }}/${{ inputs.wasm-bin }}
 
   test:
     needs: [build]
@@ -114,7 +122,7 @@ jobs:
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: ${{ inputs.folder }}-wasm-bin
-          path: ./examples/components/${{ inputs.folder }}/build/
+          path: ./examples/components/${{ inputs.folder }}/${{ inputs.build-path }}/
 
       # Run the wadm file and make sure it deploys
       - name: Test Deployment
@@ -170,9 +178,9 @@ jobs:
         if: always()
         working-directory: "./examples/components/${{ inputs.folder }}"
         env:
-          SKIP_WADM: ${{ inputs.skip-wadm == 'true' && 'true' || 'false' }}
+          SKIP_WADM: ${{ inputs.skip-wadm == true && 'true' || 'false' }}
         run: |
-          if [ "$SKIP_WADM" == "true" ]; then
+          if [[ "$SKIP_WADM" == "true" ]]; then
             exit 0;
           fi
           wash app delete ./local.wadm.yaml;
