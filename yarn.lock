@@ -3144,12 +3144,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.14.1":
-  version: 22.14.1
-  resolution: "@types/node@npm:22.14.1"
+"@types/node@npm:^22.15.3":
+  version: 22.15.3
+  resolution: "@types/node@npm:22.15.3"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10/561b1ad98ef5176d6da856ffbbe494f16655149f6a7d561de0423c8784910c81267d7d6459f59d68a97b3cbae9b5996b3b5dfe64f4de3de2239d295dcf4a4dcc
+  checksum: 10/6b4ff03c36598432b419980f828281aa16383e2de6eb61f73275495ef8d2cbf8cb5607659b4cae5ff8b2b2ff69913ea07ffcc0be029e4280b6e8bc138dc6629b
   languageName: node
   linkType: hard
 
@@ -3661,7 +3661,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@wasmcloud/eslint-config@workspace:packages/eslint-config"
   dependencies:
-    "@types/node": "npm:^22.14.1"
+    "@types/node": "npm:^22.15.3"
     "@typescript-eslint/eslint-plugin": "npm:^8.31.0"
     "@typescript-eslint/parser": "npm:^8.31.0"
     eslint-config-prettier: "npm:^10.1.2"
@@ -3697,7 +3697,7 @@ __metadata:
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tsup: "npm:^8.4.0"
     type-fest: "npm:^4.40.0"
-    vite: "npm:^6.3.2"
+    vite: "npm:^6.3.3"
     vite-plugin-dts: "npm:^4.5.3"
     vite-tsconfig-paths: "npm:^5.1.4"
   languageName: unknown
@@ -3718,7 +3718,7 @@ __metadata:
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tailwindcss: "npm:^3.4.17"
     tsup: "npm:^8.4.0"
-    vite: "npm:^6.3.2"
+    vite: "npm:^6.3.3"
     vite-plugin-dts: "npm:^4.5.3"
     vite-tsconfig-paths: "npm:^5.1.4"
   peerDependencies:
@@ -3732,12 +3732,12 @@ __metadata:
   dependencies:
     "@changesets/changelog-github": "npm:^0.5.1"
     "@changesets/cli": "npm:^2.29.2"
-    "@types/node": "npm:^22.14.1"
+    "@types/node": "npm:^22.15.3"
     "@wasmcloud/prettier-config": "workspace:*"
     eslint: "npm:^8.57.1"
     eslint-config-turbo: "npm:^2.5.1"
     prettier: "npm:^3.5.3"
-    turbo: "npm:^2.5.0"
+    turbo: "npm:^2.5.2"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -10220,16 +10220,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinyglobby@npm:^0.2.12":
-  version: 0.2.12
-  resolution: "tinyglobby@npm:0.2.12"
-  dependencies:
-    fdir: "npm:^6.4.3"
-    picomatch: "npm:^4.0.2"
-  checksum: 10/4ad28701fa9118b32ef0e27f409e0a6c5741e8b02286d50425c1f6f71e6d6c6ded9dd5bbbbb714784b08623c4ec4d150151f1d3d996cfabe0495f908ab4f7002
-  languageName: node
-  linkType: hard
-
 "tinyglobby@npm:^0.2.13":
   version: 0.2.13
   resolution: "tinyglobby@npm:0.2.13"
@@ -10396,30 +10386,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.5.0":
-  version: 2.5.0
-  resolution: "turbo-darwin-64@npm:2.5.0"
+"turbo-darwin-64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "turbo-darwin-64@npm:2.5.2"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.5.0":
-  version: 2.5.0
-  resolution: "turbo-darwin-arm64@npm:2.5.0"
+"turbo-darwin-arm64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "turbo-darwin-arm64@npm:2.5.2"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.5.0":
-  version: 2.5.0
-  resolution: "turbo-linux-64@npm:2.5.0"
+"turbo-linux-64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "turbo-linux-64@npm:2.5.2"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.5.0":
-  version: 2.5.0
-  resolution: "turbo-linux-arm64@npm:2.5.0"
+"turbo-linux-arm64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "turbo-linux-arm64@npm:2.5.2"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
@@ -10431,30 +10421,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.5.0":
-  version: 2.5.0
-  resolution: "turbo-windows-64@npm:2.5.0"
+"turbo-windows-64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "turbo-windows-64@npm:2.5.2"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.5.0":
-  version: 2.5.0
-  resolution: "turbo-windows-arm64@npm:2.5.0"
+"turbo-windows-arm64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "turbo-windows-arm64@npm:2.5.2"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.5.0":
-  version: 2.5.0
-  resolution: "turbo@npm:2.5.0"
+"turbo@npm:^2.5.2":
+  version: 2.5.2
+  resolution: "turbo@npm:2.5.2"
   dependencies:
-    turbo-darwin-64: "npm:2.5.0"
-    turbo-darwin-arm64: "npm:2.5.0"
-    turbo-linux-64: "npm:2.5.0"
-    turbo-linux-arm64: "npm:2.5.0"
-    turbo-windows-64: "npm:2.5.0"
-    turbo-windows-arm64: "npm:2.5.0"
+    turbo-darwin-64: "npm:2.5.2"
+    turbo-darwin-arm64: "npm:2.5.2"
+    turbo-linux-64: "npm:2.5.2"
+    turbo-linux-arm64: "npm:2.5.2"
+    turbo-windows-64: "npm:2.5.2"
+    turbo-windows-arm64: "npm:2.5.2"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -10470,7 +10460,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10/09a9a441bee424925444a9d3c071efe6139187257296a2b04a6474b719ce385a118c42677a67db1b77ca34f041a72a3fc152a60efcd96d407fd8d3a708c259a4
+  checksum: 10/dee9047dbeeddd5584744e604620267749e278e71f9658fd58ca72f6f71d38c47132ea958aee7b7049e51c85bcfce35ca6efb1e8d180b03d7504d7427f05b026
   languageName: node
   linkType: hard
 
@@ -10955,17 +10945,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.3.2":
-  version: 6.3.2
-  resolution: "vite@npm:6.3.2"
+"vite@npm:^6.3.3":
+  version: 6.3.3
+  resolution: "vite@npm:6.3.3"
   dependencies:
     esbuild: "npm:^0.25.0"
-    fdir: "npm:^6.4.3"
+    fdir: "npm:^6.4.4"
     fsevents: "npm:~2.3.3"
     picomatch: "npm:^4.0.2"
     postcss: "npm:^8.5.3"
     rollup: "npm:^4.34.9"
-    tinyglobby: "npm:^0.2.12"
+    tinyglobby: "npm:^0.2.13"
   peerDependencies:
     "@types/node": ^18.0.0 || ^20.0.0 || >=22.0.0
     jiti: ">=1.21.0"
@@ -11006,7 +10996,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/05ea5e03d86d950e53af6b11e444b31846bccdc44e45b8d693d06eba7d3a4fe2e8003a6948cdbcf7e54779f7ca851f29e96be6369e9c9413d34de7539ad6af8c
+  checksum: 10/442e518d9da847db80bd19a9792d1d9a106a31d18f74bfd06574776932dd0907f7205b99e34d455ba505a7dd9e57a807354633b90acd46a11db849a15ae26ad4
   languageName: node
   linkType: hard
 
@@ -11042,7 +11032,7 @@ __metadata:
     "@radix-ui/react-tooltip": "npm:^1.2.4"
     "@tailwindcss/vite": "npm:^4.1.4"
     "@tanstack/react-table": "npm:^8.21.3"
-    "@types/node": "npm:^22.14.1"
+    "@types/node": "npm:^22.15.3"
     "@types/react": "npm:19.0.0"
     "@types/react-dom": "npm:19.0.0"
     "@types/uuid": "npm:^10.0.0"
@@ -11086,7 +11076,7 @@ __metadata:
     typescript: "npm:^5.8.3"
     usehooks-ts: "npm:^3.1.1"
     uuid: "npm:^11.1.0"
-    vite: "npm:^6.3.2"
+    vite: "npm:^6.3.3"
     vite-plugin-svgr: "npm:^4.3.0"
     vite-tsconfig-paths: "npm:^5.1.4"
     zod: "npm:^3.24.3"
