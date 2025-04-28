@@ -23,7 +23,7 @@ async function calculateScore(data: InputData): Promise<number> {
   return R.pipe(
     json,
     R.filter((x) => x.title === "Hello"),
-    R.sumBy((x) => x.score),
+    R.sumBy((x) => Number(x.score)),
   );
 }
 
