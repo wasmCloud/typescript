@@ -45,32 +45,33 @@ jobs:
 
       - name: Get Installed wash Version
         id: version
-        # Update to use json output after https://github.com/wasmCloud/wasmCloud/issues/3884 is resolved
         run: |
           # Get the installed wash version
-          echo "version=$(wash -V | head -n 1 | awk '{gsub(/v/, ""); print $2}')" >> $GITHUB_OUTPUT
+          echo "version=$(wash --version -o json | jq '.wash' -r | sed 's/^v//g')" >> $GITHUB_OUTPUT
 
   components:
-    name: ${{ format('example:component:{0}', matrix.project.folder) }}
+    name: ${{ matrix.example.folder }}
     if: needs.meta.outputs.changed-ci == 'true' || needs.meta.outputs.changed-components == 'true'
     needs: [meta]
     secrets: inherit
     uses: ./.github/workflows/examples_component.yml
     with:
-      folder: ${{ matrix.project.folder }}
-      wasm-bin: ${{ matrix.project.wasm-bin }}
-      test-command: ${{ matrix.project.test-command }}
-      skip-wadm: ${{ matrix.project.skip-wadm && true || false }}
+      folder: ${{ matrix.example.folder }}
+      build-path: ${{ matrix.example.build-path || 'build' }}
+      wasm-bin: ${{ matrix.example.wasm-bin }}
+      test-command: ${{ matrix.example.test-command }}
+      skip-wadm: ${{ matrix.example.skip-wadm && true || false }}
       force: ${{ needs.meta.outputs.changed-ci == 'true' }}
       wash-version: ${{ needs.meta.outputs.wash-version }}
     strategy:
       fail-fast: false
       matrix:
-        project:
+        example:
           # Sample matrix entry for examples
-          # - folder: http-hello-world                # Folder name of the example within examples/components/*
-          #   wasm-bin: dist/http-hello-world.wasm    # Path to the wasm binary after build
-          #   test-command: TEST_RESULT=1             # Some command that will set TEST_RESULT to 0 or 1
+          # - folder: http-hello-world           # Folder name of the example within examples/components/*
+          #   build-path: dist                   # Path to the build directory (default: build)
+          #   wasm-bin: http-hello-world.wasm    # Path to the wasm binary after build
+          #   test-command: TEST_RESULT=1        # Some command that will set TEST_RESULT to 0 or 1
 
           - folder: http-hello-world
             wasm-bin: http_hello_world_s.wasm
@@ -85,7 +86,8 @@ jobs:
               [[ "$RESPONSE" == 'success' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
           - folder: http-server-with-hono
-            wasm-bin: http_server-with-hono_s.wasm
+            build-path: dist
+            wasm-bin: http_server_with_hono_s.wasm
             test-command: |
               EXPECTED="This is some JSON data."
               RESPONSE=$(curl http://127.0.0.1:8000/api/data | jq -r '.message')
