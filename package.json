@@ -33,12 +33,12 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.2",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.3",
     "@wasmcloud/prettier-config": "workspace:*",
     "eslint": "^8.57.1",
     "eslint-config-turbo": "^2.5.1",
     "prettier": "^3.5.3",
-    "turbo": "^2.5.0",
+    "turbo": "^2.5.2",
     "typescript": "^5.8.3"
   },
   "resolutions": {
