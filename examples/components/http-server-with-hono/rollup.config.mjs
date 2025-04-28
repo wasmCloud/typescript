@@ -10,6 +10,7 @@ export default {
     format: 'esm', // Output format as ES Module
     sourcemap: true,
   },
+  external: [/wasi:.*/],
   plugins: [
     typescript({
       // Compile TypeScript first
