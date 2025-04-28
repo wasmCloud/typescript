@@ -25,3 +25,19 @@ updates:
         update-types:
           - minor
           - patch
+
+  # NPM/Yarn Dependencies
+  - package-ecosystem: 'npm'
+    directories:
+      - '/examples/components/*'
+    groups:
+      example-dependencies:
+        update-types:
+          - major
+          - minor
+          - patch
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'America/New_York'
