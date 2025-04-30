@@ -1,6 +1,5 @@
 // rollup.config.mjs
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 
 export default {
@@ -10,7 +9,7 @@ export default {
     format: 'esm', // Output format as ES Module
     sourcemap: true,
   },
-  external: [/wasi:.*/],
+  external: [/wasi:.*/], // Exclude WASI imports from bundling
   plugins: [
     typescript({
       // Compile TypeScript first
@@ -23,6 +22,5 @@ export default {
       preferBuiltins: false, // Important for WASI environment
       browser: true, // Treat as browser environment for dependencies
     }),
-    commonjs(), // Convert CommonJS modules to ES modules
   ],
 };
