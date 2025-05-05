@@ -21,9 +21,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.10.2",
+    "@bytecodealliance/jco": "^1.11.1",
     "@rsbuild/plugin-node-polyfill": "^1.3.0",
-    "@rslib/core": "^0.6.7",
+    "@rslib/core": "^0.6.8",
     "@types/jsonpath": "^0.2.4",
     "@types/node": "^22.15.3",
     "rimraf": "^6.0.1",
