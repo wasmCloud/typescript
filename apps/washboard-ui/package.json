@@ -65,24 +65,11 @@
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
     "@types/uuid": "^10.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.31.1",
-    "@typescript-eslint/parser": "^8.31.1",
     "@vitejs/plugin-react": "^4.4.1",
     "@vitejs/plugin-react-swc": "^3.9.0",
     "@wasmcloud/eslint-config": "workspace:^",
     "@wasmcloud/prettier-config": "workspace:^",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^10.1.2",
-    "eslint-import-resolver-typescript": "^4.3.4",
-    "eslint-plugin-absolute-imports-only": "^1.0.1",
-    "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "eslint-plugin-tailwindcss": "^3.18.0",
-    "eslint-plugin-unicorn": "^56.0.1",
+    "eslint": "^9.26.0",
     "execa": "^9.5.2",
     "get-port": "^7.1.0",
     "pino": "^9.6.0",
@@ -95,8 +82,5 @@
     "vite": "^6.3.5",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4"
-  },
-  "resolutions": {
-    "cross-spawn": "^7.0.5"
   }
 }
