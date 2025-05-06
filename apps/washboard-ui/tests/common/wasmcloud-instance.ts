@@ -76,7 +76,7 @@ export class WasmCloudInstanceOptions {
       startWashUI: false,
       multiLocal: true,
       washBinPath: process.env.TEST_WASH_BIN_PATH ?? DEFAULT_WASH_BIN_PATH,
-      debug: Boolean(process.env.DEBUG) ?? false,
+      debug: Boolean(process.env.DEBUG ?? false),
     };
   }
 }
