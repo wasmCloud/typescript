@@ -4,6 +4,7 @@ import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
 import {configs as tsEslintConfigs} from 'typescript-eslint';
 import reactRefresh from 'eslint-plugin-react-refresh';
+// @ts-ignore -- no types for this package
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments/configs';
 import unicorn from 'eslint-plugin-unicorn';
 import {flatConfigs as eslintImportX} from 'eslint-plugin-import-x';
