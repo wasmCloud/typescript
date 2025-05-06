@@ -1,6 +1,6 @@
 {
   "extends": "@wasmcloud/tsconfig/configs/base.json",
-  "include": ["**/*.js", ".eslintrc.cjs"],
+  "include": ["**/*.js"],
   "compilerOptions": {
     "allowJs": true,
     "noEmit": true
