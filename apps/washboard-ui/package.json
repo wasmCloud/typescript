@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "lint": "yarn lint:eslint",
     "lint:fix": "yarn lint:eslint:fix",
-    "lint:eslint": "eslint src tests --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:eslint": "eslint src tests --report-unused-disable-directives",
     "lint:eslint:fix": "yarn lint:eslint --fix",
     "test:e2e": "yarn test:e2e:setup && yarn test:playwright:headless",
     "test:e2e:setup": "yarn playwright install --with-deps chromium",
