@@ -1,5 +1,18 @@
 # washboard-ui
 
+## 0.7.3
+
+### Patch Changes
+
+- [#215](https://github.com/wasmCloud/typescript/pull/215) [`4f7c264`](https://github.com/wasmCloud/typescript/commit/4f7c264948503b3b819af795399d784a6755a763) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 6 updates
+
+- [#213](https://github.com/wasmCloud/typescript/pull/213) [`4b5a9a0`](https://github.com/wasmCloud/typescript/commit/4b5a9a0bd979cb6587a83b7f413014b796b93a2f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#217](https://github.com/wasmCloud/typescript/pull/217) [`20df1f8`](https://github.com/wasmCloud/typescript/commit/20df1f879555c7d433c3274381f66bfd2d09ea96) Thanks [@lachieh](https://github.com/lachieh)! - Update to ESLintv9
+
+- Updated dependencies [[`4b5a9a0`](https://github.com/wasmCloud/typescript/commit/4b5a9a0bd979cb6587a83b7f413014b796b93a2f), [`20df1f8`](https://github.com/wasmCloud/typescript/commit/20df1f879555c7d433c3274381f66bfd2d09ea96)]:
+  - @wasmcloud/lattice-client-react@0.5.6
+
 ## 0.7.2
 
 ### Patch Changes

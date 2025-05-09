@@ -1,5 +1,15 @@
 # @wasmcloud/eslint-config
 
+## 0.1.0
+
+### Minor Changes
+
+- [#217](https://github.com/wasmCloud/typescript/pull/217) [`20df1f8`](https://github.com/wasmCloud/typescript/commit/20df1f879555c7d433c3274381f66bfd2d09ea96) Thanks [@lachieh](https://github.com/lachieh)! - Update to ESLintv9
+
+### Patch Changes
+
+- [#215](https://github.com/wasmCloud/typescript/pull/215) [`4f7c264`](https://github.com/wasmCloud/typescript/commit/4f7c264948503b3b819af795399d784a6755a763) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 6 updates
+
 ## 0.0.4
 
 ### Patch Changes
