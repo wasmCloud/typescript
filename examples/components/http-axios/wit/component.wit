@@ -1,0 +1,11 @@
+package wasmcloud:examples;
+
+/// This interface is intended to be used by `wash call`  
+interface invoke {
+    call: func() -> string;
+}
+
+world component {
+    export invoke;
+    export wasi:cli/run@0.2.3;
+}
