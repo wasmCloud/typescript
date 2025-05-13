@@ -115,6 +115,14 @@ jobs:
               RESPONSE=$(npm run --silent demo)
               [[ "$RESPONSE" == '8' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
+          - folder: http-axios
+            wasm-bin: http_axios_s.wasm
+            skip-wadm: true
+            test-command: |
+              npm run install-and-build && npm run transpile
+              RESPONSE=$(npm run --silent demo | jq -r '.id')
+              [[ "$RESPONSE" == '1' ]] && TEST_RESULT=1 || TEST_RESULT=0
+
   examples-check:
     needs: [components]
     if: ${{ always() }}

@@ -1,0 +1,40 @@
+{
+  "name": "http-axios",
+  "version": "0.1.0",
+  "description": "jco example using axios",
+  "main": "dist/component.js",
+  "type": "module",
+  "scripts": {
+    "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
+    "build:ts": "tsc -p .",
+    "build:js": "rollup -c",
+    "build:component": "jco componentize -w wit -o dist/http-axios.wasm dist/component.js",
+    "build": "npm run generate:types && npm run build:ts && npm run build:js && npm run build:component",
+    "install-and-build": "npm install && npm run build",
+    "dev": "wash dev",
+    "component:start": "wash start component file://build/http-axios.wasm ts-http-axios",
+    "component:stop": "wash stop component ts-http-axios",
+    "demo": "node demo.js",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "all": "wash build && npm install && npm run build && npm run demo"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "axios": "^1.9.0"
+  },
+  "devDependencies": {
+    "@bytecodealliance/componentize-js": "^0.17.0",
+    "@bytecodealliance/jco": "^1.11.1",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "@types/node": "^22.7.6",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.24.0",
+    "tslib": "^2.8.0",
+    "typescript": "^5.6.3"
+  }
+}

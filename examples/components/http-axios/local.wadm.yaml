@@ -1,0 +1,41 @@
+---
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: ts-http-axios
+  annotations:
+    wasmcloud.dev/authors: wasmCloud team
+    wasmcloud.dev/source-url: https://github.com/wasmCloud/wasmCloud/blob/main/examples/typescript/components/http-axios/wadm.yaml
+    wasmcloud.dev/readme-md-url: https://github.com/wasmCloud/wasmCloud/blob/main/examples/typescript/components/http-axios/README.md
+    wasmcloud.dev/homepage: https://github.com/wasmCloud/wasmCloud/tree/main/examples/typescript/components/http-axios
+    wasmcloud.dev/categories: |
+      http,fetch,typescript,example,axios
+    description: |
+      Demo of Typescript fetch using axios
+spec:
+  components:
+    # (Component) A test component that returns a string for any given HTTP request
+    - name: ts-http-axios
+      type: component
+      properties:
+        image: file://./build/http_axios_s.wasm
+      traits:
+        # Govern the spread/scheduling of the component
+        - type: spreadscaler
+          properties:
+            instances: 1
+        # Link the component to the http client so it can make external HTTP requests
+        - type: link
+          properties:
+            target:
+              name: http-client
+            namespace: wasi
+            package: http
+            interfaces:
+              - outgoing-handler
+
+    # Add a capability provider that enables HTTP outbound access
+    - name: http-client
+      type: capability
+      properties:
+        image: ghcr.io/wasmcloud/http-client:0.13.1
