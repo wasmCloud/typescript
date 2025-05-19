@@ -1,5 +1,6 @@
 import {type QueuedIterator} from 'nats.ws';
 import {connect} from 'nats.ws';
+
 import {
   type WasmCloudComponent,
   type WasmCloudHost,
