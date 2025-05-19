@@ -1,4 +1,5 @@
 import type {WasmCloudProvider,  ControlResponse} from '@/types';
+
 import {BaseController} from '@/controllers/base-controller';
 
 type StartProviderBody = {
