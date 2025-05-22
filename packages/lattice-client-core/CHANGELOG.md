@@ -1,5 +1,19 @@
 # @wasmcloud/lattice-client-core
 
+## 0.5.6
+
+### Patch Changes
+
+- [#224](https://github.com/wasmCloud/typescript/pull/224) [`33abe21`](https://github.com/wasmCloud/typescript/commit/33abe21f3eeaeabba3317168ee9b4747c5521970) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 24 updates
+
+- [#231](https://github.com/wasmCloud/typescript/pull/231) [`a30af5a`](https://github.com/wasmCloud/typescript/commit/a30af5a342f5740e1c6ab27e2d8a280a8206aad2) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 6 updates
+
+- [#213](https://github.com/wasmCloud/typescript/pull/213) [`4b5a9a0`](https://github.com/wasmCloud/typescript/commit/4b5a9a0bd979cb6587a83b7f413014b796b93a2f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#229](https://github.com/wasmCloud/typescript/pull/229) [`98135ff`](https://github.com/wasmCloud/typescript/commit/98135fff9611f279d4210e6d1707abafb826416f) Thanks [@vados-cosmonic](https://github.com/vados-cosmonic)! - address code lint warnings
+
+- [#217](https://github.com/wasmCloud/typescript/pull/217) [`20df1f8`](https://github.com/wasmCloud/typescript/commit/20df1f879555c7d433c3274381f66bfd2d09ea96) Thanks [@lachieh](https://github.com/lachieh)! - Update to ESLintv9
+
 ## 0.5.5
 
 ### Patch Changes
