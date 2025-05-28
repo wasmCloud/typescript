@@ -1,5 +1,25 @@
 # @wasmcloud/eslint-config
 
+## 0.1.0
+
+### Minor Changes
+
+- [#217](https://github.com/wasmCloud/typescript/pull/217) [`20df1f8`](https://github.com/wasmCloud/typescript/commit/20df1f879555c7d433c3274381f66bfd2d09ea96) Thanks [@lachieh](https://github.com/lachieh)! - Update to ESLintv9
+
+### Patch Changes
+
+- [#224](https://github.com/wasmCloud/typescript/pull/224) [`33abe21`](https://github.com/wasmCloud/typescript/commit/33abe21f3eeaeabba3317168ee9b4747c5521970) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 24 updates
+
+- [#223](https://github.com/wasmCloud/typescript/pull/223) [`f5dd849`](https://github.com/wasmCloud/typescript/commit/f5dd8492deb030f6ae87ad3338b04c386234ddb4) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 4 updates
+
+- [#237](https://github.com/wasmCloud/typescript/pull/237) [`4e5d0af`](https://github.com/wasmCloud/typescript/commit/4e5d0afefadbdb7b5656b0cea5fb508b988b9ec3) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#215](https://github.com/wasmCloud/typescript/pull/215) [`4f7c264`](https://github.com/wasmCloud/typescript/commit/4f7c264948503b3b819af795399d784a6755a763) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 6 updates
+
+- [#231](https://github.com/wasmCloud/typescript/pull/231) [`a30af5a`](https://github.com/wasmCloud/typescript/commit/a30af5a342f5740e1c6ab27e2d8a280a8206aad2) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 6 updates
+
+- [#238](https://github.com/wasmCloud/typescript/pull/238) [`7fc2778`](https://github.com/wasmCloud/typescript/commit/7fc2778298c6d77ce99bd62a0f5428048666fdbc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 26 updates
+
 ## 0.0.4
 
 ### Patch Changes
