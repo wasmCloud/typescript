@@ -24,13 +24,13 @@
   "devDependencies": {
     "@bytecodealliance/jco": "^1.11.2",
     "@types/jsonpath": "^0.2.4",
-    "@types/node": "^22.15.29",
+    "@types/node": "^22.15.30",
     "esbuild": "^0.25.5",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "fast-xml-parser": "^5.2.3",
-    "remeda": "^2.22.5"
+    "fast-xml-parser": "^5.2.5",
+    "remeda": "^2.23.0"
   }
 }
