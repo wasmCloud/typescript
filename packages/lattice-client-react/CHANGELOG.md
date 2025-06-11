@@ -1,5 +1,14 @@
 # @wasmcloud/lattice-client-react
 
+## 0.5.7
+
+### Patch Changes
+
+- [#253](https://github.com/wasmCloud/typescript/pull/253) [`021ccf0`](https://github.com/wasmCloud/typescript/commit/021ccf09a93f1a1be8cce7363b3c6dda0b5d3d78) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 2 updates
+
+- Updated dependencies []:
+  - @wasmcloud/lattice-client-core@0.5.6
+
 ## 0.5.6
 
 ### Patch Changes
