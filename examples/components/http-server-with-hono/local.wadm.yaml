@@ -22,8 +22,9 @@ spec:
         config:
           - name: custom-config
             properties:
-              example: 'example'
               log_level: 'info'
+              # Example JSON config, see index.ts for usage
+              public_config_json: '{"theme": "dark", "version": "1.0.0", "features": ["logging", "metrics"]}'
       traits:
         - type: spreadscaler
           properties:

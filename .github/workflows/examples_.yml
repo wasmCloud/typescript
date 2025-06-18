@@ -89,9 +89,18 @@ jobs:
             build-path: dist
             wasm-bin: http_server_with_hono_s.wasm
             test-command: |
-              EXPECTED="This is some JSON data."
-              RESPONSE=$(curl http://127.0.0.1:8000/api/data | jq -r '.message')
-              [[ "$RESPONSE" == "$EXPECTED" ]] && TEST_RESULT=1 || TEST_RESULT=0
+              # Test the /api/data route
+              EXPECTED_DATA="This is some JSON data."
+              RESPONSE_DATA=$(curl http://127.0.0.1:8000/api/data | jq -r '.message')
+              [[ "$RESPONSE_DATA" == "$EXPECTED_DATA" ]] && TEST_DATA=1 || TEST_DATA=0
+
+              # Test the /api/config route
+              EXPECTED_CONFIG='{"theme":"dark","version":"1.0.0","features":["logging","metrics"]}'
+              RESPONSE_CONFIG=$(curl http://127.0.0.1:8000/api/config)
+              [[ "$RESPONSE_CONFIG" == "$EXPECTED_CONFIG" ]] && TEST_CONFIG=1 || TEST_CONFIG=0
+
+              # Check that both data and config routes pass
+              [[ "$TEST_DATA" == '1' && "$TEST_CONFIG" == '1' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
           - folder: http-streaming
             wasm-bin: http_streaming_s.wasm
