@@ -1,5 +1,28 @@
 # washboard-ui
 
+## 0.7.4
+
+### Patch Changes
+
+- [#244](https://github.com/wasmCloud/typescript/pull/244) [`a2a80a0`](https://github.com/wasmCloud/typescript/commit/a2a80a09c4196ce47c03d4c8e25c72b64588fa6b) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 6 updates
+
+- [#253](https://github.com/wasmCloud/typescript/pull/253) [`021ccf0`](https://github.com/wasmCloud/typescript/commit/021ccf09a93f1a1be8cce7363b3c6dda0b5d3d78) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 2 updates
+
+- [#242](https://github.com/wasmCloud/typescript/pull/242) [`10e325f`](https://github.com/wasmCloud/typescript/commit/10e325fda04c093032c929421eab251343a0da0f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 5 updates
+
+- [#250](https://github.com/wasmCloud/typescript/pull/250) [`a10bcf0`](https://github.com/wasmCloud/typescript/commit/a10bcf0e5adec57b594d779c297f0d034c89e92e) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 8 updates
+
+- [#261](https://github.com/wasmCloud/typescript/pull/261) [`73eecd7`](https://github.com/wasmCloud/typescript/commit/73eecd79daa1f68f1f3e14c14a426566c8ba0792) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#260](https://github.com/wasmCloud/typescript/pull/260) [`ed8caa4`](https://github.com/wasmCloud/typescript/commit/ed8caa4493520673d35bd61f2e4e831413a48e57) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#257](https://github.com/wasmCloud/typescript/pull/257) [`02e69db`](https://github.com/wasmCloud/typescript/commit/02e69db92be95ef2264f18187b11159fa0643e16) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 8 updates
+
+- [#259](https://github.com/wasmCloud/typescript/pull/259) [`67d1b14`](https://github.com/wasmCloud/typescript/commit/67d1b1455db4ab06784aa2b1491d83cbdbad9e53) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `@types/node` from 22.15.29 to 24.0.3
+
+- Updated dependencies [[`021ccf0`](https://github.com/wasmCloud/typescript/commit/021ccf09a93f1a1be8cce7363b3c6dda0b5d3d78)]:
+  - @wasmcloud/lattice-client-react@0.5.7
+
 ## 0.7.3
 
 ### Patch Changes
