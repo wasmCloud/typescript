@@ -10,7 +10,12 @@ export default {
     format: "esm",
   },
   plugins: [
+    // NOTE: typescript plugin is breaking on custom resolution (node-resolve),
+    // so we pin to 12.1.1
+    //
+    // see: https://github.com/rollup/plugins/issues/1877
     typescript(),
+
     // NOTE: we use rollup & the nodeResolve plugin here to ensure that all ndoe dependencies
     // are bundled into a *single* file.
     //
@@ -18,7 +23,9 @@ export default {
     nodeResolve({
       browser: true,
     }),
+
     commonjs(),
+
     json(),
   ],
 };
