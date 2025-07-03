@@ -1,5 +1,11 @@
 # @wasmcloud/lattice-client-core
 
+## 0.5.7
+
+### Patch Changes
+
+- [#275](https://github.com/wasmCloud/typescript/pull/275) [`5c7d47e`](https://github.com/wasmCloud/typescript/commit/5c7d47e698651348b5ad5a4fef85620414140707) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `vite` from 6.3.5 to 7.0.0
+
 ## 0.5.6
 
 ### Patch Changes
