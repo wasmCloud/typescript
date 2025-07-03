@@ -1,5 +1,18 @@
 # @wasmcloud/lattice-client-react
 
+## 0.5.7
+
+### Patch Changes
+
+- [#253](https://github.com/wasmCloud/typescript/pull/253) [`021ccf0`](https://github.com/wasmCloud/typescript/commit/021ccf09a93f1a1be8cce7363b3c6dda0b5d3d78) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 2 updates
+
+- [#275](https://github.com/wasmCloud/typescript/pull/275) [`5c7d47e`](https://github.com/wasmCloud/typescript/commit/5c7d47e698651348b5ad5a4fef85620414140707) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `vite` from 6.3.5 to 7.0.0
+
+- [#269](https://github.com/wasmCloud/typescript/pull/269) [`3f5b4d4`](https://github.com/wasmCloud/typescript/commit/3f5b4d420a3083dc7d5b6a5dfeb6282d6ca20048) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 4 updates
+
+- Updated dependencies [[`5c7d47e`](https://github.com/wasmCloud/typescript/commit/5c7d47e698651348b5ad5a4fef85620414140707)]:
+  - @wasmcloud/lattice-client-core@0.5.7
+
 ## 0.5.6
 
 ### Patch Changes
