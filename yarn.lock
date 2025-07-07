@@ -9537,12 +9537,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.59.0":
-  version: 7.59.0
-  resolution: "react-hook-form@npm:7.59.0"
+"react-hook-form@npm:^7.60.0":
+  version: 7.60.0
+  resolution: "react-hook-form@npm:7.60.0"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10/ff7a98e65f57b7468f4ea1b17435e69dcc68f276db6e0e10d513394c95d30dc6068333e3a453c8321627068dffcfacc49ff228c6ae7d8448c349469ab24457b2
+  checksum: 10/cc86ef4029f7b06f82dff919c8933156683b70669a6306d2471706443192b8916afaa07bc64452b590ecb18ea94f3d156f3fb38d59ada3462f5b108e89e186c9
   languageName: node
   linkType: hard
 
@@ -11761,7 +11761,7 @@ __metadata:
     prettier: "npm:^3.6.2"
     react: "npm:19.0.0"
     react-dom: "npm:19.0.0"
-    react-hook-form: "npm:^7.59.0"
+    react-hook-form: "npm:^7.60.0"
     react-router-dom: "npm:^7.6.3"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tailwind-merge: "npm:^2.6.0"
@@ -11773,7 +11773,7 @@ __metadata:
     vite: "npm:^7.0.0"
     vite-plugin-svgr: "npm:^4.3.0"
     vite-tsconfig-paths: "npm:^5.1.4"
-    zod: "npm:^3.25.67"
+    zod: "npm:^3.25.75"
   languageName: unknown
   linkType: soft
 
@@ -12016,9 +12016,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.25.67":
-  version: 3.25.67
-  resolution: "zod@npm:3.25.67"
-  checksum: 10/0e35432dcca7f053e63f5dd491a87c78abe0d981817547252c3b6d05f0f58788695d1a69724759c6501dff3fd62929be24c9f314a3625179bee889150f7a61fa
+"zod@npm:^3.25.75":
+  version: 3.25.75
+  resolution: "zod@npm:3.25.75"
+  checksum: 10/ac5bfd290e81a7954079a99c8ec27c2653af5c3842eaeddda06becb415b1d3887c1b06d6cbe8d52fde08f50e958643966ab0bf585a8e432d53b83ddb8e274d10
   languageName: node
   linkType: hard
