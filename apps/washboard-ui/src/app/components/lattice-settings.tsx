@@ -1,8 +1,10 @@
 import {zodResolver} from '@hookform/resolvers/zod';
-import {canConnect, useLatticeConfig} from '@wasmcloud/lattice-client-react';
 import {ReactElement, useCallback} from 'react';
-import {useForm} from 'react-hook-form';
+import {SubmitHandler, useForm} from 'react-hook-form';
 import * as z from 'zod';
+
+import {canConnect, useLatticeConfig} from '@wasmcloud/lattice-client-react';
+
 import {Button} from '@/components/button';
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/components/form';
 import {Input} from '@/components/input';
@@ -10,7 +12,6 @@ import {SheetFooter} from '@/components/sheet';
 
 const formSchema = z.object({
   latticeUrl: z
-    .string()
     .url({
       message: 'Please enter a valid URL',
     })
@@ -22,18 +23,14 @@ const formSchema = z.object({
     ),
   latticeId: z.string(),
   ctlTopicPrefix: z.string(),
-  retryCount: z.number().or(z.string()).pipe(z.coerce.number().min(0)),
+  retryCount: z.number().or(z.string().pipe(z.coerce.number<string>().min(0))),
 });
-
-type LatticeFormInput = z.input<typeof formSchema>;
-
-type LatticeFormOutput = z.output<typeof formSchema>;
 
 export function LatticeSettings({onSubmit}: {onSubmit?: () => void}): ReactElement {
   const {config, setConfig} = useLatticeConfig();
   const {latticeUrl, latticeId, ctlTopicPrefix, retryCount} = config;
 
-  const form = useForm<LatticeFormInput, object, LatticeFormOutput>({
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       latticeUrl,
@@ -49,8 +46,8 @@ export function LatticeSettings({onSubmit}: {onSubmit?: () => void}): ReactEleme
     },
   });
 
-  const handleSubmit = useCallback(
-    ({latticeUrl, latticeId, ctlTopicPrefix, retryCount}: LatticeFormOutput): void => {
+  const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = useCallback(
+    ({latticeUrl, latticeId, ctlTopicPrefix, retryCount}): void => {
       setConfig({
         latticeUrl,
         latticeId,
