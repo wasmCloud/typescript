@@ -1,7 +1,7 @@
 {
   "name": "@wasmcloud/lattice-client-react",
   "license": "Apache-2.0",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "description": "React specific package for the wasmCloud Lattice Client",
   "author": "wasmCloud",
   "repository": {
