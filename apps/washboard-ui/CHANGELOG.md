@@ -1,5 +1,38 @@
 # washboard-ui
 
+## 0.8.0
+
+### Minor Changes
+
+- [#296](https://github.com/wasmCloud/typescript/pull/296) [`769095c`](https://github.com/wasmCloud/typescript/commit/769095c7cc432172fba6ac49de5c78261816b009) Thanks [@lachieh](https://github.com/lachieh)! - Update major dependencies: zod (3.25.75 → 4.0.5).
+
+  Related PRs:
+  - wasmCloud/typescript#293: chore(deps): bump zod from 3.25.75 to 4.0.5
+
+### Patch Changes
+
+- [#293](https://github.com/wasmCloud/typescript/pull/293) [`37e7d3f`](https://github.com/wasmCloud/typescript/commit/37e7d3fc03894c55539d8bd5e2d8e11203a4eb52) Thanks [@dependabot](https://github.com/apps/dependabot)! - Update patch and minor dependencies including React Hook Form, Tailwind CSS, and various dev dependencies.
+
+  Related PRs:
+  - wasmCloud/typescript#294: chore(deps): bump the prod-dependencies group with 3 updates
+  - wasmCloud/typescript#292: chore(deps-dev): bump the dev-dependencies group with 3 updates
+  - wasmCloud/typescript#286: chore(deps): bump the prod-dependencies group with 2 updates
+  - wasmCloud/typescript#285: chore(deps-dev): bump the dev-dependencies group with 3 updates
+  - wasmCloud/typescript#280: chore(deps): bump the prod-dependencies group across 1 directory with 11 updates
+  - wasmCloud/typescript#276: chore(deps-dev): bump the dev-dependencies group with 3 updates
+  - wasmCloud/typescript#275: chore(deps-dev): bump vite from 6.3.5 to 7.0.0
+  - wasmCloud/typescript#269: chore(deps-dev): bump the dev-dependencies group with 4 updates
+  - wasmCloud/typescript#261: chore(deps-dev): bump the dev-dependencies group with 3 updates
+  - wasmCloud/typescript#259: chore(deps-dev): bump @types/node from 22.15.29 to 24.0.3
+  - wasmCloud/typescript#257: chore(deps): bump the prod-dependencies group with 8 updates
+  - wasmCloud/typescript#253: chore(deps-dev): bump the dev-dependencies group across 1 directory with 2 updates
+  - wasmCloud/typescript#250: chore(deps): bump the prod-dependencies group with 8 updates
+  - wasmCloud/typescript#244: chore(deps): bump the prod-dependencies group with 6 updates
+  - wasmCloud/typescript#242: chore(deps-dev): bump the dev-dependencies group with 5 updates
+
+- Updated dependencies [[`769095c`](https://github.com/wasmCloud/typescript/commit/769095c7cc432172fba6ac49de5c78261816b009)]:
+  - @wasmcloud/lattice-client-react@0.5.7
+
 ## 0.7.3
 
 ### Patch Changes
