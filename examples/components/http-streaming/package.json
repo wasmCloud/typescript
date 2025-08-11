@@ -23,9 +23,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.12.0",
-    "@types/node": "^24.1.0",
+    "@bytecodealliance/jco": "^1.13.1",
+    "@types/node": "^24.2.1",
     "rimraf": "^6.0.1",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   }
 }
