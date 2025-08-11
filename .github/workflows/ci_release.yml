@@ -52,7 +52,7 @@ jobs:
           git config --global format.signOff true
 
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955
         with:
           token: ${{ steps.app-token.outputs.token }}
 
