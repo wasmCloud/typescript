@@ -1,5 +1,16 @@
 # @wasmcloud/lattice-client-react
 
+## 0.5.9
+
+### Patch Changes
+
+- [#324](https://github.com/wasmCloud/typescript/pull/324) [`4cdc7c1`](https://github.com/wasmCloud/typescript/commit/4cdc7c1c60b4edbae30cecab41f4cd9e51bebb2d) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `@vitejs/plugin-react` from 4.7.0 to 5.0.0
+
+- [#330](https://github.com/wasmCloud/typescript/pull/330) [`bceaead`](https://github.com/wasmCloud/typescript/commit/bceaead3e27806e85640350f2e7363a0a009e191) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 6 updates
+
+- Updated dependencies [[`bceaead`](https://github.com/wasmCloud/typescript/commit/bceaead3e27806e85640350f2e7363a0a009e191)]:
+  - @wasmcloud/lattice-client-core@0.5.9
+
 ## 0.5.8
 
 ### Patch Changes
