@@ -1,5 +1,11 @@
 # @wasmcloud/lattice-client-core
 
+## 0.5.9
+
+### Patch Changes
+
+- [#330](https://github.com/wasmCloud/typescript/pull/330) [`bceaead`](https://github.com/wasmCloud/typescript/commit/bceaead3e27806e85640350f2e7363a0a009e191) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 6 updates
+
 ## 0.5.8
 
 ### Patch Changes
