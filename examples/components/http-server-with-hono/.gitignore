@@ -10,5 +10,4 @@ lerna-debug.log*
 node_modules
 dist
 build
-generated/**
 wit/deps/**
