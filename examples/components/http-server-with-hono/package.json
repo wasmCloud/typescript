@@ -4,12 +4,11 @@
   "description": "A wasmCloud component using Hono for HTTP routing based on wasi:http.",
   "main": "dist/index.bundled.js",
   "scripts": {
-    "postinstall": "npm run install:deps && npm run generate:types",
     "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "build:ts": "rollup -c",
     "build:js": "jco componentize -w wit -o dist/http_server_with_hono.wasm dist/index.bundled.js",
     "build:component": "wash build --sign-only --config-path wasmcloud.toml",
-    "build": "npm run generate:types && npm run build:ts && npm run build:js && npm run build:component",
+    "build": "npm run install:deps && npm run generate:types && npm run build:ts && npm run build:js && npm run build:component",
     "install-and-build": "npm install && npm run build",
     "install:deps": "rimraf wit/deps && wash wit deps",
     "wadm:start": "wash app deploy local.wadm.yaml",
