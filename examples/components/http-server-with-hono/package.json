@@ -20,7 +20,7 @@
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "dependencies": {
-    "hono": "^4.9.5"
+    "hono": "^4.9.6"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "^1.14.0",
