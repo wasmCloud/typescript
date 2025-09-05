@@ -1,5 +1,19 @@
 # @wasmcloud/eslint-config
 
+## 0.1.3
+
+### Patch Changes
+
+- [#330](https://github.com/wasmCloud/typescript/pull/330) [`bceaead`](https://github.com/wasmCloud/typescript/commit/bceaead3e27806e85640350f2e7363a0a009e191) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 6 updates
+
+- [#323](https://github.com/wasmCloud/typescript/pull/323) [`bcadf53`](https://github.com/wasmCloud/typescript/commit/bcadf5368bd751da6d20f915772dc6aacdce9950) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 10 updates
+
+- [#333](https://github.com/wasmCloud/typescript/pull/333) [`53cd4f0`](https://github.com/wasmCloud/typescript/commit/53cd4f085e61e2d6e73f277f2cd8fe1e1bd4b0c5) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#348](https://github.com/wasmCloud/typescript/pull/348) [`f0cc958`](https://github.com/wasmCloud/typescript/commit/f0cc95897efa7830b2cf6184f8a1632c13c44066) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `eslint-config-xo-typescript` from 8.0.0 to 9.0.0
+
+- [#342](https://github.com/wasmCloud/typescript/pull/342) [`30c601f`](https://github.com/wasmCloud/typescript/commit/30c601fc93ef40851eb8d6075154e177287768dc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 22 updates
+
 ## 0.1.2
 
 ### Patch Changes
