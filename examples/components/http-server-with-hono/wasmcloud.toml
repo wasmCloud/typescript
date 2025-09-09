@@ -10,3 +10,7 @@ wasm_target = "wasm32-wasip2"
 build_command = "npm run install-and-build"
 build_artifact = "dist/http_server_with_hono.wasm"
 destination = "dist/http_server_with_hono_s.wasm"
+
+[[dev.manifests]]
+component_name = "typescript-http-server-with-hono"
+path = "local.wadm.yaml"
