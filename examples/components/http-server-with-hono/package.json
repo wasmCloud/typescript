@@ -22,12 +22,12 @@
     "hono": "^4.9.7"
   },
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.14.0",
+    "@bytecodealliance/jco": "^1.15.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.4",
-    "@types/node": "^24.3.1",
+    "@types/node": "^24.4.0",
     "rimraf": "^6.0.1",
-    "rollup": "^4.50.1",
+    "rollup": "^4.50.2",
     "tslib": "^2.8.1",
     "typescript": "^5.9.2"
   }

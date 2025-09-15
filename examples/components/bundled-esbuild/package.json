@@ -22,15 +22,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.14.0",
+    "@bytecodealliance/jco": "^1.15.0",
     "@types/jsonpath": "^0.2.4",
-    "@types/node": "^24.3.1",
+    "@types/node": "^24.4.0",
     "esbuild": "^0.25.9",
     "rimraf": "^6.0.1",
     "typescript": "^5.9.2"
   },
   "dependencies": {
     "fast-xml-parser": "^5.2.5",
-    "remeda": "^2.30.0"
+    "remeda": "^2.31.1"
   }
 }
