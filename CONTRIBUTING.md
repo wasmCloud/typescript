@@ -219,6 +219,7 @@ test(lattice-client): add unit tests for event handling
 
 ### Commit Requirements
 
+- **Conventional commits**: All commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org/) specification
 - **Sign-off required**: All commits must be signed off (`git commit -s`)
 - **Descriptive messages**: Explain what and why, not just what
 - **Single responsibility**: One logical change per commit
@@ -245,6 +246,12 @@ test(lattice-client): add unit tests for event handling
    git commit -s -m "feat: your descriptive commit message"
    ```
 
+4. **Add changeset if needed:**
+   ```bash
+   yarn changeset
+   ```
+   See [Adding Changesets](#adding-changesets) section for details on when this is required.
+
 ### PR Requirements
 
 - **Descriptive title**: Use conventional commit format
@@ -256,7 +263,20 @@ test(lattice-client): add unit tests for event handling
 
 ### Adding Changesets
 
-For changes that should trigger a version bump:
+A changeset should be added for any changes that affect the public API or functionality of published packages. This includes:
+
+- **New features** - Adding new functions, classes, or capabilities
+- **Bug fixes** - Fixing issues that affect package behavior
+- **Breaking changes** - Any changes that require users to update their code
+- **Dependencies** - Adding, removing, or updating package dependencies
+
+**Do NOT add changesets for:**
+- Documentation-only changes
+- Internal refactoring that doesn't affect the public API
+- Development tooling changes (ESLint config, test setup, etc.)
+- Example code changes
+
+To add a changeset for changes that should trigger a version bump:
 
 ```bash
 yarn changeset

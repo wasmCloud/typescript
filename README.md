@@ -48,38 +48,21 @@ This repository includes examples of components written in TypeScript in the [`e
 
 ## 🛠️ Development
 
-### Prerequisites
+For detailed development setup, workflow, and contribution guidelines, please see our [Contributing Guide](./CONTRIBUTING.md).
 
-- [Node.js](https://nodejs.org/) (version specified in `.tool-versions`)
-- [Yarn](https://yarnpkg.com/) (managed via Corepack)
+### Quick Start
 
-### Getting Started
+```bash
+# Enable Corepack and install dependencies
+corepack enable
+yarn install
 
-1. **Enable Corepack and install dependencies:**
-   ```bash
-   corepack enable
-   yarn install
-   ```
+# Build all packages
+yarn turbo:build
 
-2. **Build all packages:**
-   ```bash
-   yarn turbo:build
-   ```
-
-3. **Run development servers:**
-   ```bash
-   yarn turbo:dev
-   ```
-
-4. **Run tests:**
-   ```bash
-   yarn turbo:test
-   ```
-
-5. **Lint code:**
-   ```bash
-   yarn turbo:lint
-   ```
+# Run development servers
+yarn turbo:dev
+```
 
 ### Monorepo Structure
 
