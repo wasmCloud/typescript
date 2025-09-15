@@ -20,7 +20,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
     let outputStream = outgoingBody.write();
     // Write hello world to the response stream
     outputStream.blockingWriteAndFlush(
-      new Uint8Array(new TextEncoder().encode('Hello from Typescript!\n'))
+      new Uint8Array(new TextEncoder().encode('Hello from TypeScript!\n'))
     );
     // @ts-ignore: This is required in order to dispose the stream before we return
     outputStream[Symbol.dispose]();

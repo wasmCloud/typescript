@@ -8,3 +8,7 @@
 /build/*
 
 wit/deps/
+
+# wash config
+.wash
+
