@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 General Discussion
+    url: https://github.com/wasmCloud/typescript/discussions
+    about: Ask questions, share ideas, or discuss the project
+  - name: 📖 Documentation
+    url: https://wasmcloud.com/docs
+    about: Official wasmCloud documentation and guides
+  - name: 🗨️ Community Chat
+    url: https://slack.wasmcloud.com/
+    about: Join the wasmCloud Slack community for real-time discussion
+  - name: 🐛 wasmCloud Core Issues
+    url: https://github.com/wasmCloud/wasmCloud/issues
+    about: Report issues with the core wasmCloud runtime
