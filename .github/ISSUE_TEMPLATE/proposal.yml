@@ -1,0 +1,218 @@
+name: 💡 Proposal
+description: Propose significant changes, new packages, or architectural improvements
+title: "[Proposal]: "
+labels: ["proposal", "discussion", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for proposing significant changes, new packages, architectural improvements, 
+        or breaking changes that require community discussion and feedback.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Provide a brief summary of the proposal.
+      placeholder: This proposal suggests...
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation and Goals
+      description: |
+        Why is this change needed? What problems does it solve?
+        What are the goals and non-goals?
+      placeholder: |
+        ## Motivation
+        Currently...
+        
+        ## Goals
+        - Goal 1
+        - Goal 2
+        
+        ## Non-Goals
+        - Non-goal 1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope of Changes
+      description: What is the scope of this proposal?
+      options:
+        - "Single package changes"
+        - "Multiple package changes"
+        - "New package/library"
+        - "Architecture changes"
+        - "Breaking changes"
+        - "Documentation overhaul"
+        - "Tooling/infrastructure"
+        - "Repository structure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: detailed_design
+    attributes:
+      label: Detailed Design
+      description: |
+        Provide a detailed design of the proposed changes.
+        Include APIs, interfaces, architecture diagrams, etc.
+      placeholder: |
+        ## Overview
+        The proposed solution...
+        
+        ## API Design
+        ```typescript
+        // Example interfaces
+        ```
+        
+        ## Architecture
+        Describe the architecture...
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Approaches
+      description: |
+        What alternative approaches were considered?
+        Why was this approach chosen over others?
+      placeholder: |
+        ## Alternative 1
+        We considered...
+        
+        ## Alternative 2
+        Another option was...
+        
+        ## Decision Rationale
+        We chose the proposed approach because...
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Backward Compatibility
+      description: |
+        How does this proposal affect backward compatibility?
+        Are there any breaking changes?
+      placeholder: |
+        ## Breaking Changes
+        - Change 1: Description and migration path
+        - Change 2: Description and migration path
+        
+        ## Migration Strategy
+        Users can migrate by...
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Plan
+      description: |
+        Outline the implementation plan including phases, milestones, and timeline.
+      placeholder: |
+        ## Phase 1 (Week 1-2)
+        - Task 1
+        - Task 2
+        
+        ## Phase 2 (Week 3-4)
+        - Task 3
+        - Task 4
+        
+        ## Dependencies
+        This implementation depends on...
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing Strategy
+      description: |
+        How will this proposal be tested?
+        What new tests are needed?
+      placeholder: |
+        ## Unit Tests
+        - Test coverage for...
+        
+        ## Integration Tests
+        - Integration scenarios...
+        
+        ## E2E Tests
+        - End-to-end workflows...
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and Mitigation
+      description: |
+        What are the potential risks and how will they be mitigated?
+      placeholder: |
+        ## Risk 1: Description
+        **Mitigation**: Strategy to address this risk
+        
+        ## Risk 2: Description
+        **Mitigation**: Strategy to address this risk
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: What is the priority level of this proposal?
+      options:
+        - "Low - Future consideration"
+        - "Medium - Important but not urgent"
+        - "High - Should be prioritized"
+        - "Critical - Urgent need"
+    validations:
+      required: true
+
+  - type: textarea
+    id: success_criteria
+    attributes:
+      label: Success Criteria
+      description: |
+        How will we know this proposal is successful?
+        What metrics or indicators will be used?
+      placeholder: |
+        ## Acceptance Criteria
+        - Criteria 1
+        - Criteria 2
+        
+        ## Success Metrics
+        - Metric 1: Target value
+        - Metric 2: Target value
+
+  - type: checkboxes
+    id: involvement
+    attributes:
+      label: Community Involvement
+      description: How do you plan to be involved in this proposal?
+      options:
+        - label: "I'm willing to lead the implementation"
+        - label: "I can contribute to the implementation"
+        - label: "I can help with design and review"
+        - label: "I can provide testing and feedback"
+        - label: "I can help with documentation"
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: |
+        Any additional context, research, links to related work,
+        or other information that would be helpful.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
