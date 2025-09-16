@@ -9,11 +9,13 @@
       "dependsOn": ["^lint:fix"]
     },
     "format": {
-      "dependsOn": ["^format"]
+      "dependsOn": ["^format", "//#root:format"]
     },
     "format:fix": {
-      "dependsOn": ["^format:fix"]
+      "dependsOn": ["^format:fix", "//#root:format:fix"]
     },
+    "//#root:format": {},
+    "//#root:format:fix": {},
     "test:e2e": {
       "dependsOn": ["^build"],
       "outputs": ["playwright-report", "test-results"],
