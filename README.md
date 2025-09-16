@@ -14,24 +14,21 @@ This repository is a TypeScript monorepo containing libraries, applications, and
 
 ## 📦 Packages
 
-### Core Libraries
-
-- **[@wasmcloud/lattice-client-core](./packages/lattice-client-core/)** - Core TypeScript client for wasmCloud lattice operations
-- **[@wasmcloud/lattice-client-react](./packages/lattice-client-react/)** - React hooks and components for wasmCloud lattice integration
-
-### Development Tools
-
-- **[@wasmcloud/eslint-config](./packages/eslint-config/)** - Shared ESLint configuration
-- **[@wasmcloud/prettier-config](./packages/prettier-config/)** - Shared Prettier configuration  
-- **[@wasmcloud/tsconfig](./packages/tsconfig/)** - Shared TypeScript configuration
+| Package | Description |
+|---------|-------------|
+| [@wasmcloud/lattice-client-core](./packages/lattice-client-core/) | Core TypeScript client for wasmCloud lattice operations |
+| [@wasmcloud/lattice-client-react](./packages/lattice-client-react/) | React hooks and components for wasmCloud lattice integration |
+| [@wasmcloud/eslint-config](./packages/eslint-config/) | Shared ESLint configuration |
+| [@wasmcloud/prettier-config](./packages/prettier-config/) | Shared Prettier configuration |
+| [@wasmcloud/tsconfig](./packages/tsconfig/) | Shared TypeScript configuration |
 
 ## 🚀 Applications
 
-- **[Washboard UI](./apps/washboard-ui/)** - Web-based dashboard for managing wasmCloud lattices
+| Application | Description |
+|-------------|-------------|
+| [Washboard UI](./apps/washboard-ui/) | Web-based dashboard for managing wasmCloud lattices |
 
-## 📚 Examples
-
-### Components
+## 📚 Component Examples
 
 > [!NOTE]
 > New to wasmCloud components in TypeScript?
@@ -40,7 +37,9 @@ This repository is a TypeScript monorepo containing libraries, applications, and
 
 [wasmCloud Components][docs-components] are WebAssembly components that serve as applications on the wasmCloud platform.
 
-This repository includes examples of components written in TypeScript in the [`examples/components`][dir-components] directory.
+| Example | Description |
+|---------|-------------|
+| [TypeScript Components](./examples/components/) | Sample wasmCloud components written in TypeScript |
 
 [docs-components]: https://wasmcloud.com/docs/concepts/components/
 [docs-ts]: https://wasmcloud.com/docs/developer/languages/typescript/components/
@@ -52,16 +51,24 @@ For detailed development setup, workflow, and contribution guidelines, please se
 
 ### Quick Start
 
+Install Yarn:
 ```bash
-# Enable Corepack and install dependencies
-corepack enable
+npm install -g yarn
+```
+
+Install dependencies:
+```bash
 yarn install
+```
 
-# Build all packages
-yarn turbo:build
+Build all packages:
+```bash
+yarn build
+```
 
-# Run development servers
-yarn turbo:dev
+Run development servers:
+```bash
+yarn dev
 ```
 
 ### Monorepo Structure
@@ -74,7 +81,7 @@ This repository uses:
 ## 📖 Documentation
 
 - [wasmCloud Documentation](https://wasmcloud.com/docs) - Official wasmCloud documentation
-- [TypeScript Guide](https://wasmcloud.com/docs/developer/languages/typescript/) - TypeScript-specific wasmCloud development guide
+- [wasmCloud TypeScript Guide](https://wasmcloud.com/docs/developer/languages/typescript/) - TypeScript-specific wasmCloud development guide
 - [Contributing Guide](./CONTRIBUTING.md) - How to contribute to this repository
 
 ## 🤝 Contributing
