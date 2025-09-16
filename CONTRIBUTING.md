@@ -18,7 +18,7 @@ Thank you for your interest in contributing to the wasmCloud TypeScript ecosyste
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (version specified in `.tool-versions`)
-- [Yarn](https://yarnpkg.com/) (managed via Corepack)
+- [Yarn](https://yarnpkg.com/) (install with `npm install -g yarn`)
 - [wash CLI](https://wasmcloud.com/docs/installation) (for working with wasmCloud applications)
 
 ### Initial Setup
@@ -29,22 +29,29 @@ Thank you for your interest in contributing to the wasmCloud TypeScript ecosyste
    cd typescript
    ```
 
-2. **Enable Corepack and install dependencies:**
+2. **Install Yarn and dependencies:**
    ```bash
-   corepack enable
+   npm install -g yarn
    yarn install
    ```
 
 3. **Build all packages:**
    ```bash
-   yarn turbo:build
+   yarn build
    ```
 
 4. **Verify everything works:**
    ```bash
    yarn turbo:lint
-   yarn turbo:test
+   yarn turbo:format
+   yarn test
    ```
+   
+   > **Tip**: Use `:fix` variants to automatically fix issues:
+   > ```bash
+   > yarn turbo:lint:fix
+   > yarn turbo:format:fix
+   > ```
 
 ## 📁 Repository Structure
 
@@ -64,6 +71,28 @@ This is a monorepo organized as follows:
 └── .github/                # GitHub configuration and workflows
 ```
 
+### Packages
+
+| Package | Path | Description |
+|---------|------|-------------|
+| [@wasmcloud/lattice-client-core](./packages/lattice-client-core/) | `packages/lattice-client-core/` | Core TypeScript client for wasmCloud lattice operations |
+| [@wasmcloud/lattice-client-react](./packages/lattice-client-react/) | `packages/lattice-client-react/` | React hooks and components for lattice integration |
+| [@wasmcloud/eslint-config](./packages/eslint-config/) | `packages/eslint-config/` | Shared ESLint configuration for consistent code style |
+| [@wasmcloud/prettier-config](./packages/prettier-config/) | `packages/prettier-config/` | Shared Prettier configuration for code formatting |
+| [@wasmcloud/tsconfig](./packages/tsconfig/) | `packages/tsconfig/` | Shared TypeScript configuration and build settings |
+
+### Applications
+
+| Application | Path | Description |
+|-------------|------|-------------|
+| [Washboard UI](./apps/washboard-ui/) | `apps/washboard-ui/` | Web-based dashboard for managing wasmCloud lattices |
+
+### Examples
+
+| Example | Path | Description |
+|---------|------|-------------|
+| [TypeScript Components](./examples/components/) | `examples/components/` | Sample wasmCloud components written in TypeScript |
+
 ### Package Dependencies
 
 - **Core packages** (`lattice-client-core`) should have minimal dependencies
@@ -75,46 +104,62 @@ This is a monorepo organized as follows:
 
 ### Building
 
+Build all packages in the monorepo:
 ```bash
-# Build all packages
-yarn turbo:build
+yarn build
+```
 
-# Build specific package
+Build a specific package:
+```bash
 yarn workspace @wasmcloud/lattice-client-core build
+```
 
-# Build with watch mode (development)
-yarn turbo:dev
+Build with watch mode for development:
+```bash
+yarn dev
 ```
 
 ### Testing
 
+Run all tests across the monorepo:
 ```bash
-# Run all tests
-yarn turbo:test
+yarn test
+```
 
-# Run unit tests only
-yarn turbo:test:unit
+Run unit tests only:
+```bash
+yarn test:unit
+```
 
-# Run E2E tests only (requires wasmCloud setup)
-yarn turbo:test:e2e
+Run E2E tests (requires wasmCloud setup):
+```bash
+yarn test:e2e
+```
 
-# Test specific package
+Test a specific package:
+```bash
 yarn workspace @wasmcloud/lattice-client-core test
 ```
 
 ### Linting and Formatting
 
+Check code style and linting:
 ```bash
-# Check linting
 yarn turbo:lint
+```
 
-# Fix linting issues
+Automatically fix linting issues:
+```bash
 yarn turbo:lint:fix
+```
 
-# Check formatting
+Check code formatting:
+```bash
 yarn turbo:format
+```
 
-# Fix formatting issues
+Automatically fix formatting issues:
+```bash
 yarn turbo:format:fix
 ```
 
@@ -139,9 +184,9 @@ We use ESLint and Prettier for consistent code formatting:
 
 - **Files**: `kebab-case.ts`
 - **Directories**: `kebab-case`
-- **Functions/variables**: `camelCase`
+- **Functions/Variables**: `camelCase`
 - **Types/Interfaces**: `PascalCase`
-- **Constants**: `SCREAMING_SNAKE_CASE`
+- **Constants/Globals**: `SCREAMING_SNAKE_CASE`
 
 ## 🧪 Testing
 
@@ -157,6 +202,7 @@ We use ESLint and Prettier for consistent code formatting:
 - Test component interactions
 - Verify API contracts
 - Test error scenarios
+- Avoid mocks where possible (prefer containerized dependencies for realistic testing environments)
 
 ### E2E Tests
 
@@ -167,17 +213,17 @@ We use ESLint and Prettier for consistent code formatting:
 ### Test Organization
 
 ```typescript
-describe('ComponentName', () => {
-  describe('methodName', () => {
-    it('should handle normal case', () => {
+suite('Component', () => {
+  describe('feature', () => {
+    test('should handle normal case', () => {
       // Test implementation
     });
     
-    it('should handle edge case', () => {
+    test('should handle edge case', () => {
       // Test implementation
     });
     
-    it('should throw error for invalid input', () => {
+    test('should throw error for invalid input', () => {
       // Test implementation
     });
   });
@@ -208,6 +254,19 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/) for commi
 - `test`: Adding or updating tests
 - `chore`: Maintenance tasks
 
+### Scopes
+
+Supported scopes include:
+- `lattice-client`: Core lattice client package
+- `lattice-react`: React integration package
+- `washboard-ui`: Washboard UI application
+- `eslint-config`: ESLint configuration package
+- `prettier-config`: Prettier configuration package
+- `tsconfig`: TypeScript configuration package
+- `examples`: Example components and usage
+- `deps`: Dependency updates
+- `ci`: CI/CD changes
+
 ### Examples
 
 ```bash
@@ -220,7 +279,7 @@ test(lattice-client): add unit tests for event handling
 ### Commit Requirements
 
 - **Conventional commits**: All commit messages must follow the [Conventional Commits](https://www.conventionalcommits.org/) specification
-- **Sign-off required**: All commits must be signed off (`git commit -s`)
+- **Sign-off required**: All commits must be signed off (`git commit -s`) as per [Developer Certificate of Origin (DCO)](https://developercertificate.org/)
 - **Descriptive messages**: Explain what and why, not just what
 - **Single responsibility**: One logical change per commit
 - **Working state**: Each commit should leave the code in a working state
@@ -236,9 +295,9 @@ test(lattice-client): add unit tests for event handling
 
 2. **Make your changes and test:**
    ```bash
-   yarn turbo:build
-   yarn turbo:lint
-   yarn turbo:test
+   yarn build
+   yarn lint
+   yarn test
    ```
 
 3. **Commit with sign-off:**
@@ -253,6 +312,8 @@ test(lattice-client): add unit tests for event handling
    See [Adding Changesets](#adding-changesets) section for details on when this is required.
 
 ### PR Requirements
+
+Before creating a PR, ensure that your contribution(s) meet the following criteria:
 
 - **Descriptive title**: Use conventional commit format
 - **Clear description**: Explain what changes and why
@@ -296,13 +357,16 @@ Follow the prompts to describe your changes and select affected packages.
 
 ## 🌐 Working with wasmCloud
 
+As this project contains packages that deal with the wasmCloud ecosystem, it's important to be able to run wasmCloud and related tools (e.g. `wash`) locally on your machine for development and testing.
+
 ### Setting Up wasmCloud
 
 For testing applications that interact with wasmCloud:
 
 1. **Install wash CLI:**
+   
+   See the [official installation guide](https://wasmcloud.com/docs/installation) for detailed instructions:
    ```bash
-   # See https://wasmcloud.com/docs/installation
    curl -s https://raw.githubusercontent.com/wasmCloud/wasmCloud/main/install.sh | bash
    ```
 
@@ -310,7 +374,7 @@ For testing applications that interact with wasmCloud:
    ```bash
    wash up
    ```
-
+   
    This starts:
    - NATS server with WebSocket support (default: `ws://localhost:4223`)
    - wasmCloud host
@@ -323,15 +387,18 @@ For testing applications that interact with wasmCloud:
 
 ### Custom NATS Configuration
 
-To use a different NATS WebSocket port:
-
+To use a different NATS WebSocket port, stop existing services first:
 ```bash
-# Stop existing services
 wash down
+```
 
-# Start with custom port
+Then start with custom port:
+```bash
 wash up --nats-websocket-port 4001
-# or
+```
+
+Or using environment variable:
+```bash
 NATS_WEBSOCKET_PORT=4001 wash up
 ```
 
@@ -350,6 +417,7 @@ The Washboard UI connects to NATS WebSocket by default. For development:
    ```
 
 3. **Access the UI:**
+   
    Open http://localhost:5173 in your browser
 
 ## 🐛 Debugging
@@ -362,14 +430,18 @@ The Washboard UI connects to NATS WebSocket by default. For development:
 
 ### Debug Scripts
 
+Check workspace dependencies:
 ```bash
-# Check workspace dependencies
 yarn workspaces info
+```
 
-# Verify TypeScript compilation
+Verify TypeScript compilation:
+```bash
 yarn tsc --noEmit
+```
 
-# Check for circular dependencies
+Check for circular dependencies:
+```bash
 yarn madge --circular packages/*/src/index.ts
 ```
 
