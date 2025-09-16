@@ -73,11 +73,12 @@ jobs:
           #   wasm-bin: http-hello-world.wasm    # Path to the wasm binary after build
           #   test-command: TEST_RESULT=1        # Some command that will set TEST_RESULT to 0 or 1
 
-          - folder: http-hello-world
-            wasm-bin: http_hello_world_s.wasm
-            test-command: |
-              RESPONSE=$(curl http://127.0.0.1:8000 || echo '')
-              [[ "$RESPONSE" == 'Hello from Typescript!' ]] && TEST_RESULT=1 || TEST_RESULT=0
+          # TODO: re-enable this test once the new wash can be used from tests
+          #- folder: http-hello-world
+          #  wasm-bin: http_hello_world_s.wasm
+          #  test-command: |
+          #    RESPONSE=$(curl http://127.0.0.1:8000 || echo '')
+          #    [[ "$RESPONSE" == 'Hello from Typescript!' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
           - folder: http-password-checker
             wasm-bin: http_password_checker_s.wasm
