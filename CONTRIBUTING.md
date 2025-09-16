@@ -42,15 +42,15 @@ Thank you for your interest in contributing to the wasmCloud TypeScript ecosyste
 
 4. **Verify everything works:**
    ```bash
-   yarn turbo:lint
-   yarn turbo:format
+   yarn lint
+   yarn format
    yarn test
    ```
    
    > **Tip**: Use `:fix` variants to automatically fix issues:
    > ```bash
-   > yarn turbo:lint:fix
-   > yarn turbo:format:fix
+   > yarn lint:fix
+   > yarn format:fix
    > ```
 
 ## 📁 Repository Structure
@@ -145,22 +145,22 @@ yarn workspace @wasmcloud/lattice-client-core test
 
 Check code style and linting:
 ```bash
-yarn turbo:lint
+yarn lint
 ```
 
 Automatically fix linting issues:
 ```bash
-yarn turbo:lint:fix
+yarn lint:fix
 ```
 
 Check code formatting:
 ```bash
-yarn turbo:format
+yarn format
 ```
 
 Automatically fix formatting issues:
 ```bash
-yarn turbo:format:fix
+yarn format:fix
 ```
 
 ## 📝 Code Standards
