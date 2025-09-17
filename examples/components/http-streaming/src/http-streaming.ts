@@ -14,17 +14,17 @@ import {
   OutgoingBody,
   OutgoingResponse,
   Fields,
-} from "wasi:http/types@0.2.3";
+} from 'wasi:http/types@0.2.3';
 
-import { getRandomBytes } from "wasi:random/random@0.2.3";
+import {getRandomBytes} from 'wasi:random/random@0.2.3';
 
 /**
  * Generate random data to send over the write as our streaming workload
  */
 function generateData(n: bigint): string {
   let binaryString = '';
-  getRandomBytes(n).forEach(byte => {
-      binaryString += String.fromCharCode(byte);
+  getRandomBytes(n).forEach((byte) => {
+    binaryString += String.fromCharCode(byte);
   });
   return btoa(binaryString);
 }
@@ -74,7 +74,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
     }
 
     outputStream.write(new Uint8Array(data.buffer, Number(written), Number(writableByteCount)));
-    written += writableByteCount
+    written += writableByteCount;
     remaining -= written;
 
     // While we can track *when* to flush separately and implement our own logic,
@@ -90,7 +90,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
 
   outgoingResponse.setStatusCode(200);
   OutgoingBody.finish(outgoingBody, undefined);
-  ResponseOutparam.set(resp, { tag: "ok", val: outgoingResponse });
+  ResponseOutparam.set(resp, {tag: 'ok', val: outgoingResponse});
 }
 
 export const incomingHandler = {

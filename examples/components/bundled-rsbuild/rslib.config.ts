@@ -1,12 +1,11 @@
-import { defineConfig } from '@rslib/core';
-import { pluginNodePolyfill } from "@rsbuild/plugin-node-polyfill";
-
+import {defineConfig} from '@rslib/core';
+import {pluginNodePolyfill} from '@rsbuild/plugin-node-polyfill';
 
 export default defineConfig({
-  plugins:[pluginNodePolyfill()],
+  plugins: [pluginNodePolyfill()],
   source: {
     entry: {
-      "bundled-rsbuild": './src/bundled-rsbuild.ts',
+      'bundled-rsbuild': './src/bundled-rsbuild.ts',
     },
   },
   lib: [
@@ -15,13 +14,13 @@ export default defineConfig({
       bundle: true,
       format: 'esm',
       output: {
-        target: "web",
+        target: 'web',
         // minify: true,
         distPath: {
           root: './dist/esm',
         },
         externals: /wasi:*/,
       },
-    }
+    },
   ],
 });

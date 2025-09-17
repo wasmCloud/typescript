@@ -16,4 +16,3 @@ export const LatticeConfigContext = React.createContext<LatticeConfigContextType
   config: {} as LatticeClientConfigOutput,
   setConfig: () => {},
 });
- 

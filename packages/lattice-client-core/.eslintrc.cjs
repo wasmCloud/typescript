@@ -1,7 +1,7 @@
-export default {
+module.exports = {
   extends: ['@wasmcloud/eslint-config'],
   parserOptions: {
-    tsconfigRootDir: import.meta.dirname,
+    tsconfigRootDir: __dirname,
     project: ['./tsconfig.eslint.json', './tsconfig.json'],
   },
 };

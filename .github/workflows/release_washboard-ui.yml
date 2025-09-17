@@ -41,7 +41,7 @@ jobs:
         with:
           name: build-assets
           path: build
-      
+
       - name: Compress Asset
         run: tar -czf washboard.tar.gz -C build/apps/washboard-ui/dist .
 

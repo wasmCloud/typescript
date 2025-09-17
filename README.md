@@ -14,18 +14,18 @@ This repository is a TypeScript monorepo containing libraries, applications, and
 
 ## 📦 Packages
 
-| Package | Description |
-|---------|-------------|
-| [@wasmcloud/lattice-client-core](./packages/lattice-client-core/) | Core TypeScript client for wasmCloud lattice operations |
+| Package                                                             | Description                                                  |
+| ------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [@wasmcloud/lattice-client-core](./packages/lattice-client-core/)   | Core TypeScript client for wasmCloud lattice operations      |
 | [@wasmcloud/lattice-client-react](./packages/lattice-client-react/) | React hooks and components for wasmCloud lattice integration |
-| [@wasmcloud/eslint-config](./packages/eslint-config/) | Shared ESLint configuration |
-| [@wasmcloud/prettier-config](./packages/prettier-config/) | Shared Prettier configuration |
-| [@wasmcloud/tsconfig](./packages/tsconfig/) | Shared TypeScript configuration |
+| [@wasmcloud/eslint-config](./packages/eslint-config/)               | Shared ESLint configuration                                  |
+| [@wasmcloud/prettier-config](./packages/prettier-config/)           | Shared Prettier configuration                                |
+| [@wasmcloud/tsconfig](./packages/tsconfig/)                         | Shared TypeScript configuration                              |
 
 ## 🚀 Applications
 
-| Application | Description |
-|-------------|-------------|
+| Application                          | Description                                         |
+| ------------------------------------ | --------------------------------------------------- |
 | [Washboard UI](./apps/washboard-ui/) | Web-based dashboard for managing wasmCloud lattices |
 
 ## 📚 Component Examples
@@ -37,8 +37,8 @@ This repository is a TypeScript monorepo containing libraries, applications, and
 
 [wasmCloud Components][docs-components] are WebAssembly components that serve as applications on the wasmCloud platform.
 
-| Example | Description |
-|---------|-------------|
+| Example                                         | Description                                       |
+| ----------------------------------------------- | ------------------------------------------------- |
 | [TypeScript Components](./examples/components/) | Sample wasmCloud components written in TypeScript |
 
 [docs-components]: https://wasmcloud.com/docs/concepts/components/
@@ -52,21 +52,25 @@ For detailed development setup, workflow, and contribution guidelines, please se
 ### Quick Start
 
 Install Yarn:
+
 ```bash
 npm install -g yarn
 ```
 
 Install dependencies:
+
 ```bash
 yarn install
 ```
 
 Build all packages:
+
 ```bash
 yarn build
 ```
 
 Run development servers:
+
 ```bash
 yarn dev
 ```
@@ -74,6 +78,7 @@ yarn dev
 ### Monorepo Structure
 
 This repository uses:
+
 - **[Yarn Workspaces](https://yarnpkg.com/features/workspaces)** for dependency management
 - **[Turbo](https://turbo.build/)** for build orchestration and caching
 - **[Changesets](https://github.com/changesets/changesets)** for version management and publishing
@@ -87,6 +92,7 @@ This repository uses:
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details on:
+
 - Development setup and workflow
 - Code style and standards
 - Testing requirements

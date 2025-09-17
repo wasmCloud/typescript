@@ -20,7 +20,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
     let outputStream = outgoingBody.write();
     // Write hello world to the response stream
     outputStream.blockingWriteAndFlush(
-      new Uint8Array(new TextEncoder().encode('Hello from TypeScript!\n'))
+      new Uint8Array(new TextEncoder().encode('Hello from Typescript!\n')),
     );
     // @ts-ignore: This is required in order to dispose the stream before we return
     outputStream[Symbol.dispose]();
@@ -31,7 +31,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
   // Finish the response body
   OutgoingBody.finish(outgoingBody, undefined);
   // Set the created response
-  ResponseOutparam.set(resp, { tag: 'ok', val: outgoingResponse });
+  ResponseOutparam.set(resp, {tag: 'ok', val: outgoingResponse});
 }
 
 export const incomingHandler = {

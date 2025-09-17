@@ -1,7 +1,7 @@
 name: ✨ Feature Request
 description: Suggest a new feature or enhancement for wasmCloud TypeScript
-title: "[Feature]: "
-labels: ["enhancement", "triage"]
+title: '[Feature]: '
+labels: ['enhancement', 'triage']
 assignees: []
 
 body:
@@ -41,14 +41,14 @@ body:
       label: Target Component
       description: Which part of the repository would this feature affect?
       options:
-        - "@wasmcloud/lattice-client-core"
-        - "@wasmcloud/lattice-client-react"
-        - "Washboard UI"
-        - "TypeScript Examples"
-        - "Documentation"
-        - "Build/Development Tools"
-        - "New Package/Component"
-        - "Other"
+        - '@wasmcloud/lattice-client-core'
+        - '@wasmcloud/lattice-client-react'
+        - 'Washboard UI'
+        - 'TypeScript Examples'
+        - 'Documentation'
+        - 'Build/Development Tools'
+        - 'New Package/Component'
+        - 'Other'
     validations:
       required: true
 
@@ -58,14 +58,14 @@ body:
       label: Feature Type
       description: What type of feature is this?
       options:
-        - "New API/Function"
-        - "UI/UX Enhancement"
-        - "Developer Experience"
-        - "Performance Improvement"
-        - "Integration/Plugin"
-        - "Documentation"
-        - "Tooling/Build"
-        - "Other"
+        - 'New API/Function'
+        - 'UI/UX Enhancement'
+        - 'Developer Experience'
+        - 'Performance Improvement'
+        - 'Integration/Plugin'
+        - 'Documentation'
+        - 'Tooling/Build'
+        - 'Other'
     validations:
       required: true
 
@@ -96,10 +96,10 @@ body:
       label: Priority
       description: How important is this feature to you?
       options:
-        - "Low - Nice to have"
-        - "Medium - Would improve my workflow"
-        - "High - Blocking my use case"
-        - "Critical - Cannot proceed without this"
+        - 'Low - Nice to have'
+        - 'Medium - Would improve my workflow'
+        - 'High - Blocking my use case'
+        - 'Critical - Cannot proceed without this'
     validations:
       required: true
 
@@ -121,9 +121,9 @@ body:
       description: Are you willing to help implement this feature?
       options:
         - label: "I'm willing to submit a PR to implement this feature"
-        - label: "I can help with testing and feedback"
-        - label: "I can help with documentation"
-        - label: "I can provide use case validation"
+        - label: 'I can help with testing and feedback'
+        - label: 'I can help with documentation'
+        - label: 'I can provide use case validation'
 
   - type: textarea
     id: additional

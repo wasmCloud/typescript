@@ -14,7 +14,7 @@ inputs:
   lookback:
     description: Number of versions to go back
     required: false
-    default: "3"
+    default: '3'
 
 runs:
   using: composite
