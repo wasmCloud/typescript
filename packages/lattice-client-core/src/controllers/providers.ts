@@ -1,4 +1,4 @@
-import type {WasmCloudProvider,  ControlResponse} from '@/types';
+import type {WasmCloudProvider, ControlResponse} from '@/types';
 
 import {BaseController} from '@/controllers/base-controller';
 
@@ -62,12 +62,13 @@ class ProvidersController extends BaseController {
    */
   async list(): Promise<ControlResponse<Record<string, WasmCloudProvider>>> {
     try {
-      const response = await this.connection.getBucketEntry<
-        Record<string, WasmCloudProvider>
-      >("wadm_state", "provider_default");
-      return {success: true, message: "Provider data successfully fetched", response};
+      const response = await this.connection.getBucketEntry<Record<string, WasmCloudProvider>>(
+        'wadm_state',
+        'provider_default',
+      );
+      return {success: true, message: 'Provider data successfully fetched', response};
     } catch {
-      return {success: false, message: "There was an error fetching the providers", response: {}};
+      return {success: false, message: 'There was an error fetching the providers', response: {}};
     }
   }
 }

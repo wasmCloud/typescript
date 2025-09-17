@@ -4,14 +4,14 @@
 
 /** Status of a HTTP response (see `Response<T>`) */
 export enum ResponseStatus {
-  Success = "success",
-  Error = "error",
+  Success = 'success',
+  Error = 'error',
 }
 
 /** Error code that encompasses all the errors the API can emit */
 export enum ErrorCode {
-  UnexpectedError = "unexpected-error",
-  InvalidRequest = "invalid-request",
+  UnexpectedError = 'unexpected-error',
+  InvalidRequest = 'invalid-request',
 }
 
 /** Generic envelope container for responses */

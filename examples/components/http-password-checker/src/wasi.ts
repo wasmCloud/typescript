@@ -9,7 +9,7 @@ import {
   OutgoingResponse,
   Fields,
   InputStream,
-} from "wasi:http/types@0.2.2";
+} from 'wasi:http/types@0.2.2';
 /**  END wasi generated imports */
 
 /** Amount to read from a wasi:io stream */
@@ -32,7 +32,7 @@ export function readInputStream(stream: InputStream): Uint8Array {
       }
     } catch (err) {
       // Rethrow errors that are *not* the stream being closed
-      if ((err as any)?.payload?.tag === "closed") {
+      if ((err as any)?.payload?.tag === 'closed') {
         return new Uint8Array(buf);
       } else {
         throw err;
@@ -50,13 +50,9 @@ export function readInputStream(stream: InputStream): Uint8Array {
 export async function sendResponseText(
   resp: ResponseOutparam,
   httpStatus: number,
-  body: string
+  body: string,
 ): Promise<void> {
-  await sendResponse(
-    resp,
-    httpStatus,
-    new Uint8Array(new TextEncoder().encode(body))
-  );
+  await sendResponse(resp, httpStatus, new Uint8Array(new TextEncoder().encode(body)));
 }
 
 /**
@@ -68,7 +64,7 @@ export async function sendResponseText(
 export async function sendResponseJSON(
   resp: ResponseOutparam,
   httpStatus: number,
-  body: unknown
+  body: unknown,
 ): Promise<void> {
   await sendResponseText(resp, httpStatus, JSON.stringify(body));
 }
@@ -82,7 +78,7 @@ export async function sendResponseJSON(
 export async function sendResponse(
   resp: ResponseOutparam,
   statusCode: number,
-  bytes: Uint8Array
+  bytes: Uint8Array,
 ): Promise<void> {
   // Start building an outgoing response
   const outgoingResponse = new OutgoingResponse(new Fields());
@@ -96,7 +92,7 @@ export async function sendResponse(
     if (bytes.length <= 4096) {
       outputStream.blockingWriteAndFlush(bytes);
     } else {
-      throw new Error("STREAMING RESPONSES NOT IMPLEMENTED YET");
+      throw new Error('STREAMING RESPONSES NOT IMPLEMENTED YET');
     }
     // @ts-ignore: This is required in order to dispose the stream before we return
     outputStream[Symbol.dispose]();
@@ -107,5 +103,5 @@ export async function sendResponse(
   // Finish the response body
   OutgoingBody.finish(outgoingBody, undefined);
   // Set the created response
-  ResponseOutparam.set(resp, { tag: "ok", val: outgoingResponse });
+  ResponseOutparam.set(resp, {tag: 'ok', val: outgoingResponse});
 }

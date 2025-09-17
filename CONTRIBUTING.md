@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to the wasmCloud TypeScript ecosystem! This guide will help you get started with contributing to our monorepo containing TypeScript libraries, applications, and examples.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Development Setup](#development-setup)
 - [Repository Structure](#repository-structure)
@@ -12,8 +12,11 @@ Thank you for your interest in contributing to the wasmCloud TypeScript ecosyste
 - [Commit Guidelines](#commit-guidelines)
 - [Pull Request Process](#pull-request-process)
 - [Working with wasmCloud](#working-with-wasmcloud)
+- [Debugging](#debugging)
+- [Getting Help](#getting-help)
+- [Release Process](#release-process)
 
-## 🛠️ Development Setup
+## Development Setup
 
 ### Prerequisites
 
@@ -24,36 +27,41 @@ Thank you for your interest in contributing to the wasmCloud TypeScript ecosyste
 ### Initial Setup
 
 1. **Fork and clone the repository:**
+
    ```bash
    git clone https://github.com/your-username/typescript.git
    cd typescript
    ```
 
 2. **Install Yarn and dependencies:**
+
    ```bash
    npm install -g yarn
    yarn install
    ```
 
 3. **Build all packages:**
+
    ```bash
    yarn build
    ```
 
 4. **Verify everything works:**
+
    ```bash
    yarn lint
    yarn format
    yarn test
    ```
-   
+
    > **Tip**: Use `:fix` variants to automatically fix issues:
+   >
    > ```bash
    > yarn lint:fix
    > yarn format:fix
    > ```
 
-## 📁 Repository Structure
+## Repository Structure
 
 This is a monorepo organized as follows:
 
@@ -73,24 +81,24 @@ This is a monorepo organized as follows:
 
 ### Packages
 
-| Package | Path | Description |
-|---------|------|-------------|
-| [@wasmcloud/lattice-client-core](./packages/lattice-client-core/) | `packages/lattice-client-core/` | Core TypeScript client for wasmCloud lattice operations |
-| [@wasmcloud/lattice-client-react](./packages/lattice-client-react/) | `packages/lattice-client-react/` | React hooks and components for lattice integration |
-| [@wasmcloud/eslint-config](./packages/eslint-config/) | `packages/eslint-config/` | Shared ESLint configuration for consistent code style |
-| [@wasmcloud/prettier-config](./packages/prettier-config/) | `packages/prettier-config/` | Shared Prettier configuration for code formatting |
-| [@wasmcloud/tsconfig](./packages/tsconfig/) | `packages/tsconfig/` | Shared TypeScript configuration and build settings |
+| Package                                                             | Path                             | Description                                             |
+| ------------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------- |
+| [@wasmcloud/lattice-client-core](./packages/lattice-client-core/)   | `packages/lattice-client-core/`  | Core TypeScript client for wasmCloud lattice operations |
+| [@wasmcloud/lattice-client-react](./packages/lattice-client-react/) | `packages/lattice-client-react/` | React hooks and components for lattice integration      |
+| [@wasmcloud/eslint-config](./packages/eslint-config/)               | `packages/eslint-config/`        | Shared ESLint configuration for consistent code style   |
+| [@wasmcloud/prettier-config](./packages/prettier-config/)           | `packages/prettier-config/`      | Shared Prettier configuration for code formatting       |
+| [@wasmcloud/tsconfig](./packages/tsconfig/)                         | `packages/tsconfig/`             | Shared TypeScript configuration and build settings      |
 
 ### Applications
 
-| Application | Path | Description |
-|-------------|------|-------------|
+| Application                          | Path                 | Description                                         |
+| ------------------------------------ | -------------------- | --------------------------------------------------- |
 | [Washboard UI](./apps/washboard-ui/) | `apps/washboard-ui/` | Web-based dashboard for managing wasmCloud lattices |
 
 ### Examples
 
-| Example | Path | Description |
-|---------|------|-------------|
+| Example                                         | Path                   | Description                                       |
+| ----------------------------------------------- | ---------------------- | ------------------------------------------------- |
 | [TypeScript Components](./examples/components/) | `examples/components/` | Sample wasmCloud components written in TypeScript |
 
 ### Package Dependencies
@@ -100,70 +108,81 @@ This is a monorepo organized as follows:
 - **Applications** can depend on any packages in the monorepo
 - **Examples** should be standalone and self-contained
 
-## 🔄 Development Workflow
+## Development Workflow
 
-### Building
+### Build
 
 Build all packages in the monorepo:
+
 ```bash
 yarn build
 ```
 
 Build a specific package:
+
 ```bash
 yarn workspace @wasmcloud/lattice-client-core build
 ```
 
 Build with watch mode for development:
+
 ```bash
 yarn dev
 ```
 
-### Testing
+### Test
 
 Run all tests across the monorepo:
+
 ```bash
 yarn test
 ```
 
 Run unit tests only:
+
 ```bash
 yarn test:unit
 ```
 
 Run E2E tests (requires wasmCloud setup):
+
 ```bash
 yarn test:e2e
 ```
 
 Test a specific package:
+
 ```bash
 yarn workspace @wasmcloud/lattice-client-core test
 ```
 
-### Linting and Formatting
+### Lint and Format
 
 Check code style and linting:
+
 ```bash
 yarn lint
 ```
 
 Automatically fix linting issues:
+
 ```bash
 yarn lint:fix
 ```
 
 Check code formatting:
+
 ```bash
 yarn format
 ```
 
 Automatically fix formatting issues:
+
 ```bash
 yarn format:fix
 ```
 
-## 📝 Code Standards
+## Code Standards
 
 ### TypeScript
 
@@ -188,7 +207,7 @@ We use ESLint and Prettier for consistent code formatting:
 - **Types/Interfaces**: `PascalCase`
 - **Constants/Globals**: `SCREAMING_SNAKE_CASE`
 
-## 🧪 Testing
+## Testing
 
 ### Unit Tests
 
@@ -218,11 +237,11 @@ suite('Component', () => {
     test('should handle normal case', () => {
       // Test implementation
     });
-    
+
     test('should handle edge case', () => {
       // Test implementation
     });
-    
+
     test('should throw error for invalid input', () => {
       // Test implementation
     });
@@ -230,7 +249,7 @@ suite('Component', () => {
 });
 ```
 
-## 📝 Commit Guidelines
+## Commit Guidelines
 
 We follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages:
 
@@ -257,6 +276,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/) for commi
 ### Scopes
 
 Supported scopes include:
+
 - `lattice-client`: Core lattice client package
 - `lattice-react`: React integration package
 - `washboard-ui`: Washboard UI application
@@ -284,16 +304,18 @@ test(lattice-client): add unit tests for event handling
 - **Single responsibility**: One logical change per commit
 - **Working state**: Each commit should leave the code in a working state
 
-## 🔀 Pull Request Process
+## Pull Request Process
 
 ### Before Opening a PR
 
 1. **Create a feature branch:**
+
    ```bash
    git checkout -b feat/your-feature-name
    ```
 
 2. **Make your changes and test:**
+
    ```bash
    yarn build
    yarn lint
@@ -301,6 +323,7 @@ test(lattice-client): add unit tests for event handling
    ```
 
 3. **Commit with sign-off:**
+
    ```bash
    git commit -s -m "feat: your descriptive commit message"
    ```
@@ -332,6 +355,7 @@ A changeset should be added for any changes that affect the public API or functi
 - **Dependencies** - Adding, removing, or updating package dependencies
 
 **Do NOT add changesets for:**
+
 - Documentation-only changes
 - Internal refactoring that doesn't affect the public API
 - Development tooling changes (ESLint config, test setup, etc.)
@@ -355,7 +379,7 @@ Follow the prompts to describe your changes and select affected packages.
 - [ ] All commits are signed off
 - [ ] CI checks are passing
 
-## 🌐 Working with wasmCloud
+## Working with wasmCloud
 
 As this project contains packages that deal with the wasmCloud ecosystem, it's important to be able to run wasmCloud and related tools (e.g. `wash`) locally on your machine for development and testing.
 
@@ -364,17 +388,19 @@ As this project contains packages that deal with the wasmCloud ecosystem, it's i
 For testing applications that interact with wasmCloud:
 
 1. **Install wash CLI:**
-   
+
    See the [official installation guide](https://wasmcloud.com/docs/installation) for detailed instructions:
+
    ```bash
    curl -s https://raw.githubusercontent.com/wasmCloud/wasmCloud/main/install.sh | bash
    ```
 
 2. **Start wasmCloud infrastructure:**
+
    ```bash
    wash up
    ```
-   
+
    This starts:
    - NATS server with WebSocket support (default: `ws://localhost:4223`)
    - wasmCloud host
@@ -388,16 +414,19 @@ For testing applications that interact with wasmCloud:
 ### Custom NATS Configuration
 
 To use a different NATS WebSocket port, stop existing services first:
+
 ```bash
 wash down
 ```
 
 Then start with custom port:
+
 ```bash
 wash up --nats-websocket-port 4001
 ```
 
 Or using environment variable:
+
 ```bash
 NATS_WEBSOCKET_PORT=4001 wash up
 ```
@@ -407,20 +436,22 @@ NATS_WEBSOCKET_PORT=4001 wash up
 The Washboard UI connects to NATS WebSocket by default. For development:
 
 1. **Start wasmCloud:**
+
    ```bash
    wash up
    ```
 
 2. **Start development server:**
+
    ```bash
    yarn workspace washboard-ui dev
    ```
 
 3. **Access the UI:**
-   
+
    Open http://localhost:5173 in your browser
 
-## 🐛 Debugging
+## Debugging
 
 ### Common Issues
 
@@ -431,28 +462,31 @@ The Washboard UI connects to NATS WebSocket by default. For development:
 ### Debug Scripts
 
 Check workspace dependencies:
+
 ```bash
 yarn workspaces info
 ```
 
 Verify TypeScript compilation:
+
 ```bash
 yarn tsc --noEmit
 ```
 
 Check for circular dependencies:
+
 ```bash
 yarn madge --circular packages/*/src/index.ts
 ```
 
-## 🎯 Getting Help
+## Getting Help
 
 - **Issues**: Check existing [GitHub issues](https://github.com/wasmCloud/typescript/issues)
 - **Discussions**: Use [GitHub Discussions](https://github.com/wasmCloud/typescript/discussions)
 - **Community**: Join the [wasmCloud Slack](https://slack.wasmcloud.com/)
 - **Documentation**: See [wasmCloud docs](https://wasmcloud.com/docs)
 
-## 🚀 Release Process
+## Release Process
 
 Releases are handled automatically via GitHub Actions when changesets are merged to main:
 

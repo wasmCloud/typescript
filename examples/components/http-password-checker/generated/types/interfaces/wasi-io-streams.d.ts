@@ -5,13 +5,13 @@ declare module 'wasi:io/streams@0.2.2' {
   export type Pollable = import('wasi:io/poll@0.2.2').Pollable;
   export type StreamError = StreamErrorLastOperationFailed | StreamErrorClosed;
   export interface StreamErrorLastOperationFailed {
-    tag: 'last-operation-failed',
-    val: Error,
+    tag: 'last-operation-failed';
+    val: Error;
   }
   export interface StreamErrorClosed {
-    tag: 'closed',
+    tag: 'closed';
   }
-  
+
   export class InputStream {
     /**
      * This type does not have a public constructor.
@@ -23,7 +23,7 @@ declare module 'wasi:io/streams@0.2.2' {
     blockingSkip(len: bigint): bigint;
     subscribe(): Pollable;
   }
-  
+
   export class OutputStream {
     /**
      * This type does not have a public constructor.

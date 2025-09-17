@@ -2,21 +2,19 @@
  * @file Helpers and utility types for dealing with requests
  */
 
-import * as v from "valibot";
-import { passwordStrength } from "check-password-strength";
+import * as v from 'valibot';
+import {passwordStrength} from 'check-password-strength';
 
 /** START wasi generated imports */
 // NOTE import paths are aliased in tsconfig.json
-import {
-  IncomingRequest,
-} from "wasi:http/types@0.2.2";
-import { reveal as revealSecret } from "wasmcloud:secrets/reveal@0.1.0-draft";
-import { Secret, get as getSecret } from "wasmcloud:secrets/store@0.1.0-draft";
+import {IncomingRequest} from 'wasi:http/types@0.2.2';
+import {reveal as revealSecret} from 'wasmcloud:secrets/reveal@0.1.0-draft';
+import {Secret, get as getSecret} from 'wasmcloud:secrets/store@0.1.0-draft';
 /**  END wasi generated imports */
 
-import { PasswordStrength, PASSWORD_CHECK_RULES } from "./passwords.js";
-import { readInputStream } from "./wasi.js";
-import { Response } from "./http.js";
+import {PasswordStrength, PASSWORD_CHECK_RULES} from './passwords.js';
+import {readInputStream} from './wasi.js';
+import {Response} from './http.js';
 
 /**
  * Represents an API request for checking a password
@@ -41,23 +39,21 @@ export class PasswordCheckRequest {
         v.object({
           key: v.string(),
           field: v.optional(v.string()),
-        })
+        }),
       ),
       value: v.optional(v.string()),
     });
   }
 
   /** Parse a PasswordCheckRequest from a wasi:http `IncomingRequest` */
-  static async fromRequest(
-    req: IncomingRequest
-  ): Promise<PasswordCheckRequest> {
+  static async fromRequest(req: IncomingRequest): Promise<PasswordCheckRequest> {
     try {
       let bytes = readInputStream(req.consume().stream());
-      let obj = JSON.parse(new TextDecoder("utf8").decode(bytes));
+      let obj = JSON.parse(new TextDecoder('utf8').decode(bytes));
       return v.parse(PasswordCheckRequest.schema(), obj);
     } catch (err) {
       throw new Error(
-        `failed to parse incoming data as a PasswordCheckRequest: ${err?.toString()}`
+        `failed to parse incoming data as a PasswordCheckRequest: ${err?.toString()}`,
       );
     }
   }
@@ -98,10 +94,10 @@ interface CheckResult {
  * @returns {Promise<CheckResult>} A promise that resolves to the HTTP response with the check result
  */
 export async function handlePasswordCheck(
-  cr: PasswordCheckRequest
+  cr: PasswordCheckRequest,
 ): Promise<Response<CheckResult>> {
   if (!cr.value && !cr.secret) {
-    throw new Error("value or secret must be provided");
+    throw new Error('value or secret must be provided');
   }
 
   // Determine the value
@@ -111,7 +107,7 @@ export async function handlePasswordCheck(
     value = cr.value;
   } else {
     if (!cr.secret) {
-      throw new Error("Unexpectedly missing request secret");
+      throw new Error('Unexpectedly missing request secret');
     }
 
     // Retrieve the secret
@@ -119,14 +115,14 @@ export async function handlePasswordCheck(
     try {
       secret = getSecret(cr.secret.key);
     } catch (err) {
-      throw new Error("failed to get secret");
+      throw new Error('failed to get secret');
     }
 
     // Reveal the secret
     try {
       const revealed = revealSecret(secret);
-      if (revealed.tag != "string") {
-        throw new Error("unexpected tag, secret should be a string");
+      if (revealed.tag != 'string') {
+        throw new Error('unexpected tag, secret should be a string');
       }
       value = revealed.val;
     } catch (err) {
@@ -134,12 +130,7 @@ export async function handlePasswordCheck(
     }
   }
 
-  const {
-    id,
-    value: strength,
-    contains,
-    length,
-  } = passwordStrength(value, PASSWORD_CHECK_RULES);
+  const {id, value: strength, contains, length} = passwordStrength(value, PASSWORD_CHECK_RULES);
 
   return Response.ok({
     strength,

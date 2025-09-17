@@ -41,7 +41,7 @@ jobs:
         uses: ./.github/actions/crate-versions
         with:
           crate: wash-cli
-          lookback: "1"
+          lookback: '1'
 
     outputs:
       versions: ${{ steps.fetch.outputs.versions }}

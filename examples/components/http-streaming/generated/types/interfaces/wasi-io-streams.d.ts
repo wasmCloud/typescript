@@ -3,11 +3,11 @@ export type Error = import('./wasi-io-error.js').Error;
 export type Pollable = import('./wasi-io-poll.js').Pollable;
 export type StreamError = StreamErrorLastOperationFailed | StreamErrorClosed;
 export interface StreamErrorLastOperationFailed {
-  tag: 'last-operation-failed',
-  val: Error,
+  tag: 'last-operation-failed';
+  val: Error;
 }
 export interface StreamErrorClosed {
-  tag: 'closed',
+  tag: 'closed';
 }
 
 export class InputStream {

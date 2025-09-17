@@ -23,8 +23,8 @@ While Typescript is not yet officially supported by `wash`, `wash`'s custom `bui
 
 As WebAssembly is intended to be a "compilation target" for native Typescript code, upstream work is underway to integrate and improve support for the various standards of WebAssembly.
 
-| Language   | Core Modules (`wasm32-unknown-unknown`) | Preview 1 (`wasm32-wasi-preview1`) | WASIP2 (`wasm32-wasip2`)  |
-|------------|-----------------------------------------|------------------------------------|------------------------------------------|
+| Language   | Core Modules (`wasm32-unknown-unknown`) | Preview 1 (`wasm32-wasi-preview1`) | WASIP2 (`wasm32-wasip2`)                 |
+| ---------- | --------------------------------------- | ---------------------------------- | ---------------------------------------- |
 | Typescript | ✅ (`WebAssembly.compile`)              | ✅ (`jco transpile ...`)           | ✅ (requires [adapter][wasi-p2-adapter]) |
 
 > [!NOTE]

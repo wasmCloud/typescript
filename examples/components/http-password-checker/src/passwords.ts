@@ -1,14 +1,14 @@
 import type {
   Options as PasswordCheckOptions,
   FirstOption as PasswordChecKFirstOption,
-} from "check-password-strength";
+} from 'check-password-strength';
 
 /** Basic descriptions of password strength */
 export enum PasswordStrength {
-  VeryWeak = "very-weak",
-  Weak = "weak",
-  Medium = "medium",
-  Strong = "strong",
+  VeryWeak = 'very-weak',
+  Weak = 'weak',
+  Medium = 'medium',
+  Strong = 'strong',
 }
 
 /**

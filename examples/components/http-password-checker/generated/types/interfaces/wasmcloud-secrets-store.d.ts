@@ -13,8 +13,8 @@ declare module 'wasmcloud:secrets/store@0.1.0-draft' {
    * the error message is a string.
    */
   export interface SecretsErrorUpstream {
-    tag: 'upstream',
-    val: string,
+    tag: 'upstream';
+    val: string;
   }
   /**
    * This indicates an error from an I/O operation.
@@ -25,8 +25,8 @@ declare module 'wasmcloud:secrets/store@0.1.0-draft' {
    * For simplicity right now in supporting multiple implementations, it is being left as a string.
    */
   export interface SecretsErrorIo {
-    tag: 'io',
-    val: string,
+    tag: 'io';
+    val: string;
   }
   /**
    * This indicates that the secret was not found. Generally "not found" errors will
@@ -34,7 +34,7 @@ declare module 'wasmcloud:secrets/store@0.1.0-draft' {
    * may need to return this error.
    */
   export interface SecretsErrorNotFound {
-    tag: 'not-found',
+    tag: 'not-found';
   }
   /**
    * A secret value can be either a string or a byte array, which lets you
@@ -45,17 +45,17 @@ declare module 'wasmcloud:secrets/store@0.1.0-draft' {
    * A string value
    */
   export interface SecretValueString {
-    tag: 'string',
-    val: string,
+    tag: 'string';
+    val: string;
   }
   /**
    * A byte array value
    */
   export interface SecretValueBytes {
-    tag: 'bytes',
-    val: Uint8Array,
+    tag: 'bytes';
+    val: Uint8Array;
   }
-  
+
   export class Secret {
     /**
      * This type does not have a public constructor.

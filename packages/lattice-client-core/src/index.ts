@@ -13,7 +13,7 @@ export type {
   WasmCloudHostRef,
   WasmCloudLink,
   WasmCloudProvider,
-  WasmCloudProviderState
+  WasmCloudProviderState,
 } from '@/types';
 export type {LatticeConnection, LatticeConnectionStatus} from '@/connection/lattice-connection';
 export {NatsWsLatticeConnection} from '@/connection/nats-ws-lattice-connection';

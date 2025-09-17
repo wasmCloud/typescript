@@ -8,8 +8,7 @@
     "esModuleInterop": true,
 
     /* Source code */
-    "paths": {
-    },
+    "paths": {},
     "allowJs": false,
 
     /* Generation */
