@@ -1,5 +1,23 @@
 # @wasmcloud/lattice-client-core
 
+## 0.5.9
+
+### Patch Changes
+
+- [#330](https://github.com/wasmCloud/typescript/pull/330) [`bceaead`](https://github.com/wasmCloud/typescript/commit/bceaead3e27806e85640350f2e7363a0a009e191) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 6 updates
+
+- [#383](https://github.com/wasmCloud/typescript/pull/383) [`05070ae`](https://github.com/wasmCloud/typescript/commit/05070aeced32e034b23747b3c1db5c3fb0cd5dae) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 6 updates
+
+- [#374](https://github.com/wasmCloud/typescript/pull/374) [`1e0574c`](https://github.com/wasmCloud/typescript/commit/1e0574cc6337e30238dc35dd9fb37e07e1f385f9) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `type-fest` from 4.41.0 to 5.0.0
+
+- [#363](https://github.com/wasmCloud/typescript/pull/363) [`0042e72`](https://github.com/wasmCloud/typescript/commit/0042e7205ff404a5f04316b308f3d863409ff256) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 5 updates
+
+- [#387](https://github.com/wasmCloud/typescript/pull/387) [`2bcb6d0`](https://github.com/wasmCloud/typescript/commit/2bcb6d05d1188eace234bb09742be4d1b64567b6) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 7 updates
+
+- [#341](https://github.com/wasmCloud/typescript/pull/341) [`38c1ca1`](https://github.com/wasmCloud/typescript/commit/38c1ca1f6556e1173b25f061c91805a1478e9c07) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 5 updates
+
+- [#347](https://github.com/wasmCloud/typescript/pull/347) [`e0d328e`](https://github.com/wasmCloud/typescript/commit/e0d328e9ecefb4a226c822854b41e494d8b3c65d) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 2 updates
+
 ## 0.5.8
 
 ### Patch Changes
