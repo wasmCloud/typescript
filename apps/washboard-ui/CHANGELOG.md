@@ -1,5 +1,46 @@
 # washboard-ui
 
+## 0.8.2
+
+### Patch Changes
+
+- [#324](https://github.com/wasmCloud/typescript/pull/324) [`4cdc7c1`](https://github.com/wasmCloud/typescript/commit/4cdc7c1c60b4edbae30cecab41f4cd9e51bebb2d) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `@vitejs/plugin-react` from 4.7.0 to 5.0.0
+
+- [#330](https://github.com/wasmCloud/typescript/pull/330) [`bceaead`](https://github.com/wasmCloud/typescript/commit/bceaead3e27806e85640350f2e7363a0a009e191) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 6 updates
+
+- [#323](https://github.com/wasmCloud/typescript/pull/323) [`bcadf53`](https://github.com/wasmCloud/typescript/commit/bcadf5368bd751da6d20f915772dc6aacdce9950) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 10 updates
+
+- [#372](https://github.com/wasmCloud/typescript/pull/372) [`821217e`](https://github.com/wasmCloud/typescript/commit/821217e807e4ae577327d032efbc9ab2c0b5cce7) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 7 updates
+
+- [#383](https://github.com/wasmCloud/typescript/pull/383) [`05070ae`](https://github.com/wasmCloud/typescript/commit/05070aeced32e034b23747b3c1db5c3fb0cd5dae) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 6 updates
+
+- [#385](https://github.com/wasmCloud/typescript/pull/385) [`7312750`](https://github.com/wasmCloud/typescript/commit/731275060848b5df97f94aeb4758e0aad10f867d) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 6 updates
+
+- [#363](https://github.com/wasmCloud/typescript/pull/363) [`0042e72`](https://github.com/wasmCloud/typescript/commit/0042e7205ff404a5f04316b308f3d863409ff256) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 5 updates
+
+- [#333](https://github.com/wasmCloud/typescript/pull/333) [`53cd4f0`](https://github.com/wasmCloud/typescript/commit/53cd4f085e61e2d6e73f277f2cd8fe1e1bd4b0c5) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#387](https://github.com/wasmCloud/typescript/pull/387) [`2bcb6d0`](https://github.com/wasmCloud/typescript/commit/2bcb6d05d1188eace234bb09742be4d1b64567b6) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 7 updates
+
+- [#321](https://github.com/wasmCloud/typescript/pull/321) [`05e3152`](https://github.com/wasmCloud/typescript/commit/05e31520b9478200afb99d40172ba9a8411c8752) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `@vitejs/plugin-react-swc` from 3.11.0 to 4.0.0
+
+- [#361](https://github.com/wasmCloud/typescript/pull/361) [`b3bcc7d`](https://github.com/wasmCloud/typescript/commit/b3bcc7df519df32e84c8e80b8695211f763e7a04) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `uuid` from 11.1.0 to 12.0.0
+
+- [#384](https://github.com/wasmCloud/typescript/pull/384) [`0be2c44`](https://github.com/wasmCloud/typescript/commit/0be2c444846818a87d6f8c48bd992d55155f2649) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `@types/uuid` from 10.0.0 to 11.0.0
+
+- [#341](https://github.com/wasmCloud/typescript/pull/341) [`38c1ca1`](https://github.com/wasmCloud/typescript/commit/38c1ca1f6556e1173b25f061c91805a1478e9c07) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 5 updates
+
+- [#347](https://github.com/wasmCloud/typescript/pull/347) [`e0d328e`](https://github.com/wasmCloud/typescript/commit/e0d328e9ecefb4a226c822854b41e494d8b3c65d) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 2 updates
+
+- [#342](https://github.com/wasmCloud/typescript/pull/342) [`30c601f`](https://github.com/wasmCloud/typescript/commit/30c601fc93ef40851eb8d6075154e177287768dc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 22 updates
+
+- [#349](https://github.com/wasmCloud/typescript/pull/349) [`d51c35c`](https://github.com/wasmCloud/typescript/commit/d51c35c3074a7ddb62919beb5b4689ca099f8fee) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `zod` from 4.1.3 to 4.1.5 in the prod-dependencies group
+
+- [#371](https://github.com/wasmCloud/typescript/pull/371) [`4607c7d`](https://github.com/wasmCloud/typescript/commit/4607c7de65be020a1174a9710d195710240987d5) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `uuid` from 12.0.0 to 13.0.0
+
+- Updated dependencies [[`4cdc7c1`](https://github.com/wasmCloud/typescript/commit/4cdc7c1c60b4edbae30cecab41f4cd9e51bebb2d), [`bceaead`](https://github.com/wasmCloud/typescript/commit/bceaead3e27806e85640350f2e7363a0a009e191), [`0042e72`](https://github.com/wasmCloud/typescript/commit/0042e7205ff404a5f04316b308f3d863409ff256), [`2bcb6d0`](https://github.com/wasmCloud/typescript/commit/2bcb6d05d1188eace234bb09742be4d1b64567b6), [`38c1ca1`](https://github.com/wasmCloud/typescript/commit/38c1ca1f6556e1173b25f061c91805a1478e9c07), [`e0d328e`](https://github.com/wasmCloud/typescript/commit/e0d328e9ecefb4a226c822854b41e494d8b3c65d)]:
+  - @wasmcloud/lattice-client-react@0.5.9
+
 ## 0.8.1
 
 ### Patch Changes
