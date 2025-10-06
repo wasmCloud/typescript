@@ -1,5 +1,13 @@
 # washboard-ui
 
+## 0.8.3
+
+### Patch Changes
+
+- [#390](https://github.com/wasmCloud/typescript/pull/390) [`63cf23f`](https://github.com/wasmCloud/typescript/commit/63cf23f685910253487e8217da174fb2e697db36) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `pino` from 9.12.0 to 10.0.0
+
+- [#394](https://github.com/wasmCloud/typescript/pull/394) [`bbccb65`](https://github.com/wasmCloud/typescript/commit/bbccb65e87203652a485694ac4e72a7051ae5e79) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 3 updates
+
 ## 0.8.2
 
 ### Patch Changes

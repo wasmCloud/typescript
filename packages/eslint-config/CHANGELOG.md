@@ -1,5 +1,11 @@
 # @wasmcloud/eslint-config
 
+## 0.1.4
+
+### Patch Changes
+
+- [#394](https://github.com/wasmCloud/typescript/pull/394) [`bbccb65`](https://github.com/wasmCloud/typescript/commit/bbccb65e87203652a485694ac4e72a7051ae5e79) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 3 updates
+
 ## 0.1.3
 
 ### Patch Changes
