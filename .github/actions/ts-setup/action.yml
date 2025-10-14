@@ -33,11 +33,11 @@ runs:
         yarn --version
 
     - name: Setup Node.js
-      uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6
+      uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
       with:
-        node-version-file: ${{ inputs.working-directory }}/.tool-versions
-        cache-dependency-path: ${{ inputs.working-directory }}/yarn.lock
         cache: yarn
+        cache-dependency-path: ${{ inputs.working-directory }}/yarn.lock
+        node-version-file: ${{ inputs.working-directory }}/.tool-versions
 
     - name: Skip .npmrc File Configuration
       if: ${{ inputs.npm-token == '' }}
@@ -59,7 +59,7 @@ runs:
         echo "::endgroup::"
 
     - name: Cache Turbo Build
-      uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
       with:
         path: ${{ inputs.working-directory }}/.turbo
         key: ${{ runner.os }}-turbo-${{ github.sha }}-${{ github.workflow }}-${{ inputs.cache-key || github.job || 'main' }}
@@ -75,7 +75,7 @@ runs:
       run: yarn install
 
     - name: Turbo Run Summary
-      uses: gacts/run-and-post-run@4683764dd706df847f57b9bed39d08164bcd2690
+      uses: gacts/run-and-post-run@d803f6920adc9a47eeac4cb6c93dbc2e2890c684 # v1.4.2
       with:
         post: |
           echo "::group::Turbo Run Summary"
