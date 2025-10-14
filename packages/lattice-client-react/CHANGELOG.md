@@ -1,5 +1,12 @@
 # @wasmcloud/lattice-client-react
 
+## 0.5.10
+
+### Patch Changes
+
+- Updated dependencies [[`5889af0`](https://github.com/wasmCloud/typescript/commit/5889af0ddbc330c14792766859868fe51478856f)]:
+  - @wasmcloud/lattice-client-core@0.5.10
+
 ## 0.5.9
 
 ### Patch Changes
