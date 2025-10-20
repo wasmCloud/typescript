@@ -24,8 +24,8 @@
   "devDependencies": {
     "@bytecodealliance/jco": "^1.15.1",
     "@types/jsonpath": "^0.2.4",
-    "@types/node": "^24.7.2",
-    "esbuild": "^0.25.10",
+    "@types/node": "^24.8.1",
+    "esbuild": "^0.25.11",
     "rimraf": "^6.0.1",
     "typescript": "^5.9.3"
   },
