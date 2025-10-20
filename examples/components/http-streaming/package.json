@@ -24,7 +24,7 @@
   "license": "ISC",
   "devDependencies": {
     "@bytecodealliance/jco": "^1.15.1",
-    "@types/node": "^24.7.2",
+    "@types/node": "^24.8.1",
     "rimraf": "^6.0.1",
     "typescript": "^5.9.3"
   }
