@@ -1,5 +1,16 @@
 # washboard-ui
 
+## 0.8.4
+
+### Patch Changes
+
+- [#401](https://github.com/wasmCloud/typescript/pull/401) [`5889af0`](https://github.com/wasmCloud/typescript/commit/5889af0ddbc330c14792766859868fe51478856f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 7 updates
+
+- [#407](https://github.com/wasmCloud/typescript/pull/407) [`9aa16e6`](https://github.com/wasmCloud/typescript/commit/9aa16e6f7a57bab08de2f0c72320e6e8e2c52429) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `vite` in the npm_and_yarn group across 1 directory
+
+- Updated dependencies [[`9aa16e6`](https://github.com/wasmCloud/typescript/commit/9aa16e6f7a57bab08de2f0c72320e6e8e2c52429)]:
+  - @wasmcloud/lattice-client-react@0.5.10
+
 ## 0.8.3
 
 ### Patch Changes
