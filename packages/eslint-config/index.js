@@ -1,7 +1,7 @@
 import js from '@eslint/js';
+// TODO(lachieh): correct when https://github.com/eslint-community/eslint-plugin-eslint-comments/pull/246 is merged
 // @ts-expect-error -- No types available for this package
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments/configs';
-import tsParser from '@typescript-eslint/parser';
 import {defineConfig, globalIgnores} from 'eslint/config';
 import prettier from 'eslint-config-prettier';
 import turbo from 'eslint-config-turbo/flat';
@@ -11,7 +11,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import unicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
-import {configs as tsEslintConfigs} from 'typescript-eslint';
+import {configs as tsEslintConfigs, parser as tsParser} from 'typescript-eslint';
 
 export default defineConfig([
   unicorn.configs.recommended,
