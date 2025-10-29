@@ -1,16 +1,17 @@
-import {defineConfig, globalIgnores} from 'eslint/config';
 import js from '@eslint/js';
-import globals from 'globals';
-import tsParser from '@typescript-eslint/parser';
-import {configs as tsEslintConfigs} from 'typescript-eslint';
-import reactRefresh from 'eslint-plugin-react-refresh';
-// @ts-ignore -- no types for this package
+// @ts-expect-error -- No types available for this package
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments/configs';
-import unicorn from 'eslint-plugin-unicorn';
-import {flatConfigs as eslintImportX} from 'eslint-plugin-import-x';
+import tsParser from '@typescript-eslint/parser';
+import {defineConfig, globalIgnores} from 'eslint/config';
 import prettier from 'eslint-config-prettier';
+import turbo from 'eslint-config-turbo/flat';
+import {flatConfigs as eslintImportX} from 'eslint-plugin-import-x';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import unicorn from 'eslint-plugin-unicorn';
+import globals from 'globals';
+import {configs as tsEslintConfigs} from 'typescript-eslint';
 
 export default defineConfig([
   unicorn.configs.recommended,
@@ -22,6 +23,7 @@ export default defineConfig([
   react.configs.flat.recommended,
   reactHooks.configs.flat['recommended-latest'],
   reactRefresh.configs.recommended,
+  turbo,
   {
     languageOptions: {
       globals: globals.browser,
