@@ -16,10 +16,6 @@ inputs:
     description: NPM token
     required: false
     default: ''
-  cache-key:
-    description: Cache key
-    required: false
-    default: 'main'
 
 runs:
   using: composite
@@ -58,26 +54,10 @@ runs:
         echo "======================"
         echo "::endgroup::"
 
-    - name: Cache Turbo Build
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-      with:
-        path: ${{ inputs.working-directory }}/.turbo
-        key: ${{ runner.os }}-turbo-${{ github.sha }}-${{ github.workflow }}-${{ inputs.cache-key || github.job || 'main' }}
-        restore-keys: |
-          ${{ runner.os }}-turbo-${{ github.sha }}-${{ github.workflow }}-${{ inputs.cache-key || github.job || 'main' }}
-          ${{ runner.os }}-turbo-${{ github.sha }}-${{ github.workflow }}-
-          ${{ runner.os }}-turbo-${{ github.sha }}-
-          ${{ runner.os }}-turbo-
+    - name: Configure Turbo Cache
+      uses: rharkor/caching-for-turbo@2b4b5b14a8d16b8556a58993a8ac331d56d8906d # v2.3.2
 
     - name: Install Dependencies
       working-directory: ${{ inputs.working-directory }}
       shell: bash
       run: yarn install
-
-    - name: Turbo Run Summary
-      uses: gacts/run-and-post-run@d803f6920adc9a47eeac4cb6c93dbc2e2890c684 # v1.4.2
-      with:
-        post: |
-          echo "::group::Turbo Run Summary"
-          cat ${{ inputs.working-directory }}/.turbo/runs/*.json || echo 'No Turbo Run Summary found'
-          echo "::endgroup::"

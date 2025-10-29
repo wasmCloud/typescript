@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
 
-      - name: Setup Node, Yarn, and Turbo
+      - name: Setup Node and Yarn
         uses: ./.github/actions/ts-setup
 
       - name: Build
