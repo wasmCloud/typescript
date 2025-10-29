@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {LatticeConfigContext, LatticeConfigContextType} from './context/lattice-config-context';
 
 /**

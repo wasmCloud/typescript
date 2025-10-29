@@ -1,6 +1,7 @@
 import {Home} from 'lucide-react';
 import {ReactElement} from 'react';
 import {RouteObject} from 'react-router-dom';
+
 import {Dashboard} from '@/app/components/dashboard';
 import {AppLayout} from '@/app/layout';
 

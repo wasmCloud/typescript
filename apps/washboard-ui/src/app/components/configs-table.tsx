@@ -8,9 +8,11 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import {WasmCloudConfig, useLatticeData} from '@wasmcloud/lattice-client-react';
 import {ChevronDown, ChevronRight} from 'lucide-react';
 import {Fragment, ReactElement, useState, useMemo} from 'react';
+
+import {WasmCloudConfig, useLatticeData} from '@wasmcloud/lattice-client-react';
+
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from '@/components/collapsible';
 import {Table, TableHeader, TableRow, TableHead, TableBody, TableCell} from '@/components/table';
 
@@ -69,12 +71,13 @@ export function ConfigsTable(): ReactElement {
   const {configs} = useLatticeData();
 
   const data = useMemo(
-    () => Object.values(configs).sort((a, b) => (a.name > b.name ? 1 : -1)),
+    () => Object.values(configs).toSorted((a, b) => (a.name > b.name ? 1 : -1)),
     [configs],
   );
 
   const [sorting, setSorting] = useState<SortingState>([]);
 
+  // eslint-disable-next-line react-hooks/incompatible-library -- https://github.com/TanStack/table/issues/5567
   const table = useReactTable({
     data,
     columns,
@@ -131,7 +134,7 @@ export function ConfigsTable(): ReactElement {
                         <Fragment>
                           {Object.keys(row.getValue('key')).length > 0 &&
                             Object.entries(row.getValue('key') as WasmCloudConfig['entries'])
-                              .sort((a, b) => (a[0] > b[0] ? 1 : -1))
+                              .toSorted((a, b) => (a[0] > b[0] ? 1 : -1))
                               .map(([key, entries]) => (
                                 <TableRow key={row.id + '-' + key} data-expanded="true">
                                   {row

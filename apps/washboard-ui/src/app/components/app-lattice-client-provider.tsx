@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import {
   LatticeClientOptions,
   LatticeClient,
@@ -5,7 +7,6 @@ import {
   NatsWsLatticeConnection,
   LatticeConfigProvider,
 } from '@wasmcloud/lattice-client-react';
-import * as React from 'react';
 
 type Config = Partial<LatticeClientOptions['config']>;
 const getClient = (parameters?: Config) => {

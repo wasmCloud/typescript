@@ -20,7 +20,7 @@ export default defineConfig([
   tsEslintConfigs.recommended,
   eslintComments.recommended,
   react.configs.flat.recommended,
-  reactHooks.configs['recommended-latest'],
+  reactHooks.configs.flat['recommended-latest'],
   reactRefresh.configs.recommended,
   {
     languageOptions: {

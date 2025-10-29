@@ -1,4 +1,5 @@
 import {ReactElement} from 'react';
+
 import {WadmManagedAssetOption} from '@/app/components/wadm-indicator/types';
 import {useSettings} from '@/app/hooks/use-settings';
 import WadmLogo from '@/assets/wadm-logo.svg?react';

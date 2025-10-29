@@ -1,4 +1,5 @@
 import {ReactElement} from 'react';
+
 import {ConnectionStatus} from '@/app/components/connection-status';
 import {Settings} from '@/app/components/settings';
 import SvgLogo from '@/assets/logo-wide.svg?react';

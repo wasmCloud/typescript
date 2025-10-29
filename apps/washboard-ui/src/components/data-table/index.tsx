@@ -9,6 +9,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import * as React from 'react';
+
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/components/table';
 
 type RowProps = React.HTMLAttributes<HTMLTableRowElement> & Record<`data-${string}`, string>;
@@ -25,6 +26,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>): React.ReactElement {
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
+  // eslint-disable-next-line react-hooks/incompatible-library -- https://github.com/TanStack/table/issues/5567
   const table = useReactTable({
     data,
     columns,

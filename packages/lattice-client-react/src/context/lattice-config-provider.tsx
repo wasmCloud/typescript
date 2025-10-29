@@ -3,8 +3,11 @@ import type {
   LatticeClientConfigInput,
   SetConfigFunction,
 } from './lattice-config-context';
+
 import * as React from 'react';
+
 import {useLatticeClient} from '@/context/use-lattice-client';
+
 import {LatticeConfigContext} from './lattice-config-context';
 
 export function LatticeConfigProvider({

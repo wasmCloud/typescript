@@ -1,11 +1,12 @@
 import * as SelectPrimitive from '@radix-ui/react-select';
-import {ComponentPropsWithoutRef, ElementRef, forwardRef} from 'react';
+import {ComponentPropsWithoutRef, ComponentRef, forwardRef} from 'react';
+
 import {WadmManagedAssetOption} from '@/app/components/wadm-indicator/types';
 import {useSettings} from '@/app/hooks/use-settings';
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@/components/select';
 
 const WadmManagedToggle = forwardRef<
-  ElementRef<typeof SelectPrimitive.Trigger>,
+  ComponentRef<typeof SelectPrimitive.Trigger>,
   ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
 >((props, ref) => {
   const {wadmManagedAsset, setWadmManagedAsset} = useSettings();

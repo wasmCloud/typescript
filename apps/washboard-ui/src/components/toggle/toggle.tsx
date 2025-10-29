@@ -3,6 +3,7 @@ import {type VariantProps} from 'class-variance-authority';
 import * as React from 'react';
 
 import {cn} from '@/helpers';
+
 import {toggleVariants} from './variants';
 
 const Toggle = React.forwardRef<

@@ -1,5 +1,7 @@
-import {type LatticeEvent} from '@wasmcloud/lattice-client-core';
 import * as React from 'react';
+
+import {type LatticeEvent} from '@wasmcloud/lattice-client-core';
+
 import {useLatticeClient} from '@/context/use-lattice-client';
 
 function useLatticeEvents(callback: (event: LatticeEvent) => void) {

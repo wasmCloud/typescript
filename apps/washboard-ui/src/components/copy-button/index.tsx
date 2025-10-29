@@ -1,6 +1,7 @@
 import {Slot} from '@radix-ui/react-slot';
 import {Check, Copy} from 'lucide-react';
 import {MouseEvent, ReactNode, forwardRef, useEffect, useState} from 'react';
+
 import {Button} from '@/components/button';
 import {ButtonProps} from '@/components/button/button';
 import {cn} from '@/helpers';

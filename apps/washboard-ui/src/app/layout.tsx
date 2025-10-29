@@ -1,5 +1,6 @@
 import {ReactElement} from 'react';
 import {Outlet} from 'react-router-dom';
+
 import {Navigation} from '@/app/components/navigation';
 
 export function AppLayout(): ReactElement {

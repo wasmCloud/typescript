@@ -1,6 +1,7 @@
-import {canConnect, useLatticeConfig} from '@wasmcloud/lattice-client-react';
 import {clsx} from 'clsx';
 import * as React from 'react';
+
+import {canConnect, useLatticeConfig} from '@wasmcloud/lattice-client-react';
 
 export function ConnectionStatus(): React.ReactElement {
   const {config: latticeConfig} = useLatticeConfig();

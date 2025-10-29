@@ -1,5 +1,6 @@
 import {SettingsIcon} from 'lucide-react';
 import {PropsWithChildren, ReactElement, useState} from 'react';
+
 import {DarkModeToggle} from '@/app/components/dark-mode-toggle';
 import {LatticeSettings} from '@/app/components/lattice-settings';
 import {Button} from '@/components/button';
@@ -13,6 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/sheet';
+
 import {WadmManagedToggle} from './wadm-indicator/wadm-managed-toggle';
 
 function Settings(): ReactElement {

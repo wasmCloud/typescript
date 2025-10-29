@@ -7,7 +7,6 @@ import {
 import {type JsonValue} from 'type-fest';
 
 import {LatticeConnectionStatus, type LatticeConnection} from '@/connection/lattice-connection';
-
 import {toPromise} from '@/helpers';
 
 type Options = {

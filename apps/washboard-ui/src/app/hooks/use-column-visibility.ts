@@ -1,10 +1,10 @@
-import {useEffect, useState} from 'react';
-import {WadmManagedAssetOption} from '../components/wadm-indicator/types';
+import * as React from 'react';
+
 import {useSettings} from './use-settings';
+import {WadmManagedAssetOption} from '../components/wadm-indicator/types';
 
-export const hideableWadmManagedColumnId = 'wadm-managed' as const;
+export const WADM_MANAGED_COLUMN_ID = 'wadm-managed' as const;
 
-type ColumnVisibilitySettings = {[key: string]: boolean};
 type Column = {
   id?: string;
 };
@@ -12,22 +12,21 @@ type Column = {
 const useColumnVisibility = <T extends Column>(columns: T[]) => {
   const {wadmManagedAsset} = useSettings();
 
-  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibilitySettings>(
+  const [columnVisibility, setColumnVisibility] = React.useState(
     columns.reduce((accumulator, column) => {
       if (typeof column.id === 'string') {
-        return Object.assign(accumulator, {[column.id]: column.id !== hideableWadmManagedColumnId});
+        return Object.assign(accumulator, {[column.id]: column.id !== WADM_MANAGED_COLUMN_ID});
       }
       return accumulator;
     }, {}),
   );
 
-  useEffect(() => {
-    setColumnVisibility((columnVisibility) => ({
+  return {
+    columnVisibility: {
       ...columnVisibility,
-      [hideableWadmManagedColumnId]: wadmManagedAsset !== WadmManagedAssetOption.None,
-    }));
-  }, [wadmManagedAsset]);
-
-  return {columnVisibility, setColumnVisibility};
+      [WADM_MANAGED_COLUMN_ID]: wadmManagedAsset !== WadmManagedAssetOption.None,
+    },
+    setColumnVisibility,
+  };
 };
 export {useColumnVisibility};

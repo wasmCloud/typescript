@@ -8,13 +8,16 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import {WasmCloudComponent, useLatticeData} from '@wasmcloud/lattice-client-react';
 import {ChevronDown, ChevronRight} from 'lucide-react';
 import {Fragment, ReactElement, useMemo, useState} from 'react';
+
+import {WasmCloudComponent, useLatticeData} from '@wasmcloud/lattice-client-react';
+
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from '@/components/collapsible';
 import {ShortCopy} from '@/components/short-copy';
 import {Table, TableHeader, TableRow, TableHead, TableBody, TableCell} from '@/components/table';
-import {useColumnVisibility, hideableWadmManagedColumnId} from '../hooks/use-column-visibility';
+
+import {useColumnVisibility, WADM_MANAGED_COLUMN_ID} from '../hooks/use-column-visibility';
 import {WadmManagedIndicator} from './wadm-indicator/wadm-indicator';
 
 const columnHelper = createColumnHelper<WasmCloudComponent>();
@@ -75,7 +78,7 @@ const columns = [
     },
   }),
   columnHelper.accessor('annotations', {
-    id: hideableWadmManagedColumnId,
+    id: WADM_MANAGED_COLUMN_ID,
     header: 'Managed',
     cell: (info) => WadmManagedIndicator(info.getValue()),
   }),
@@ -88,6 +91,7 @@ export function ComponentsTable(): ReactElement {
   const [sorting, setSorting] = useState<SortingState>([]);
   const {columnVisibility, setColumnVisibility} = useColumnVisibility(columns);
 
+  // eslint-disable-next-line react-hooks/incompatible-library -- https://github.com/TanStack/table/issues/5567
   const table = useReactTable({
     data,
     columns,
@@ -147,7 +151,7 @@ export function ComponentsTable(): ReactElement {
                             Object.entries(
                               row.getValue('instances-expanded') as Record<string, string[]>,
                             )
-                              .sort((a, b) => (a[0] > b[0] ? 1 : -1))
+                              .toSorted((a, b) => (a[0] > b[0] ? 1 : -1))
                               .map(([index, instances]) => (
                                 <TableRow key={row.id + '-' + index} data-expanded="true">
                                   {row

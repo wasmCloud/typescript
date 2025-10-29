@@ -1,6 +1,8 @@
-import {useLatticeData} from '@wasmcloud/lattice-client-react';
 import {formatDuration, intervalToDuration} from 'date-fns';
 import {ReactElement} from 'react';
+
+import {useLatticeData} from '@wasmcloud/lattice-client-react';
+
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@/components/accordion';
 import {Badge} from '@/components/badge';
 import {ShortCopy} from '@/components/short-copy';
@@ -9,7 +11,7 @@ import {Table, TableBody, TableCell, TableHead, TableRow} from '@/components/tab
 export function HostsSummary(): ReactElement {
   const {hosts} = useLatticeData();
 
-  const hostsArray = Object.values(hosts).sort((a, b) => (a.host_id > b.host_id ? 1 : -1));
+  const hostsArray = Object.values(hosts).toSorted((a, b) => (a.host_id > b.host_id ? 1 : -1));
 
   return (
     <div>

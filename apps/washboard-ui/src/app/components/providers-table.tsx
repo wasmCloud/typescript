@@ -10,18 +10,21 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import {ChevronDown, ChevronRight} from 'lucide-react';
+import {Fragment, ReactElement, useMemo, useState} from 'react';
+
 import {
   useLatticeData,
   type WasmCloudProvider,
   type WasmCloudProviderState,
 } from '@wasmcloud/lattice-client-react';
-import {ChevronDown, ChevronRight} from 'lucide-react';
-import {Fragment, ReactElement, useMemo, useState} from 'react';
+
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from '@/components/collapsible';
 import {ShortCopy} from '@/components/short-copy';
 import {StatusIndicator} from '@/components/status-indicator';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/components/table';
-import {useColumnVisibility, hideableWadmManagedColumnId} from '../hooks/use-column-visibility';
+
+import {useColumnVisibility, WADM_MANAGED_COLUMN_ID} from '../hooks/use-column-visibility';
 import {WadmManagedIndicator} from './wadm-indicator/wadm-indicator';
 
 const columnHelper = createColumnHelper<WasmCloudProvider>();
@@ -118,7 +121,7 @@ const columns = [
     },
   }),
   columnHelper.accessor('annotations', {
-    id: hideableWadmManagedColumnId,
+    id: WADM_MANAGED_COLUMN_ID,
     header: 'Managed',
     enableHiding: true,
     cell: (info) => WadmManagedIndicator(info.getValue()),
@@ -146,7 +149,7 @@ const ProvidersTableExpandedRow = (row: ReactTableRow<WasmCloudProvider>) => {
   const hostStates = row.getValue('hosts') as Record<string, WasmCloudProviderState>;
   if (!hostStates) return null;
 
-  const orderedHostIDs = Object.keys(hostStates).sort((a, b) => (a > b ? 1 : -1));
+  const orderedHostIDs = Object.keys(hostStates).toSorted((a, b) => (a > b ? 1 : -1));
 
   return (
     <>
@@ -204,13 +207,14 @@ export function ProvidersTable(): ReactElement {
   const {providers} = useLatticeData();
 
   const data = useMemo(
-    () => Object.values(providers).sort((a, b) => (a.id > b.id ? 1 : -1)),
+    () => Object.values(providers).toSorted((a, b) => (a.id > b.id ? 1 : -1)),
     [providers],
   );
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const {columnVisibility, setColumnVisibility} = useColumnVisibility(columns);
 
+  // eslint-disable-next-line react-hooks/incompatible-library -- https://github.com/TanStack/table/issues/5567
   const table = useReactTable({
     data,
     columns,
