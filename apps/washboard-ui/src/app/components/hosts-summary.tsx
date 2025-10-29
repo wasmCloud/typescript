@@ -38,10 +38,7 @@ export function HostsSummary(): ReactElement {
                     <TableRow>
                       <TableHead className="p-2 align-baseline">Host ID</TableHead>
                       <TableCell>
-                        <ShortCopy
-                          text={host.host_id}
-                          className="md:w-64 lg:w-auto lg:[mask-image:none]"
-                        />
+                        <ShortCopy text={host.host_id} className="md:w-64 lg:w-auto lg:mask-none" />
                       </TableCell>
                     </TableRow>
                     <TableRow>

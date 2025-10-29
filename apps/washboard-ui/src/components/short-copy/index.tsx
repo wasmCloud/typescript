@@ -12,7 +12,7 @@ const ShortCopy = ({text, className}: ShortCopyProps): ReactElement => {
     <div className="flex items-center">
       <div
         className={cn(
-          'relative me-2 w-40 overflow-hidden whitespace-nowrap font-mono [mask-image:linear-gradient(to_right,white_calc(100%-3rem),transparent_100%)]',
+          'relative me-2 w-40 overflow-hidden whitespace-nowrap font-mono mask-[linear-gradient(to_right,white_calc(100%-3rem),transparent_100%)]',
           className,
         )}
         title={text}
