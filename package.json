@@ -27,13 +27,13 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
-    "@types/node": "^24.5.2",
+    "@types/node": "^24.9.2",
     "@wasmcloud/prettier-config": "workspace:*",
     "eslint": "^9.26.0",
     "eslint-config-turbo": "^2.5.8",
     "prettier": "^3.6.2",
     "turbo": "^2.5.8",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "resolutions": {
     "cross-spawn": "^7.0.5"
