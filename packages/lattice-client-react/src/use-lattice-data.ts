@@ -1,8 +1,10 @@
+import * as React from 'react';
+
 import {
   type LatticeClient,
   getCombinedInventoryFromHostsAndProviders,
 } from '@wasmcloud/lattice-client-core';
-import * as React from 'react';
+
 import {useLatticeClient} from '@/context/use-lattice-client';
 
 function useLatticeData() {

@@ -1,6 +1,8 @@
-import type {WasmCloudProviderState} from '@wasmcloud/lattice-client-core';
 import {cva} from 'class-variance-authority';
 import * as React from 'react';
+
+import type {WasmCloudProviderState} from '@wasmcloud/lattice-client-core';
+
 import {cn} from '@/helpers';
 
 type StatusIndicatorProps = React.HTMLAttributes<HTMLDivElement> & {

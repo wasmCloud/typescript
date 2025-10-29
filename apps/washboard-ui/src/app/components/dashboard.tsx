@@ -1,11 +1,14 @@
-import {useLatticeData} from '@wasmcloud/lattice-client-react';
 import {ReactElement} from 'react';
+
+import {useLatticeData} from '@wasmcloud/lattice-client-react';
+
 import {ComponentsTable} from '@/app/components/components-table';
 import {HostsSummary} from '@/app/components/hosts-summary';
 import {LinksTable} from '@/app/components/links-table';
 import {ProvidersTable} from '@/app/components/providers-table';
 import {StatsTile} from '@/app/components/stats-tile';
 import {Card, CardContent, CardHeader} from '@/components/card';
+
 import {ConfigsTable} from './configs-table';
 
 export function Dashboard(): ReactElement {

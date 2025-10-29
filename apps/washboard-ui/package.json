@@ -69,7 +69,7 @@
     "@vitejs/plugin-react-swc": "^4.1.0",
     "@wasmcloud/eslint-config": "workspace:^",
     "@wasmcloud/prettier-config": "workspace:^",
-    "eslint": "^9.26.0",
+    "eslint": "^9.38.0",
     "execa": "^9.6.0",
     "get-port": "^7.1.0",
     "pino": "^10.0.0",

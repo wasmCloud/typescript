@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {cn} from '@/helpers';
 
 function Skeleton({className, ...props}: React.HTMLAttributes<HTMLDivElement>): React.ReactElement {

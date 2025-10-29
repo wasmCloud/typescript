@@ -1,6 +1,8 @@
 import {ColumnDef, createColumnHelper} from '@tanstack/react-table';
-import {useLatticeData, WasmCloudLink} from '@wasmcloud/lattice-client-react';
 import * as React from 'react';
+
+import {useLatticeData, WasmCloudLink} from '@wasmcloud/lattice-client-react';
+
 import {DataTable} from '@/components/data-table';
 import {ShortCopy} from '@/components/short-copy';
 
@@ -36,7 +38,7 @@ export function LinksTable(): React.ReactElement {
   const {links} = useLatticeData();
 
   const data = React.useMemo(
-    () => Object.values(links).sort((a, b) => (a.source_id > b.source_id ? 1 : -1)),
+    () => Object.values(links).toSorted((a, b) => (a.source_id > b.source_id ? 1 : -1)),
     [links],
   );
 

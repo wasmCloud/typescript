@@ -1,5 +1,7 @@
-import {type LatticeClient} from '@wasmcloud/lattice-client-core';
 import * as React from 'react';
+
+import {type LatticeClient} from '@wasmcloud/lattice-client-core';
+
 import {LatticeClientContext} from '@/context/lattice-client-context';
 
 export function useLatticeClient(): LatticeClient {

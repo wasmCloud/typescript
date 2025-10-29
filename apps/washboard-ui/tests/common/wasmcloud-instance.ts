@@ -1,7 +1,7 @@
-import {homedir} from 'node:os';
-import path from 'node:path';
 import {execa, ResultPromise} from 'execa';
 import getPort from 'get-port';
+import {homedir} from 'node:os';
+import path from 'node:path';
 import {v1 as uuidv1} from 'uuid';
 
 import {logger} from './logger';

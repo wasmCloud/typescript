@@ -1,10 +1,12 @@
-import './styles/index.css';
 import {ReactElement} from 'react';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
+
 import {AppLatticeClientProvider} from '@/app/components/app-lattice-client-provider';
 import {AppProvider} from '@/app/components/app-provider';
 import {SettingsProvider} from '@/app/contexts/settings-context-provider';
 import {routes} from '@/app/routes';
+
+import './styles/index.css';
 
 export function App(): ReactElement {
   return (

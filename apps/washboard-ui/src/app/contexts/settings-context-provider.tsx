@@ -1,8 +1,8 @@
 import {PropsWithChildren, ReactElement, useEffect} from 'react';
 import {useLocalStorage} from 'usehooks-ts';
 
-import {WadmManagedAssetOption} from '../components/wadm-indicator/types';
 import {DarkModeOption, SettingsContext} from './settings-context';
+import {WadmManagedAssetOption} from '../components/wadm-indicator/types';
 
 export function SettingsProvider({children}: PropsWithChildren): ReactElement {
   const [darkMode, setDarkMode] = useLocalStorage('theme', DarkModeOption.System);
@@ -13,15 +13,11 @@ export function SettingsProvider({children}: PropsWithChildren): ReactElement {
   );
 
   useEffect(() => {
-    if (
-      darkMode === DarkModeOption.Dark ||
-      (darkMode === DarkModeOption.System &&
-        globalThis.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    const optionIsDark = darkMode === DarkModeOption.Dark;
+    const optionIsSystemAndPrefersDark =
+      darkMode === DarkModeOption.System &&
+      globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', optionIsDark || optionIsSystemAndPrefersDark);
   }, [darkMode]);
 
   return (

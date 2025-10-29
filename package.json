@@ -29,7 +29,7 @@
     "@changesets/cli": "^2.29.7",
     "@types/node": "^24.5.2",
     "@wasmcloud/prettier-config": "workspace:*",
-    "eslint": "^9.26.0",
+    "eslint": "^9.38.0",
     "eslint-config-turbo": "^2.5.8",
     "prettier": "^3.6.2",
     "turbo": "^2.5.8",
