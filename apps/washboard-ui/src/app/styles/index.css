@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+
 @plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *));
@@ -93,7 +94,7 @@
   }
   body,
   #root {
-    @apply min-h-[100vh] min-w-[100vw] w-screen h-screen;
+    @apply min-h-screen min-w-screen w-screen h-screen;
   }
   body {
     @apply bg-background text-foreground;
