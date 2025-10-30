@@ -25,10 +25,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.15.1",
+    "@bytecodealliance/jco": "^1.15.2",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@types/node": "^24.9.1",
+    "@types/node": "^24.9.2",
     "rimraf": "^6.0.1",
     "rollup": "^4.52.5",
     "tslib": "^2.8.1",
