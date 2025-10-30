@@ -8,3 +8,4 @@ dist
 **/tmp/**
 test-results
 playwright-report
+turbo/generators/templates/**/*.hbs
