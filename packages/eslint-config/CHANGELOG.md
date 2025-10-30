@@ -1,5 +1,15 @@
 # @wasmcloud/eslint-config
 
+## 0.1.5
+
+### Patch Changes
+
+- [#411](https://github.com/wasmCloud/typescript/pull/411) [`e7223b6`](https://github.com/wasmCloud/typescript/commit/e7223b6f54de748510768fac27df10dd4aab95f9) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 6 updates
+
+- [#401](https://github.com/wasmCloud/typescript/pull/401) [`5889af0`](https://github.com/wasmCloud/typescript/commit/5889af0ddbc330c14792766859868fe51478856f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 7 updates
+
+- [#414](https://github.com/wasmCloud/typescript/pull/414) [`7a5d2c7`](https://github.com/wasmCloud/typescript/commit/7a5d2c70efa13c507a2b4af2a1e35f12b9d559fc) Thanks [@lachieh](https://github.com/lachieh)! - Updated ESLint Config and patched changes for libraries
+
 ## 0.1.4
 
 ### Patch Changes
