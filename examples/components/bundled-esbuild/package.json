@@ -22,9 +22,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.15.1",
+    "@bytecodealliance/jco": "^1.15.2",
     "@types/jsonpath": "^0.2.4",
-    "@types/node": "^24.9.1",
+    "@types/node": "^24.9.2",
     "esbuild": "^0.25.11",
     "rimraf": "^6.0.1",
     "typescript": "^5.9.3"
