@@ -1,5 +1,18 @@
 # @wasmcloud/lattice-client-react
 
+## 0.5.10
+
+### Patch Changes
+
+- [#407](https://github.com/wasmCloud/typescript/pull/407) [`9aa16e6`](https://github.com/wasmCloud/typescript/commit/9aa16e6f7a57bab08de2f0c72320e6e8e2c52429) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `vite` in the npm_and_yarn group across 1 directory
+
+- [#415](https://github.com/wasmCloud/typescript/pull/415) [`d500ffe`](https://github.com/wasmCloud/typescript/commit/d500ffe389f70601732764ba9f326c86285e23f1) Thanks [@lachieh](https://github.com/lachieh)! - Update tailwindcss and remove as unused dependency
+
+- [#414](https://github.com/wasmCloud/typescript/pull/414) [`7a5d2c7`](https://github.com/wasmCloud/typescript/commit/7a5d2c70efa13c507a2b4af2a1e35f12b9d559fc) Thanks [@lachieh](https://github.com/lachieh)! - Updated ESLint Config and patched changes for libraries
+
+- Updated dependencies [[`5889af0`](https://github.com/wasmCloud/typescript/commit/5889af0ddbc330c14792766859868fe51478856f), [`9aa16e6`](https://github.com/wasmCloud/typescript/commit/9aa16e6f7a57bab08de2f0c72320e6e8e2c52429), [`7a5d2c7`](https://github.com/wasmCloud/typescript/commit/7a5d2c70efa13c507a2b4af2a1e35f12b9d559fc)]:
+  - @wasmcloud/lattice-client-core@0.5.10
+
 ## 0.5.9
 
 ### Patch Changes
