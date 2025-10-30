@@ -1,0 +1,12 @@
+name = "{{ dashCase name }}"
+language = "typescript"
+type = "component"
+version = "0.1.0"
+
+[component]
+wit_world = "{{ worldName }}"
+wasm_target = "wasm32-wasip2"
+
+build_command = "npm run install-and-build"
+build_artifact = "dist/{{ dashCase name }}.wasm"
+destination = "build/{{ snakeCase name }}_s.wasm"

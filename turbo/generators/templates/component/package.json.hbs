@@ -1,0 +1,23 @@
+{
+  "name": "{{ dashCase name }}",
+  "version": "0.1.0",
+  "description": "{{ description }}",
+  "main": "dist/{{ dashCase name }}.js",
+  "scripts": {
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "build:ts": "tsc",
+    "build:js": "jco componentize -w wit -o dist/{{ dashCase name }}.wasm dist/{{ dashCase name }}.js",
+    "build": "npm run generate:types && npm run build:ts && npm run build:js",
+    "install-and-build": "npm install && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.15.1",
+    "@types/node": "^24.9.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.3"
+  }
+}

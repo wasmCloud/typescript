@@ -101,6 +101,22 @@ This is a monorepo organized as follows:
 | ----------------------------------------------- | ---------------------- | ------------------------------------------------- |
 | [TypeScript Components](./examples/components/) | `examples/components/` | Sample wasmCloud components written in TypeScript |
 
+#### Creating New Example Components
+
+To create a new example component, use the Turbo generator:
+
+```bash
+yarn turbo gen component --args http-my-example "My example description" wasmcloud:myexample myexample
+```
+
+Or run interactively:
+
+```bash
+yarn turbo gen component
+```
+
+This will scaffold a new TypeScript component with all necessary configuration files, build scripts, wasmcloud.toml, WADM manifest, and a basic HTTP handler implementation. The generator also automatically adds the component to the CI workflow. See [examples/README.md](./examples/README.md) for more details.
+
 ### Package Dependencies
 
 - **Core packages** (`lattice-client-core`) should have minimal dependencies
