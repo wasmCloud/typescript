@@ -1285,10 +1285,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.38.0, @eslint/js@npm:^9.38.0":
+"@eslint/js@npm:9.38.0":
   version: 9.38.0
   resolution: "@eslint/js@npm:9.38.0"
   checksum: 10/08ba53e3e631e2815ff33e0f48dccf87daf3841eb5605fa5980d18b88cd6dd4cd63b5829ac015e97eeb85807bf91efe7d4e1d4eaf6beb586bc01549b7660c4a2
+  languageName: node
+  linkType: hard
+
+"@eslint/js@npm:^9.39.0":
+  version: 9.39.0
+  resolution: "@eslint/js@npm:9.39.0"
+  checksum: 10/5858c2468f68e9204ec0a3a07cbb22352e8de89eb51bc83ac9754e2365b9c2d2aa0e0a3da46b98ea5d98a484c77111537f2a565b867bbdfe0448a0222404ef6b
   languageName: node
   linkType: hard
 
@@ -4383,10 +4390,10 @@ __metadata:
   resolution: "@wasmcloud/eslint-config@workspace:packages/eslint-config"
   dependencies:
     "@eslint-community/eslint-plugin-eslint-comments": "npm:^4.5.0"
-    "@eslint/js": "npm:^9.38.0"
+    "@eslint/js": "npm:^9.39.0"
     "@types/node": "npm:^24.9.2"
     eslint-config-prettier: "npm:^10.1.8"
-    eslint-config-turbo: "npm:^2.5.8"
+    eslint-config-turbo: "npm:^2.6.0"
     eslint-config-xo: "npm:^0.49.0"
     eslint-config-xo-react: "npm:^0.29.0"
     eslint-config-xo-typescript: "npm:^9.0.0"
@@ -4399,7 +4406,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.24"
     eslint-plugin-tailwindcss: "npm:3.18.2"
     eslint-plugin-unicorn: "npm:^62.0.0"
-    globals: "npm:^16.4.0"
+    globals: "npm:^16.5.0"
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.46.2"
   peerDependencies:
@@ -4418,7 +4425,7 @@ __metadata:
     nats.ws: "npm:^1.30.3"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tsup: "npm:^8.5.0"
-    type-fest: "npm:^5.1.0"
+    type-fest: "npm:^5.2.0"
     vite: "npm:^7.1.12"
     vite-plugin-dts: "npm:^4.5.4"
     vite-tsconfig-paths: "npm:^5.1.4"
@@ -4457,7 +4464,7 @@ __metadata:
     "@types/node": "npm:^24.9.2"
     "@wasmcloud/prettier-config": "workspace:*"
     eslint: "npm:^9.38.0"
-    eslint-config-turbo: "npm:^2.5.8"
+    eslint-config-turbo: "npm:^2.6.0"
     prettier: "npm:^3.6.2"
     turbo: "npm:^2.5.8"
     typescript: "npm:^5.9.3"
@@ -6268,15 +6275,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-turbo@npm:^2.5.8":
-  version: 2.5.8
-  resolution: "eslint-config-turbo@npm:2.5.8"
+"eslint-config-turbo@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "eslint-config-turbo@npm:2.6.0"
   dependencies:
-    eslint-plugin-turbo: "npm:2.5.8"
+    eslint-plugin-turbo: "npm:2.6.0"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/d09c837e9608c4c9ee61648ebf95c559163c5928f6374530ab69a488c3a2e8bfa4131ae67ed9ee6f7baa07bb54fd5fe1306da4a351c60231b04e99aa53efd63c
+  checksum: 10/013c6802542b6c5e2244f8adabcef9fd38163b8bc6ebf6a84e6a5a8c4e0ac97e6e9172189e7d977036b16627acfafe1316b3bddce840eef34e6ca1f755286dd2
   languageName: node
   linkType: hard
 
@@ -6497,15 +6504,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-turbo@npm:2.5.8":
-  version: 2.5.8
-  resolution: "eslint-plugin-turbo@npm:2.5.8"
+"eslint-plugin-turbo@npm:2.6.0":
+  version: 2.6.0
+  resolution: "eslint-plugin-turbo@npm:2.6.0"
   dependencies:
     dotenv: "npm:16.0.3"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/01b33696b61c0a75bc3535b3899f200440a95157a131faa01cc7095b87470270538a78afae1d306c8b42ec1cc21ce8c4bdeb3cb314bbc3b8b831a587113b612e
+  checksum: 10/cbe0cc74833bb5ca0578a2b8efd869b50357abf841d792dd77793f4a28561bf753899636d1ff5d87216b65ede33b9232f1af0d2356f8e8c12e865c8943cf0305
   languageName: node
   linkType: hard
 
@@ -7375,6 +7382,13 @@ __metadata:
   version: 16.4.0
   resolution: "globals@npm:16.4.0"
   checksum: 10/1627a9f42fb4c82d7af6a0c8b6cd616e00110908304d5f1ddcdf325998f3aed45a4b29d8a1e47870f328817805263e31e4f1673f00022b9c2b210552767921cf
+  languageName: node
+  linkType: hard
+
+"globals@npm:^16.5.0":
+  version: 16.5.0
+  resolution: "globals@npm:16.5.0"
+  checksum: 10/f9e8a2a13f50222c127030a619e283e7bbfe32966316bdde0715af1d15a7e40cb9c24ff52cad59671f97762ed8b515353c2f8674f560c63d9385f19ee26735a6
   languageName: node
   linkType: hard
 
@@ -8906,12 +8920,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.548.0":
-  version: 0.548.0
-  resolution: "lucide-react@npm:0.548.0"
+"lucide-react@npm:^0.552.0":
+  version: 0.552.0
+  resolution: "lucide-react@npm:0.552.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10/70c3065daf44fb997fdec330c539c82cd3309dec6e287ef741c9b616695c92c16776d2fe5709776281b8eab02d30c38d8c7b79af9c65c08128e1cf950fc92f37
+  checksum: 10/999bf595f65f0a94ab42383cdd61bb903c4c333cb96efc618f8ab9539b5c9892e1ab231f8698a7be3d430a1331d56c0f79cc75d2b50ddba884f74721dc5eff03
   languageName: node
   linkType: hard
 
@@ -10228,12 +10242,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.65.0":
-  version: 7.65.0
-  resolution: "react-hook-form@npm:7.65.0"
+"react-hook-form@npm:^7.66.0":
+  version: 7.66.0
+  resolution: "react-hook-form@npm:7.66.0"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10/9671c3f6f9038767507f2d7ad6a5fc4a4d90c58b7e3e1b17d8d68c2ffb1f0cb51cdb6996d1d1b2df1bb43c37ea0a4c694d9bbc2103e1363e909167e0a6719ff7
+  checksum: 10/7342e7148419f0ab455ee1018c8f9ad39f1adda6be45122f885c2b26e237bde846a35724800a3be5cb96f264446474795c1b4c8f807ebf779640ccfcb9f4a1b4
   languageName: node
   linkType: hard
 
@@ -11945,12 +11959,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "type-fest@npm:5.1.0"
+"type-fest@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "type-fest@npm:5.2.0"
   dependencies:
     tagged-tag: "npm:^1.0.0"
-  checksum: 10/c54997b38f274e795970fed1da0791979909726d6edb6e07b92a128af2be97682523076643ded0f3bc9266999ab48a4dcbacd533199f8829c381464a636de849
+  checksum: 10/4ce526139c05e92a1d92fa905840ff9ae725b8058df5a5571380bca1827db1f2e4e204c9d561fd63e972d45591dd4d38eab5f5529c0af93d6cfb5f99109aa74a
   languageName: node
   linkType: hard
 
@@ -12632,14 +12646,14 @@ __metadata:
     eslint: "npm:^9.38.0"
     execa: "npm:^9.6.0"
     get-port: "npm:^7.1.0"
-    lucide-react: "npm:^0.548.0"
+    lucide-react: "npm:^0.552.0"
     nats.ws: "npm:^1.30.3"
     pino: "npm:^10.1.0"
     postcss: "npm:^8.5.6"
     prettier: "npm:^3.6.2"
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
-    react-hook-form: "npm:^7.65.0"
+    react-hook-form: "npm:^7.66.0"
     react-router-dom: "npm:^7.9.5"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tailwind-merge: "npm:^3.3.1"
