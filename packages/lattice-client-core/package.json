@@ -48,7 +48,7 @@
     "@wasmcloud/tsconfig": "workspace:*",
     "eslint": "^9.38.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
-    "tsup": "^8.5.0",
+    "tsup": "^8.5.1",
     "vite": "^7.2.2",
     "vite-plugin-dts": "^4.5.4",
     "vite-tsconfig-paths": "^5.1.4"
