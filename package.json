@@ -27,13 +27,13 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
-    "@turbo/gen": "^2.6.0",
-    "@types/node": "^24.10.0",
+    "@turbo/gen": "^2.6.1",
+    "@types/node": "^24.10.1",
     "@wasmcloud/prettier-config": "workspace:*",
     "eslint": "^9.38.0",
     "eslint-config-turbo": "^2.6.0",
     "prettier": "^3.6.2",
-    "turbo": "^2.6.0",
+    "turbo": "^2.6.1",
     "typescript": "^5.9.3"
   },
   "resolutions": {
