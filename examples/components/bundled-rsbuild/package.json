@@ -23,9 +23,9 @@
   "devDependencies": {
     "@bytecodealliance/jco": "^1.15.3",
     "@rsbuild/plugin-node-polyfill": "^1.4.2",
-    "@rslib/core": "^0.17.1",
+    "@rslib/core": "^0.18.0",
     "@types/jsonpath": "^0.2.4",
-    "@types/node": "^24.10.0",
+    "@types/node": "^24.10.1",
     "rimraf": "^6.1.0",
     "typescript": "^5.9.3"
   },
