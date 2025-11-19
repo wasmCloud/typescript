@@ -1,5 +1,24 @@
 # washboard-ui
 
+## 0.8.5
+
+### Patch Changes
+
+- [#430](https://github.com/wasmCloud/typescript/pull/430) [`38163b0`](https://github.com/wasmCloud/typescript/commit/38163b021844ff955750513470041019871c742f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 6 updates
+
+- [#420](https://github.com/wasmCloud/typescript/pull/420) [`74f79bd`](https://github.com/wasmCloud/typescript/commit/74f79bdf6a41a6250291c4c9791414b8dcb389cc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#427](https://github.com/wasmCloud/typescript/pull/427) [`c042afd`](https://github.com/wasmCloud/typescript/commit/c042afdef4c81b60b4a31ffc2e6d89e50c944d8f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `lucide-react` in the prod-dependencies group
+
+- [#426](https://github.com/wasmCloud/typescript/pull/426) [`d1ca66d`](https://github.com/wasmCloud/typescript/commit/d1ca66de7be2edf6abc940c92cd94030dd84e6cf) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#424](https://github.com/wasmCloud/typescript/pull/424) [`f07b91f`](https://github.com/wasmCloud/typescript/commit/f07b91f12d34d1d5fcc11a85d8b8e35540d49cbc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 9 updates
+
+- [#431](https://github.com/wasmCloud/typescript/pull/431) [`94ea865`](https://github.com/wasmCloud/typescript/commit/94ea865b540f73067037fd389688b75e22adc677) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 4 updates
+
+- Updated dependencies [[`38163b0`](https://github.com/wasmCloud/typescript/commit/38163b021844ff955750513470041019871c742f), [`d1ca66d`](https://github.com/wasmCloud/typescript/commit/d1ca66de7be2edf6abc940c92cd94030dd84e6cf)]:
+  - @wasmcloud/lattice-client-react@0.5.11
+
 ## 0.8.4
 
 ### Patch Changes
