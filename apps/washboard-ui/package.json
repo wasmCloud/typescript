@@ -59,7 +59,7 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@playwright/test": "^1.56.1",
+    "@playwright/test": "^1.57.0",
     "@tailwindcss/vite": "^4.1.17",
     "@types/node": "^24.10.1",
     "@types/react": "19.2.2",
@@ -70,16 +70,16 @@
     "@wasmcloud/eslint-config": "workspace:^",
     "@wasmcloud/prettier-config": "workspace:^",
     "eslint": "^9.38.0",
-    "execa": "^9.6.0",
+    "execa": "^9.6.1",
     "get-port": "^7.1.0",
     "pino": "^10.1.0",
     "postcss": "^8.5.6",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.3",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3",
     "uuid": "^13.0.0",
-    "vite": "^7.2.4",
+    "vite": "^7.2.6",
     "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4"
   }
