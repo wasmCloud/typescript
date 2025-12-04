@@ -22,11 +22,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.15.3",
+    "@bytecodealliance/jco": "^1.15.4",
     "@types/jsonpath": "^0.2.4",
     "@types/node": "^24.10.1",
-    "esbuild": "^0.27.0",
-    "rimraf": "^6.1.0",
+    "esbuild": "^0.27.1",
+    "rimraf": "^6.1.2",
     "typescript": "^5.9.3"
   },
   "dependencies": {
