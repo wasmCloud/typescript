@@ -46,7 +46,7 @@ jobs:
         run: tar -czf washboard.tar.gz -C build/apps/washboard-ui/dist .
 
       - name: Upload Asset to Release
-        uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe
+        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b
         with:
           files: washboard.tar.gz
           tag_name: washboard-ui@${{ inputs.version }}
