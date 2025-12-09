@@ -1,5 +1,21 @@
 # @wasmcloud/lattice-client-core
 
+## 0.5.11
+
+### Patch Changes
+
+- [#447](https://github.com/wasmCloud/typescript/pull/447) [`fa7bff3`](https://github.com/wasmCloud/typescript/commit/fa7bff36007006f669038769938771f8473e7e24) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 6 updates
+
+- [#430](https://github.com/wasmCloud/typescript/pull/430) [`38163b0`](https://github.com/wasmCloud/typescript/commit/38163b021844ff955750513470041019871c742f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 6 updates
+
+- [#426](https://github.com/wasmCloud/typescript/pull/426) [`d1ca66d`](https://github.com/wasmCloud/typescript/commit/d1ca66de7be2edf6abc940c92cd94030dd84e6cf) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#455](https://github.com/wasmCloud/typescript/pull/455) [`48de23e`](https://github.com/wasmCloud/typescript/commit/48de23e3a41a5e251a03fa9ad10bee944641f86f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 5 updates
+
+- [#424](https://github.com/wasmCloud/typescript/pull/424) [`f07b91f`](https://github.com/wasmCloud/typescript/commit/f07b91f12d34d1d5fcc11a85d8b8e35540d49cbc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 9 updates
+
+- [#444](https://github.com/wasmCloud/typescript/pull/444) [`b0f4eaa`](https://github.com/wasmCloud/typescript/commit/b0f4eaab1382598582e0e815e796b641ce7382eb) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `vite` in the dev-dependencies group
+
 ## 0.5.10
 
 ### Patch Changes
