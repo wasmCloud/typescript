@@ -28,7 +28,7 @@
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
     "@turbo/gen": "^2.6.3",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.2",
     "@wasmcloud/prettier-config": "workspace:*",
     "eslint": "^9.38.0",
     "eslint-config-turbo": "^2.6.1",
