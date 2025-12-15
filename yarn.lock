@@ -4644,7 +4644,7 @@ __metadata:
     type-fest: "npm:^5.2.0"
     vite: "npm:^7.2.7"
     vite-plugin-dts: "npm:^4.5.4"
-    vite-tsconfig-paths: "npm:^5.1.4"
+    vite-tsconfig-paths: "npm:^6.0.1"
   languageName: unknown
   linkType: soft
 
@@ -4664,7 +4664,7 @@ __metadata:
     tsup: "npm:^8.5.1"
     vite: "npm:^7.2.7"
     vite-plugin-dts: "npm:^4.5.4"
-    vite-tsconfig-paths: "npm:^5.1.4"
+    vite-tsconfig-paths: "npm:^6.0.1"
   peerDependencies:
     react: ^18.0.0
   languageName: unknown
@@ -12849,9 +12849,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-tsconfig-paths@npm:^5.1.4":
-  version: 5.1.4
-  resolution: "vite-tsconfig-paths@npm:5.1.4"
+"vite-tsconfig-paths@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "vite-tsconfig-paths@npm:6.0.1"
   dependencies:
     debug: "npm:^4.1.1"
     globrex: "npm:^0.1.2"
@@ -12861,7 +12861,7 @@ __metadata:
   peerDependenciesMeta:
     vite:
       optional: true
-  checksum: 10/b409dbd17829f560021a71dba3e473b9c06dcf5fdc9d630b72c1f787145ec478b38caff1be04868971ac8bdcbf0f5af45eeece23dbc9c59c54b901f867740ae0
+  checksum: 10/7ac6d17efee21be805ed62857269d4e41d939774a8cc698e77145b4312edf996a9536e7a3b37e25486ae77d36fc5ae011378058ff290be39da16e52a47e87da7
   languageName: node
   linkType: hard
 
@@ -12985,7 +12985,7 @@ __metadata:
     uuid: "npm:^13.0.0"
     vite: "npm:^7.2.7"
     vite-plugin-svgr: "npm:^4.5.0"
-    vite-tsconfig-paths: "npm:^5.1.4"
+    vite-tsconfig-paths: "npm:^6.0.1"
     zod: "npm:^4.1.13"
   languageName: unknown
   linkType: soft
