@@ -93,6 +93,7 @@ jobs:
       - name: wash build
         working-directory: './examples/components/${{ inputs.folder }}'
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WASH_REG_USER: ${{ github.repository_owner }}
           WASH_REG_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: wash build
