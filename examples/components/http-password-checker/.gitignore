@@ -7,4 +7,5 @@
 # wash build output
 /build/*
 
-wit/deps/
+# wit/deps/ is vendored to avoid registry authentication issues
+# wit/deps/
