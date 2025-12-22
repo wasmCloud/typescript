@@ -4414,7 +4414,7 @@ __metadata:
     "@eslint/js": "npm:^9.39.2"
     "@types/node": "npm:^24.10.1"
     eslint-config-prettier: "npm:^10.1.8"
-    eslint-config-turbo: "npm:^2.6.3"
+    eslint-config-turbo: "npm:^2.7.1"
     eslint-config-xo: "npm:^0.49.0"
     eslint-config-xo-react: "npm:^0.29.0"
     eslint-config-xo-typescript: "npm:^9.0.0"
@@ -4424,7 +4424,7 @@ __metadata:
     eslint-plugin-no-use-extend-native: "npm:^0.7.2"
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-hooks: "npm:^7.0.1"
-    eslint-plugin-react-refresh: "npm:^0.4.25"
+    eslint-plugin-react-refresh: "npm:^0.4.26"
     eslint-plugin-tailwindcss: "npm:3.18.2"
     eslint-plugin-unicorn: "npm:^62.0.0"
     globals: "npm:^16.5.0"
@@ -4485,7 +4485,7 @@ __metadata:
     "@types/node": "npm:^24.10.1"
     "@wasmcloud/prettier-config": "workspace:*"
     eslint: "npm:^9.38.0"
-    eslint-config-turbo: "npm:^2.6.3"
+    eslint-config-turbo: "npm:^2.7.1"
     prettier: "npm:^3.7.4"
     turbo: "npm:^2.6.3"
     typescript: "npm:^5.9.3"
@@ -6306,15 +6306,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-turbo@npm:^2.6.3":
-  version: 2.6.3
-  resolution: "eslint-config-turbo@npm:2.6.3"
+"eslint-config-turbo@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "eslint-config-turbo@npm:2.7.1"
   dependencies:
-    eslint-plugin-turbo: "npm:2.6.3"
+    eslint-plugin-turbo: "npm:2.7.1"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/f090b48af7dbaeb8470f6903eae3c033a7c45b1c1b6847a6c53df1b25c920f8d768cfe5bb910a3232f7d5cba47a67b99a6629bf01a1f8f86101584fd4cb140f0
+  checksum: 10/dab0fa42b3467be808139ee0c04f5b44b69ee17e55971bc4fcb9918f0dae07d3f365bfe826182f98d9d659a836668921e231e0e54f1cb466e4805dfbfe0a8de6
   languageName: node
   linkType: hard
 
@@ -6486,12 +6486,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:^0.4.25":
-  version: 0.4.25
-  resolution: "eslint-plugin-react-refresh@npm:0.4.25"
+"eslint-plugin-react-refresh@npm:^0.4.26":
+  version: 0.4.26
+  resolution: "eslint-plugin-react-refresh@npm:0.4.26"
   peerDependencies:
     eslint: ">=8.40"
-  checksum: 10/07e5c7152b852db9e54667a9874300a483f2390f8a5e9d9b0de80a4161112fc4c00d88fc71c6040a736db8f8ac0911d6121510fa996a282b5a98c878858b288e
+  checksum: 10/068da7edcd39d802dda4c03b7ea8923891145eb95f4dfd4cfce82a53a5eb55f5cbe66b33cf8e57b71f1525a684517bda4bfca1bc5c6b12c82ba03c9e8197764d
   languageName: node
   linkType: hard
 
@@ -6535,15 +6535,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-turbo@npm:2.6.3":
-  version: 2.6.3
-  resolution: "eslint-plugin-turbo@npm:2.6.3"
+"eslint-plugin-turbo@npm:2.7.1":
+  version: 2.7.1
+  resolution: "eslint-plugin-turbo@npm:2.7.1"
   dependencies:
     dotenv: "npm:16.0.3"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/d79c91ec3cd11a7e331b7b70dc13c560f2f9dae9c81d6c2092965b747eb2230a0350c0c8b956c20b656eff41f51401e53ab9026e9a1f8cf02bfc8de494fa449e
+  checksum: 10/2d8d79412738148ddb386d116fd553f7f6719285e4482ee3ccd7412407eaae615680371ec01bb91cb617212ee162abb87096b6db55e2f0e4dfd46fbe852139cc
   languageName: node
   linkType: hard
 
@@ -8964,12 +8964,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.561.0":
-  version: 0.561.0
-  resolution: "lucide-react@npm:0.561.0"
+"lucide-react@npm:^0.562.0":
+  version: 0.562.0
+  resolution: "lucide-react@npm:0.562.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10/fb305e06527849c2d475b245c524ac56c6554afe648ce1d0ede9d5105366ce296c0f2fa2cbf5c57ef0c14449462a2ec30f35db2656626e9fcf2c96fd124738d0
+  checksum: 10/db75efaadd63fef38d3f4c79cadd26c4773d1a462749385a74dc6ffc1ab6684d20a7c1126faca49dc735f2edd2aae7c3af5e946a9299b1ff50f26d5c3670dab0
   languageName: node
   linkType: hard
 
@@ -10286,12 +10286,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.68.0":
-  version: 7.68.0
-  resolution: "react-hook-form@npm:7.68.0"
+"react-hook-form@npm:^7.69.0":
+  version: 7.69.0
+  resolution: "react-hook-form@npm:7.69.0"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10/c9624924cd324ee5560de51715361d754d24591734b1cf2b87c95477d35f5ca01b10e94d477bebe215afd37914c5cdbd4a717ead910d8de67f346f517f5a8d92
+  checksum: 10/12a8b90d337c557cb53cfb6c9fd7ed3972a20960834b060bb239101a2765cd762ef6651b3231feb0932d3582d51801fda57bc660bfac88688b538b6609e4a1ec
   languageName: node
   linkType: hard
 
@@ -10344,21 +10344,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^7.10.1":
-  version: 7.10.1
-  resolution: "react-router-dom@npm:7.10.1"
+"react-router-dom@npm:^7.11.0":
+  version: 7.11.0
+  resolution: "react-router-dom@npm:7.11.0"
   dependencies:
-    react-router: "npm:7.10.1"
+    react-router: "npm:7.11.0"
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: 10/a3dbf65aa036015a8199bc40a0863bda8234ed71c0df32e5c7355380ff1337aa346cc516837c2e4dce0edd6a96d3d9625cbcccd388b265b8b809f0d89cd3e85f
+  checksum: 10/47ae509e044957f3c0baae9d594f199832b1d96e4deab69a95f557835cb04bebef1625c4fe1daa1077f1b647c559c636deaa7c35b03d72cc06942d88944e6b37
   languageName: node
   linkType: hard
 
-"react-router@npm:7.10.1":
-  version: 7.10.1
-  resolution: "react-router@npm:7.10.1"
+"react-router@npm:7.11.0":
+  version: 7.11.0
+  resolution: "react-router@npm:7.11.0"
   dependencies:
     cookie: "npm:^1.0.1"
     set-cookie-parser: "npm:^2.6.0"
@@ -10368,7 +10368,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10/0de854fe2d7d4d8f62337b829dd51fc8ce8167d8dd57e286b55ed6113a5910abe94164f47dda5f0bf2b4344abddaaf1ad6cbe87c0e63ab1ab3766155262dd7da
+  checksum: 10/34c787880f19a7fadaef2906ecd0c1a1576052ad240bfba72708840d5e5181f604818351ff2e82d2761a2f33dfd63e2f68ab35ffd7552aa04563f1a7154b5b58
   languageName: node
   linkType: hard
 
@@ -12686,15 +12686,15 @@ __metadata:
     eslint: "npm:^9.38.0"
     execa: "npm:^9.6.1"
     get-port: "npm:^7.1.0"
-    lucide-react: "npm:^0.561.0"
+    lucide-react: "npm:^0.562.0"
     nats.ws: "npm:^1.30.3"
     pino: "npm:^10.1.0"
     postcss: "npm:^8.5.6"
     prettier: "npm:^3.7.4"
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
-    react-hook-form: "npm:^7.68.0"
-    react-router-dom: "npm:^7.10.1"
+    react-hook-form: "npm:^7.69.0"
+    react-router-dom: "npm:^7.11.0"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tailwind-merge: "npm:^3.3.1"
     tailwindcss: "npm:^4.1.16"
