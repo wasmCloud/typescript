@@ -90,6 +90,15 @@ jobs:
           npm install -g @bytecodealliance/jco
           npm install -g @bytecodealliance/componentize-js
 
+      # TODO: Remove this step once https://github.com/wasmcloud/wash/issues/210 is resolved
+      - name: Configure wash package registry
+        run: |
+          mkdir -p ~/.wash
+          cat > ~/.wash/package_config.toml << 'EOF'
+          [namespace_registries]
+          "wasmcloud.com" = { registry = "wasmcloud.com", metadata = { preferredProtocol = "oci", "oci" = { registry = "ghcr.io", namespacePrefix = "wasmcloud/interfaces/" } } }
+          EOF
+
       - name: wash build
         working-directory: './examples/components/${{ inputs.folder }}'
         run: wash build
