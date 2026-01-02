@@ -1,5 +1,29 @@
 # @wasmcloud/eslint-config
 
+## 0.1.6
+
+### Patch Changes
+
+- [#430](https://github.com/wasmCloud/typescript/pull/430) [`38163b0`](https://github.com/wasmCloud/typescript/commit/38163b021844ff955750513470041019871c742f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 6 updates
+
+- [#448](https://github.com/wasmCloud/typescript/pull/448) [`620089c`](https://github.com/wasmCloud/typescript/commit/620089c0c22f904a87171f39c74311db59e9f50c) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 3 updates
+
+- [#420](https://github.com/wasmCloud/typescript/pull/420) [`74f79bd`](https://github.com/wasmCloud/typescript/commit/74f79bdf6a41a6250291c4c9791414b8dcb389cc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#445](https://github.com/wasmCloud/typescript/pull/445) [`f19f055`](https://github.com/wasmCloud/typescript/commit/f19f055ac17e96f022cf381d8499f2900d49d3de) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 3 updates
+
+- [#424](https://github.com/wasmCloud/typescript/pull/424) [`f07b91f`](https://github.com/wasmCloud/typescript/commit/f07b91f12d34d1d5fcc11a85d8b8e35540d49cbc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 9 updates
+
+- [#464](https://github.com/wasmCloud/typescript/pull/464) [`2321743`](https://github.com/wasmCloud/typescript/commit/232174378aa9b60b0b1219042deebf6f09f55173) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 9 updates
+
+- [#473](https://github.com/wasmCloud/typescript/pull/473) [`19041b9`](https://github.com/wasmCloud/typescript/commit/19041b999b1eb19b6b7b70b776d5970a3aacf3c2) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 5 updates
+
+- [#479](https://github.com/wasmCloud/typescript/pull/479) [`3a113e3`](https://github.com/wasmCloud/typescript/commit/3a113e3ec76589d8fbbac45cd942c25aaa1049ae) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 2 updates
+
+- [#471](https://github.com/wasmCloud/typescript/pull/471) [`1486e97`](https://github.com/wasmCloud/typescript/commit/1486e97d7ae7b897bec9a3d3445df6a8a6f363ad) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 4 updates
+
+- [#431](https://github.com/wasmCloud/typescript/pull/431) [`94ea865`](https://github.com/wasmCloud/typescript/commit/94ea865b540f73067037fd389688b75e22adc677) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 4 updates
+
 ## 0.1.5
 
 ### Patch Changes
