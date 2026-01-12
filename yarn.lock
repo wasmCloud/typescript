@@ -3510,11 +3510,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turbo/gen@npm:^2.7.2":
-  version: 2.7.2
-  resolution: "@turbo/gen@npm:2.7.2"
+"@turbo/gen@npm:^2.7.4":
+  version: 2.7.4
+  resolution: "@turbo/gen@npm:2.7.4"
   dependencies:
-    "@turbo/workspaces": "npm:2.7.2"
+    "@turbo/workspaces": "npm:2.7.4"
     commander: "npm:10.0.0"
     fs-extra: "npm:10.1.0"
     inquirer: "npm:8.2.4"
@@ -3527,13 +3527,13 @@ __metadata:
     validate-npm-package-name: "npm:5.0.0"
   bin:
     gen: dist/cli.js
-  checksum: 10/3c659b71a193ceacb5d213b963e4c4f645e7428daed5ac7412a2a0211ff38699fe840e9cb66aab89eb8283098865a7081563e4ce98081690ae301720f96fad54
+  checksum: 10/0863e1775abfdc2e8ce481acf8fb1e4c9881b283ecba97ba3f030265c5b4bba8ff37b7314188519ec24afb56f627c63b84f04e9593cbbc33ea72db74a32a1118
   languageName: node
   linkType: hard
 
-"@turbo/workspaces@npm:2.7.2":
-  version: 2.7.2
-  resolution: "@turbo/workspaces@npm:2.7.2"
+"@turbo/workspaces@npm:2.7.4":
+  version: 2.7.4
+  resolution: "@turbo/workspaces@npm:2.7.4"
   dependencies:
     commander: "npm:10.0.0"
     execa: "npm:5.1.1"
@@ -3548,7 +3548,7 @@ __metadata:
     update-check: "npm:1.5.4"
   bin:
     workspaces: dist/cli.js
-  checksum: 10/c554b50c7b3a684e9f0794937e8eaff2915699bf4f100938bf6665c0f0c825ec7c5188903c8d0803487fb2fc442dd762986446a596c8bfe164f96dc4591a8788
+  checksum: 10/e20de2473bc214e8e5f2d08c1dfcc31288ad2e1e1423f6f0ab5fbe5e6d6ebb10ba13126f26efcc98deec489359fc1adac1c55f2cb79ff1051943ab7be658f31b
   languageName: node
   linkType: hard
 
@@ -3706,12 +3706,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^24.10.4":
-  version: 24.10.4
-  resolution: "@types/node@npm:24.10.4"
+"@types/node@npm:^24.10.7":
+  version: 24.10.7
+  resolution: "@types/node@npm:24.10.7"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10/a0b318b99a97103d151589a10e20d7d3ce93188a0e6466040eb2ce5fae33ca6785306737b4006560fe3152073cbb2b14747b854fa303296275c22afc8a37da2a
+  checksum: 10/4387e03f4e072eb0aa8a71e002cd0aca514b7986d9bd435244a5c8421336bcd28583b95ca2c11bc8bfdeef176d37584c9f3e786df9cb07bbc11ed4d73fd05b28
   languageName: node
   linkType: hard
 
@@ -4415,7 +4415,7 @@ __metadata:
   dependencies:
     "@eslint-community/eslint-plugin-eslint-comments": "npm:^4.5.0"
     "@eslint/js": "npm:^9.39.2"
-    "@types/node": "npm:^24.10.4"
+    "@types/node": "npm:^24.10.7"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-config-turbo: "npm:^2.7.3"
     eslint-config-xo: "npm:^0.49.0"
@@ -4450,9 +4450,9 @@ __metadata:
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tsup: "npm:^8.5.1"
     type-fest: "npm:^5.3.1"
-    vite: "npm:^7.3.0"
+    vite: "npm:^7.3.1"
     vite-plugin-dts: "npm:^4.5.4"
-    vite-tsconfig-paths: "npm:^6.0.3"
+    vite-tsconfig-paths: "npm:^6.0.4"
   languageName: unknown
   linkType: soft
 
@@ -4470,9 +4470,9 @@ __metadata:
     eslint: "npm:^9.38.0"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tsup: "npm:^8.5.1"
-    vite: "npm:^7.3.0"
+    vite: "npm:^7.3.1"
     vite-plugin-dts: "npm:^4.5.4"
-    vite-tsconfig-paths: "npm:^6.0.3"
+    vite-tsconfig-paths: "npm:^6.0.4"
   peerDependencies:
     react: ^18.0.0
   languageName: unknown
@@ -4484,13 +4484,13 @@ __metadata:
   dependencies:
     "@changesets/changelog-github": "npm:^0.5.2"
     "@changesets/cli": "npm:^2.29.8"
-    "@turbo/gen": "npm:^2.7.2"
-    "@types/node": "npm:^24.10.4"
+    "@turbo/gen": "npm:^2.7.4"
+    "@types/node": "npm:^24.10.7"
     "@wasmcloud/prettier-config": "workspace:*"
     eslint: "npm:^9.38.0"
     eslint-config-turbo: "npm:^2.7.3"
     prettier: "npm:^3.7.4"
-    turbo: "npm:^2.7.2"
+    turbo: "npm:^2.7.4"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
@@ -10022,12 +10022,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino-abstract-transport@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "pino-abstract-transport@npm:2.0.0"
+"pino-abstract-transport@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "pino-abstract-transport@npm:3.0.0"
   dependencies:
     split2: "npm:^4.0.0"
-  checksum: 10/e5699ecb06c7121055978e988e5cecea5b6892fc2589c64f1f86df5e7386bbbfd2ada268839e911b021c6b3123428aed7c6be3ac7940eee139556c75324c7e83
+  checksum: 10/f42b85b2663c8520839124a55b27801e88c89c65e9569384b49bb4c81b022ae24860020c2375b92a03db699113969007cc155e1fb2dfe53754403920c1cbe18c
   languageName: node
   linkType: hard
 
@@ -10038,24 +10038,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:^10.1.0":
-  version: 10.1.0
-  resolution: "pino@npm:10.1.0"
+"pino@npm:^10.1.1":
+  version: 10.1.1
+  resolution: "pino@npm:10.1.1"
   dependencies:
     "@pinojs/redact": "npm:^0.4.0"
     atomic-sleep: "npm:^1.0.0"
     on-exit-leak-free: "npm:^2.1.0"
-    pino-abstract-transport: "npm:^2.0.0"
+    pino-abstract-transport: "npm:^3.0.0"
     pino-std-serializers: "npm:^7.0.0"
     process-warning: "npm:^5.0.0"
     quick-format-unescaped: "npm:^4.0.3"
     real-require: "npm:^0.2.0"
     safe-stable-stringify: "npm:^2.3.1"
     sonic-boom: "npm:^4.0.1"
-    thread-stream: "npm:^3.0.0"
+    thread-stream: "npm:^4.0.0"
   bin:
     pino: bin.js
-  checksum: 10/6f9c86572669842950887cf1cd45fc977903ce1be0a6e32b98918c87d1914ff8854395dc64388d75a583672439997422975977275ed92c14a2f6ee1a26b07ccf
+  checksum: 10/371abc2bfd9b2651fc44637b8861064e8e9a68b81c2109c3cef0c1f9d4a97ff3f150adc1a2fb95d00f08bdab763dd058c7f98fad7245e64ed17ea37bad99f255
   languageName: node
   linkType: hard
 
@@ -11699,12 +11699,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"thread-stream@npm:^3.0.0":
-  version: 3.1.0
-  resolution: "thread-stream@npm:3.1.0"
+"thread-stream@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "thread-stream@npm:4.0.0"
   dependencies:
     real-require: "npm:^0.2.0"
-  checksum: 10/ea2d816c4f6077a7062fac5414a88e82977f807c82ee330938fb9691fe11883bb03f078551c0518bb649c239e47ba113d44014fcbb5db42c5abd5996f35e4213
+  checksum: 10/698ac8bd104c6cf91dda8421c30790979b867d7b6c878f914ddef18f1b1bc846f8776976d9f0113ed0ee90043f2e9e6554b96f4c1154ff84cd199da657f214fa
   languageName: node
   linkType: hard
 
@@ -11960,58 +11960,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.7.2":
-  version: 2.7.2
-  resolution: "turbo-darwin-64@npm:2.7.2"
+"turbo-darwin-64@npm:2.7.4":
+  version: 2.7.4
+  resolution: "turbo-darwin-64@npm:2.7.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.7.2":
-  version: 2.7.2
-  resolution: "turbo-darwin-arm64@npm:2.7.2"
+"turbo-darwin-arm64@npm:2.7.4":
+  version: 2.7.4
+  resolution: "turbo-darwin-arm64@npm:2.7.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.7.2":
-  version: 2.7.2
-  resolution: "turbo-linux-64@npm:2.7.2"
+"turbo-linux-64@npm:2.7.4":
+  version: 2.7.4
+  resolution: "turbo-linux-64@npm:2.7.4"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.7.2":
-  version: 2.7.2
-  resolution: "turbo-linux-arm64@npm:2.7.2"
+"turbo-linux-arm64@npm:2.7.4":
+  version: 2.7.4
+  resolution: "turbo-linux-arm64@npm:2.7.4"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.7.2":
-  version: 2.7.2
-  resolution: "turbo-windows-64@npm:2.7.2"
+"turbo-windows-64@npm:2.7.4":
+  version: 2.7.4
+  resolution: "turbo-windows-64@npm:2.7.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.7.2":
-  version: 2.7.2
-  resolution: "turbo-windows-arm64@npm:2.7.2"
+"turbo-windows-arm64@npm:2.7.4":
+  version: 2.7.4
+  resolution: "turbo-windows-arm64@npm:2.7.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.7.2":
-  version: 2.7.2
-  resolution: "turbo@npm:2.7.2"
+"turbo@npm:^2.7.4":
+  version: 2.7.4
+  resolution: "turbo@npm:2.7.4"
   dependencies:
-    turbo-darwin-64: "npm:2.7.2"
-    turbo-darwin-arm64: "npm:2.7.2"
-    turbo-linux-64: "npm:2.7.2"
-    turbo-linux-arm64: "npm:2.7.2"
-    turbo-windows-64: "npm:2.7.2"
-    turbo-windows-arm64: "npm:2.7.2"
+    turbo-darwin-64: "npm:2.7.4"
+    turbo-darwin-arm64: "npm:2.7.4"
+    turbo-linux-64: "npm:2.7.4"
+    turbo-linux-arm64: "npm:2.7.4"
+    turbo-windows-64: "npm:2.7.4"
+    turbo-windows-arm64: "npm:2.7.4"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -12027,7 +12027,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10/a0fb2c34ddd68bbe0fe763ef87131c687edf8caafa8b50be8df1606d82a586bd8362276f99bf34e905c9217521634b5a7c2926bad08228b29b84d54d9b4ad49b
+  checksum: 10/fbb901da0f576aadac57168f365913b8cd07fd22874c4bfedc736bcd18a5888c2897882e03d87ba451b2dcd21b376a44b0245622260b08bc1bbc36f70345a19b
   languageName: node
   linkType: hard
 
@@ -12625,25 +12625,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-tsconfig-paths@npm:^6.0.3":
-  version: 6.0.3
-  resolution: "vite-tsconfig-paths@npm:6.0.3"
+"vite-tsconfig-paths@npm:^6.0.4":
+  version: 6.0.4
+  resolution: "vite-tsconfig-paths@npm:6.0.4"
   dependencies:
     debug: "npm:^4.1.1"
     globrex: "npm:^0.1.2"
     tsconfck: "npm:^3.0.3"
+    vite: "npm:*"
   peerDependencies:
     vite: "*"
   peerDependenciesMeta:
     vite:
       optional: true
-  checksum: 10/271cdc040a03181d13e4253e99ec6deec1cbe4ec4cb2a1377d46dba403483f8e38a5c2ed29ad0493ed51c2cfd658847cb1cdc73e438d6a8bcdd2b52df19d72e2
+  checksum: 10/85f871cd5e321f2865972559b01c518664e6e34f9039b630dd77c2f379f8fdc386e15f7237aa5c108d813030c6e9bc8edfbf61687df7684803111a2495edadac
   languageName: node
   linkType: hard
 
-"vite@npm:^7.3.0":
-  version: 7.3.0
-  resolution: "vite@npm:7.3.0"
+"vite@npm:*, vite@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "vite@npm:7.3.1"
   dependencies:
     esbuild: "npm:^0.27.0"
     fdir: "npm:^6.5.0"
@@ -12692,7 +12693,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/044490133aaf4cc024700995edaac10ff182262c721a44a8ac7839207b3e5af435c8b9dd8ee4658dc0f47147fa4211632cca3120177aa4bab99a7cb095e5149e
+  checksum: 10/62e48ffa4283b688f0049005405a004447ad38ffc99a0efea4c3aa9b7eed739f7402b43f00668c0ee5a895b684dc953d62f0722d8a92c5b2f6c95f051bceb208
   languageName: node
   linkType: hard
 
@@ -12728,7 +12729,7 @@ __metadata:
     "@radix-ui/react-tooltip": "npm:^1.2.8"
     "@tailwindcss/vite": "npm:^4.1.18"
     "@tanstack/react-table": "npm:^8.21.3"
-    "@types/node": "npm:^24.10.4"
+    "@types/node": "npm:^24.10.7"
     "@types/react": "npm:19.2.2"
     "@types/react-dom": "npm:19.2.2"
     "@types/uuid": "npm:^11.0.0"
@@ -12745,7 +12746,7 @@ __metadata:
     get-port: "npm:^7.1.0"
     lucide-react: "npm:^0.562.0"
     nats.ws: "npm:^1.30.3"
-    pino: "npm:^10.1.0"
+    pino: "npm:^10.1.1"
     postcss: "npm:^8.5.6"
     prettier: "npm:^3.7.4"
     react: "npm:19.2.0"
@@ -12759,9 +12760,9 @@ __metadata:
     typescript: "npm:^5.9.3"
     usehooks-ts: "npm:^3.1.1"
     uuid: "npm:^13.0.0"
-    vite: "npm:^7.3.0"
+    vite: "npm:^7.3.1"
     vite-plugin-svgr: "npm:^4.5.0"
-    vite-tsconfig-paths: "npm:^6.0.3"
+    vite-tsconfig-paths: "npm:^6.0.4"
     zod: "npm:^4.3.5"
   languageName: unknown
   linkType: soft
