@@ -21,6 +21,18 @@ export default defineConfig({
         },
         externals: /wasi:*/,
       },
+      performance: {
+        chunkSplit: {
+          strategy: 'all-in-one',
+        },
+      },
+      tools: {
+        rspack: (config) => {
+          config.optimization = config.optimization || {};
+          config.optimization.runtimeChunk = false;
+          return config;
+        },
+      },
     },
   ],
 });
