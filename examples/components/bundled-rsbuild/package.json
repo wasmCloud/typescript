@@ -22,7 +22,7 @@
   "license": "ISC",
   "devDependencies": {
     "@bytecodealliance/jco": "^1.15.4",
-    "@rsbuild/plugin-node-polyfill": "^1.4.2",
+    "@rsbuild/plugin-node-polyfill": "^1.4.3",
     "@rslib/core": "^0.19.2",
     "@types/jsonpath": "^0.2.4",
     "@types/node": "^24.10.1",
