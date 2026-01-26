@@ -4417,7 +4417,7 @@ __metadata:
     "@eslint/js": "npm:^9.39.2"
     "@types/node": "npm:^24.10.9"
     eslint-config-prettier: "npm:^10.1.8"
-    eslint-config-turbo: "npm:^2.7.5"
+    eslint-config-turbo: "npm:^2.7.6"
     eslint-config-xo: "npm:^0.49.0"
     eslint-config-xo-react: "npm:^0.29.0"
     eslint-config-xo-typescript: "npm:^9.0.0"
@@ -4430,7 +4430,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.26"
     eslint-plugin-tailwindcss: "npm:3.18.2"
     eslint-plugin-unicorn: "npm:^62.0.0"
-    globals: "npm:^17.0.0"
+    globals: "npm:^17.1.0"
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.53.1"
   peerDependencies:
@@ -4488,7 +4488,7 @@ __metadata:
     "@types/node": "npm:^24.10.9"
     "@wasmcloud/prettier-config": "workspace:*"
     eslint: "npm:^9.38.0"
-    eslint-config-turbo: "npm:^2.7.5"
+    eslint-config-turbo: "npm:^2.7.6"
     prettier: "npm:^3.8.0"
     turbo: "npm:^2.7.5"
     typescript: "npm:^5.9.3"
@@ -6323,15 +6323,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-turbo@npm:^2.7.5":
-  version: 2.7.5
-  resolution: "eslint-config-turbo@npm:2.7.5"
+"eslint-config-turbo@npm:^2.7.6":
+  version: 2.7.6
+  resolution: "eslint-config-turbo@npm:2.7.6"
   dependencies:
-    eslint-plugin-turbo: "npm:2.7.5"
+    eslint-plugin-turbo: "npm:2.7.6"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/8027f5d82e32dd268d2f827956941853074f86832623a46f7deabf879cc6e18f33bfdef83da7d7a2914c0b3bae008517fc8ed0d789d00b0486f7b25af6140ba0
+  checksum: 10/a10b49d15e9901a2346d1fbcb40b68c2b8989519e13b6e36cb30d1590545cb9cc5e214fcfefdfe51342885c8b694aa1fb844ba058eab0a0f6c22e01b66107db5
   languageName: node
   linkType: hard
 
@@ -6552,15 +6552,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-turbo@npm:2.7.5":
-  version: 2.7.5
-  resolution: "eslint-plugin-turbo@npm:2.7.5"
+"eslint-plugin-turbo@npm:2.7.6":
+  version: 2.7.6
+  resolution: "eslint-plugin-turbo@npm:2.7.6"
   dependencies:
     dotenv: "npm:16.0.3"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/a2874ca6142e98c8b15d669f5a31ff67cb54e3e0463af84ea05c17591894f6cf128daff3ea80a662cc09e3d958fe4b3b214e0633ec342352f4f0f24a79039427
+  checksum: 10/3396180d93a6651de1642e2ed3f69977771924f9afad882c464f9ebe16081a948544986e2e756ba9abf34cddfbc20c7581ead0494db360a402859e08dc2b69bb
   languageName: node
   linkType: hard
 
@@ -7446,10 +7446,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^17.0.0":
-  version: 17.0.0
-  resolution: "globals@npm:17.0.0"
-  checksum: 10/af6213db9bf5f599b8a609061984c4d5fedb23db336228b866eba70819fe13ea3d11ca507b4799e8afc888331d0f7e5760d01507e38cb988fff9ad3a9635b312
+"globals@npm:^17.1.0":
+  version: 17.1.0
+  resolution: "globals@npm:17.1.0"
+  checksum: 10/6e77442a3b80b41b11fb4f986326f0487b9872dee6852cc9373e01696787889f4648d2264a125504315a645be0dde61625200e422b5b8002c106ffbabaaf8fdc
   languageName: node
   linkType: hard
 
@@ -9001,12 +9001,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.562.0":
-  version: 0.562.0
-  resolution: "lucide-react@npm:0.562.0"
+"lucide-react@npm:^0.563.0":
+  version: 0.563.0
+  resolution: "lucide-react@npm:0.563.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10/db75efaadd63fef38d3f4c79cadd26c4773d1a462749385a74dc6ffc1ab6684d20a7c1126faca49dc735f2edd2aae7c3af5e946a9299b1ff50f26d5c3670dab0
+  checksum: 10/7d7b95d496f031cf2c6a1281ecc1f8d68a511d4100a14186e888a231d57c0824f8951143a0a45884c727f4d53b46bbc4388d27eac29bfb9030ef081f82ee391e
   languageName: node
   linkType: hard
 
@@ -10390,21 +10390,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^7.12.0":
-  version: 7.12.0
-  resolution: "react-router-dom@npm:7.12.0"
+"react-router-dom@npm:^7.13.0":
+  version: 7.13.0
+  resolution: "react-router-dom@npm:7.13.0"
   dependencies:
-    react-router: "npm:7.12.0"
+    react-router: "npm:7.13.0"
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: 10/d2733cbb00f00617a227a454b3fb76645433ce8564b02a0ff05064a2da782ce192a8d87a2f2ab0c92f899689c0b562096ec8217b6af483b97c17e540257ed5e9
+  checksum: 10/7d0f283302710b54a24254aecdfc680832e0f28256a1743f7190e5742ac6072be70c30f731ee9350dcc4ef832d645e701aeef501b9a075da53ce1668d050322c
   languageName: node
   linkType: hard
 
-"react-router@npm:7.12.0":
-  version: 7.12.0
-  resolution: "react-router@npm:7.12.0"
+"react-router@npm:7.13.0":
+  version: 7.13.0
+  resolution: "react-router@npm:7.13.0"
   dependencies:
     cookie: "npm:^1.0.1"
     set-cookie-parser: "npm:^2.6.0"
@@ -10414,7 +10414,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10/578324f792721200bd57a220c7931af692613943051c9bb0c6303613849ec9a2c2365a3a6afe1b3976c13edc8f71616bb9cfdb13c0ac501f239ad11a6884e3f8
+  checksum: 10/8bc0a1eebf37136851ee345e53b137b5a7ec0de10c842861a06810bb54c0a389826734a7454f4afe8731daf39499948ba73657e60a6bd2acb93b3e567fd79127
   languageName: node
   linkType: hard
 
@@ -12744,7 +12744,7 @@ __metadata:
     eslint: "npm:^9.38.0"
     execa: "npm:^9.6.1"
     get-port: "npm:^7.1.0"
-    lucide-react: "npm:^0.562.0"
+    lucide-react: "npm:^0.563.0"
     nats.ws: "npm:^1.30.3"
     pino: "npm:^10.2.1"
     postcss: "npm:^8.5.6"
@@ -12752,7 +12752,7 @@ __metadata:
     react: "npm:19.2.0"
     react-dom: "npm:19.2.0"
     react-hook-form: "npm:^7.71.1"
-    react-router-dom: "npm:^7.12.0"
+    react-router-dom: "npm:^7.13.0"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tailwind-merge: "npm:^3.3.1"
     tailwindcss: "npm:^4.1.16"
@@ -12763,7 +12763,7 @@ __metadata:
     vite: "npm:^7.3.1"
     vite-plugin-svgr: "npm:^4.5.0"
     vite-tsconfig-paths: "npm:^6.0.4"
-    zod: "npm:^4.3.5"
+    zod: "npm:^4.3.6"
   languageName: unknown
   linkType: soft
 
@@ -12995,9 +12995,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^4.3.5":
-  version: 4.3.5
-  resolution: "zod@npm:4.3.5"
-  checksum: 10/3148bd52e56ab7c1641ec397e6be6eddbb1d8f5db71e95baab9bb9622a0ea49d8a385885fc1c22b90fa6d8c5234e051f4ef5d469cfe3fb90198d5a91402fd89c
+"zod@npm:^4.3.6":
+  version: 4.3.6
+  resolution: "zod@npm:4.3.6"
+  checksum: 10/25fc0f62e01b557b4644bf0b393bbaf47542ab30877c37837ea8caf314a8713d220c7d7fe51f68ffa72f0e1018ddfa34d96f1973d23033f5a2a5a9b6b9d9da01
   languageName: node
   linkType: hard
