@@ -45,7 +45,7 @@
     "@types/eslint": "~9.6.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
-    "@vitejs/plugin-react": "^5.1.2",
+    "@vitejs/plugin-react": "^5.1.3",
     "@wasmcloud/eslint-config": "workspace:^",
     "@wasmcloud/tsconfig": "workspace:^",
     "eslint": "^9.38.0",
