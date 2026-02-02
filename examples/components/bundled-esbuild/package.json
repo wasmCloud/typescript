@@ -22,7 +22,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.15.4",
+    "@bytecodealliance/jco": "^1.16.0",
     "@types/jsonpath": "^0.2.4",
     "@types/node": "^24.10.9",
     "esbuild": "^0.27.2",
@@ -30,7 +30,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "fast-xml-parser": "^5.3.3",
+    "fast-xml-parser": "^5.3.4",
     "remeda": "^2.33.4"
   }
 }
