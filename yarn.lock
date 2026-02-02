@@ -4417,7 +4417,7 @@ __metadata:
     "@eslint/js": "npm:^9.39.2"
     "@types/node": "npm:^24.10.9"
     eslint-config-prettier: "npm:^10.1.8"
-    eslint-config-turbo: "npm:^2.7.6"
+    eslint-config-turbo: "npm:^2.8.1"
     eslint-config-xo: "npm:^0.49.0"
     eslint-config-xo-react: "npm:^0.29.0"
     eslint-config-xo-typescript: "npm:^9.0.0"
@@ -4427,10 +4427,10 @@ __metadata:
     eslint-plugin-no-use-extend-native: "npm:^0.7.2"
     eslint-plugin-react: "npm:^7.37.5"
     eslint-plugin-react-hooks: "npm:^7.0.1"
-    eslint-plugin-react-refresh: "npm:^0.4.26"
+    eslint-plugin-react-refresh: "npm:^0.5.0"
     eslint-plugin-tailwindcss: "npm:3.18.2"
     eslint-plugin-unicorn: "npm:^62.0.0"
-    globals: "npm:^17.2.0"
+    globals: "npm:^17.3.0"
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.54.0"
   peerDependencies:
@@ -4449,7 +4449,7 @@ __metadata:
     nats.ws: "npm:^1.30.3"
     rollup-plugin-sourcemaps: "npm:^0.6.3"
     tsup: "npm:^8.5.1"
-    type-fest: "npm:^5.4.2"
+    type-fest: "npm:^5.4.3"
     vite: "npm:^7.3.1"
     vite-plugin-dts: "npm:^4.5.4"
     vite-tsconfig-paths: "npm:^6.0.5"
@@ -4488,7 +4488,7 @@ __metadata:
     "@types/node": "npm:^24.10.9"
     "@wasmcloud/prettier-config": "workspace:*"
     eslint: "npm:^9.38.0"
-    eslint-config-turbo: "npm:^2.7.6"
+    eslint-config-turbo: "npm:^2.8.1"
     prettier: "npm:^3.8.1"
     turbo: "npm:^2.8.0"
     typescript: "npm:^5.9.3"
@@ -6323,15 +6323,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-turbo@npm:^2.7.6":
-  version: 2.7.6
-  resolution: "eslint-config-turbo@npm:2.7.6"
+"eslint-config-turbo@npm:^2.8.1":
+  version: 2.8.1
+  resolution: "eslint-config-turbo@npm:2.8.1"
   dependencies:
-    eslint-plugin-turbo: "npm:2.7.6"
+    eslint-plugin-turbo: "npm:2.8.1"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/a10b49d15e9901a2346d1fbcb40b68c2b8989519e13b6e36cb30d1590545cb9cc5e214fcfefdfe51342885c8b694aa1fb844ba058eab0a0f6c22e01b66107db5
+  checksum: 10/59953c3fd7824bcc8404b4b302767a462f26ca66859eea09b862bb835ddcfd64d725f37cec20130c7f6947d47197bf30c27ac0fe91dcdab950578ba125f4128d
   languageName: node
   linkType: hard
 
@@ -6503,12 +6503,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:^0.4.26":
-  version: 0.4.26
-  resolution: "eslint-plugin-react-refresh@npm:0.4.26"
+"eslint-plugin-react-refresh@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "eslint-plugin-react-refresh@npm:0.5.0"
   peerDependencies:
-    eslint: ">=8.40"
-  checksum: 10/068da7edcd39d802dda4c03b7ea8923891145eb95f4dfd4cfce82a53a5eb55f5cbe66b33cf8e57b71f1525a684517bda4bfca1bc5c6b12c82ba03c9e8197764d
+    eslint: ">=9"
+  checksum: 10/4808dee9ac4e34eff8e28cc314e132f19cd479ac47067ebbd5cabe820848f16abadf759fc7360938e2f3fc851eb85357def1d139a8bcc1eec64ac2d9e2b4d499
   languageName: node
   linkType: hard
 
@@ -6552,15 +6552,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-turbo@npm:2.7.6":
-  version: 2.7.6
-  resolution: "eslint-plugin-turbo@npm:2.7.6"
+"eslint-plugin-turbo@npm:2.8.1":
+  version: 2.8.1
+  resolution: "eslint-plugin-turbo@npm:2.8.1"
   dependencies:
     dotenv: "npm:16.0.3"
   peerDependencies:
     eslint: ">6.6.0"
     turbo: ">2.0.0"
-  checksum: 10/3396180d93a6651de1642e2ed3f69977771924f9afad882c464f9ebe16081a948544986e2e756ba9abf34cddfbc20c7581ead0494db360a402859e08dc2b69bb
+  checksum: 10/28c2de792e1bcdd9bca2a7230d872e053b36303d6a77e5f1082950264415b4d88c0935b3330de4fc5e2c1010a429e284a24ae28dfd4ae92f81b4d7741d919a71
   languageName: node
   linkType: hard
 
@@ -7446,10 +7446,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^17.2.0":
-  version: 17.2.0
-  resolution: "globals@npm:17.2.0"
-  checksum: 10/2812d7ae9a2889da33cad5188e6fe7c2d1a615e62d8e2092fbaa76a016536c2fcd72aba25896d8c6112fa0f2d95f005f59bf1dfc81ee014fe1ba54326ce14e57
+"globals@npm:^17.3.0":
+  version: 17.3.0
+  resolution: "globals@npm:17.3.0"
+  checksum: 10/44ba2b7db93eb6a2531dfba09219845e21f2e724a4f400eb59518b180b7d5bcf7f65580530e3d3023d7dc2bdbacf5d265fd87c393f567deb9a2b0472b51c9d5e
   languageName: node
   linkType: hard
 
@@ -12054,12 +12054,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^5.4.2":
-  version: 5.4.2
-  resolution: "type-fest@npm:5.4.2"
+"type-fest@npm:^5.4.3":
+  version: 5.4.3
+  resolution: "type-fest@npm:5.4.3"
   dependencies:
     tagged-tag: "npm:^1.0.0"
-  checksum: 10/6fdd99fcc66f9edf3dc019e3c33e01207c8a02269c0457ebecc76a26f303e420928d7aa39f34cdec42344af2129ad5d7c3a3d8d0407c7afc62711b972340c1fb
+  checksum: 10/2e09e5fe3ce29eefa85b29911aed570b12567559a8c091b6f898877d94ce0ad1c7031fdd0d05808358354bfdfed203e9792ad341db639df689ad28c1431d0bef
   languageName: node
   linkType: hard
 
