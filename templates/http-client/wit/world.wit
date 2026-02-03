@@ -1,0 +1,5 @@
+package wasmcloud:http-client;
+
+world hello {
+  export wasi:http/incoming-handler@0.2.3; // <---- This export enables responding to HTTP requests
+}
