@@ -5,7 +5,7 @@ This project template is a WebAssembly component built with [TypeScript][ts] tha
 [ts]: https://www.typescriptlang.org/
 [hono]: https://hono.dev/
 [wasi-http]: https://github.com/WebAssembly/WASI/tree/main/proposals/http
-[jco-std]: https://github.com/nicholaslyang/jco-std
+[jco-std]: https://github.com/bytecodealliance/jco/tree/main/packages/jco-std
 
 ## Prerequisites
 

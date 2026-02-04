@@ -3,30 +3,117 @@ interface FetchEvent extends Event {
   respondWith(response: Response | Promise<Response>): void;
 }
 
-addEventListener('fetch', (event) =>
-  (event as FetchEvent).respondWith(handleRequest((event as FetchEvent).request)),
-);
+// Headers that should not be forwarded to the target URL
+const SKIP_HEADERS = new Set(['host', 'connection', 'transfer-encoding']);
+
+// Default target URLs by HTTP method
+const DEFAULT_URLS: Record<string, string> = {
+  GET: 'https://httpbin.org/get',
+  POST: 'https://httpbin.org/post',
+  PUT: 'https://httpbin.org/put',
+  DELETE: 'https://httpbin.org/delete',
+  PATCH: 'https://httpbin.org/patch',
+};
+
+// Methods that support request bodies
+const BODY_METHODS = new Set(['POST', 'PUT', 'PATCH']);
+
+addEventListener('fetch', (event) => {
+  const fetchEvent = event as FetchEvent;
+  fetchEvent.respondWith(handleRequest(fetchEvent.request));
+});
 
 async function handleRequest(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const path = url.pathname;
 
   if (path.startsWith('/request')) {
-    return handleProxyRequest(request, url, 'raw');
+    return proxyRequest(request, url, 'raw');
   }
 
   if (path.startsWith('/json')) {
-    return handleProxyRequest(request, url, 'json');
+    return proxyRequest(request, url, 'json');
   }
 
   if (path.startsWith('/headers')) {
-    return handleProxyRequest(request, url, 'headers');
+    return proxyRequest(request, url, 'headers');
   }
 
-  // Default response with usage information
-  return new Response(`HTTP Client Template
+  return new Response(HELP_TEXT);
+}
 
-This component makes outgoing HTTP requests.
+type ResponseMode = 'raw' | 'json' | 'headers';
+
+async function proxyRequest(request: Request, url: URL, mode: ResponseMode): Promise<Response> {
+  const targetUrl = url.searchParams.get('url') || DEFAULT_URLS[request.method] || DEFAULT_URLS.GET;
+
+  // Forward headers, excluding those that shouldn't be proxied
+  const headers = new Headers();
+  request.headers.forEach((value, key) => {
+    if (!SKIP_HEADERS.has(key.toLowerCase())) {
+      headers.set(key, value);
+    }
+  });
+
+  // Read request body for methods that support it
+  const body = BODY_METHODS.has(request.method) ? await request.text() : null;
+
+  try {
+    const response = await fetch(targetUrl, {
+      method: request.method,
+      headers,
+      body,
+    });
+
+    if (mode === 'headers') {
+      return jsonResponse({
+        url: targetUrl,
+        status: response.status,
+        statusText: response.statusText,
+        headers: headersToObject(response.headers),
+      });
+    }
+
+    const responseBody = await response.text();
+
+    if (mode === 'json') {
+      try {
+        const json = JSON.parse(responseBody);
+        return jsonResponse(json, response.status);
+      } catch {
+        return jsonResponse({ error: 'Response is not valid JSON', raw: responseBody }, 500);
+      }
+    }
+
+    // Raw mode
+    return new Response(`Status: ${response.status}\nBody: ${responseBody}`);
+  } catch (error) {
+    const message = `Request failed: ${error}`;
+    if (mode === 'json' || mode === 'headers') {
+      return jsonResponse({ error: message }, 500);
+    }
+    return new Response(`Error making request: ${error}`, { status: 500 });
+  }
+}
+
+function jsonResponse(data: unknown, status = 200): Response {
+  return new Response(JSON.stringify(data, null, 2), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
+
+function headersToObject(headers: Headers): Record<string, string> {
+  const obj: Record<string, string> = {};
+  headers.forEach((value, key) => {
+    obj[key] = value;
+  });
+  return obj;
+}
+
+const HELP_TEXT = `HTTP Client Template
+
+This component makes outgoing HTTP requests using the standard fetch() API.
 
 Endpoints:
   /request  - Proxy requests and return raw response
@@ -34,24 +121,19 @@ Endpoints:
   /headers  - Proxy requests and return response headers
 
 Usage:
-  GET    /request            - Send GET request to httpbin.org/get
-  POST   /request            - Send POST request to httpbin.org/post
-  PUT    /request            - Send PUT request to httpbin.org/put
-  DELETE /request            - Send DELETE request to httpbin.org/delete
-  PATCH  /request            - Send PATCH request to httpbin.org/patch
+  GET    /request            - Forward GET to httpbin.org/get
+  POST   /request            - Forward POST to httpbin.org/post
+  PUT    /request            - Forward PUT to httpbin.org/put
+  DELETE /request            - Forward DELETE to httpbin.org/delete
+  PATCH  /request            - Forward PATCH to httpbin.org/patch
 
-  GET    /json               - Send GET request and return parsed JSON
-  POST   /json               - Send POST request and return parsed JSON
-
-  GET    /headers            - Send GET request and return response headers
-
-  Any endpoint with ?url=URL - Send request to the specified URL
+  Any endpoint with ?url=URL - Forward request to the specified URL
 
 Features:
   - Custom headers are forwarded to the target URL
   - Request body is forwarded for POST, PUT, and PATCH requests
-  - /json endpoint returns formatted JSON with proper Content-Type
-  - /headers endpoint shows all response headers
+  - /json endpoint parses and formats JSON responses
+  - /headers endpoint returns response headers as JSON
 
 Examples:
   curl http://localhost:8000/request
@@ -59,102 +141,4 @@ Examples:
   curl http://localhost:8000/json
   curl http://localhost:8000/headers
   curl 'http://localhost:8000/headers?url=https://api.github.com'
-`);
-}
-
-type ResponseMode = 'raw' | 'json' | 'headers';
-
-async function handleProxyRequest(
-  request: Request,
-  url: URL,
-  mode: ResponseMode,
-): Promise<Response> {
-  // Use method-appropriate default URLs for httpbin
-  const defaultUrls: Record<string, string> = {
-    GET: 'https://httpbin.org/get',
-    POST: 'https://httpbin.org/post',
-    PUT: 'https://httpbin.org/put',
-    DELETE: 'https://httpbin.org/delete',
-    PATCH: 'https://httpbin.org/patch',
-  };
-
-  const targetUrl = url.searchParams.get('url') || defaultUrls[request.method] || defaultUrls.GET;
-
-  // Forward selected headers from the incoming request
-  // Skip headers that shouldn't be forwarded (host, connection, etc.)
-  const skipHeaders = ['host', 'connection', 'transfer-encoding'];
-  const outgoingHeaders = new Headers();
-
-  request.headers.forEach((value, key) => {
-    if (!skipHeaders.includes(key.toLowerCase())) {
-      outgoingHeaders.set(key, value);
-    }
-  });
-
-  // Read the request body for methods that support it
-  let body: string | null = null;
-  if (['POST', 'PUT', 'PATCH'].includes(request.method)) {
-    body = await request.text();
-  }
-
-  try {
-    // Forward the request method, headers, and body to the target URL
-    const response = await fetch(targetUrl, {
-      method: request.method,
-      headers: outgoingHeaders,
-      body: body,
-    });
-
-    // Headers mode - return response headers as JSON
-    if (mode === 'headers') {
-      const headersObj: Record<string, string> = {};
-      response.headers.forEach((value, key) => {
-        headersObj[key] = value;
-      });
-
-      const result = {
-        url: targetUrl,
-        status: response.status,
-        statusText: response.statusText,
-        headers: headersObj,
-      };
-
-      return new Response(JSON.stringify(result, null, 2), {
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    const responseBody = await response.text();
-
-    // JSON mode - parse and format JSON response
-    if (mode === 'json') {
-      try {
-        const json = JSON.parse(responseBody);
-        return new Response(JSON.stringify(json, null, 2), {
-          status: response.status,
-          headers: { 'Content-Type': 'application/json' },
-        });
-      } catch {
-        return new Response(
-          JSON.stringify({ error: 'Response is not valid JSON', raw: responseBody }, null, 2),
-          {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-          },
-        );
-      }
-    }
-
-    // Raw mode - return status and body as text
-    return new Response(`Status: ${response.status}\nBody: ${responseBody}`);
-  } catch (e) {
-    const errorResponse = { error: `Request failed: ${e}` };
-    if (mode === 'json' || mode === 'headers') {
-      return new Response(JSON.stringify(errorResponse, null, 2), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-    return new Response(`Error making request: ${e}`, { status: 500 });
-  }
-}
+`;

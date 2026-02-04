@@ -21,6 +21,15 @@ type Variables = {
   requestId: string;
 };
 
+// Helper to convert Headers to a plain object
+function headersToObject(headers: Headers): Record<string, string> {
+  const obj: Record<string, string> = {};
+  headers.forEach((value, key) => {
+    obj[key] = value;
+  });
+  return obj;
+}
+
 // Simulated database
 const items = new Map<string, Item>();
 let nextId = 1;
@@ -41,9 +50,9 @@ const app = new Hono<{ Variables: Variables }>();
 // Build logger for WASI environment
 const log = buildLogger();
 
-// ============================================================================
+// ---------------------------------------------------------------------------
 // Middleware
-// ============================================================================
+// ---------------------------------------------------------------------------
 
 // Request logging
 app.use('*', logger(log));
@@ -76,9 +85,9 @@ app.use('*', async (c, next) => {
   await next();
 });
 
-// ============================================================================
+// ---------------------------------------------------------------------------
 // Root routes
-// ============================================================================
+// ---------------------------------------------------------------------------
 
 // API information
 app.get('/', (c) => {
@@ -142,9 +151,9 @@ app.get('/redirect', (c) => {
   return c.redirect('/');
 });
 
-// ============================================================================
+// ---------------------------------------------------------------------------
 // API Routes: Items (RESTful CRUD)
-// ============================================================================
+// ---------------------------------------------------------------------------
 
 const api = new Hono<{ Variables: Variables }>();
 
@@ -251,28 +260,22 @@ api.delete('/items/:id', (c) => {
   return c.json({ deleted: true, id });
 });
 
-// ============================================================================
+// ---------------------------------------------------------------------------
 // API Routes: Echo (for testing)
-// ============================================================================
+// ---------------------------------------------------------------------------
 
 // Echo query parameters
 api.get('/echo', (c) => {
   const queries: Record<string, string> = {};
-  const url = new URL(c.req.url);
-  url.searchParams.forEach((value, key) => {
+  new URL(c.req.url).searchParams.forEach((value, key) => {
     queries[key] = value;
-  });
-
-  const headers: Record<string, string> = {};
-  c.req.raw.headers.forEach((value, key) => {
-    headers[key] = value;
   });
 
   return c.json({
     method: c.req.method,
     path: c.req.path,
     queries,
-    headers,
+    headers: headersToObject(c.req.raw.headers),
     requestId: c.get('requestId'),
   });
 });
@@ -281,26 +284,17 @@ api.get('/echo', (c) => {
 api.post('/echo', async (c) => {
   const contentType = c.req.header('Content-Type') || '';
 
-  let body: unknown;
-  if (contentType.includes('application/json')) {
-    body = await c.req.json();
-  } else if (contentType.includes('text/')) {
-    body = await c.req.text();
-  } else {
-    body = await c.req.text();
-  }
-
-  const headers: Record<string, string> = {};
-  c.req.raw.headers.forEach((value, key) => {
-    headers[key] = value;
-  });
+  // Parse body based on content type
+  const body = contentType.includes('application/json')
+    ? await c.req.json()
+    : await c.req.text();
 
   return c.json({
     method: c.req.method,
     path: c.req.path,
     contentType,
     body,
-    headers,
+    headers: headersToObject(c.req.raw.headers),
     requestId: c.get('requestId'),
   });
 });
@@ -308,9 +302,9 @@ api.post('/echo', async (c) => {
 // Mount API routes under /api prefix
 app.route('/api', api);
 
-// ============================================================================
+// ---------------------------------------------------------------------------
 // Error Handling
-// ============================================================================
+// ---------------------------------------------------------------------------
 
 // Custom 404 handler
 app.notFound((c) => {
@@ -348,9 +342,9 @@ app.onError((err, c) => {
   );
 });
 
-// ============================================================================
+// ---------------------------------------------------------------------------
 // Fire the app with WASI HTTP adapter
-// ============================================================================
+// ---------------------------------------------------------------------------
 
 fire(app);
 
