@@ -11,6 +11,7 @@ This repository is a TypeScript monorepo containing libraries, applications, and
 - **Libraries** (`packages/`) - Reusable TypeScript packages for wasmCloud development
 - **Applications** (`apps/`) - Production applications built with wasmCloud
 - **Examples** (`examples/`) - Sample components and usage patterns
+- **Templates** (`templates/`) - Project templates for scaffolding new wasmCloud components
 
 ## 📦 Packages
 
@@ -44,6 +45,18 @@ This repository is a TypeScript monorepo containing libraries, applications, and
 [docs-components]: https://wasmcloud.com/docs/concepts/components/
 [docs-ts]: https://wasmcloud.com/docs/developer/languages/typescript/components/
 [dir-components]: ./examples/components/
+
+## 🧩 Project Templates
+
+Project templates for scaffolding new wasmCloud component projects. Use with `wash new component`.
+
+| Template                                            | Description                                     |
+| --------------------------------------------------- | ----------------------------------------------- |
+| [http-hello-world](./templates/http-hello-world/)   | Minimal HTTP component returning "Hello"        |
+| [http-client](./templates/http-client/)             | Component that makes outgoing HTTP requests     |
+| [http-service-hono](./templates/http-service-hono/) | HTTP service component powered by Hono          |
+
+See the [templates README](./templates/README.md) for more details.
 
 ## 🛠️ Development
 

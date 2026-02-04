@@ -3,4 +3,4 @@ new:
 
 build:
   command: npm run build
-  component_path: dist/http_client.wasm
+  component_path: dist/http_hello_world.wasm

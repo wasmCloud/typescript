@@ -1,0 +1,23 @@
+{
+  "name": "http-hello-world",
+  "version": "0.1.0",
+  "description": "A minimal WebAssembly component that responds to HTTP requests with a hello world message",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "fetch:wit": "wkg wit fetch",
+    "generate:types": "jco types wit -o generated/types",
+    "build:ts": "tsc",
+    "build:component": "jco componentize -w wit -o dist/http_hello_world.wasm dist/index.js",
+    "build": "npm run fetch:wit && npm run generate:types && npm run build:ts && npm run build:component",
+    "serve": "jco serve dist/http_hello_world.wasm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.15.4",
+    "typescript": "^5.9.3"
+  }
+}
