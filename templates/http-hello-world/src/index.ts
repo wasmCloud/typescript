@@ -3,10 +3,7 @@ interface FetchEvent extends Event {
   respondWith(response: Response | Promise<Response>): void;
 }
 
-addEventListener('fetch', (event) =>
-  (event as FetchEvent).respondWith(
-    (async () => {
-      return new Response('Hello from TypeScript!\n');
-    })(),
-  ),
-);
+addEventListener('fetch', (event) => {
+  const fetchEvent = event as FetchEvent;
+  fetchEvent.respondWith(new Response('Hello from TypeScript!\n'));
+});
