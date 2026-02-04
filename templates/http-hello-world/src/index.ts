@@ -1,6 +1,6 @@
 interface FetchEvent extends Event {
-  respondWith(response: Promise<Response> | Response): void;
   request: Request;
+  respondWith(response: Response | Promise<Response>): void;
 }
 
 addEventListener('fetch', (event) =>

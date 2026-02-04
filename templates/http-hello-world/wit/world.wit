@@ -1,6 +1,5 @@
 package wasmcloud:templates;
 
-world typescript-http-client {
-  import wasi:http/outgoing-handler@0.2.3;
+world typescript-http-hello-world {
   export wasi:http/incoming-handler@0.2.3;
 }
