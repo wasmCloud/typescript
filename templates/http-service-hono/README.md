@@ -1,6 +1,12 @@
 # HTTP Service with Hono in TypeScript
 
-This project template is a WebAssembly component built with [TypeScript][ts] that demonstrates a comprehensive HTTP service using the [Hono][hono] web framework, making requests against a simulated database. The component implements the [`wasi:http/incoming-handler`][wasi-http] interface via the [`@bytecodealliance/jco-std`][jco-std] adapter.
+This project template is a WebAssembly component built with [TypeScript][ts] that demonstrates a comprehensive HTTP service using the [Hono][hono] web framework, making requests against a simulated database.
+
+To bridge Hono's API and WebAssembly primitives, this component makes use of the [`@bytecodealliance/jco-std`][jco-std] adapter (which translates Hono API to [`wasi:http/incoming-handler`][wasi-http] primitives).
+
+This project also uses [`rolldown`][rolldown] to transpile Typescript and bundle dependencies (like Hono) with our WebAssembly component code into a single `dist/component.js` build output.
+
+[rolldown]: https://rolldown.rs/
 
 [ts]: https://www.typescriptlang.org/
 [hono]: https://hono.dev/
@@ -115,9 +121,9 @@ The service includes comprehensive error handling:
 npm run build
 ```
 
-## Interfaces
+## WIT Interfaces
 
-This component exports the following WIT interface:
+This component exports the following [WIT interfaces](https://component-model.bytecodealliance.org/design/wit.html):
 
 ```wit
 world typescript-http-service-hono {
@@ -125,4 +131,3 @@ world typescript-http-service-hono {
 }
 ```
 
-The component uses [Hono](https://hono.dev/) to provide a familiar, Express-like API for building HTTP services in WebAssembly.

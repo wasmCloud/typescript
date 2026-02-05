@@ -4,13 +4,13 @@
   "description": "A WebAssembly component that makes outgoing HTTP requests using the fetch API",
   "private": true,
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/component.js",
   "scripts": {
     "fetch:wit": "wash wit fetch",
     "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
-    "setup:wit": "[ -d wit/deps ] || (npm run fetch:wit && npm run generate:types)",
+    "setup:wit": "npm run fetch:wit && npm run generate:types",
     "build:ts": "tsc",
-    "build:component": "jco componentize -w wit -o dist/http_client.wasm dist/index.js",
+    "build:component": "jco componentize -w wit -o dist/http_client.wasm dist/component.js",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component",
     "dev": "nodemon --watch src --ext ts --exec \"wash dev\""
   },

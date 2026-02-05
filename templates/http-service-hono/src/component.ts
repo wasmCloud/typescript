@@ -1,59 +1,17 @@
 import { Hono } from 'hono';
 import { logger } from 'hono/logger';
 import { HTTPException } from 'hono/http-exception';
-import { z } from 'zod';
 import {
   fire,
   buildLogger,
 } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
-
-// Validation schemas
-const createItemSchema = z.object({
-  name: z.string().min(1, 'Name is required and must be a non-empty string'),
-  description: z.string().optional(),
-});
-
-const updateItemSchema = z.object({
-  name: z.string().min(1, 'Name must be a non-empty string').optional(),
-  description: z.string().optional(),
-});
-
-// Types
-interface Item {
-  id: string;
-  name: string;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { itemsRouter } from './routes/items.js';
+import { echoRouter } from './routes/echo.js';
 
 // Hono context variables type
 type Variables = {
   requestId: string;
 };
-
-// Helper to convert Headers to a plain object
-function headersToObject(headers: Headers): Record<string, string> {
-  const obj: Record<string, string> = {};
-  headers.forEach((value, key) => {
-    obj[key] = value;
-  });
-  return obj;
-}
-
-// Simulated database
-const items = new Map<string, Item>();
-let nextId = 1;
-
-// Initialize with sample data
-items.set('1', {
-  id: '1',
-  name: 'Sample Item',
-  description: 'This is a sample item',
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString(),
-});
-nextId = 2;
 
 // Create the main app with typed variables
 const app = new Hono<{ Variables: Variables }>();
@@ -128,7 +86,7 @@ app.get('/html', (c) => {
   </style>
 </head>
 <body>
-  <h1>🔥 Hono on wasmCloud</h1>
+  <h1>Hono on wasmCloud</h1>
   <p>This HTML page is served by a WebAssembly component running on wasmCloud.</p>
   <h2>Available Endpoints</h2>
   <div class="endpoint"><code>GET /</code> - API information (JSON)</div>
@@ -151,155 +109,11 @@ app.get('/redirect', (c) => {
 });
 
 // ---------------------------------------------------------------------------
-// API Routes: Items (RESTful CRUD)
+// Mount API routes
 // ---------------------------------------------------------------------------
 
-const api = new Hono<{ Variables: Variables }>();
-
-// List all items
-api.get('/items', (c) => {
-  const itemList = Array.from(items.values());
-
-  // Support filtering by name via query parameter
-  const nameFilter = c.req.query('name');
-  const filtered = nameFilter
-    ? itemList.filter((item) => item.name.toLowerCase().includes(nameFilter.toLowerCase()))
-    : itemList;
-
-  // Support pagination via query parameters
-  const limit = parseInt(c.req.query('limit') || '10', 10);
-  const offset = parseInt(c.req.query('offset') || '0', 10);
-  const paginated = filtered.slice(offset, offset + limit);
-
-  return c.json({
-    items: paginated,
-    total: filtered.length,
-    limit,
-    offset,
-  });
-});
-
-// Get single item by ID
-api.get('/items/:id', (c) => {
-  const id = c.req.param('id');
-  const item = items.get(id);
-
-  if (!item) {
-    throw new HTTPException(404, { message: `Item with id '${id}' not found` });
-  }
-
-  return c.json(item);
-});
-
-// Create new item
-api.post('/items', async (c) => {
-  const json = await c.req.json();
-  const result = createItemSchema.safeParse(json);
-
-  if (!result.success) {
-    throw new HTTPException(400, { message: result.error.errors[0].message });
-  }
-
-  const id = String(nextId++);
-  const now = new Date().toISOString();
-
-  const newItem: Item = {
-    id,
-    name: result.data.name.trim(),
-    description: result.data.description?.trim() || '',
-    createdAt: now,
-    updatedAt: now,
-  };
-
-  items.set(id, newItem);
-
-  c.status(201);
-  c.header('Location', `/api/items/${id}`);
-  return c.json(newItem);
-});
-
-// Update item
-api.put('/items/:id', async (c) => {
-  const id = c.req.param('id');
-  const existing = items.get(id);
-
-  if (!existing) {
-    throw new HTTPException(404, { message: `Item with id '${id}' not found` });
-  }
-
-  const json = await c.req.json();
-  const result = updateItemSchema.safeParse(json);
-
-  if (!result.success) {
-    throw new HTTPException(400, { message: result.error.errors[0].message });
-  }
-
-  const updated: Item = {
-    ...existing,
-    name: result.data.name?.trim() ?? existing.name,
-    description: result.data.description?.trim() ?? existing.description,
-    updatedAt: new Date().toISOString(),
-  };
-
-  items.set(id, updated);
-
-  return c.json(updated);
-});
-
-// Delete item
-api.delete('/items/:id', (c) => {
-  const id = c.req.param('id');
-
-  if (!items.has(id)) {
-    throw new HTTPException(404, { message: `Item with id '${id}' not found` });
-  }
-
-  items.delete(id);
-
-  return c.json({ deleted: true, id });
-});
-
-// ---------------------------------------------------------------------------
-// API Routes: Echo (for testing)
-// ---------------------------------------------------------------------------
-
-// Echo query parameters
-api.get('/echo', (c) => {
-  const queries: Record<string, string> = {};
-  new URL(c.req.url).searchParams.forEach((value, key) => {
-    queries[key] = value;
-  });
-
-  return c.json({
-    method: c.req.method,
-    path: c.req.path,
-    queries,
-    headers: headersToObject(c.req.raw.headers),
-    requestId: c.get('requestId'),
-  });
-});
-
-// Echo request body
-api.post('/echo', async (c) => {
-  const contentType = c.req.header('Content-Type') || '';
-
-  // Parse body based on content type
-  const body = contentType.includes('application/json')
-    ? await c.req.json()
-    : await c.req.text();
-
-  return c.json({
-    method: c.req.method,
-    path: c.req.path,
-    contentType,
-    body,
-    headers: headersToObject(c.req.raw.headers),
-    requestId: c.get('requestId'),
-  });
-});
-
-// Mount API routes under /api prefix
-app.route('/api', api);
+app.route('/api/items', itemsRouter);
+app.route('/api/echo', echoRouter);
 
 // ---------------------------------------------------------------------------
 // Error Handling

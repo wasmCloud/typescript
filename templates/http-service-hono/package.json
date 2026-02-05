@@ -8,7 +8,7 @@
   "scripts": {
     "fetch:wit": "wash wit fetch",
     "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
-    "setup:wit": "[ -d wit/deps ] || (npm run fetch:wit && npm run generate:types)",
+    "setup:wit": "npm run fetch:wit && npm run generate:types",
     "build:ts": "rolldown -c rolldown.config.mjs",
     "build:component": "jco componentize -w wit -o dist/http_service_hono.wasm dist/component.js",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component",
@@ -21,7 +21,7 @@
   "dependencies": {
     "@bytecodealliance/jco-std": "^0.1.0",
     "hono": "^4.10.4",
-    "zod": "^3.24.0"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "^1.15.4",

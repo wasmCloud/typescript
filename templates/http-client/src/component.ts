@@ -3,6 +3,34 @@ interface FetchEvent extends Event {
   respondWith(response: Response | Promise<Response>): void;
 }
 
+addEventListener('fetch', (event) => {
+  const fetchEvent = event as FetchEvent;
+  fetchEvent.respondWith(handleRequest(fetchEvent.request));
+});
+
+async function handleRequest(request: Request): Promise<Response> {
+  const url = new URL(request.url);
+  const path = url.pathname;
+
+  if (path.startsWith('/request')) {
+    return await proxyRequest(request, url, 'raw');
+  }
+
+  if (path.startsWith('/json')) {
+    return await proxyRequest(request, url, 'json');
+  }
+
+  if (path.startsWith('/headers')) {
+    return await proxyRequest(request, url, 'headers');
+  }
+
+  return new Response(HELP_TEXT);
+}
+
+// ---------------------------------------------------------------------------
+// Proxy
+// ---------------------------------------------------------------------------
+
 // Headers that should not be forwarded to the target URL
 const SKIP_HEADERS = new Set(['host', 'connection', 'transfer-encoding']);
 
@@ -20,30 +48,6 @@ const BODY_METHODS = new Set(['POST', 'PUT', 'PATCH']);
 
 // Maximum request body size (1MB)
 const MAX_BODY_SIZE = 1024 * 1024;
-
-addEventListener('fetch', (event) => {
-  const fetchEvent = event as FetchEvent;
-  fetchEvent.respondWith(handleRequest(fetchEvent.request));
-});
-
-async function handleRequest(request: Request): Promise<Response> {
-  const url = new URL(request.url);
-  const path = url.pathname;
-
-  if (path.startsWith('/request')) {
-    return proxyRequest(request, url, 'raw');
-  }
-
-  if (path.startsWith('/json')) {
-    return proxyRequest(request, url, 'json');
-  }
-
-  if (path.startsWith('/headers')) {
-    return proxyRequest(request, url, 'headers');
-  }
-
-  return new Response(HELP_TEXT);
-}
 
 type ResponseMode = 'raw' | 'json' | 'headers';
 
@@ -124,6 +128,10 @@ async function proxyRequest(request: Request, url: URL, mode: ResponseMode): Pro
     return new Response(`Error making request: ${error}`, { status: 500 });
   }
 }
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
 
 function jsonResponse(data: unknown, status = 200): Response {
   return new Response(JSON.stringify(data, null, 2), {

@@ -48,7 +48,13 @@ This repository is a TypeScript monorepo containing libraries, applications, and
 
 ## 🧩 Project Templates
 
-Project templates for scaffolding new wasmCloud component projects. Use with `wash new component`.
+Project templates for scaffolding new wasmCloud component projects.
+
+These templates can be used with `wash new`:
+
+```bash
+wash new https://github.com/wasmCloud/typescript.git --name my-project --subfolder templates/<template-name>
+```
 
 | Template                                            | Description                                     |
 | --------------------------------------------------- | ----------------------------------------------- |
