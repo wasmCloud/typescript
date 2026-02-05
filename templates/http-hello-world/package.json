@@ -4,7 +4,7 @@
   "description": "A minimal WebAssembly component that responds to HTTP requests with a hello world message",
   "private": true,
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/component.js",
   "scripts": {
     "fetch:wit": "wash wit fetch",
     "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
