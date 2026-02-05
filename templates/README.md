@@ -45,7 +45,9 @@ After running `wash new`, you will be prompted to execute the template's setup c
 
 ### Template conventions
 
-Every template follows the convention of namespace as `wasmcloud`, package as `templates`, and the world is prefixed with the language, e.g. for this repo `typescript`, and then the use-case. We are versioning our templates so that we will be able to update them going forward like when adding support for WASIP3.
+Every template follows the convention of namespace as `wasmcloud`, package as `templates`, and the world is prefixed with the language, e.g. for this repo `typescript`, and then the use-case. 
+
+We version our templates for easy future updates (e.g. when adding support for WASIP3).
 
 For example:
 
