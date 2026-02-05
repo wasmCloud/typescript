@@ -35,7 +35,7 @@ npm run dev
 
 ### Send a request to the running component
 
-Once `wash dev` is serving your component, send a request:
+Once `npm run dev` is serving your component, send a request:
 
 ```shell
 curl localhost:8000
@@ -51,9 +51,9 @@ Hello from TypeScript!
 npm run build
 ```
 
-## Interfaces
+## WIT Interfaces
 
-This component exports the following WIT interface:
+This component exports the following [WIT interfaces](https://component-model.bytecodealliance.org/design/wit.html):
 
 ```wit
 world typescript-http-hello-world {
