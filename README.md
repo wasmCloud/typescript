@@ -52,7 +52,7 @@ Project templates for scaffolding new wasmCloud component projects. Use with `wa
 
 | Template                                            | Description                                     |
 | --------------------------------------------------- | ----------------------------------------------- |
-| [http-hello-world](./templates/http-hello-world/)   | Minimal HTTP component returning "Hello"        |
+| [http-hello-world](./templates/http-hello-world/)   | Minimal HTTP server component        |
 | [http-client](./templates/http-client/)             | Component that makes outgoing HTTP requests     |
 | [http-service-hono](./templates/http-service-hono/) | HTTP service component powered by Hono          |
 
