@@ -104,7 +104,7 @@ npm run build
 
 ## WIT Interfaces
 
-This component imports and exports the following WIT interfaces:
+This component imports and exports the following [WIT interfaces](https://component-model.bytecodealliance.org/design/wit.html):
 
 ```wit
 world typescript-http-client {
