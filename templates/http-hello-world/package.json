@@ -10,7 +10,7 @@
     "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
     "setup:wit": "[ -d wit/deps ] || (npm run fetch:wit && npm run generate:types)",
     "build:ts": "tsc",
-    "build:component": "jco componentize -w wit -o dist/http_hello_world.wasm dist/index.js",
+    "build:component": "jco componentize -w wit -o dist/http_hello_world.wasm dist/component.js",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component",
     "serve": "jco serve dist/http_hello_world.wasm",
     "dev": "nodemon --watch src --ext ts --exec \"wash dev\""
