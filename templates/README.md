@@ -23,6 +23,7 @@ template-name/
 ├── wit/
 │   └── world.wit        # Component world definition
 ├── package.json         # npm package configuration
+├── ...                           # other configuration files (e.g. bundler configuration)
 └── tsconfig.json        # TypeScript configuration
 ```
 
