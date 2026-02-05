@@ -22,14 +22,15 @@ Use `wash new` to scaffold a new wasmCloud component project:
 ```shell
 wash new https://github.com/wasmCloud/typescript.git --name http-hello-world --subfolder templates/http-hello-world
 ```
+
 ```shell
 cd http-hello-world
 ```
 
-To build this project and run in a hot-reloading development loop, run `wash dev` from this directory:
+To build this project and run in a hot-reloading development loop, run `npm run dev` from this directory:
 
 ```shell
-wash dev
+npm run dev
 ```
 
 ### Send a request to the running component
@@ -39,6 +40,7 @@ Once `wash dev` is serving your component, send a request:
 ```shell
 curl localhost:8000
 ```
+
 ```text
 Hello from TypeScript!
 ```
@@ -46,7 +48,7 @@ Hello from TypeScript!
 ## Build Wasm binary
 
 ```bash
-wash build
+npm run build
 ```
 
 ## Interfaces
