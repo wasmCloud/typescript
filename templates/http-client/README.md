@@ -102,7 +102,7 @@ curl http://localhost:8000/headers?url=https://api.github.com
 npm run build
 ```
 
-## Interfaces
+## WIT Interfaces
 
 This component imports and exports the following WIT interfaces:
 
