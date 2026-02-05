@@ -24,14 +24,15 @@ Use `wash new` to scaffold a new wasmCloud component project:
 ```shell
 wash new https://github.com/wasmCloud/typescript.git --name http-service-hono --subfolder templates/http-service-hono
 ```
+
 ```shell
 cd http-service-hono
 ```
 
-To build this project and run in a hot-reloading development loop, run `wash dev` from this directory:
+To build this project and run in a hot-reloading development loop, run `npm run dev` from this directory:
 
 ```shell
-wash dev
+npm run dev
 ```
 
 ## Endpoints
@@ -111,7 +112,7 @@ The service includes comprehensive error handling:
 ## Build Wasm binary
 
 ```bash
-wash build
+npm run build
 ```
 
 ## Interfaces
@@ -120,7 +121,7 @@ This component exports the following WIT interface:
 
 ```wit
 world typescript-http-service-hono {
-  export wasi:http/incoming-handler@0.2.6;
+  export wasi:http/incoming-handler@0.2.3;
 }
 ```
 

@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "target": "es2024",
+    "module": "es2022",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "types": [
       "./generated/types/wit.d.ts"
     ],
     "allowJs": false,
+    // Type-check only; rolldown handles compilation
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

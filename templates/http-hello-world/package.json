@@ -6,18 +6,22 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "fetch:wit": "wkg wit fetch",
-    "generate:types": "jco types wit -o generated/types",
+    "fetch:wit": "wash wit fetch",
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "setup:wit": "[ -d wit/deps ] || (npm run fetch:wit && npm run generate:types)",
     "build:ts": "tsc",
     "build:component": "jco componentize -w wit -o dist/http_hello_world.wasm dist/index.js",
-    "build": "npm run fetch:wit && npm run generate:types && npm run build:ts && npm run build:component",
-    "serve": "jco serve dist/http_hello_world.wasm"
+    "build": "npm run setup:wit && npm run build:ts && npm run build:component",
+    "serve": "jco serve dist/http_hello_world.wasm",
+    "dev": "nodemon --watch src --ext ts --exec \"wash dev\""
   },
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
     "@bytecodealliance/jco": "^1.15.4",
+    "nodemon": "^3.1.9",
+    "rimraf": "^6.1.2",
     "typescript": "^5.9.3"
   }
 }

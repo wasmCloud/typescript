@@ -25,3 +25,36 @@ template-name/
 ├── package.json         # npm package configuration
 └── tsconfig.json        # TypeScript configuration
 ```
+
+### Template usage
+
+Each template may be used with `wash new`. For example, to create a new project with the `http-client` template:
+
+```bash
+wash new https://github.com/wasmCloud/typescript.git --name http-client --subfolder templates/http-client
+```
+
+Templates include a `wash` configuration file (`.wash/config.yaml`) that runs `npm install` when a template is cloned with `wash new`.
+
+After running `wash new`, you will be prompted to execute the template's setup command. Hit enter for yes (the default).
+
+```console
+✔ Execute template setup command 'npm install'? This may modify the new project.
+```
+
+### Template conventions
+
+Every template follows the convention of namespace as `wasmcloud`, package as `templates`, and the world is prefixed with the language, e.g. for this repo `typescript`, and then the use-case. We are versioning our templates so that we will be able to update them going forward like when adding support for WASIP3.
+
+For example:
+
+```wit
+// our templates are on version 0.1.0
+package wasmcloud:templates@0.1.0;
+
+// language: typescript
+// use-case: http-service-hono
+world typescript-http-service-hono {
+  export wasi:http/incoming-handler@0.2.3;
+}
+```

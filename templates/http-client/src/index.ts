@@ -18,6 +18,9 @@ const DEFAULT_URLS: Record<string, string> = {
 // Methods that support request bodies
 const BODY_METHODS = new Set(['POST', 'PUT', 'PATCH']);
 
+// Maximum request body size (1MB)
+const MAX_BODY_SIZE = 1024 * 1024;
+
 addEventListener('fetch', (event) => {
   const fetchEvent = event as FetchEvent;
   fetchEvent.respondWith(handleRequest(fetchEvent.request));
@@ -45,7 +48,23 @@ async function handleRequest(request: Request): Promise<Response> {
 type ResponseMode = 'raw' | 'json' | 'headers';
 
 async function proxyRequest(request: Request, url: URL, mode: ResponseMode): Promise<Response> {
-  const targetUrl = url.searchParams.get('url') || DEFAULT_URLS[request.method] || DEFAULT_URLS.GET;
+  const targetUrlParam = url.searchParams.get('url');
+  let targetUrl: string;
+
+  if (targetUrlParam) {
+    // Validate the URL to prevent SSRF attacks
+    try {
+      const parsed = new URL(targetUrlParam);
+      if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') {
+        return jsonResponse({ error: 'Only http and https URLs are allowed' }, 400);
+      }
+      targetUrl = parsed.href;
+    } catch {
+      return jsonResponse({ error: 'Invalid URL provided' }, 400);
+    }
+  } else {
+    targetUrl = DEFAULT_URLS[request.method] || DEFAULT_URLS.GET;
+  }
 
   // Forward headers, excluding those that shouldn't be proxied
   const headers = new Headers();
@@ -55,8 +74,18 @@ async function proxyRequest(request: Request, url: URL, mode: ResponseMode): Pro
     }
   });
 
-  // Read request body for methods that support it
-  const body = BODY_METHODS.has(request.method) ? await request.text() : null;
+  // Read request body for methods that support it, with size limit
+  let body: string | null = null;
+  if (BODY_METHODS.has(request.method)) {
+    const contentLength = request.headers.get('content-length');
+    if (contentLength && parseInt(contentLength, 10) > MAX_BODY_SIZE) {
+      return jsonResponse({ error: `Request body too large (max ${MAX_BODY_SIZE} bytes)` }, 413);
+    }
+    body = await request.text();
+    if (body.length > MAX_BODY_SIZE) {
+      return jsonResponse({ error: `Request body too large (max ${MAX_BODY_SIZE} bytes)` }, 413);
+    }
+  }
 
   try {
     const response = await fetch(targetUrl, {

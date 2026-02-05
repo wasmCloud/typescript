@@ -1,11 +1,22 @@
 import { Hono } from 'hono';
 import { logger } from 'hono/logger';
-import { cors } from 'hono/cors';
 import { HTTPException } from 'hono/http-exception';
+import { z } from 'zod';
 import {
   fire,
   buildLogger,
 } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
+
+// Validation schemas
+const createItemSchema = z.object({
+  name: z.string().min(1, 'Name is required and must be a non-empty string'),
+  description: z.string().optional(),
+});
+
+const updateItemSchema = z.object({
+  name: z.string().min(1, 'Name must be a non-empty string').optional(),
+  description: z.string().optional(),
+});
 
 // Types
 interface Item {
@@ -56,18 +67,6 @@ const log = buildLogger();
 
 // Request logging
 app.use('*', logger(log));
-
-// CORS middleware - allow all origins for demo purposes
-app.use(
-  '*',
-  cors({
-    origin: '*',
-    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization', 'X-Request-Id'],
-    exposeHeaders: ['X-Response-Time', 'X-Request-Id'],
-    maxAge: 86400,
-  }),
-);
 
 // Custom middleware: Request timing
 app.use('*', async (c, next) => {
@@ -194,11 +193,11 @@ api.get('/items/:id', (c) => {
 
 // Create new item
 api.post('/items', async (c) => {
-  const body = await c.req.json<{ name?: string; description?: string }>();
+  const json = await c.req.json();
+  const result = createItemSchema.safeParse(json);
 
-  // Validation
-  if (!body.name || typeof body.name !== 'string' || body.name.trim() === '') {
-    throw new HTTPException(400, { message: 'Name is required and must be a non-empty string' });
+  if (!result.success) {
+    throw new HTTPException(400, { message: result.error.errors[0].message });
   }
 
   const id = String(nextId++);
@@ -206,8 +205,8 @@ api.post('/items', async (c) => {
 
   const newItem: Item = {
     id,
-    name: body.name.trim(),
-    description: body.description?.trim() || '',
+    name: result.data.name.trim(),
+    description: result.data.description?.trim() || '',
     createdAt: now,
     updatedAt: now,
   };
@@ -228,17 +227,17 @@ api.put('/items/:id', async (c) => {
     throw new HTTPException(404, { message: `Item with id '${id}' not found` });
   }
 
-  const body = await c.req.json<{ name?: string; description?: string }>();
+  const json = await c.req.json();
+  const result = updateItemSchema.safeParse(json);
 
-  // Validation
-  if (body.name !== undefined && (typeof body.name !== 'string' || body.name.trim() === '')) {
-    throw new HTTPException(400, { message: 'Name must be a non-empty string' });
+  if (!result.success) {
+    throw new HTTPException(400, { message: result.error.errors[0].message });
   }
 
   const updated: Item = {
     ...existing,
-    name: body.name?.trim() ?? existing.name,
-    description: body.description?.trim() ?? existing.description,
+    name: result.data.name?.trim() ?? existing.name,
+    description: result.data.description?.trim() ?? existing.description,
     updatedAt: new Date().toISOString(),
   };
 
