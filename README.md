@@ -56,11 +56,12 @@ These templates can be used with `wash new`:
 wash new https://github.com/wasmCloud/typescript.git --name my-project --subfolder templates/<template-name>
 ```
 
-| Template                                            | Description                                     |
-| --------------------------------------------------- | ----------------------------------------------- |
-| [http-hello-world](./templates/http-hello-world/)   | Minimal HTTP server component        |
-| [http-client](./templates/http-client/)             | Component that makes outgoing HTTP requests     |
-| [http-service-hono](./templates/http-service-hono/) | HTTP service component powered by Hono          |
+| Template                                                      | Description                                           |
+| ------------------------------------------------------------- | ----------------------------------------------------- |
+| [http-hello-world-hono](./templates/http-hello-world-hono/)   | Minimal HTTP server component using Hono              |
+| [http-hello-world-fetch](./templates/http-hello-world-fetch/) | Minimal HTTP server component using the `fetch()` API |
+| [http-client](./templates/http-client/)                       | Component that makes outgoing HTTP requests           |
+| [http-service-hono](./templates/http-service-hono/)           | HTTP service component powered by Hono                |
 
 See the [templates README](./templates/README.md) for more details.
 

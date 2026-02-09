@@ -1,6 +1,6 @@
 # HTTP Client in TypeScript
 
-This project template is a WebAssembly component built with [TypeScript][ts] that demonstrates making outgoing HTTP requests using the standard [fetch() API][fetch-api]. 
+This project template is a WebAssembly component built with [TypeScript][ts] that demonstrates making outgoing HTTP requests using the standard [fetch() API][fetch-api].
 
 It uses the [Service Worker fetch event][fetch-event] pattern for handling incoming requests.
 
