@@ -23,8 +23,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.16.0",
-    "@types/node": "^24.10.9",
+    "@bytecodealliance/jco": "^1.16.1",
+    "@types/node": "^24.10.12",
     "rimraf": "^6.1.2",
     "typescript": "^5.9.3"
   }
