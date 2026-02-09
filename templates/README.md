@@ -4,11 +4,12 @@ Project templates for building wasmCloud components with TypeScript.
 
 ## Available Templates
 
-| Template | Description |
-| -------- | ----------- |
-| [http-hello-world](./http-hello-world/) | A minimal HTTP component using the Service Worker fetch event pattern |
-| [http-client](./http-client/) | A component that makes outgoing HTTP requests using the fetch API |
-| [http-service-hono](./http-service-hono/) | An HTTP service component powered by [Hono](https://hono.dev/) |
+| Template                                        | Description                                           |
+| ----------------------------------------------- | ----------------------------------------------------- |
+| [http-hello-world-hono](./http-hello-world-hono/)   | Minimal HTTP server component using Hono              |
+| [http-hello-world-fetch](./http-hello-world-fetch/) | Minimal HTTP server component using the `fetch()` API |
+| [http-client](./http-client/)                       | Component that makes outgoing HTTP requests           |
+| [http-service-hono](./http-service-hono/)           | HTTP service component powered by Hono                |
 
 ## Template Structure
 
