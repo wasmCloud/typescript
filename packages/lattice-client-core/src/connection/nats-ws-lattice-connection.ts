@@ -90,7 +90,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     subject: string,
     data?: Uint8Array | string | undefined,
   ): Promise<Response> {
-    const maxRetries = this.#options.retryCount ?? 3;
+    const maxRetries = this.#options.retryCount ?? 0;
     let lastError: Error | undefined;
 
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -99,10 +99,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
         const response = await connection.request(subject, data);
         return response.json<Response>();
       } catch (error) {
-        lastError =
-          error instanceof Error
-            ? error
-            : new Error(error instanceof Error ? error.message : 'Unknown error');
+        lastError = error instanceof Error ? error : new Error(String(error));
 
         // Don't retry on the last attempt
         if (attempt < maxRetries) {
