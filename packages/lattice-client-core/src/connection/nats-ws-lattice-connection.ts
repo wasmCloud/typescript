@@ -11,6 +11,7 @@ import {toPromise} from '@/helpers';
 
 type Options = {
   latticeUrl: string;
+  retryCount?: number;
   natsOptions?: Omit<NatsOptions, 'servers'>;
 };
 
@@ -74,7 +75,9 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     } catch (error) {
       this.#status = 'error';
       const message = error instanceof Error && error.message ? error.message : 'Unknown error';
-      throw new Error(`Failed to connect to lattice: ${message}`);
+      throw new Error(`Failed to connect to lattice: ${message}`, {
+        cause: error,
+      });
     }
   }
 
@@ -87,15 +90,33 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     subject: string,
     data?: Uint8Array | string | undefined,
   ): Promise<Response> {
-    try {
-      const connection = await this.#waitForConnection();
-      const response = await connection.request(subject, data);
-      return response.json<Response>();
-    } catch (error) {
-      throw new Error(
-        `Failed to request ${subject}: ${error instanceof Error ? error.message : 'Unknown error'}`,
-      );
+    const maxRetries = this.#options.retryCount ?? 3;
+    let lastError: Error | undefined;
+
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const connection = await this.#waitForConnection();
+        const response = await connection.request(subject, data);
+        return response.json<Response>();
+      } catch (error) {
+        lastError =
+          error instanceof Error
+            ? error
+            : new Error(error instanceof Error ? error.message : 'Unknown error');
+
+        // Don't retry on the last attempt
+        if (attempt < maxRetries) {
+          // Exponential backoff: 100ms, 200ms, 400ms, 800ms, etc.
+          const backoffMs = 100 * Math.pow(2, attempt);
+          await new Promise((resolve) => setTimeout(resolve, backoffMs));
+        }
+      }
     }
+
+    throw new Error(
+      `Failed to request ${subject} after ${maxRetries + 1} attempts: ${lastError?.message ?? 'Unknown error'}`,
+      {cause: lastError},
+    );
   }
 
   subscribe<Event = unknown>(subject: string, listenerFunction: (event: Event) => void) {
@@ -145,6 +166,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     } catch (error) {
       throw new Error(
         `Failed to get keys from bucket ${bucketName}: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        {cause: error},
       );
     }
   }
@@ -167,6 +189,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     } catch (error) {
       throw new Error(
         `Failed to get entry with key ${key} from bucket ${bucketName}: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        {cause: error},
       );
     }
   }
@@ -196,6 +219,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     } catch (error) {
       throw new Error(
         `Failed to get entries from bucket ${bucketName}: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        {cause: error},
       );
     }
   }

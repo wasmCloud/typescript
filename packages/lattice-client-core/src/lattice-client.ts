@@ -154,7 +154,7 @@ export class LatticeClient {
     };
 
     this.#getNewConnection = getNewConnection;
-    this.#connection = getNewConnection(config);
+    this.#connection = getNewConnection(this.#config);
 
     if (autoConnect !== false) {
       // try and connect, but don't throw an error if it fails. The connection will be in an error state accessible
