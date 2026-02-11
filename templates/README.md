@@ -4,12 +4,14 @@ Project templates for building wasmCloud components with TypeScript.
 
 ## Available Templates
 
-| Template                                        | Description                                           |
-| ----------------------------------------------- | ----------------------------------------------------- |
-| [http-hello-world-hono](./http-hello-world-hono/)   | Minimal HTTP server component using Hono              |
-| [http-hello-world-fetch](./http-hello-world-fetch/) | Minimal HTTP server component using the `fetch()` API |
-| [http-client](./http-client/)                       | Component that makes outgoing HTTP requests           |
-| [http-service-hono](./http-service-hono/)           | HTTP service component powered by Hono                |
+| Template                                                      | Description                                                       |
+| ------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [http-hello-world-hono](./http-hello-world-hono/)             | Minimal HTTP server component using Hono                          |
+| [http-hello-world-fetch](./http-hello-world-fetch/)           | Minimal HTTP server component using the `fetch()` API             |
+| [http-client](./http-client/)                                 | Component that makes outgoing HTTP requests                       |
+| [http-service-hono](./http-service-hono/)                     | HTTP service component powered by Hono                            |
+| [http-blobstore-service-hono](./http-blobstore-service-hono/) | HTTP service component powered by Hono, backed by `wasi:blobstore`|
+| [http-kv-service-hono](./http-kv-service-hono/)               | HTTP service component powered by Hono, backed by `wasi:keyvalue` |
 
 ## Template Structure
 
