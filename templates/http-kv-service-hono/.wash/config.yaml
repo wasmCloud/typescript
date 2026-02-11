@@ -1,0 +1,6 @@
+new:
+  command: npm install
+
+build:
+  command: npm run build
+  component_path: dist/http_kv_service_hono.wasm

@@ -24,6 +24,7 @@ package.tgz
 *.sln
 *.sw?
 .claude
+.changeset
 
 playwright-report
 test-results

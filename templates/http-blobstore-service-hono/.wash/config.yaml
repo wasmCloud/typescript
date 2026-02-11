@@ -1,0 +1,9 @@
+new:
+  command: npm install
+
+build:
+  command: npm run build
+  component_path: dist/http_blobstore_service_hono.wasm
+
+dev:
+  wasi_blobstore_path: tmp/blobstore
