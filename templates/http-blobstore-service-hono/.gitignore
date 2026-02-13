@@ -12,5 +12,6 @@ dist
 build
 generated/**
 *.tgz
+tmp
 
 wit/deps
