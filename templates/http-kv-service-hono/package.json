@@ -1,7 +1,7 @@
 {
   "name": "http-kv-service-hono",
   "version": "0.1.0",
-  "description": "A WebAssembly component HTTP service powered by Hono using the wasi:http WIT interface",
+  "description": "A WebAssembly component HTTP service using the Hono web framework and wasi:keyvalue",
   "private": true,
   "main": "dist/component.js",
   "type": "module",
