@@ -74,7 +74,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     } catch (error) {
       this.#status = 'error';
       const message = error instanceof Error && error.message ? error.message : 'Unknown error';
-      throw new Error(`Failed to connect to lattice: ${message}`);
+      throw new Error(`Failed to connect to lattice: ${message}`, {cause: error});
     }
   }
 
@@ -94,6 +94,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     } catch (error) {
       throw new Error(
         `Failed to request ${subject}: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        {cause: error},
       );
     }
   }
@@ -145,6 +146,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     } catch (error) {
       throw new Error(
         `Failed to get keys from bucket ${bucketName}: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        {cause: error},
       );
     }
   }
@@ -167,6 +169,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     } catch (error) {
       throw new Error(
         `Failed to get entry with key ${key} from bucket ${bucketName}: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        {cause: error},
       );
     }
   }
@@ -196,6 +199,7 @@ class NatsWsLatticeConnection implements LatticeConnection<Options> {
     } catch (error) {
       throw new Error(
         `Failed to get entries from bucket ${bucketName}: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        {cause: error},
       );
     }
   }
