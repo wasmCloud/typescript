@@ -4862,7 +4862,7 @@ __metadata:
     eslint-config-xo-react: "npm:^0.29.0"
     eslint-config-xo-typescript: "npm:^9.0.0"
     eslint-import-resolver-typescript: "npm:^4.4.4"
-    eslint-plugin-ava: "npm:^15.1.0"
+    eslint-plugin-ava: "npm:^16.0.0"
     eslint-plugin-import-x: "npm:^4.16.1"
     eslint-plugin-no-use-extend-native: "npm:^0.7.2"
     eslint-plugin-react: "npm:^7.37.5"
@@ -4981,12 +4981,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.9.0":
-  version: 8.12.1
-  resolution: "acorn@npm:8.12.1"
+"acorn@npm:^8.16.0":
+  version: 8.16.0
+  resolution: "acorn@npm:8.16.0"
   bin:
     acorn: bin/acorn
-  checksum: 10/d08c2d122bba32d0861e0aa840b2ee25946c286d5dc5990abca991baf8cdbfbe199b05aacb221b979411a2fea36f83e26b5ac4f6b4e0ce49038c62316c1848f0
+  checksum: 10/690c673bb4d61b38ef82795fab58526471ad7f7e67c0e40c4ff1e10ecd80ce5312554ef633c9995bfc4e6d170cef165711f9ca9e49040b62c0c66fbf2dd3df2b
   languageName: node
   linkType: hard
 
@@ -6719,21 +6719,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-ava@npm:^15.1.0":
-  version: 15.1.0
-  resolution: "eslint-plugin-ava@npm:15.1.0"
+"eslint-plugin-ava@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "eslint-plugin-ava@npm:16.0.0"
   dependencies:
+    "@eslint-community/eslint-utils": "npm:^4.9.1"
+    "@eslint/json": "npm:^1.0.0"
     enhance-visitors: "npm:^1.0.0"
-    eslint-utils: "npm:^3.0.0"
-    espree: "npm:^9.0.0"
-    espurify: "npm:^2.1.1"
-    import-modules: "npm:^2.1.0"
+    espree: "npm:^11.1.0"
+    espurify: "npm:^3.2.0"
     micro-spelling-correcter: "npm:^1.1.1"
-    pkg-dir: "npm:^5.0.0"
     resolve-from: "npm:^5.0.0"
   peerDependencies:
-    eslint: ">=9"
-  checksum: 10/cdfd71b309eceb66cc68d9cbc1d86b25d92a7b659da5beea737838153c2ee42fc3b7591882a59b76786b3cfaa957066de4c2b3ee0e895fceb7b5abb020e24176
+    eslint: ">=10"
+  checksum: 10/3f6774446b3c0e6bca72646383a09f2e681ff8802e17b3e558081d464d7d97d229a239fc96970610f9a2a252c06f0689bf5e77a1c5aec506913fdcf1d369ce75
   languageName: node
   linkType: hard
 
@@ -6891,25 +6890,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-utils@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "eslint-utils@npm:3.0.0"
-  dependencies:
-    eslint-visitor-keys: "npm:^2.0.0"
-  peerDependencies:
-    eslint: ">=5"
-  checksum: 10/7675260a6b220c70f13e4cdbf077e93cad0dfb388429a27d6c0b584b2b20dca24594508e8bdb00a460a5764bd364a5018e20c2b8b1d70f82bcc3fdc30692a4d2
-  languageName: node
-  linkType: hard
-
-"eslint-visitor-keys@npm:^2.0.0":
-  version: 2.1.0
-  resolution: "eslint-visitor-keys@npm:2.1.0"
-  checksum: 10/db4547eef5039122d518fa307e938ceb8589da5f6e8f5222efaf14dd62f748ce82e2d2becd3ff9412a50350b726bda95dbea8515a471074547daefa58aee8735
-  languageName: node
-  linkType: hard
-
-"eslint-visitor-keys@npm:^3.4.1, eslint-visitor-keys@npm:^3.4.3":
+"eslint-visitor-keys@npm:^3.4.3":
   version: 3.4.3
   resolution: "eslint-visitor-keys@npm:3.4.3"
   checksum: 10/3f357c554a9ea794b094a09bd4187e5eacd1bc0d0653c3adeb87962c548e6a1ab8f982b86963ae1337f5d976004146536dcee5d0e2806665b193fbfbf1a9231b
@@ -6930,7 +6911,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-visitor-keys@npm:^5.0.0":
+"eslint-visitor-keys@npm:^5.0.0, eslint-visitor-keys@npm:^5.0.1":
   version: 5.0.1
   resolution: "eslint-visitor-keys@npm:5.0.1"
   checksum: 10/f9cc1a57b75e0ef949545cac33d01e8367e302de4c1483266ed4d8646ee5c306376660196bbb38b004e767b7043d1e661cb4336b49eff634a1bbe75c1db709ec
@@ -7008,14 +6989,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"espree@npm:^9.0.0":
-  version: 9.6.1
-  resolution: "espree@npm:9.6.1"
+"espree@npm:^11.1.0":
+  version: 11.1.1
+  resolution: "espree@npm:11.1.1"
   dependencies:
-    acorn: "npm:^8.9.0"
+    acorn: "npm:^8.16.0"
     acorn-jsx: "npm:^5.3.2"
-    eslint-visitor-keys: "npm:^3.4.1"
-  checksum: 10/255ab260f0d711a54096bdeda93adff0eadf02a6f9b92f02b323e83a2b7fc258797919437ad331efec3930475feb0142c5ecaaf3cdab4befebd336d47d3f3134
+    eslint-visitor-keys: "npm:^5.0.1"
+  checksum: 10/58ecfae40f4e1f2c54a825ff7a50c5f9cda42901468ba93354c13a1eb69aba0f15d68df5822bbcb02058f822214aba7ca24389eee2e6c27bb0cd3a05972606ae
   languageName: node
   linkType: hard
 
@@ -7029,10 +7010,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"espurify@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "espurify@npm:2.1.1"
-  checksum: 10/ab6b4b39cdbe73521046611a880f7ce9d8e440323c0abe46cc6bcefa10cdfe36fe28bff800ec4daa7aaa28a6c599fbba4ab6ab74b27cc179c703ec54ca9844be
+"espurify@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "espurify@npm:3.2.0"
+  checksum: 10/5043f9ee071e418b25188368048b4ae608e5f8e40e9c070eec44c501e63c2f15b0f23fbaf0afc1ac3c5ac250e622c81e792ceee3c958ee61ae13814dea626cc7
   languageName: node
   linkType: hard
 
@@ -8003,13 +7984,6 @@ __metadata:
   version: 4.0.0
   resolution: "import-lazy@npm:4.0.0"
   checksum: 10/943309cc8eb01ada12700448c288b0384f77a1bc33c7e00fa4cb223c665f467a13ce9aaceb8d2e4cf586b07c1d2828040263dcc069873ce63cfc2ac6fd087971
-  languageName: node
-  linkType: hard
-
-"import-modules@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "import-modules@npm:2.1.0"
-  checksum: 10/d9ac33dfea5a301c0cdc51455d875c373b2c04eb673488cb6d706474612575763f8ea6353d0b4a5bfffb2a9a06cbf4ecba90d8d9db4aa5f736fa957acbbc851c
   languageName: node
   linkType: hard
 
@@ -10091,15 +10065,6 @@ __metadata:
   version: 4.0.6
   resolution: "pirates@npm:4.0.6"
   checksum: 10/d02dda76f4fec1cbdf395c36c11cf26f76a644f9f9a1bfa84d3167d0d3154d5289aacc72677aa20d599bb4a6937a471de1b65c995e2aea2d8687cbcd7e43ea5f
-  languageName: node
-  linkType: hard
-
-"pkg-dir@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "pkg-dir@npm:5.0.0"
-  dependencies:
-    find-up: "npm:^5.0.0"
-  checksum: 10/b167bb8dac7bbf22b1d5e30ec223e6b064b84b63010c9d49384619a36734caf95ed23ad23d4f9bd975e8e8082b60a83395f43a89bb192df53a7c25a38ecb57d9
   languageName: node
   linkType: hard
 
