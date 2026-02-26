@@ -1,5 +1,55 @@
 # @wasmcloud/eslint-config
 
+## 0.1.6
+
+### Patch Changes
+
+- [#531](https://github.com/wasmCloud/typescript/pull/531) [`e6c7528`](https://github.com/wasmCloud/typescript/commit/e6c75281c538b065ad50f3d9200f685da71796de) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 6 updates
+
+- [#430](https://github.com/wasmCloud/typescript/pull/430) [`38163b0`](https://github.com/wasmCloud/typescript/commit/38163b021844ff955750513470041019871c742f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 6 updates
+
+- [#448](https://github.com/wasmCloud/typescript/pull/448) [`620089c`](https://github.com/wasmCloud/typescript/commit/620089c0c22f904a87171f39c74311db59e9f50c) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 3 updates
+
+- [#420](https://github.com/wasmCloud/typescript/pull/420) [`74f79bd`](https://github.com/wasmCloud/typescript/commit/74f79bdf6a41a6250291c4c9791414b8dcb389cc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 3 updates
+
+- [#517](https://github.com/wasmCloud/typescript/pull/517) [`e9ff0a2`](https://github.com/wasmCloud/typescript/commit/e9ff0a21ba9d35bd22b934c4e6c0b2e25aef9952) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 5 updates
+
+- [#522](https://github.com/wasmCloud/typescript/pull/522) [`21dd29e`](https://github.com/wasmCloud/typescript/commit/21dd29e3896cd45006d6838f2b171a5cea8a1e5f) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 3 updates
+
+- [#552](https://github.com/wasmCloud/typescript/pull/552) [`f3487c6`](https://github.com/wasmCloud/typescript/commit/f3487c6f97fc54f3641f7e12ef4f11411eb2aab6) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group across 1 directory with 6 updates
+
+- [#504](https://github.com/wasmCloud/typescript/pull/504) [`02a5184`](https://github.com/wasmCloud/typescript/commit/02a5184a618e333c88a2e6b46a39ff89b80b0b95) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 5 updates
+
+- [#551](https://github.com/wasmCloud/typescript/pull/551) [`4f803ed`](https://github.com/wasmCloud/typescript/commit/4f803ed27376c6081973042f048226e806ba877d) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 5 updates
+
+- [#532](https://github.com/wasmCloud/typescript/pull/532) [`4d239bf`](https://github.com/wasmCloud/typescript/commit/4d239bf08bdb334fb99777cc0fbd1c54740e7969) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 3 updates
+
+- [#445](https://github.com/wasmCloud/typescript/pull/445) [`f19f055`](https://github.com/wasmCloud/typescript/commit/f19f055ac17e96f022cf381d8499f2900d49d3de) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 3 updates
+
+- [#424](https://github.com/wasmCloud/typescript/pull/424) [`f07b91f`](https://github.com/wasmCloud/typescript/commit/f07b91f12d34d1d5fcc11a85d8b8e35540d49cbc) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 9 updates
+
+- [#464](https://github.com/wasmCloud/typescript/pull/464) [`2321743`](https://github.com/wasmCloud/typescript/commit/232174378aa9b60b0b1219042deebf6f09f55173) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 9 updates
+
+- [#473](https://github.com/wasmCloud/typescript/pull/473) [`19041b9`](https://github.com/wasmCloud/typescript/commit/19041b999b1eb19b6b7b70b776d5970a3aacf3c2) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 5 updates
+
+- [#489](https://github.com/wasmCloud/typescript/pull/489) [`d2b3199`](https://github.com/wasmCloud/typescript/commit/d2b3199019b069b29226a56d19ab6b95cd5f98c7) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 5 updates
+
+- [#479](https://github.com/wasmCloud/typescript/pull/479) [`3a113e3`](https://github.com/wasmCloud/typescript/commit/3a113e3ec76589d8fbbac45cd942c25aaa1049ae) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 2 updates
+
+- [#508](https://github.com/wasmCloud/typescript/pull/508) [`4a2c027`](https://github.com/wasmCloud/typescript/commit/4a2c0270d52a4bf192acc4b75b84773127695aa8) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group across 1 directory with 5 updates
+
+- [#471](https://github.com/wasmCloud/typescript/pull/471) [`1486e97`](https://github.com/wasmCloud/typescript/commit/1486e97d7ae7b897bec9a3d3445df6a8a6f363ad) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 4 updates
+
+- [#527](https://github.com/wasmCloud/typescript/pull/527) [`05f8836`](https://github.com/wasmCloud/typescript/commit/05f88367ee316a6bf8d165d17c728217be1bdf5c) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 4 updates
+
+- [#491](https://github.com/wasmCloud/typescript/pull/491) [`9a0c4bc`](https://github.com/wasmCloud/typescript/commit/9a0c4bcc5a98882dbf5cdf3b4f81ee09868cc84a) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps-dev): bump `the` dev-dependencies group with 6 updates
+
+- [#487](https://github.com/wasmCloud/typescript/pull/487) [`ec30ef7`](https://github.com/wasmCloud/typescript/commit/ec30ef726860f1de1a87e84cf37ae7ef73c4f494) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `globals` from 16.5.0 to 17.0.0
+
+- [#492](https://github.com/wasmCloud/typescript/pull/492) [`26089ce`](https://github.com/wasmCloud/typescript/commit/26089ced3d91ac4d175eb35fe6f8060aa433574e) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 4 updates
+
+- [#431](https://github.com/wasmCloud/typescript/pull/431) [`94ea865`](https://github.com/wasmCloud/typescript/commit/94ea865b540f73067037fd389688b75e22adc677) Thanks [@dependabot](https://github.com/apps/dependabot)! - chore(deps): bump `the` prod-dependencies group with 4 updates
+
 ## 0.1.5
 
 ### Patch Changes
