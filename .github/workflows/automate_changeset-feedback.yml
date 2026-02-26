@@ -30,7 +30,7 @@ jobs:
 
       # Feedback is applied only to PR's that actually change code that would be part of a release
       - name: Generate feedback
-        uses: backstage/actions/changeset-feedback@b3c1841fd69e1658ac631afafd0fb140a2309024 # v0.6.17
+        uses: backstage/actions/changeset-feedback@2cd6978b476cbdc39fec48346f8b6ca13199dd6a # v0.7.8
         with:
           diff-ref: origin/main
           issue-number: ${{ github.event.pull_request.number }}
