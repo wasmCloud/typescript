@@ -4,7 +4,7 @@ A minimal WebAssembly component built with [TypeScript][ts] that responds to HTT
 
 [ts]: https://www.typescriptlang.org/
 [hono]: https://hono.dev/
-[jco-std]: https://github.com/nicoburniske/jco-std
+[jco-std]: https://github.com/bytecodealliance/jco/tree/main/packages/jco-std
 
 ## Prerequisites
 

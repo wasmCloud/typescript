@@ -34,7 +34,7 @@ wash new https://github.com/wasmCloud/typescript.git --name http-kv-service-hono
 ```
 
 ```shell
-cd http-service-hono
+cd http-kv-service-hono
 ```
 
 To build this project and run in a hot-reloading development loop, run `npm run dev` from this directory:

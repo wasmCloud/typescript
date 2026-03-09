@@ -12,7 +12,7 @@
     "build:ts": "tsc",
     "build:component": "jco componentize -w wit -o dist/http_client.wasm dist/component.js",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component",
-    "dev": "nodemon --watch src --ext ts --exec \"wash dev\""
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "",

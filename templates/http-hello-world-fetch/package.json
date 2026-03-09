@@ -13,7 +13,7 @@
     "build:component": "jco componentize -w wit -o dist/http_hello_world.wasm dist/component.js",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component",
     "serve": "jco serve dist/http_hello_world.wasm",
-    "dev": "nodemon --watch src --ext ts --exec \"wash dev\""
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "",
