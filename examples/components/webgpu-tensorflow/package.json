@@ -1,0 +1,39 @@
+{
+  "name": "http-hello-world",
+  "version": "0.1.0",
+  "description": "A WebAssembly component that responds to HTTP requests using the `wasi:http` WIT interface",
+  "main": "dist/http-hello-world.js",
+  "scripts": {
+    "wit-deps": "wit-deps update",
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "rollup": "rollup -c",
+    "componentize": "jco componentize -w ./wit -o dist/component.wasm dist/component.js",
+    "build": "npm run generate:types && npm run rollup && npm run componentize",
+    "good": "cargo +1.93.0 run --manifest-path ../../../cosmonic-labs/wasmCloud/Cargo.toml dev",
+    "dev": "wash dev",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.16.0",
+    "@bytecodealliance/jco-std": "^0.1.1",
+    "@rollup/plugin-alias": "^6.0.0",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-inject": "^5.0.5",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@rollup/plugin-url": "^8.0.2",
+    "@tensorflow/tfjs": "^4.22.0",
+    "@tensorflow/tfjs-backend-webgpu": "^4.22.0",
+    "@wasi-gfx/js-webgpu": "^0.2.0",
+    "hono": "^4.11.9",
+    "jpeg-js": "^0.4.4",
+    "rollup": "^4.57.1",
+    "unenv": "^2.0.0-rc.24",
+    "zod": "^4.3.6",
+    "rimraf": "^6.1.2"
+  }
+}

@@ -1,0 +1,12 @@
+version: 2.0.0-rc.8
+
+new:
+  command: npm install
+
+build:
+  # command: npm run build
+  command: npm run build
+  component_path: dist/component.wasm
+
+dev:
+  wasi_webgpu: true
