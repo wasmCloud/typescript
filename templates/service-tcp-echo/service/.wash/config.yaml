@@ -1,0 +1,6 @@
+# Subpackage anchor — tells wash to treat this directory as the project root
+# when running WIT commands (wash wit fetch, wash wit update, etc.).
+# Build this subpackage via the parent: npm run build --workspace=service
+build:
+  command: npm run build
+  component_path: dist/service.wasm

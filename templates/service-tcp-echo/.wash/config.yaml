@@ -1,0 +1,9 @@
+new:
+  command: npm install
+
+build:
+  command: npm run build
+  component_path: component/dist/component.wasm
+
+dev:
+  service_file: service/dist/service.wasm
