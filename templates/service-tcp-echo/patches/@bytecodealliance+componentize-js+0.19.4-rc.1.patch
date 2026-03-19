@@ -1,0 +1,48 @@
+diff --git a/node_modules/@bytecodealliance/componentize-js/src/componentize.js b/node_modules/@bytecodealliance/componentize-js/src/componentize.js
+index 9991849..1013865 100644
+--- a/node_modules/@bytecodealliance/componentize-js/src/componentize.js
++++ b/node_modules/@bytecodealliance/componentize-js/src/componentize.js
+@@ -151,6 +151,43 @@ export async function componentize(
+     false,
+   );
+ 
++  // Workaround: the splicer only generates a JS class for a WIT resource type
++  // when the owning interface has at least one callable function. Some interfaces
++  // (e.g. wasi:sockets/network) define only a resource type with no methods, so
++  // the class is never emitted — but it IS referenced by instanceNetwork() and
++  // by any export that takes borrow<network>, causing a ReferenceError at runtime.
++  //
++  // Fix: scan for finalization registries whose corresponding class is missing
++  // and inject a minimal class definition after `symbolDispose` is declared.
++  {
++    const registryRe = /finalizationRegistry_import\$([^$]+)\$([^\s=]+) = new FinalizationRegistry/g;
++    let m;
++    const missingClasses = [];
++    while ((m = registryRe.exec(jsBindings)) !== null) {
++      const iface = m[1];
++      const rsc = m[2];
++      const className = `import_${iface}$${rsc.charAt(0).toUpperCase()}${rsc.slice(1)}`;
++      if (!jsBindings.includes(`class ${className}`)) {
++        missingClasses.push({ iface, rsc, className });
++      }
++    }
++    if (missingClasses.length > 0) {
++      const injected = missingClasses.map(({ iface, rsc, className }) =>
++        `class ${className} {\n` +
++        `  [symbolDispose]() {\n` +
++        `    finalizationRegistry_import$${iface}$${rsc}.unregister(this);\n` +
++        `    $resource_import$${iface}$drop$${rsc}(this[symbolRscHandle]);\n` +
++        `    this[symbolRscHandle] = undefined;\n` +
++        `  }\n` +
++        `}\n`
++      ).join('');
++      jsBindings = jsBindings.replace(
++        '\nconst symbolDispose = Symbol.dispose || Symbol.for(\'dispose\');',
++        '\nconst symbolDispose = Symbol.dispose || Symbol.for(\'dispose\');\n' + injected,
++      );
++    }
++  }
++
+   const inputWasmPath = join(workDir, 'in.wasm');
+   const outputWasmPath = join(workDir, 'out.wasm');
+ 

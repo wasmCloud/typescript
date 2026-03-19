@@ -1,0 +1,22 @@
+{
+  "name": "service-tcp-echo",
+  "version": "0.1.0",
+  "description": "A wasmCloud service-and-component template demonstrating wasi:sockets TCP using the wasmCloud v2 service model",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "patch-package",
+    "setup:wit": "npm run setup:wit --workspace=service && npm run setup:wit --workspace=component",
+    "build": "npm run build --workspace=service && npm run build --workspace=component",
+    "dev": "nodemon"
+  },
+  "workspaces": [
+    "service",
+    "component"
+  ],
+  "devDependencies": {
+    "@bytecodealliance/componentize-js": "^0.19.4-rc.1",
+    "nodemon": "^3.1.9",
+    "patch-package": "^8.0.1"
+  }
+}

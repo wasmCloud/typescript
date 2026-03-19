@@ -1,0 +1,10 @@
+package wasmcloud:templates@0.1.0;
+
+world typescript-tcp-service {
+  import wasi:sockets/instance-network@0.2.3;
+  import wasi:sockets/tcp@0.2.3;
+  import wasi:sockets/tcp-create-socket@0.2.3;
+  import wasi:io/poll@0.2.0;
+
+  export wasi:cli/run@0.2.0;
+}

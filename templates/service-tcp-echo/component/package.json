@@ -1,0 +1,29 @@
+{
+  "name": "service-tcp-echo-component",
+  "version": "0.1.0",
+  "description": "HTTP front-end component for the TCP word-count service",
+  "private": true,
+  "main": "dist/component.js",
+  "type": "module",
+  "scripts": {
+    "fetch:wit": "wash wit fetch",
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "setup:wit": "npm run fetch:wit && npm run generate:types",
+    "build:ts": "rolldown -c rolldown.config.mjs",
+    "build:component": "node scripts/componentize.mjs",
+    "build": "npm run setup:wit && npm run build:ts && npm run build:component"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@bytecodealliance/jco-std": "^0.1.3",
+    "hono": "^4.10.4"
+  },
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.15.4",
+    "rimraf": "^6.1.2",
+    "rolldown": "^1.0.0-beta.47",
+    "typescript": "^5.9.3"
+  }
+}

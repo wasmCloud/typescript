@@ -1,0 +1,25 @@
+{
+  "name": "service-tcp-echo-service",
+  "version": "0.1.0",
+  "description": "TCP word-count service (wasi:cli/run service workload)",
+  "private": true,
+  "main": "dist/service.js",
+  "type": "module",
+  "scripts": {
+    "fetch:wit": "wash wit fetch",
+    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "setup:wit": "npm run fetch:wit && npm run generate:types",
+    "build:ts": "rolldown -c rolldown.config.mjs",
+    "build:component": "node scripts/componentize.mjs",
+    "build": "npm run setup:wit && npm run build:ts && npm run build:component"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.15.4",
+    "rimraf": "^6.1.2",
+    "rolldown": "^1.0.0-beta.47",
+    "typescript": "^5.9.3"
+  }
+}
