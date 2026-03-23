@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@tailwindcss/vite": "^4.2.1",
+    "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^24.12.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
@@ -71,7 +71,7 @@
     "@wasmcloud/prettier-config": "workspace:^",
     "eslint": "^9.38.0",
     "execa": "^9.6.1",
-    "get-port": "^7.1.0",
+    "get-port": "^7.2.0",
     "pino": "^10.3.1",
     "postcss": "^8.5.8",
     "prettier": "^3.8.1",
