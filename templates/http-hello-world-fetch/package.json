@@ -7,7 +7,7 @@
   "main": "dist/component.js",
   "scripts": {
     "fetch:wit": "wash wit fetch",
-    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "setup:wit": "npm run fetch:wit && npm run generate:types",
     "build:ts": "tsc",
     "build:component": "jco componentize -w wit -o dist/http_hello_world.wasm dist/component.js",

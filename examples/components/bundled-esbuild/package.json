@@ -5,7 +5,7 @@
   "type": "module",
   "main": "demo.js",
   "scripts": {
-    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "build:tsc": "tsc --noEmit",
     "build:bundle:file": "node build.js",
     "build:bundle": "esbuild --bundle src/bundled-esbuild.ts --outfile=dist/bundled-esbuild.js --platform=node --format=esm --external:wasi:*",

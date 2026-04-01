@@ -4,7 +4,7 @@
   "description": "A WebAssembly Component that responds to HTTP requests using the `wasi:http` WIT interface",
   "main": "dist/http-streaming.js",
   "scripts": {
-    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "build:tsc": "tsc",
     "build:js": "jco componentize -w wit -o dist/http-streaming.wasm dist/http-streaming.js",
     "build:component": "wash build --sign-only --config-path wasmcloud.toml",
