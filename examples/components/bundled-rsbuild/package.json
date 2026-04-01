@@ -5,7 +5,7 @@
   "type": "module",
   "main": "demo.js",
   "scripts": {
-    "generate:types": "rimraf generated/types && jco types wit/ -o generated/types",
+    "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "build:tsc": "tsc",
     "build:bundle": "rslib build",
     "build:js": "jco componentize -w wit -o dist/bundled-rsbuild.wasm dist/esm/bundled-rsbuild.js",
