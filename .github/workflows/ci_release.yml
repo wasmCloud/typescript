@@ -19,10 +19,10 @@ permissions:
 jobs:
   changesets:
     # Only run on main repo, don't try to release on forks
-    # Also only run on pushes to main branch, i.e. PRs and merge groups should not run this step
+    # Also only run on pushes to v1 branch, i.e. PRs and merge groups should not run this step
     if: |
       (github.repository == 'wasmCloud/typescript') &&
-      (github.event_name == 'push' && github.ref == 'refs/heads/main')
+      (github.event_name == 'push' && github.ref == 'refs/heads/v1')
 
     permissions:
       contents: write # Needed to commit changesets
@@ -93,12 +93,3 @@ jobs:
       publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}
       # object with package name as key and version as value
       packageVersions: ${{ steps.parse.outputs.packageVersions }}
-
-  washboard-ui:
-    needs: [changesets]
-    if: ${{ contains(fromJson(needs.changesets.outputs.publishedPackages || '{}').*.name, 'washboard-ui') }}
-    permissions:
-      contents: write
-    uses: ./.github/workflows/release_washboard-ui.yml
-    with:
-      version: ${{ fromJson(needs.changesets.outputs.packageVersions || '{}').washboard-ui }}

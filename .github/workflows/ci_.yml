@@ -3,12 +3,12 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - v1
     tags:
       - '**'
   pull_request:
     branches:
-      - main
+      - v1
 
 permissions:
   contents: read
@@ -27,10 +27,10 @@ jobs:
   release:
     uses: ./.github/workflows/ci_release.yml
     # Only run on main repo, don't try to release on forks
-    # Also only run on pushes to main branch, i.e. PRs and merge groups should not run this step
+    # Also only run on pushes to v1 branch, i.e. PRs and merge groups should not run this step
     if: |
       (github.repository == 'wasmCloud/typescript') &&
-      (github.event_name == 'push' && github.ref == 'refs/heads/main')
+      (github.event_name == 'push' && github.ref == 'refs/heads/v1')
     needs: [build, test]
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

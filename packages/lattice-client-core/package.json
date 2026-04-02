@@ -6,7 +6,7 @@
   "author": "wasmCloud",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wasmCloud/typescript",
+    "url": "https://github.com/wasmCloud/typescript#v1",
     "directory": "packages/lattice-client-core"
   },
   "publishConfig": {
