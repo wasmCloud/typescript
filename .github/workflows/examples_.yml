@@ -78,7 +78,7 @@ jobs:
             wasm-bin: bundled-rsbuild.wasm
             skip-wadm: true
             test-command: |
-              npm run install-and-build && npm run transpile
+              npm install && npm run transpile
               RESPONSE=$(npm run --silent demo)
               [[ "$RESPONSE" == '15' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
@@ -86,7 +86,7 @@ jobs:
             wasm-bin: bundled-esbuild.wasm
             skip-wadm: true
             test-command: |
-              npm run install-and-build && npm run transpile
+              npm install && npm run transpile
               RESPONSE=$(npm run --silent demo)
               [[ "$RESPONSE" == '8' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
@@ -94,7 +94,7 @@ jobs:
             wasm-bin: http-axios.wasm
             skip-wadm: true
             test-command: |
-              npm run install-and-build && npm run transpile
+              npm install && npm run transpile
               RESPONSE=$(npm run --silent demo | jq -r '.id')
               [[ "$RESPONSE" == '1' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
