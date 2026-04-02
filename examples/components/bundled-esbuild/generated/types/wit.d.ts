@@ -1,2 +1,4 @@
-// world wasmcloud:hello/hello
-export * as dataUtils from './interfaces/wasmcloud-hello-data-utils.js'; // export wasmcloud:hello/data-utils
+/// <reference path="./interfaces/wasmcloud-hello-data-utils.d.ts" />
+declare module 'wasmcloud:hello/hello' {
+  export * as dataUtils from 'wasmcloud:hello/data-utils'; // export wasmcloud:hello/data-utils
+}

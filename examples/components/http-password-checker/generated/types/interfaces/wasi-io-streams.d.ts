@@ -5,14 +5,14 @@ declare module 'wasi:io/streams@0.2.2' {
   export type Pollable = import('wasi:io/poll@0.2.2').Pollable;
   export type StreamError = StreamErrorLastOperationFailed | StreamErrorClosed;
   export interface StreamErrorLastOperationFailed {
-    tag: 'last-operation-failed';
-    val: Error;
+    tag: 'last-operation-failed',
+    val: Error,
   }
   export interface StreamErrorClosed {
-    tag: 'closed';
+    tag: 'closed',
   }
-
-  export class InputStream {
+  
+  export class InputStream implements Disposable {
     /**
      * This type does not have a public constructor.
      */
@@ -22,9 +22,10 @@ declare module 'wasi:io/streams@0.2.2' {
     skip(len: bigint): bigint;
     blockingSkip(len: bigint): bigint;
     subscribe(): Pollable;
+    [Symbol.dispose](): void;
   }
-
-  export class OutputStream {
+  
+  export class OutputStream implements Disposable {
     /**
      * This type does not have a public constructor.
      */
@@ -39,5 +40,6 @@ declare module 'wasi:io/streams@0.2.2' {
     blockingWriteZeroesAndFlush(len: bigint): void;
     splice(src: InputStream, len: bigint): bigint;
     blockingSplice(src: InputStream, len: bigint): bigint;
+    [Symbol.dispose](): void;
   }
 }

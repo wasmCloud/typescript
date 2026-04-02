@@ -7,7 +7,8 @@
     "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "build:tsc": "tsc",
     "build:js": "jco componentize -w wit -o dist/http-streaming.wasm dist/http-streaming.js",
-    "build": "npm run generate:types && npm run build:tsc && npm run build:js",
+    "install:deps": "rimraf wit/deps && wash wit fetch",
+    "build": "npm run install:deps && npm run generate:types && npm run build:tsc && npm run build:js",
     "install-and-build": "npm install && npm run build",
     "serve": "jco serve dist/http-streaming.wasm",
     "test": "echo \"Error: no test specified\" && exit 0"
