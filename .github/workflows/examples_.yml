@@ -19,7 +19,6 @@ jobs:
     outputs:
       changed-components: ${{ steps.changes.outputs.components }}
       changed-ci: ${{ steps.changes.outputs.ci }}
-      wash-version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
@@ -34,16 +33,6 @@ jobs:
             components:
               - 'examples/components/**'
 
-      - name: Install `wash` CLI
-        uses: taiki-e/install-action@710817a1645ef40daad5bcde7431ceccf6cc3528 # v2.67.13
-        with:
-          tool: wash
-
-      - name: Get Installed wash Version
-        id: version
-        run: |
-          # Get the installed wash version
-          echo "version=$(wash --version -o json | jq '.wash' -r | sed 's/^v//g')" >> $GITHUB_OUTPUT
 
   components:
     name: ${{ matrix.example.folder }}
@@ -57,7 +46,6 @@ jobs:
       test-command: ${{ matrix.example.test-command }}
       skip-wadm: ${{ matrix.example.skip-wadm && true || false }}
       force: ${{ needs.meta.outputs.changed-ci == 'true' }}
-      wash-version: ${{ needs.meta.outputs.wash-version }}
     strategy:
       fail-fast: false
       matrix:
