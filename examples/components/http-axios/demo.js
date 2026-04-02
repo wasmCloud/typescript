@@ -11,7 +11,7 @@ const JCO_PATH = env.JCO_PATH ?? 'jco';
 
 /** Path to the WASM file to be used */
 const WASM_PATH = fileURLToPath(
-  new URL(env.WASM_PATH ?? './build/http_axios_s.wasm', import.meta.url),
+  new URL(env.WASM_PATH ?? './dist/http-axios.wasm', import.meta.url),
 );
 
 async function main() {

@@ -11,47 +11,31 @@ Work is still ongoing, but the WebAssembly-for-Javascript effort is primarily dr
 
 ## Creating a new example component
 
-You can quickly scaffold a new TypeScript component example using the Turbo generator:
-
-```console
-yarn turbo gen component --args http-my-example "My example description" wasmcloud:myexample myexample
-```
-
-Or run interactively:
-
-```console
-yarn turbo gen component
-```
-
-This will prompt you for:
-
-- **Component name** (e.g., `http-hello-world`) - must start with a lowercase letter and contain only lowercase letters, numbers, and hyphens
-- **Description** - a brief description of your component
-- **wasmCloud package name** (e.g., `wasmcloud:hello`) - the WIT package name for your component
-- **World name** (e.g., `hello`) - the world name used in your WIT definition
-
-The generator will create a new component directory under `examples/components/` with:
+To add a new example component, create a new directory under `examples/components/` following the structure of an existing example:
 
 - `package.json` - NPM package configuration with build scripts
 - `tsconfig.json` - TypeScript compiler configuration
-- `wasmcloud.toml` - Configuration for wash build
-- `local.wadm.yaml` - WADM manifest for deployment (includes httpserver provider)
-- `src/<component-name>.ts` - TypeScript source code implementing the wasi:http handler
+- `.wash/config.yaml` - Configuration for `wash new` and `wash build`
+- `src/<component-name>.ts` - TypeScript source code
 - `wit/world.wit` - WIT (WebAssembly Interface Type) definition
 - `README.md` - Component documentation
-- `.gitignore`, `.nvmrc`, and `project-generate.toml` - Supporting configuration files
 
-The generator also automatically adds your new component to the CI workflow in `.github/workflows/examples_.yml`.
+Once added, register it in `.github/workflows/examples_.yml` so it is built and tested in CI.
 
 ## Building individual example components
 
-Example components built in Typescript can be compiled similarly to any other wasmcloud project:
+Each example is a standalone npm package. Navigate to its directory and run:
 
 ```console
-wash build
+npm install
+npm run build
 ```
 
-While Typescript is not yet officially supported by `wash`, `wash`'s custom `build_command` support makes it possible to build Typescript projects to run on wasmcloud.
+This produces a WebAssembly component at `dist/<component-name>.wasm`. To run it locally with `jco serve`:
+
+```console
+npx jco serve dist/<component-name>.wasm --port 8000
+```
 
 ## WebAssembly support
 

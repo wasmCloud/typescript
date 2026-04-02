@@ -11,12 +11,9 @@
     "build:component": "jco componentize -w wit -o dist/http-axios.wasm dist/component.js",
     "build": "npm run generate:types && npm run build:ts && npm run build:js && npm run build:component",
     "install-and-build": "npm install && npm run build",
-    "dev": "wash dev",
-    "component:start": "wash start component file://build/http-axios.wasm ts-http-axios",
-    "component:stop": "wash stop component ts-http-axios",
+    "transpile": "jco transpile dist/http-axios.wasm -o dist/transpiled/",
     "demo": "node demo.js",
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "all": "wash build && npm install && npm run build && npm run demo"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "author": "",
   "license": "ISC",

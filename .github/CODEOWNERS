@@ -13,4 +13,3 @@
 
 examples @wasmCloud/examples-maintainers @wasmCloud/typescript-maintainers
 examples/**/README.md @wasmCloud/docs-maintainers
-apps/washboard-ui @wasmCloud/washboard-maintainers @wasmCloud/typescript-maintainers

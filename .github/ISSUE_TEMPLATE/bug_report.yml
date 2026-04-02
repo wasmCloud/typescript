@@ -60,9 +60,6 @@ body:
       label: Affected Component
       description: Which part of the repository is affected?
       options:
-        - '@wasmcloud/lattice-client-core'
-        - '@wasmcloud/lattice-client-react'
-        - 'Washboard UI'
         - 'TypeScript Examples'
         - 'Documentation'
         - 'Build/Development Tools'
