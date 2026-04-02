@@ -41,9 +41,6 @@ body:
       label: Target Component
       description: Which part of the repository would this feature affect?
       options:
-        - '@wasmcloud/lattice-client-core'
-        - '@wasmcloud/lattice-client-react'
-        - 'Washboard UI'
         - 'TypeScript Examples'
         - 'Documentation'
         - 'Build/Development Tools'

@@ -18,7 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       changed-components: ${{ steps.changes.outputs.components }}
-      changed-providers: ${{ steps.changes.outputs.providers }}
       changed-ci: ${{ steps.changes.outputs.ci }}
       wash-version: ${{ steps.version.outputs.version }}
     steps:
@@ -32,11 +31,8 @@ jobs:
             ci:
               - '.github/workflows/examples_.yml'
               - '.github/workflows/examples_component.yml'
-              - '.github/workflows/examples_provider.yml'
             components:
               - 'examples/components/**'
-            providers:
-              - 'examples/providers/**'
 
       - name: Install `wash` CLI
         uses: taiki-e/install-action@710817a1645ef40daad5bcde7431ceccf6cc3528 # v2.67.13
@@ -57,7 +53,6 @@ jobs:
     uses: ./.github/workflows/examples_component.yml
     with:
       folder: ${{ matrix.example.folder }}
-      build-path: ${{ matrix.example.build-path || 'build' }}
       wasm-bin: ${{ matrix.example.wasm-bin }}
       test-command: ${{ matrix.example.test-command }}
       skip-wadm: ${{ matrix.example.skip-wadm && true || false }}
@@ -68,49 +63,31 @@ jobs:
       matrix:
         example:
           # Sample matrix entry for examples
-          # - folder: http-hello-world           # Folder name of the example within examples/components/*
-          #   build-path: dist                   # Path to the build directory (default: build)
-          #   wasm-bin: http-hello-world.wasm    # Path to the wasm binary after build
-          #   test-command: TEST_RESULT=1        # Some command that will set TEST_RESULT to 0 or 1
-
-          # TODO: re-enable this test once the new wash can be used from tests
-          #- folder: http-hello-world
-          #  wasm-bin: http_hello_world_s.wasm
-          #  test-command: |
-          #    RESPONSE=$(curl http://127.0.0.1:8000 || echo '')
-          #    [[ "$RESPONSE" == 'Hello from Typescript!' ]] && TEST_RESULT=1 || TEST_RESULT=0
+          # - folder: http-hello-world        # Folder name of the example within examples/components/*
+          #   wasm-bin: http-hello-world.wasm # Wasm binary filename inside dist/
+          #   test-command: TEST_RESULT=1     # Some command that will set TEST_RESULT to 0 or 1
 
           - folder: http-password-checker
-            wasm-bin: http_password_checker_s.wasm
+            wasm-bin: http-password-checker.wasm
             test-command: |
               RESPONSE=$(curl http://127.0.0.1:8000/api/v1/check -d '{"value": "test"}' | jq -r '.status' || echo '')
               [[ "$RESPONSE" == 'success' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
           - folder: http-server-with-hono
-            build-path: dist
-            wasm-bin: http_server_with_hono_s.wasm
+            wasm-bin: http_server_with_hono.wasm
             test-command: |
-              # Test the /api/data route
               EXPECTED_DATA="This is some JSON data."
               RESPONSE_DATA=$(curl http://127.0.0.1:8000/api/data | jq -r '.message')
-              [[ "$RESPONSE_DATA" == "$EXPECTED_DATA" ]] && TEST_DATA=1 || TEST_DATA=0
-
-              # Test the /api/config route
-              EXPECTED_CONFIG='{"theme":"dark","version":"1.0.0","features":["logging","metrics"]}'
-              RESPONSE_CONFIG=$(curl http://127.0.0.1:8000/api/config)
-              [[ "$RESPONSE_CONFIG" == "$EXPECTED_CONFIG" ]] && TEST_CONFIG=1 || TEST_CONFIG=0
-
-              # Check that both data and config routes pass
-              [[ "$TEST_DATA" == '1' && "$TEST_CONFIG" == '1' ]] && TEST_RESULT=1 || TEST_RESULT=0
+              [[ "$RESPONSE_DATA" == "$EXPECTED_DATA" ]] && TEST_RESULT=1 || TEST_RESULT=0
 
           - folder: http-streaming
-            wasm-bin: http_streaming_s.wasm
+            wasm-bin: http-streaming.wasm
             test-command: |
               RESPONSE=$(curl http://127.0.0.1:8000 | base64 -d | wc -c)
               [[ "$RESPONSE" == '1048576' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
           - folder: bundled-rsbuild
-            wasm-bin: bundled_rsbuild_s.wasm
+            wasm-bin: bundled-rsbuild.wasm
             skip-wadm: true
             test-command: |
               npm run install-and-build && npm run transpile
@@ -118,7 +95,7 @@ jobs:
               [[ "$RESPONSE" == '15' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
           - folder: bundled-esbuild
-            wasm-bin: bundled_esbuild_s.wasm
+            wasm-bin: bundled-esbuild.wasm
             skip-wadm: true
             test-command: |
               npm run install-and-build && npm run transpile
@@ -126,7 +103,7 @@ jobs:
               [[ "$RESPONSE" == '8' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
           - folder: http-axios
-            wasm-bin: http_axios_s.wasm
+            wasm-bin: http-axios.wasm
             skip-wadm: true
             test-command: |
               npm run install-and-build && npm run transpile

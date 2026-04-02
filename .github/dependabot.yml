@@ -6,27 +6,7 @@ updates:
     schedule:
       interval: 'weekly'
 
-  # NPM/Yarn Dependencies
-  - package-ecosystem: 'npm'
-    directory: '/'
-    schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '09:00'
-      timezone: 'America/New_York'
-    groups:
-      dev-dependencies:
-        dependency-type: development
-        update-types:
-          - minor
-          - patch
-      prod-dependencies:
-        dependency-type: production
-        update-types:
-          - minor
-          - patch
-
-  # NPM/Yarn Dependencies
+  # NPM Dependencies
   - package-ecosystem: 'npm'
     directories:
       - '/examples/components/*'

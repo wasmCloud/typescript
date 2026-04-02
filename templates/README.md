@@ -11,7 +11,8 @@ Project templates for building wasmCloud components with TypeScript.
 | [http-client](./http-client/)                                 | Component that makes outgoing HTTP requests                       |
 | [http-service-hono](./http-service-hono/)                     | HTTP service component powered by Hono                            |
 | [http-blobstore-service-hono](./http-blobstore-service-hono/) | HTTP service component powered by Hono, backed by `wasi:blobstore`|
-| [http-kv-service-hono](./http-kv-service-hono/)               | HTTP service component powered by Hono, backed by `wasi:keyvalue` |
+| [http-kv-service-hono](./http-kv-service-hono/)               | HTTP service component powered by Hono, backed by `wasi:keyvalue`  |
+| [service-tcp-echo](./service-tcp-echo/)                       | Service + component template demonstrating `wasi:sockets` TCP      |
 
 ## Template Structure
 

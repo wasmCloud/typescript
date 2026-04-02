@@ -1,4 +1,4 @@
-import {dataUtils} from './dist/transpiled/bundled_esbuild_s.js';
+import {dataUtils} from './dist/transpiled/bundled_esbuild.js';
 
 const JSON_DATA = JSON.stringify([
   {title: 'Hello', score: 5},

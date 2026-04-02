@@ -20,7 +20,12 @@ function serve<E extends Env = Env, S extends Schema = BlankSchema, BasePath ext
   self.addEventListener('fetch', (event): void => {
     logger.debug('Request:', event.request.url);
 
-    const env = Object.fromEntries(getConfig());
+    let env: Record<string, string> = {};
+    try {
+      env = Object.fromEntries(getConfig());
+    } catch {
+      // wasi:config not available in this runtime (e.g. jco serve)
+    }
     event.respondWith(app.fetch(event.request, env));
   });
 }

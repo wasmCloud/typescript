@@ -7,15 +7,10 @@
     "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "build:ts": "rollup -c",
     "build:js": "jco componentize -w wit -o dist/http_server_with_hono.wasm dist/index.bundled.js",
-    "build:component": "wash build --sign-only --config-path wasmcloud.toml",
-    "build": "npm run install:deps && npm run generate:types && npm run build:ts && npm run build:js && npm run build:component",
+    "build": "npm run install:deps && npm run generate:types && npm run build:ts && npm run build:js",
     "install-and-build": "npm install && npm run build",
     "install:deps": "rimraf wit/deps && wash wit deps",
-    "wadm:start": "wash app deploy local.wadm.yaml",
-    "wadm:stop": "wash app delete local.wadm.yaml",
-    "start": "npm run build && npm run wadm:start",
-    "reload": "npm run build && npm run wadm:stop && npm run wadm:start",
-    "stop": "npm run wadm:stop",
+    "serve": "jco serve dist/http_server_with_hono.wasm",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "dependencies": {
