@@ -17,7 +17,7 @@ on:
         required: true
       skip-wadm:
         type: boolean
-        description: Whether to skip jco serve-based testing (true for components tested via transpile+demo)
+        description: Whether to skip wasmCloud host-based testing (true for components tested via transpile+demo)
         required: true
       force:
         type: boolean
@@ -25,6 +25,8 @@ on:
         required: true
 
 env:
+  DEPLOY_RETRIES: 60
+  DEPLOY_TIMEOUT: 1
   TEST_RETRIES: 60
   TEST_TIMEOUT: 1
 
@@ -38,8 +40,6 @@ jobs:
         id: force
         if: inputs.force
         run: |
-          # Force build if needed
-          # This is a workaround since at least one step must run in a job
           echo "force=true" >> $GITHUB_OUTPUT
 
       - name: Checkout
@@ -100,12 +100,17 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Setup Node
+        if: ${{ inputs.skip-wadm }}
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version-file: './examples/components/${{ inputs.folder }}/.nvmrc'
 
       - name: Install JS Wasm Tools
+        if: ${{ inputs.skip-wadm }}
         run: npm install -g @bytecodealliance/jco@1.17.0
+
+      - name: Install Wash
+        uses: wasmcloud/setup-wash-action@v2.0.0
 
       - name: Download wasm-bin
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
@@ -113,30 +118,31 @@ jobs:
           name: ${{ inputs.folder }}-wasm-bin
           path: ./examples/components/${{ inputs.folder }}/dist/
 
-      - name: Start jco serve
+      - name: Start wasmCloud host
+        if: ${{ !inputs.skip-wadm }}
+        run: wash up -d
+
+      - name: Deploy application
         if: ${{ !inputs.skip-wadm }}
         working-directory: './examples/components/${{ inputs.folder }}'
+        run: wash app deploy ./local.wadm.yaml
+
+      - name: Wait for deployment
+        if: ${{ !inputs.skip-wadm }}
         shell: bash
         run: |
-          STUB_LOADER="$GITHUB_WORKSPACE/.github/fixtures/wasi-stub-loader.mjs"
-          JCO_RUN_ARGS="--experimental-loader $STUB_LOADER --wasm-lazy-compilation" \
-            jco serve dist/${{ inputs.wasm-bin }} --port 8000 > /tmp/jco-serve.log 2>&1 &
-
-      - name: Wait for server
-        if: ${{ !inputs.skip-wadm }}
-        run: |
-          echo "Waiting for jco serve to bind port 8000..."
-          for i in $(seq 1 300); do
-            if ss -tlnp | grep -q ':8000'; then
-              echo "Server listening after ${i}s"
-              break
+          set -e
+          TRIES=0
+          while [[ $(wash get inventory --output=json | jq '.inventories[0].components | length') -eq 0 ]] ; do
+            if [[ $TRIES -gt $DEPLOY_RETRIES ]]; then
+              echo "❌ failed to find component in inventory after deploying example manifest"
+              exit 1
             fi
+            TRIES=$((TRIES+$DEPLOY_TIMEOUT))
+            echo $(wash app list --output json | jq -r '.applications[0]')
             sleep 1
           done
-
-      - name: Print jco serve log
-        if: ${{ always() && !inputs.skip-wadm }}
-        run: cat /tmp/jco-serve.log || echo "(no log output)"
+          echo "✅ component started"
 
       - name: Test Functionality
         shell: bash
@@ -148,8 +154,8 @@ jobs:
           TEST_RESULT=0
           while [[ $TEST_RESULT -eq 0 ]] ; do
             if [[ $TRIES -gt $TEST_RETRIES ]]; then
-              echo "❌ test command failed after $TRIES retries";
-              exit -1;
+              echo "❌ test command failed after $TRIES retries"
+              exit 1
             fi
 
             # Test command should update the TEST_RESULT variable to 0 or 1 based on the test result
@@ -160,6 +166,9 @@ jobs:
           done;
           echo "✅ successfully ran test command";
 
-      - name: Stop server
-        if: always() && !inputs.skip-wadm
-        run: pkill -f 'jco serve' || true
+      - name: Cleanup deployment
+        if: ${{ always() && !inputs.skip-wadm }}
+        working-directory: './examples/components/${{ inputs.folder }}'
+        run: |
+          wash app delete ./local.wadm.yaml || true
+          wash down --all || true

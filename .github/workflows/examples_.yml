@@ -50,11 +50,6 @@ jobs:
       fail-fast: false
       matrix:
         example:
-          # Sample matrix entry for examples
-          # - folder: http-hello-world        # Folder name of the example within examples/components/*
-          #   wasm-bin: http-hello-world.wasm # Wasm binary filename inside dist/
-          #   test-command: TEST_RESULT=1     # Some command that will set TEST_RESULT to 0 or 1
-
           - folder: http-password-checker
             wasm-bin: http-password-checker.wasm
             test-command: |
@@ -66,7 +61,13 @@ jobs:
             test-command: |
               EXPECTED_DATA="This is some JSON data."
               RESPONSE_DATA=$(curl http://127.0.0.1:8000/api/data | jq -r '.message')
-              [[ "$RESPONSE_DATA" == "$EXPECTED_DATA" ]] && TEST_RESULT=1 || TEST_RESULT=0
+              [[ "$RESPONSE_DATA" == "$EXPECTED_DATA" ]] && TEST_DATA=1 || TEST_DATA=0
+
+              EXPECTED_CONFIG='{"theme":"dark","version":"1.0.0","features":["logging","metrics"]}'
+              RESPONSE_CONFIG=$(curl http://127.0.0.1:8000/api/config)
+              [[ "$RESPONSE_CONFIG" == "$EXPECTED_CONFIG" ]] && TEST_CONFIG=1 || TEST_CONFIG=0
+
+              [[ "$TEST_DATA" == '1' && "$TEST_CONFIG" == '1' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
           - folder: http-streaming
             wasm-bin: http-streaming.wasm

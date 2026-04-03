@@ -55,7 +55,7 @@ export const incomingHandler = {
           return await sendResponseJSON(
             resp,
             500,
-            Response.error(ErrorCode.UnexpectedError, `failed to check secret: ${err?.toString()}`),
+            Response.error(ErrorCode.UnexpectedError, `failed to check password: ${err?.toString()}`),
           );
         }
 
