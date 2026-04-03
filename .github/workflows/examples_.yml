@@ -44,7 +44,7 @@ jobs:
       folder: ${{ matrix.example.folder }}
       wasm-bin: ${{ matrix.example.wasm-bin }}
       test-command: ${{ matrix.example.test-command }}
-      skip-wadm: ${{ matrix.example.skip-wadm && true || false }}
+      skip-wash-dev: ${{ matrix.example.skip-wash-dev && true || false }}
       force: ${{ needs.meta.outputs.changed-ci == 'true' }}
     strategy:
       fail-fast: false
@@ -77,7 +77,7 @@ jobs:
 
           - folder: bundled-rsbuild
             wasm-bin: bundled-rsbuild.wasm
-            skip-wadm: true
+            skip-wash-dev: true
             test-command: |
               npm install && npm run transpile
               RESPONSE=$(npm run --silent demo)
@@ -85,7 +85,7 @@ jobs:
 
           - folder: bundled-esbuild
             wasm-bin: bundled-esbuild.wasm
-            skip-wadm: true
+            skip-wash-dev: true
             test-command: |
               npm install && npm run transpile
               RESPONSE=$(npm run --silent demo)
@@ -93,7 +93,7 @@ jobs:
 
           - folder: http-axios
             wasm-bin: http-axios.wasm
-            skip-wadm: true
+            skip-wash-dev: true
             test-command: |
               npm install && npm run transpile
               RESPONSE=$(npm run --silent demo | jq -r '.id')

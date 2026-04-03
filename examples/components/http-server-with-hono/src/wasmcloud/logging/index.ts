@@ -1,6 +1,4 @@
-import type {Level} from 'wasi:logging/logging@0.1.0-draft';
-
-import {log as wasiLog} from 'wasi:logging/logging@0.1.0-draft';
+type Level = 'trace' | 'debug' | 'info' | 'warn' | 'error';
 
 const combineContexts = (defaultCtx: string, ctx?: string) =>
   ctx ? `${defaultCtx}:${ctx}` : defaultCtx;
@@ -8,7 +6,7 @@ const combineContexts = (defaultCtx: string, ctx?: string) =>
 const getLogger = (defaultCtx: string) => {
   return (level: Level, message: string, context?: string): void => {
     const ctx = combineContexts(defaultCtx, context);
-    wasiLog(level, ctx, message);
+    console.log(`[${level.toUpperCase()}] ${ctx}: ${message}`);
   };
 };
 
