@@ -28,13 +28,13 @@ Building this project relies on the following software:
 | `npm`  | [Node Package Manager (NPM)][npm] manages packages for the NodeJS ecosystem |
 | `node` | [NodeJS runtime][nodejs] (see `.nvmrc` for version)                         |
 
-[wash]: https://github.com/wasmCloud/wash
+[wash]: https://wasmcloud.com/docs/installation/#install-wash
 [node]: https://nodejs.org
 [npm]: https://github.com/npm/cli
 
 # Quickstart
 
-To get started developing this repository quickly, clone the repo and run `wash dev`:
+To get started developing this project quickly, clone the repo and run `wash dev` in this directory:
 
 ```console
 wash dev
@@ -56,4 +56,4 @@ curl localhost:8000
 
 ## Adding Capabilities
 
-To learn how to extend this example with additional capabilities, see the [Adding Capabilities](https://wasmcloud.com/docs/tour/adding-capabilities?lang=typescript) section of the wasmCloud documentation.
+To learn how to extend this example with additional capabilities, see the [TypeScript Language Guide](https://wasmcloud.com/docs/wash/developer-guide/language-support/typescript/) in the wasmCloud documentation.

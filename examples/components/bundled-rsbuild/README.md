@@ -1,10 +1,10 @@
 # Typescript component bundled with rslib/rsbuild
 
-This repository contains a hello world HTTP component, written in [Typescript][ts].
+This repository contains a hello world HTTP component, written in [TypeScript][ts].
 
 This component:
 
-- Uses [Typescript][ts] for it's implementation
+- Uses [TypeScript][ts] for its implementation
 - Bundles with [rslib][rslib]
 
 [ts]: https://www.typescriptlang.org/
@@ -23,11 +23,11 @@ Building this project relies on the following software:
 
 | Name   | Description                                                                                                 |
 | ------ | ----------------------------------------------------------------------------------------------------------- |
-| `wash` | [Wasmcloud Shell][wash] controls your [wasmcloud][wasmcloud] host instances and enables building components |
+| `wash` | [Wasm Shell][wash] controls your [wasmCloud][wasmcloud] host instances and enables building components |
 | `npm`  | [Node Package Manager (NPM)][npm] which manages packages for for the NodeJS ecosystem                       |
 | `node` | [NodeJS runtime][nodejs] (see `.nvmrc` for version)                                                         |
 
-[wash]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/wash-cli
+[wash]: https://wasmcloud.com/docs/installation/#install-wash
 [node]: https://nodejs.org
 [npm]: https://github.com/npm/cli
 
@@ -52,4 +52,4 @@ See package.json for the exact commands being run. But what `npm start` does is:
 
 ## Bundling
 
-It uses rslib to bundling the javascript together with the dependencies. See the [`rslib.config.rs`](https://github.com/wasmCloud/typescript/blob/main/examples/components/bundled-rsbuild/rslib.config.ts) file in the example folder for more details.
+It uses rslib to bundling the JavaScript together with the dependencies. See the [`rslib.config.rs`](https://github.com/wasmCloud/typescript/blob/main/examples/components/bundled-rsbuild/rslib.config.ts) file in the example folder for more details.

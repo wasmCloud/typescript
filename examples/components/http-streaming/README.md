@@ -1,6 +1,6 @@
 # Typescript HTTP Streaming
 
-This repository contains an HTTP component that performs a streaming response using WASI I/O and HTTP primitives, written in [Typescript][ts].
+This repository contains an HTTP component that performs a streaming response using WASI I/O and HTTP primitives, written in [TypeScript][ts].
 
 This component:
 
@@ -25,11 +25,11 @@ Building this project relies on the following software:
 
 | Name   | Description                                                                                                                        |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `wash` | [Wasmcloud Shell][wash] controls your [wasmcloud][wasmcloud] host instances and enables building components (version >= 2.0)       |
+| `wash` | [Wasm Shell][wash] controls your [wasmCloud][wasmcloud] host instances and enables building components (version >= 2.0)       |
 | `npm`  | [Node Package Manager (NPM)][npm] which manages packages for the NodeJS ecosystem                                                  |
 | `node` | [NodeJS runtime][nodejs] (see `.nvmrc` for version)                                                                                |
 
-[wash]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/wash-cli
+[wash]: https://wasmcloud.com/docs/installation/#install-wash
 [node]: https://nodejs.org
 [npm]: https://github.com/npm/cli
 
@@ -48,7 +48,7 @@ wash dev
 - Deploys an HTTP server on port 8000 and links it to your component
 - Watches your code for changes and re-deploys when necessary
 
-[wasmcloud-host]: https://wasmcloud.com/docs/concepts/hosts
+[wasmcloud-host]: https://wasmcloud.com/docs/overview/hosts
 
 ## Send a request to the running component
 
@@ -60,4 +60,4 @@ curl localhost:8000
 
 ## Adding Capabilities
 
-To learn how to extend this example with additional capabilities, see the [Adding Capabilities](https://wasmcloud.com/docs/tour/adding-capabilities?lang=typescript) section of the wasmCloud documentation.
+To learn how to extend this example with additional capabilities, see the [TypeScript Language Guide](https://wasmcloud.com/docs/wash/developer-guide/language-support/typescript/) in the wasmCloud documentation.

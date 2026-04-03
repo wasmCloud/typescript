@@ -1,10 +1,10 @@
 # Typescript component bundled with esbuild
 
-This repository contains a custom wasm component, written in [Typescript][ts].
+This repository contains a custom wasm component, written in [TypeScript][ts].
 
 This component:
 
-- Uses [Typescript][ts] for it's implementation
+- Uses [TypeScript][ts] for it's implementation
 - Bundles with [esbuild][esbuild]
 
 [ts]: https://www.typescriptlang.org/
@@ -23,11 +23,11 @@ Building this project relies on the following software:
 
 | Name   | Description                                                                                                 |
 | ------ | ----------------------------------------------------------------------------------------------------------- |
-| `wash` | [Wasmcloud Shell][wash] controls your [wasmcloud][wasmcloud] host instances and enables building components |
+| `wash` | [Wasm Shell][wash] controls your [wasmcloud][wasmcloud] host instances and enables building components |
 | `npm`  | [Node Package Manager (NPM)][npm] which manages packages for for the NodeJS ecosystem                       |
 | `node` | [NodeJS runtime][nodejs] (see `.nvmrc` for version)                                                         |
 
-[wash]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/wash-cli
+[wash]: https://wasmcloud.com/docs/installation/#install-wash
 [node]: https://nodejs.org
 [npm]: https://github.com/npm/cli
 
@@ -49,7 +49,7 @@ The main entry point is the `start` script (i.e. `npm start`) which performs the
 
 - `npm install` to download all dependencies
 - building the component
-- transpiling the component so it can be called from javascript
+- transpiling the component so it can be called from JavaScript
 - running the demo.js script
 
 ## Bundling
