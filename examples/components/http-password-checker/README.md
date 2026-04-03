@@ -1,6 +1,6 @@
 # Typescript HTTP Password Checker
 
-This repository contains a WebAssembly Component written in [Typescript][ts], which:
+This repository contains a WebAssembly Component written in [TypeScript][ts], which:
 
 - Implements a [`wasi:http`][wasi-http]-compliant HTTP handler
 - Provides an API for checking password strength
@@ -13,7 +13,7 @@ This example also demonstrates using JS ecosystem packages in a Wasm component, 
 
 [ts]: https://www.typescriptlang.org/
 [wasi-http]: https://github.com/WebAssembly/wasi-http
-[wasmcloud]: https://wasmcloud.com/docs/intro
+[wasmcloud]: https://wasmcloud.com/docs/
 [zod]: https://github.com/colinhacks/zod
 [valibot]: https://github.com/fabian-hiller/valibot
 [npm-check-password-strength]: https://www.npmjs.com/package/check-password-strength
@@ -31,11 +31,11 @@ Building this project relies on the following installed software:
 
 | Name   | Description                                                                                          |
 | ------ | ---------------------------------------------------------------------------------------------------- |
-| `wash` | [Wasmcloud Shell][wash] controls your [wasmcloud][wasmcloud] host instances and enables building components (version >= 2.0) |
+| `wash` | [Wasm Shell][wash] controls your [wasmCloud][wasmcloud] host instances and enables building components (version >= 2.0) |
 | `npm`  | [Node Package Manager (NPM)][npm] which manages packages for the NodeJS ecosystem                    |
 | `node` | [NodeJS runtime][nodejs] (see `.nvmrc` for version)                                                  |
 
-[wash]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/wash-cli
+[wash]: https://wasmcloud.com/docs/installation/#install-wash
 [node]: https://nodejs.org
 [npm]: https://github.com/npm/cli
 
@@ -54,7 +54,7 @@ wash dev
 - Deploys an HTTP server on port 8000 and links it to your component
 - Watches your code for changes and re-deploys when necessary
 
-[wasmcloud-host]: https://wasmcloud.com/docs/concepts/hosts
+[wasmcloud-host]: https://wasmcloud.com/docs/overview/hosts/
 
 ## Send a request to the running component
 
@@ -79,7 +79,7 @@ You should see a JSON response like:
 
 ## Adding Capabilities
 
-To learn how to extend this example with additional capabilities, see the [Adding Capabilities](https://wasmcloud.com/docs/tour/adding-capabilities?lang=typescript) section of the wasmCloud documentation.
+To learn how to extend this example with additional capabilities, see the [TypeScript Language Guide](https://wasmcloud.com/docs/wash/developer-guide/language-support/typescript/) in the wasmCloud documentation.
 
 # Issues / FAQ
 

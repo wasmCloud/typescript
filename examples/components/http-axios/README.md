@@ -1,4 +1,4 @@
-# Typescript Axios example CLI
+# TypeScript Axios example CLI
 
 This repository contains a WebAssembly Component written in [Typescript][ts], which:
 
@@ -12,8 +12,8 @@ the widely used HTTP request library `axios`.
 
 [axios]: https://www.npmjs.com/package/axios
 [ts]: https://www.typescriptlang.org/
-[wasi-cli]: clis://github.com/WebAssembly/wasi-cli
-[wasmcloud]: https://wasmcloud.com/docs/intro
+[wasi-cli]: https://wasmcloud.com/docs/installation/#install-wash
+[wasmcloud]: https://wasmcloud.com/docs/
 [wasmtime]: https://wasmtime.dev
 [jco]: https://github.com/bytecodealliance/jco
 
@@ -35,7 +35,7 @@ Building this project relies on the following installed software:
 | `node` | [NodeJS runtime][nodejs] (see `.nvmrc` for version)                                                         |
 | `wkg`  | (optional) [wasm-pkg-tools][wasm-pkg-tools] project that makes it easy to pull down WIT definitions         |
 
-[wash]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/wash-cli
+[wash]: https://wasmcloud.com/docs/installation/#install-wash
 [node]: https://nodejs.org
 [npm]: https://github.com/npm/cli
 [wasm-pkg-tools]: https://github.com/bytecodealliance/wasm-pkg-tools
@@ -55,20 +55,14 @@ To get into a rapid development loop, clone the repo and run `wash dev`:
 ```console
 wash dev
 ```
-
 `wash dev` does many things for you:
 
 - Starts the [wasmCloud host][wasmcloud-host] that can run your WebAssembly component
 - Builds this project (including necessary `npm` script targets)
-- Builds a declarative WADM manifest consisting of:
-  - Your locally built component
-  - A [HTTP server provider][http-client-provider] which will peform outgoing requests on your component's behalf
-  - Necessary links between providers and your component so your component can make requests
-- Deploys the built manifest (i.e all dependencies to run this application) locally
-- Watches your code for changes and re-deploys when necessary.
+- Deploys an HTTP server on port 8000 and links it to your component
+- Watches your code for changes and re-deploys when necessary
 
-[wasmcloud-host]: https://wasmcloud.com/docs/concepts/hosts
-[httpclient-provider]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/providers-http-client
+[wasmcloud-host]: https://wasmcloud.com/docs/overview/hosts
 
 ## With `jco`
 
@@ -141,4 +135,4 @@ wash call wasmcloud:examples/invoke.call
 
 ## Adding Capabilities
 
-To learn how to extend this example with additional capabilities, see the [Adding Capabilities](https://wasmcloud.com/docs/tour/adding-capabilities?lang=typescript) section of the wasmCloud documentation.
+To learn how to extend this example with additional capabilities, see the [TypeScript Language Guide](https://wasmcloud.com/docs/wash/developer-guide/language-support/typescript/) in the wasmCloud documentation.
