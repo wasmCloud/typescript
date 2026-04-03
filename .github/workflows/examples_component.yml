@@ -15,9 +15,9 @@ on:
         type: string
         description: Command to run the test. The command should set TEST_RESULT to 0 or 1 based on the test result
         required: true
-      skip-wadm:
+      skip-wash-dev:
         type: boolean
-        description: Whether to skip wasmCloud host-based testing (true for components tested via transpile+demo)
+        description: Whether to skip wash dev testing (true for components tested via transpile+demo)
         required: true
       force:
         type: boolean
@@ -100,13 +100,12 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Setup Node
-        if: ${{ inputs.skip-wadm }}
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version-file: './examples/components/${{ inputs.folder }}/.nvmrc'
 
       - name: Install JS Wasm Tools
-        if: ${{ inputs.skip-wadm }}
+        if: ${{ inputs.skip-wash-dev }}
         run: npm install -g @bytecodealliance/jco@1.17.0
 
       - name: Install Wash
@@ -118,31 +117,15 @@ jobs:
           name: ${{ inputs.folder }}-wasm-bin
           path: ./examples/components/${{ inputs.folder }}/dist/
 
-      - name: Start wasmCloud host
-        if: ${{ !inputs.skip-wadm }}
-        run: wash up -d
-
-      - name: Deploy application
-        if: ${{ !inputs.skip-wadm }}
+      - name: Install dependencies
+        if: ${{ !inputs.skip-wash-dev }}
         working-directory: './examples/components/${{ inputs.folder }}'
-        run: wash app deploy ./local.wadm.yaml
+        run: npm install
 
-      - name: Wait for deployment
-        if: ${{ !inputs.skip-wadm }}
-        shell: bash
-        run: |
-          set -e
-          TRIES=0
-          while [[ $(wash get inventory --output=json | jq '.inventories[0].components | length') -eq 0 ]] ; do
-            if [[ $TRIES -gt $DEPLOY_RETRIES ]]; then
-              echo "❌ failed to find component in inventory after deploying example manifest"
-              exit 1
-            fi
-            TRIES=$((TRIES+$DEPLOY_TIMEOUT))
-            echo $(wash app list --output json | jq -r '.applications[0]')
-            sleep 1
-          done
-          echo "✅ component started"
+      - name: Start wash dev
+        if: ${{ !inputs.skip-wash-dev }}
+        working-directory: './examples/components/${{ inputs.folder }}'
+        run: wash dev --non-interactive &
 
       - name: Test Functionality
         shell: bash
@@ -166,9 +149,6 @@ jobs:
           done;
           echo "✅ successfully ran test command";
 
-      - name: Cleanup deployment
-        if: ${{ always() && !inputs.skip-wadm }}
-        working-directory: './examples/components/${{ inputs.folder }}'
-        run: |
-          wash app delete ./local.wadm.yaml || true
-          wash down --all || true
+      - name: Cleanup
+        if: ${{ always() && !inputs.skip-wash-dev }}
+        run: pkill -f "wash dev" || true

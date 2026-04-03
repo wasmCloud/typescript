@@ -7,8 +7,6 @@ declare const self: ServiceWorkerGlobalScope;
 import type {Env, Hono, Schema} from 'hono';
 import type {BlankSchema} from 'hono/types';
 
-import {getAll as getConfig} from 'wasi:config/runtime@0.2.0-draft';
-
 import {handleError} from './errorHandling';
 import {createLogger} from '../logging';
 
@@ -19,14 +17,7 @@ function serve<E extends Env = Env, S extends Schema = BlankSchema, BasePath ext
   app.onError(handleError);
   self.addEventListener('fetch', (event): void => {
     logger.debug('Request:', event.request.url);
-
-    let env: Record<string, string> = {};
-    try {
-      env = Object.fromEntries(getConfig());
-    } catch {
-      // wasi:config not available in this runtime (e.g. jco serve)
-    }
-    event.respondWith(app.fetch(event.request, env));
+    event.respondWith(app.fetch(event.request, {}));
   });
 }
 

@@ -11,6 +11,7 @@
     "build": "npm run install:deps && npm run generate:types && npm run build:tsc && npm run build:js",
     "install-and-build": "npm install && npm run build",
     "serve": "jco serve dist/http-streaming.wasm",
+    "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "keywords": [],
@@ -18,6 +19,7 @@
   "license": "ISC",
   "devDependencies": {
     "@bytecodealliance/jco": "^1.17.0",
+    "nodemon": "^3.1.10",
     "@types/node": "^24.10.13",
     "rimraf": "^6.1.3",
     "typescript": "^5.9.3"
