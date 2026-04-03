@@ -113,6 +113,15 @@ jobs:
           name: ${{ inputs.folder }}-wasm-bin
           path: ./examples/components/${{ inputs.folder }}/dist/
 
+      - name: Pre-serve diagnostics
+        if: ${{ !inputs.skip-wadm }}
+        working-directory: './examples/components/${{ inputs.folder }}'
+        run: |
+          echo "jco: $(which jco || echo 'NOT FOUND')"
+          echo "jco version: $(jco --version 2>&1 || echo 'FAILED')"
+          echo "node: $(node --version)"
+          echo "wasm file: $(ls -la dist/${{ inputs.wasm-bin }} 2>&1 || echo 'MISSING')"
+
       - name: Start jco serve
         if: ${{ !inputs.skip-wadm }}
         working-directory: './examples/components/${{ inputs.folder }}'
@@ -125,7 +134,13 @@ jobs:
 
       - name: Show jco serve output
         if: ${{ !inputs.skip-wadm }}
-        run: cat /tmp/jco-serve.log || true
+        run: |
+          echo "=== jco serve log ==="
+          cat /tmp/jco-serve.log || echo "(empty or missing)"
+          echo "=== port 8000 status ==="
+          ss -tlnp 2>/dev/null | grep 8000 || echo "port 8000 not listening"
+          echo "=== jco processes ==="
+          ps aux | grep jco || echo "no jco processes"
 
       - name: Test Functionality
         shell: bash
