@@ -117,7 +117,10 @@ jobs:
         if: ${{ !inputs.skip-wadm }}
         working-directory: './examples/components/${{ inputs.folder }}'
         shell: bash
-        run: JCO_RUN_ARGS='--wasm-lazy-compilation' jco serve dist/${{ inputs.wasm-bin }} --port 8000 > /tmp/jco-serve.log 2>&1 &
+        run: |
+          STUB_LOADER="$GITHUB_WORKSPACE/.github/fixtures/wasi-stub-loader.mjs"
+          JCO_RUN_ARGS="--experimental-loader $STUB_LOADER --wasm-lazy-compilation" \
+            jco serve dist/${{ inputs.wasm-bin }} --port 8000 > /tmp/jco-serve.log 2>&1 &
 
       - name: Wait for server
         if: ${{ !inputs.skip-wadm }}
