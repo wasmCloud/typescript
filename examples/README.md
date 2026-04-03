@@ -1,75 +1,51 @@
-# Typescript Examples
+# wasmCloud TypeScript Examples
 
-This folder contains examples that can be run with [wasmcloud][wasmcloud] which are written in [Typescript][typescript].
+Example components for building wasmCloud applications with TypeScript.
 
-While WebAssembly was initially developed as a Web-centered abstraction, work is underway to make WebAssembly usable and convenient from server-side Javascript.
+## Available Examples
 
-Work is still ongoing, but the WebAssembly-for-Javascript effort is primarily driven forward by [`jco`][jco] and [`componentize-js`][componentize-js].
+| Example | Description |
+| ------- | ----------- |
+| [http-hello-world](./components/http-hello-world/) | Minimal HTTP server component |
+| [http-password-checker](./components/http-password-checker/) | HTTP API for checking password strength using npm packages |
+| [http-server-with-hono](./components/http-server-with-hono/) | HTTP server component with routing powered by [Hono](https://hono.dev) |
+| [http-streaming](./components/http-streaming/) | HTTP component that streams a response using `wasi:io` primitives |
+| [http-axios](./components/http-axios/) | Component that makes outgoing HTTP requests using [Axios](https://axios-http.com) |
+| [bundled-esbuild](./components/bundled-esbuild/) | TypeScript component bundled with [esbuild](https://esbuild.github.io) |
+| [bundled-rsbuild](./components/bundled-rsbuild/) | TypeScript component bundled with [Rsbuild](https://rsbuild.dev) |
 
-[jco]: https://github.com/bytecodealliance/jco
-[componentize-js]: https://github.com/bytecodealliance/componentize-js
+## Example Structure
 
-## Creating a new example component
+Each example follows a similar structure:
 
-To add a new example component, create a new directory under `examples/components/` following the structure of an existing example:
-
-- `package.json` - NPM package configuration with build scripts
-- `tsconfig.json` - TypeScript compiler configuration
-- `.wash/config.yaml` - Configuration for `wash new` and `wash build`
-- `src/<component-name>.ts` - TypeScript source code
-- `wit/world.wit` - WIT (WebAssembly Interface Type) definition
-- `README.md` - Component documentation
-
-Once added, register it in `.github/workflows/examples_.yml` so it is built and tested in CI.
-
-## Building individual example components
-
-Each example is a standalone npm package. Navigate to its directory and run:
-
-```console
-npm install
-npm run build
+```
+example-name/
+├── .wash/
+│   └── config.yaml      # wash CLI configuration (build command and component path)
+├── src/
+│   └── *.ts             # TypeScript source code
+├── wit/
+│   └── world.wit        # Component world definition
+├── nodemon.json         # File watcher configuration for wash dev
+├── package.json         # npm package configuration
+├── tsconfig.json        # TypeScript configuration
+└── wkg.lock             # WIT dependency lock file
 ```
 
-This produces a WebAssembly component at `dist/<component-name>.wasm`. To run it locally with `jco serve`:
+## Running an example
 
-```console
-npx jco serve dist/<component-name>.wasm --port 8000
+Each example is a standalone npm package. From an example directory:
+
+```bash
+# Install dependencies and build
+npm run install-and-build
+
+# Start a local development session with hot reload
+npm run dev
 ```
 
-## WebAssembly support
+`npm run dev` runs `nodemon`, which watches `src/` for changes and runs `wash dev` on each change. `wash dev` builds the component, starts a local wasmCloud host, and deploys everything needed to run the application.
 
-As WebAssembly is intended to be a "compilation target" for native Typescript code, upstream work is underway to integrate and improve support for the various standards of WebAssembly.
+## Adding a new example
 
-| Language   | Core Modules (`wasm32-unknown-unknown`) | Preview 1 (`wasm32-wasi-preview1`) | WASIP2 (`wasm32-wasip2`)                 |
-| ---------- | --------------------------------------- | ---------------------------------- | ---------------------------------------- |
-| Typescript | ✅ (`WebAssembly.compile`)              | ✅ (`jco transpile ...`)           | ✅ (requires [adapter][wasi-p2-adapter]) |
-
-> [!NOTE]
-> Don't know what `wasm32-unknown-unknown` means versus `wasm32-wasi-preview1`?
->
-> `wasm32-unknown-unknown` is a compile target which deals in core [WebAssembly modules][wasm-core-modules] (i.e. you're only given access to numbers at this level)
-> [`wasm32-wasi-preview1`][wasi-p1] is a compile target that provides richer types, support for more higher level platform APIs
-> [`wasm32-wasip2`][wasi-p2] is the next generation compile target with much richer types, higher level APIs like async, streaming, the WIT IDL.
->
-> In a sentence, WebAssembly functionality is layered, with `wasm32-unknown-unknown` being the most basic (only doing operations on numbers) and `wasm32-wasip2` being the current most advanced.
-
-## Want to learn more?
-
-To learn more about how wasmCloud works, check out the [wasmCloud documentation][wasmcloud-docs].
-
-To learn more WebAssembly ecosystem language support, check out the [SIG Guest Languages Zulip group](https://bytecodealliance.zulipchat.com/#narrow/stream/394175-SIG-Guest-Languages).
-
-Development on Typescript support is stewarded by the [Bytecode Alliance][bca].
-
-Work on [`jco`][jco] and [`componentize-js`][componentize-js] are done in the open, and you are welcome to try out the toolchain, contribute, and ask questions.
-
-[typescript]: https://typescript-lang.org
-[wasmcloud]: https://wasmcloud.com
-[wasi-p1]: https://github.com/WebAssembly/WASI/blob/main/legacy/preview1/docs.md
-[wasi-p2]: https://github.com/WebAssembly/WASI/blob/main/preview2
-[wasi-p2-adapter]: https://github.com/bytecodealliance/wasmtime/tree/main/crates/wasi-preview1-component-adapter
-[wasm-core-modules]: https://webassembly.github.io/spec/core/
-[bca]: https://bytecodealliance.org/
-[wasmtime]: https://github.com/bytecodealliance/wasmtime
-[wasmcloud-docs]: https://wasmcloud.com/docs/intro
+To add a new example component, create a new directory under `examples/components/` following the structure above, then register it in `.github/workflows/examples_.yml` to include it in CI.
