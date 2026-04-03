@@ -117,7 +117,7 @@ jobs:
         if: ${{ !inputs.skip-wadm }}
         working-directory: './examples/components/${{ inputs.folder }}'
         shell: bash
-        run: NODE_OPTIONS='--wasm-lazy-compilation' jco serve dist/${{ inputs.wasm-bin }} --port 8000 > /tmp/jco-serve.log 2>&1 &
+        run: JCO_RUN_ARGS='--wasm-lazy-compilation' jco serve dist/${{ inputs.wasm-bin }} --port 8000 > /tmp/jco-serve.log 2>&1 &
 
       - name: Wait for server
         if: ${{ !inputs.skip-wadm }}
