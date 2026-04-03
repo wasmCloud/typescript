@@ -1,21 +1,16 @@
 # Typescript HTTP Streaming
 
-This repository contains a HTTP component that performs a streaming response using WASI I/O and HTTP Preview2 primitives, written in [Typescript][ts].
+This repository contains an HTTP component that performs a streaming response using WASI I/O and HTTP primitives, written in [Typescript][ts].
 
 This component:
 
-- Uses [Typescript][ts] for it's implementation
+- Uses [Typescript][ts] for its implementation
 - Uses the [`wasi:http`][wasi-http] and [`wasi:io`][wasi-io] standard WIT definitions
-- Relies on the [`httpserver` capability provider][httpserver-provider] (which exposes the [`wasmcloud:httpserver` interface][httpserver-interface])
-- Streams bytes in response to all HTTP requests
-- Can be declaratively provisioned with [`wadm`][wadm]
+- Streams 1MiB of random bytes in response to all HTTP requests
 
 [ts]: https://www.typescriptlang.org/
 [wasi-http]: https://github.com/WebAssembly/wasi-http
 [wasi-io]: https://github.com/WebAssembly/wasi-io
-[httpserver-provider]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/providers/http-server
-[httpserver-interface]: https://github.com/wasmCloud/interfaces/tree/main/httpserver
-[wadm]: https://github.com/wasmCloud/wadm
 
 # Dependencies
 
@@ -28,11 +23,11 @@ This component:
 
 Building this project relies on the following software:
 
-| Name   | Description                                                                                                                               |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `wash` | [Wasmcloud Shell][wash] controls your [wasmcloud][wasmcloud] host instances and enables building components (version should be >= 0.39.0) |
-| `npm`  | [Node Package Manager (NPM)][npm] which manages packages for for the NodeJS ecosystem                                                     |
-| `node` | [NodeJS runtime][nodejs] (see `.nvmrc` for version)                                                                                       |
+| Name   | Description                                                                                                                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `wash` | [Wasmcloud Shell][wash] controls your [wasmcloud][wasmcloud] host instances and enables building components (version >= 2.0)       |
+| `npm`  | [Node Package Manager (NPM)][npm] which manages packages for the NodeJS ecosystem                                                  |
+| `node` | [NodeJS runtime][nodejs] (see `.nvmrc` for version)                                                                                |
 
 [wash]: https://github.com/wasmCloud/wasmCloud/tree/main/crates/wash-cli
 [node]: https://nodejs.org
@@ -50,18 +45,10 @@ wash dev
 
 - Starts the [wasmCloud host][wasmcloud-host] that can run your WebAssembly component
 - Builds this project (including necessary `npm` script targets)
-- Builds a declarative WADM manifest consisting of:
-  - Your locally built component
-  - A [HTTP server provider][httpserver-provider] which will receive requests from the outside world (on port 8000 by default)
-  - Necessary links between providers and your component so your component can handle web traffic
-- Deploys the built manifest (i.e all dependencies to run this application) locally
-- Watches your code for changes and re-deploys when necessary.
-
-> [!NOTE]
-> To do things more manually, see [`docs/slow-start.md`][slow-start-docs].
+- Deploys an HTTP server on port 8000 and links it to your component
+- Watches your code for changes and re-deploys when necessary
 
 [wasmcloud-host]: https://wasmcloud.com/docs/concepts/hosts
-[slow-start-docs]: https://github.com/wasmCloud/typescript/blob/main/examples/components/http-streaming/docs/slow-start.md
 
 ## Send a request to the running component
 
