@@ -117,19 +117,23 @@ jobs:
         if: ${{ !inputs.skip-wadm }}
         working-directory: './examples/components/${{ inputs.folder }}'
         shell: bash
-        run: jco serve dist/${{ inputs.wasm-bin }} --port 8000 > /tmp/jco-serve.log 2>&1 &
+        run: NODE_OPTIONS='--wasm-lazy-compilation' jco serve dist/${{ inputs.wasm-bin }} --port 8000 > /tmp/jco-serve.log 2>&1 &
 
       - name: Wait for server
         if: ${{ !inputs.skip-wadm }}
         run: |
           echo "Waiting for jco serve to bind port 8000..."
-          for i in $(seq 1 120); do
+          for i in $(seq 1 300); do
             if ss -tlnp | grep -q ':8000'; then
               echo "Server listening after ${i}s"
               break
             fi
             sleep 1
           done
+
+      - name: Print jco serve log
+        if: ${{ always() && !inputs.skip-wadm }}
+        run: cat /tmp/jco-serve.log || echo "(no log output)"
 
       - name: Test Functionality
         shell: bash
