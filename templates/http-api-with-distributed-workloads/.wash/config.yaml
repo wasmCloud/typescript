@@ -1,0 +1,11 @@
+new:
+  command: npm install
+
+build:
+  command: npm run build
+  component_path: http-api/dist/http_api.wasm
+
+dev:
+  components:
+    - name: task-worker
+      file: task-worker/dist/task_worker.wasm

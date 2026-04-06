@@ -1,0 +1,19 @@
+{
+  "name": "http-api-with-distributed-workloads",
+  "version": "0.1.0",
+  "description": "A wasmCloud template demonstrating HTTP API with distributed workloads via wasmcloud:messaging",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup:wit": "npm run setup:wit --workspace=http-api && npm run setup:wit --workspace=task-worker",
+    "build": "npm run build --workspace=http-api && npm run build --workspace=task-worker",
+    "dev": "nodemon"
+  },
+  "workspaces": [
+    "http-api",
+    "task-worker"
+  ],
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

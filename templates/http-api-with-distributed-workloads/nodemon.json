@@ -1,0 +1,6 @@
+{
+  "watch": ["http-api/src", "task-worker/src", "http-api/wit", "task-worker/wit"],
+  "ext": "ts,wit",
+  "ignore": ["**/node_modules/**", "**/dist/**", "**/generated/**"],
+  "exec": "npm run build"
+}
