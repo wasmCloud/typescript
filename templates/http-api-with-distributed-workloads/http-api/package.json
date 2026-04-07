@@ -24,6 +24,7 @@
     "@bytecodealliance/jco": "^1.15.4",
     "rimraf": "^6.1.2",
     "rolldown": "^1.0.0-beta.47",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "unplugin-raw": "^0.7.0"
   }
 }
