@@ -17,7 +17,7 @@ TypeScript examples and project templates for building [wasmCloud][wasmcloud] co
 | ----------------------------------------------- | ------------------------------------------------- |
 | [TypeScript Components](./examples/components/) | Sample wasmCloud components written in TypeScript |
 
-[docs-components]: https://wasmcloud.com/docs/concepts/components/
+[docs-components]: https://wasmcloud.com/docs/overview/workloads/components/
 [docs-ts]: https://wasmcloud.com/docs/wash/developer-guide/language-support/typescript/
 
 ## 🧩 Project Templates
