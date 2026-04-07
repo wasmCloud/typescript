@@ -1,22 +1,26 @@
 import csv from 'csvtojson';
-import jsonpath from 'jsonpath';
+import { JSONPath } from 'jsonpath-plus';
 import * as R from 'remeda';
-import {InputData} from 'wasmcloud:hello/data-utils';
+import { InputData } from 'wasmcloud:hello/data-utils';
 
 async function calculateScore(data: InputData): Promise<number> {
-  let json = {};
+  let json;
   if (data.tag === 'csv') {
     json = await csv().fromString(data.val);
   } else if (data.tag === 'json') {
     json = JSON.parse(data.val);
   }
 
-  // Bit of a contrived example to use typescript dependencies
-  const scoresData: string[] = jsonpath.query(json, '$[*].score');
+  const scoresData: unknown[] = JSONPath({
+    path: '$[*].score',
+    json,
+  });
+
   const total = R.piped(
-    R.map((x: unknown) => parseInt(x as string)),
+    R.map((x: unknown) => parseInt(x as string, 10)),
     R.reduce((acc, x: number) => acc + x, 0),
   )(scoresData);
+
   return total;
 }
 
