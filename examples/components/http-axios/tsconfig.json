@@ -10,6 +10,7 @@
     /* Source code */
     "paths": {},
     "allowJs": false,
+    "rootDir": "./src",
 
     /* Generation */
     "outDir": "./dist",
