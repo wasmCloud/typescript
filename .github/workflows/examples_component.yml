@@ -59,6 +59,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [check]
     if: needs.check.outputs.run-build == 'true'
+    strategy:
+      matrix:
+        jco-version:
+          - 1.17.6
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -75,7 +79,7 @@ jobs:
 
       - name: Install JS Wasm Tools
         run: |
-          npm install -g @bytecodealliance/jco@1.17.0
+          npm install -g @bytecodealliance/jco@${{ matrix.jco-version }}
           npm install -g @bytecodealliance/componentize-js
 
       - name: Build
@@ -95,6 +99,10 @@ jobs:
   test:
     needs: [build]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jco-version:
+          - 1.17.6
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -106,7 +114,7 @@ jobs:
 
       - name: Install JS Wasm Tools
         if: ${{ inputs.skip-wash-dev }}
-        run: npm install -g @bytecodealliance/jco@1.17.0
+        run: npm install -g @bytecodealliance/jco@${{ matrix.jco-version }}
 
       - name: Install Wash
         uses: wasmcloud/setup-wash-action@v2.0.0
