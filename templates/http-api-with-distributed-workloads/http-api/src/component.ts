@@ -17,7 +17,6 @@
  *   const reply = request(subject, body, timeoutMs);
  */
 
-// @ts-expect-error — types generated after running npm run setup:wit
 import { request } from 'wasmcloud:messaging/consumer@0.2.0';
 import UI_HTML from './index.html?raw';
 

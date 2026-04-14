@@ -20,9 +20,7 @@
  *   createTcpSocket → startConnect/finishConnect → read reply → write text
  */
 
-// @ts-expect-error — types generated after running npm run setup:wit
 import { instanceNetwork } from 'wasi:sockets/instance-network@0.2.3';
-// @ts-expect-error
 import { createTcpSocket } from 'wasi:sockets/tcp-create-socket@0.2.3';
 
 import { Hono } from 'hono';

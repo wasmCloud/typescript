@@ -2,9 +2,7 @@ import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { z } from 'zod/mini';
 
-// @ts-expect-error - JCO doesn't generate types for wasi:keyvalue yet
 import { open } from 'wasi:keyvalue/store@0.2.0-draft';
-// @ts-expect-error - JCO doesn't generate types for wasi:keyvalue yet
 import { increment } from 'wasi:keyvalue/atomics@0.2.0-draft';
 
 // Validation schemas

@@ -18,18 +18,8 @@
  *   a named export object `handler` with a `handleMessage` method.
  */
 
-// @ts-expect-error — types generated after running npm run setup:wit
 import { publish } from 'wasmcloud:messaging/consumer@0.2.0';
-
-// ---------------------------------------------------------------------------
-// Types (inlined; generated types may appear after npm run setup:wit)
-// ---------------------------------------------------------------------------
-
-interface BrokerMessage {
-  subject: string;
-  body: Uint8Array;
-  replyTo?: string;
-}
+import type { BrokerMessage } from 'wasmcloud:messaging/types@0.2.0';
 
 // ---------------------------------------------------------------------------
 // Constants
