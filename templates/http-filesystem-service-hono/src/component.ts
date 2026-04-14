@@ -1,7 +1,5 @@
 import { Hono } from 'hono';
 import { fire } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
-
-// @ts-expect-error - JCO doesn't generate types for wasi:filesystem yet
 import { getDirectories } from 'wasi:filesystem/preopens@0.2.2';
 
 const app = new Hono();
