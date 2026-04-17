@@ -1,0 +1,30 @@
+apiVersion: runtime.wasmcloud.dev/v1alpha1
+kind: WorkloadDeployment
+metadata:
+  name: wasi-config-from-k8s-env
+spec:
+  replicas: 1
+  template:
+    spec:
+      hostSelector:
+        hostgroup: default
+      components:
+        - name: wasi-config-from-k8s-env
+          image: ghcr.io/[your-org]/wasi-config-from-k8s-env:0.1.0
+          localResources:
+            environment:
+              config:
+                DB_NAME: myapp
+                LOG_LEVEL: info
+                API_BASE_URL: https://example.com
+      hostInterfaces:
+        - namespace: wasi
+          package: http
+          interfaces:
+            - incoming-handler
+          config:
+            host: localhost
+        - namespace: wasi
+          package: config
+          interfaces:
+            - store

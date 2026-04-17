@@ -1,0 +1,6 @@
+new:
+  command: npm install
+
+build:
+  command: npm run build
+  component_path: dist/wasi_config_from_k8s_env.wasm

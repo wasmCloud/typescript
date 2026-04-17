@@ -1,0 +1,6 @@
+package wasmcloud:examples@0.1.0;
+
+world typescript-wasi-config-from-k8s-env {
+  import wasi:config/store@0.2.0-rc.1;
+  export wasi:http/incoming-handler@0.2.6;
+}
