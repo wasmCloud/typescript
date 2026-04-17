@@ -1,0 +1,7 @@
+package wasmcloud:examples@0.1.0;
+
+world typescript-http-stdout {
+  import wasi:cli/stdout@0.2.6;
+  import wasi:cli/stderr@0.2.6;
+  export wasi:http/incoming-handler@0.2.6;
+}
