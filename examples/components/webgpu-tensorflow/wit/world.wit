@@ -1,0 +1,7 @@
+package wasmcloud:webgpu-tensorflow;
+
+world component {
+  import wasi:webgpu/webgpu@0.0.1;
+  import wasi:graphics-context/graphics-context@0.0.1;
+  export wasi:http/incoming-handler@0.2.3;
+}
