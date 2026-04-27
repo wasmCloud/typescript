@@ -20,13 +20,13 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bytecodealliance/jco-std": "^0.1.0",
-    "hono": "^4.12.14"
+    "hono": "^4.12.15"
   },
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.17.9",
+    "@bytecodealliance/jco": "^1.19.0",
     "nodemon": "^3.1.9",
     "rimraf": "^6.1.2",
     "rolldown": "^1.0.0-beta.47",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }
