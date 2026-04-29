@@ -37,9 +37,9 @@ app.use('*', async (c, next) => {
 
 app.get('/', (c) =>
   c.json({
-    name: 'HTTP Logging Service',
+    name: 'HTTP Logging Handler',
     version: '1.0.0',
-    description: 'A Hono service on wasmCloud demonstrating WASI structured logging',
+    description: 'A Hono handler on wasmCloud demonstrating WASI structured logging',
     endpoints: { '/': 'API info', '/health': 'Health check' },
   }),
 );

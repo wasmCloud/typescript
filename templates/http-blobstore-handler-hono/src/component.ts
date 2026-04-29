@@ -49,9 +49,9 @@ app.use('*', async (c, next) => {
 // API information
 app.get('/', (c) => {
   return c.json({
-    name: 'Hono HTTP Blobstore Service',
+    name: 'Hono HTTP Blobstore Handler',
     version: '1.0.0',
-    description: 'A comprehensive HTTP service built with Hono on wasmCloud, backed by wasi:blobstore',
+    description: 'A comprehensive HTTP handler built with Hono on wasmCloud, backed by wasi:blobstore',
     endpoints: {
       '/': 'API information (this page)',
       '/health': 'Health check endpoint',
