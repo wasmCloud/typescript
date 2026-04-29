@@ -9,9 +9,9 @@ Project templates for building wasmCloud components with TypeScript.
 | [http-hello-world-hono](./http-hello-world-hono/)             | Minimal HTTP server component using Hono                          |
 | [http-hello-world-fetch](./http-hello-world-fetch/)           | Minimal HTTP server component using the `fetch()` API             |
 | [http-client](./http-client/)                                 | Component that makes outgoing HTTP requests                       |
-| [http-service-hono](./http-service-hono/)                     | HTTP service component powered by Hono                            |
-| [http-blobstore-service-hono](./http-blobstore-service-hono/) | HTTP service component powered by Hono, backed by `wasi:blobstore`|
-| [http-kv-service-hono](./http-kv-service-hono/)               | HTTP service component powered by Hono, backed by `wasi:keyvalue`  |
+| [http-handler-hono](./http-handler-hono/)                     | HTTP handler component powered by Hono                            |
+| [http-blobstore-handler-hono](./http-blobstore-handler-hono/) | HTTP handler component powered by Hono, backed by `wasi:blobstore`|
+| [http-kv-handler-hono](./http-kv-handler-hono/)               | HTTP handler component powered by Hono, backed by `wasi:keyvalue`  |
 | [service-tcp-echo](./service-tcp-echo/)                       | Service + component template demonstrating `wasi:sockets` TCP      |
 
 ## Template Structure
@@ -60,8 +60,8 @@ For example:
 package wasmcloud:templates@0.1.0;
 
 // language: typescript
-// use-case: http-service-hono
-world typescript-http-service-hono {
+// use-case: http-handler-hono
+world typescript-http-handler-hono {
   export wasi:http/incoming-handler@0.2.3;
 }
 ```
