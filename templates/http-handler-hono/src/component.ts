@@ -49,9 +49,9 @@ app.use('*', async (c, next) => {
 // API information
 app.get('/', (c) => {
   return c.json({
-    name: 'Hono HTTP Service',
+    name: 'Hono HTTP Handler',
     version: '1.0.0',
-    description: 'A comprehensive HTTP service built with Hono on wasmCloud',
+    description: 'A comprehensive HTTP handler built with Hono on wasmCloud',
     endpoints: {
       '/': 'API information (this page)',
       '/health': 'Health check endpoint',
