@@ -1,0 +1,12 @@
+version: 2.1.0
+
+new:
+  command: npm install
+
+build:
+  command: npm run build
+  component_path: component/dist/component.wasm
+
+dev:
+  wasi_webgpu: true
+  service_file: service/dist/service.wasm

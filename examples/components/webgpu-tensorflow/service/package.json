@@ -1,0 +1,39 @@
+{
+  "name": "webgpu-tensorflow-service",
+  "version": "0.1.0",
+  "description": "TensorFlow.js + WebGPU style-transfer service exposing a binary TCP protocol on 127.0.0.1:7878",
+  "private": true,
+  "main": "dist/service.js",
+  "type": "module",
+  "scripts": {
+    "fetch:wit": "wit-deps update",
+    "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
+    "setup:wit": "npm run fetch:wit && npm run generate:types",
+    "build:ts": "rollup -c",
+    "build:component": "node scripts/componentize.js",
+    "build": "npm run setup:wit && npm run build:ts && npm run build:component"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.22.0",
+    "@tensorflow/tfjs-backend-webgpu": "^4.22.0",
+    "@wasi-gfx/js-webgpu": "^0.2.0",
+    "jpeg-js": "^0.4.4"
+  },
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.17.9",
+    "@rollup/plugin-alias": "^6.0.0",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-inject": "^5.0.5",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@rollup/plugin-url": "^8.0.2",
+    "rimraf": "^6.1.2",
+    "rollup": "^4.57.1",
+    "typescript": "^5.9.3",
+    "unenv": "2.0.0-rc.24"
+  }
+}

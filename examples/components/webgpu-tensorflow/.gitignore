@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+keys
+/**/generated/**
+*.tgz
+wit/deps/
+*.log
+**/wit/deps/
