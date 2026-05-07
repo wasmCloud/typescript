@@ -1,0 +1,19 @@
+[webgpu]
+url = "https://github.com/WebAssembly/wasi-gfx/archive/refs/heads/v0.0.1.tar.gz"
+prefix = "wasi-gfx-0.0.1/webgpu"
+
+[graphics-context]
+url = "https://github.com/WebAssembly/wasi-gfx/archive/refs/heads/v0.0.1.tar.gz"
+prefix = "wasi-gfx-0.0.1/graphics-context"
+
+[cli]
+url = "https://github.com/WebAssembly/wasi-cli/archive/refs/tags/v0.2.3.tar.gz"
+
+[sockets]
+url = "https://github.com/WebAssembly/wasi-sockets/archive/refs/tags/v0.2.3.tar.gz"
+
+# wasi-gfx targets io@0.2.0, sockets/cli target io@0.2.3
+[io]
+url = "https://github.com/WebAssembly/wasi-io/archive/refs/tags/v0.2.3.tar.gz"
+[io-0-2-0]
+url = "https://github.com/WebAssembly/wasi-io/archive/refs/tags/v0.2.0.tar.gz"

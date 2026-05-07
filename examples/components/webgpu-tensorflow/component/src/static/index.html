@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Stylize Image</title>
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <form id="stylizeForm">
+            <header class="page-header">
+                <h1>Stylize Image</h1>
+                <p>Pick an input photo and a style, then click <strong>Stylize</strong>.</p>
+                <div class="powered-by">
+                    Built with
+                    <img
+                        src="https://cdn.prod.website-files.com/68e941b736876afc9468db2b/68e941b736876afc9468dcda_Wasmcloud.Logo-Hrztl_Color.png"
+                        alt="CNCF wasmCloud"
+                        class="wasmcloud-logo"
+                    />
+                </div>
+            </header>
+
+            <div class="panels">
+                <section class="panel">
+                    <header class="panel-header">
+                        <h2>Input Images</h2>
+                        <p>The photo you want to restyle.</p>
+                    </header>
+                    <div class="gallery" id="contentGallery"></div>
+                </section>
+
+                <section class="panel">
+                    <header class="panel-header">
+                        <h2>Style Images</h2>
+                        <p>Whose style to apply.</p>
+                    </header>
+                    <div class="gallery" id="styleGallery"></div>
+                </section>
+            </div>
+
+            <button type="submit" class="stylize-button" id="stylizeButton" disabled>
+                Stylize
+            </button>
+
+            <section class="panel output-panel" id="outputCard" data-state="empty">
+                <header class="panel-header">
+                    <h2>Result</h2>
+                </header>
+                <div class="output-frame">
+                    <img id="stylizedImage" alt="Stylized output" />
+                    <div class="output-empty">Stylized image will appear here.</div>
+                    <div class="output-loading">
+                        <div class="spinner"></div>
+                        <span>Stylizing&hellip;</span>
+                    </div>
+                </div>
+            </section>
+
+            <input type="file" id="contentImageInput" accept="image/jpeg" hidden />
+            <input type="file" id="styleImageInput" accept="image/jpeg" hidden />
+        </form>
+        <footer class="page-footer">
+            Built with <a href="https://wasmcloud.com" target="_blank" rel="noopener">wasmCloud</a>,
+            a CNCF Incubating project
+        </footer>
+        <script src="./script.js"></script>
+    </body>
+</html>

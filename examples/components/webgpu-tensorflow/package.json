@@ -1,0 +1,20 @@
+{
+  "name": "webgpu-tensorflow",
+  "version": "0.1.0",
+  "description": "A wasmCloud service-and-component example: GPU-accelerated TensorFlow.js style transfer running as a service, fronted by an HTTP component",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "patch-package",
+    "setup:wit": "npm run setup:wit --workspace=service && npm run setup:wit --workspace=component",
+    "build": "npm run build --workspace=service && npm run build --workspace=component"
+  },
+  "workspaces": [
+    "service",
+    "component"
+  ],
+  "devDependencies": {
+    "@bytecodealliance/componentize-js": "0.20.0",
+    "patch-package": "^8.0.1"
+  }
+}

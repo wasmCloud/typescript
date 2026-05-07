@@ -1,0 +1,35 @@
+{
+  "name": "webgpu-tensorflow-component",
+  "version": "0.1.0",
+  "description": "HTTP front-end component for the style-transfer service — serves the UI at / and forwards POST /stylize over loopback TCP",
+  "private": true,
+  "main": "dist/component.js",
+  "type": "module",
+  "scripts": {
+    "fetch:wit": "wash wit fetch",
+    "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
+    "setup:wit": "npm run fetch:wit && npm run generate:types",
+    "build:ts": "rollup -c",
+    "build:component": "node scripts/componentize.js",
+    "build": "npm run setup:wit && npm run build:ts && npm run build:component"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@bytecodealliance/jco-std": "^0.1.3",
+    "hono": "^4.12.14",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.17.9",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@rollup/plugin-url": "^8.0.2",
+    "rimraf": "^6.1.2",
+    "rollup": "^4.57.1",
+    "typescript": "^5.9.3"
+  }
+}

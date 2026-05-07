@@ -1,0 +1,17 @@
+package wasmcloud:webgpu-tensorflow@0.1.0;
+
+world service {
+  // GPU access for TensorFlow.js's WebGPU backend
+  import wasi:webgpu/webgpu@0.0.1;
+  import wasi:graphics-context/graphics-context@0.0.1;
+
+  // TCP server for the loopback request protocol
+  import wasi:sockets/instance-network@0.2.3;
+  import wasi:sockets/tcp@0.2.3;
+  import wasi:sockets/tcp-create-socket@0.2.3;
+
+  // wasi-gfx ships against io@0.2.0; sockets@0.2.3 brings io@0.2.3
+  import wasi:io/poll@0.2.0;
+
+  export wasi:cli/run@0.2.3;
+}
