@@ -19,14 +19,14 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@bytecodealliance/jco-std": "^0.1.0",
-    "hono": "^4.12.18"
+    "@bytecodealliance/jco-std": "^0.2.0",
+    "hono": "^4.12.23"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "^1.19.0",
     "nodemon": "^3.1.9",
     "rimraf": "^6.1.2",
-    "rolldown": "^1.0.0",
+    "rolldown": "^1.0.2",
     "typescript": "^6.0.3"
   }
 }
