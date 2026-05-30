@@ -35,9 +35,12 @@ wash new https://github.com/wasmCloud/typescript.git --name my-project --subfold
 | [http-hello-world-hono](./templates/http-hello-world-hono/)               | Minimal HTTP server component using Hono                           |
 | [http-hello-world-fetch](./templates/http-hello-world-fetch/)             | Minimal HTTP server component using the `fetch()` API              |
 | [http-client](./templates/http-client/)                                   | Component that makes outgoing HTTP requests                        |
+| [http-api-with-distributed-workloads](./templates/http-api-with-distributed-workloads/) | HTTP API + worker template demonstrating distributed workloads via `wasmcloud:messaging` |
 | [http-handler-hono](./templates/http-handler-hono/)                       | HTTP handler component powered by Hono                             |
 | [http-blobstore-handler-hono](./templates/http-blobstore-handler-hono/)   | HTTP handler component powered by Hono, backed by `wasi:blobstore` |
+| [http-filesystem-handler-hono](./templates/http-filesystem-handler-hono/) | HTTP handler component powered by Hono, backed by `wasi:filesystem` |
 | [http-kv-handler-hono](./templates/http-kv-handler-hono/)                 | HTTP handler component powered by Hono, backed by `wasi:keyvalue`  |
+| [http-logging-handler-hono](./templates/http-logging-handler-hono/)       | HTTP handler component powered by Hono, backed by `wasi:logging`   |
 | [service-tcp-echo](./templates/service-tcp-echo/)                         | Service + component template demonstrating `wasi:sockets` TCP      |
 
 See the [templates README](./templates/README.md) for more details.

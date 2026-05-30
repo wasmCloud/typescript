@@ -20,11 +20,11 @@ A minimal WebAssembly component built with [TypeScript][ts] that responds to HTT
 Use `wash new` to scaffold a new wasmCloud component project:
 
 ```shell
-wash new https://github.com/wasmCloud/typescript.git --name http-hello-world --subfolder templates/http-hello-world
+wash new https://github.com/wasmCloud/typescript.git --name http-hello-world-fetch --subfolder templates/http-hello-world-fetch
 ```
 
 ```shell
-cd http-hello-world
+cd http-hello-world-fetch
 ```
 
 To build this project and run in a hot-reloading development loop, run `npm run dev` from this directory:
