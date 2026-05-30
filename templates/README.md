@@ -9,9 +9,12 @@ Project templates for building wasmCloud components with TypeScript.
 | [http-hello-world-hono](./http-hello-world-hono/)             | Minimal HTTP server component using Hono                          |
 | [http-hello-world-fetch](./http-hello-world-fetch/)           | Minimal HTTP server component using the `fetch()` API             |
 | [http-client](./http-client/)                                 | Component that makes outgoing HTTP requests                       |
+| [http-api-with-distributed-workloads](./http-api-with-distributed-workloads/) | HTTP API + worker template demonstrating distributed workloads via `wasmcloud:messaging` |
 | [http-handler-hono](./http-handler-hono/)                     | HTTP handler component powered by Hono                            |
 | [http-blobstore-handler-hono](./http-blobstore-handler-hono/) | HTTP handler component powered by Hono, backed by `wasi:blobstore`|
+| [http-filesystem-handler-hono](./http-filesystem-handler-hono/) | HTTP handler component powered by Hono, backed by `wasi:filesystem` |
 | [http-kv-handler-hono](./http-kv-handler-hono/)               | HTTP handler component powered by Hono, backed by `wasi:keyvalue`  |
+| [http-logging-handler-hono](./http-logging-handler-hono/)     | HTTP handler component powered by Hono, backed by `wasi:logging`  |
 | [service-tcp-echo](./service-tcp-echo/)                       | Service + component template demonstrating `wasi:sockets` TCP      |
 
 ## Template Structure

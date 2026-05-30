@@ -11,8 +11,11 @@ Example components for building wasmCloud applications with TypeScript.
 | [http-server-with-hono](./components/http-server-with-hono/) | HTTP server component with routing powered by [Hono](https://hono.dev) |
 | [http-streaming](./components/http-streaming/) | HTTP component that streams a response using `wasi:io` primitives |
 | [http-axios](./components/http-axios/) | Component that makes outgoing HTTP requests using [Axios](https://axios-http.com) |
+| [http-stdio](./components/http-stdio/) | HTTP component that demonstrates writing to stdout and stderr via `wasi:cli` |
 | [bundled-esbuild](./components/bundled-esbuild/) | TypeScript component bundled with [esbuild](https://esbuild.github.io) |
 | [bundled-rsbuild](./components/bundled-rsbuild/) | TypeScript component bundled with [Rsbuild](https://rsbuild.dev) |
+| [wasi-config-from-k8s-env](./components/wasi-config-from-k8s-env/) | HTTP component that reads configuration via `wasi:config/store` |
+| [webgpu-tensorflow](./components/webgpu-tensorflow/) | Service + component example for GPU-accelerated TensorFlow.js style transfer |
 
 ## Example Structure
 
