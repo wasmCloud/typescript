@@ -1,5 +1,5 @@
 {
-  "watch": ["http-api/src", "task-worker/src", "http-api/wit", "task-worker/wit"],
+  "watch": ["http-api/src", "task-leet/src", "task-reverse/src", "http-api/wit", "task-leet/wit", "task-reverse/wit"],
   "ext": "ts,wit",
   "ignore": ["**/node_modules/**", "**/dist/**", "**/generated/**"],
   "exec": "npm run build"
