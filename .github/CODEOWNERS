@@ -13,3 +13,6 @@
 
 examples @wasmCloud/examples-maintainers @wasmCloud/typescript-maintainers
 examples/**/README.md @wasmCloud/docs-maintainers
+
+templates @wasmCloud/examples-maintainers @wasmCloud/typescript-maintainers
+templates/**/README.md @wasmCloud/docs-maintainers
