@@ -1,5 +1,10 @@
 package wasmcloud:templates@0.1.0;
 
+// The `wasi:http/incoming-handler` version must match what the
+// `@bytecodealliance/jco-std` adapter pinned in package.json ships
+// under `./dist/0.2.x/http/adapters/`. jco-std 0.1.x ships only the
+// 0.2.6 adapter; bumping jco-std requires bumping this version too
+// (and re-running `npm run setup:wit` to refresh `wkg.lock`).
 world typescript-http-handler-hono {
   export wasi:http/incoming-handler@0.2.6;
 }

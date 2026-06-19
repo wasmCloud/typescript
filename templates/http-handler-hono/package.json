@@ -19,7 +19,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@bytecodealliance/jco-std": "^0.1.0",
+    "@bytecodealliance/jco-std": "0.1.3",
     "hono": "^4.12.21",
     "zod": "^4.0.0"
   },
