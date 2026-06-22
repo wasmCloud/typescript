@@ -99,6 +99,16 @@ jobs:
               RESPONSE=$(npm run --silent demo | jq -r '.id')
               [[ "$RESPONSE" == '1' ]] && TEST_RESULT=1 || TEST_RESULT=0
 
+          # Docs companion for the wasmcloud.com quickstart's "Add persistent
+          # storage" step. Build-only: skip-wash-dev: true because the
+          # component imports wasi:keyvalue at runtime and wash dev doesn't
+          # auto-provision a keyvalue provider in CI. The build pass is what
+          # catches template/world.wit/jco-std drift, which is the point.
+          - folder: http-hello-world-hono-persistent-storage
+            wasm-bin: http_hello_world_hono_persistent_storage.wasm
+            skip-wash-dev: true
+            test-command: ''
+
   examples-check:
     needs: [components]
     if: ${{ always() }}

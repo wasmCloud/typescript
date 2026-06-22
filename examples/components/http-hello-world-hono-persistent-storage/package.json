@@ -1,0 +1,34 @@
+{
+  "name": "http-hello-world-hono-persistent-storage",
+  "version": "0.1.0",
+  "description": "The http-hello-world-hono template with the wasmcloud.com quickstart's persistent-storage modifications applied (wasi:keyvalue imports + per-name counter).",
+  "private": true,
+  "main": "dist/component.js",
+  "type": "module",
+  "scripts": {
+    "fetch:wit": "wash wit fetch",
+    "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
+    "setup:wit": "npm run fetch:wit && npm run generate:types",
+    "build:ts": "rolldown -c rolldown.config.mjs",
+    "build:component": "jco componentize -w wit -o dist/http_hello_world_hono_persistent_storage.wasm dist/component.js",
+    "build": "npm run setup:wit && npm run build:ts && npm run build:component",
+    "install-and-build": "npm install && npm run build",
+    "serve": "jco serve dist/http_hello_world_hono_persistent_storage.wasm",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@bytecodealliance/jco-std": "^0.1.0",
+    "hono": "^4.12.21"
+  },
+  "devDependencies": {
+    "@bytecodealliance/jco": "^1.15.4",
+    "nodemon": "^3.1.9",
+    "rimraf": "^6.1.2",
+    "rolldown": "^1.0.0-beta.47",
+    "typescript": "^5.9.3"
+  }
+}
