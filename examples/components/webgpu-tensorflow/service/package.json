@@ -23,17 +23,17 @@
     "jpeg-js": "^0.4.4"
   },
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.17.9",
+    "@bytecodealliance/jco": "^1.24.5",
     "@rollup/plugin-alias": "^6.0.0",
-    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-inject": "^5.0.5",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
     "@rollup/plugin-url": "^8.0.2",
     "rimraf": "^6.1.2",
-    "rollup": "^4.57.1",
-    "typescript": "^5.9.3",
+    "rollup": "^4.62.2",
+    "typescript": "^6.0.3",
     "unenv": "2.0.0-rc.24"
   }
 }

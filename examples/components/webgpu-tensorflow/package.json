@@ -14,7 +14,7 @@
     "component"
   ],
   "devDependencies": {
-    "@bytecodealliance/componentize-js": "0.20.0",
+    "@bytecodealliance/componentize-js": "0.21.0",
     "patch-package": "^8.0.1"
   }
 }
