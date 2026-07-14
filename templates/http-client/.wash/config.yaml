@@ -4,3 +4,10 @@ new:
 build:
   command: npm run build
   component_path: dist/http_client.wasm
+
+# Outbound HTTP is gated by the host runtime. Hosts listed here are
+# allowed for this component; add new hosts before targeting them via
+# the `?url=URL` override.
+workload:
+  allowedHosts:
+    - httpbin.org

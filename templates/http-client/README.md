@@ -48,6 +48,8 @@ npm run dev
 
 All endpoints support the `?url=URL` query parameter to specify a custom target URL.
 
+> **Configuring outbound hosts.** Outbound HTTP is gated by the host runtime; hosts listed in `workload.allowedHosts` in [.wash/config.yaml](.wash/config.yaml) are allowed. The template ships with `httpbin.org` to match the default demo endpoints; add any additional hosts you plan to hit via `?url=URL`.
+
 ## Features
 
 ### 1. Multiple HTTP Methods
