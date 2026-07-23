@@ -18,14 +18,14 @@
   "keywords": [],
   "license": "Apache-2.0",
   "dependencies": {
-    "@bytecodealliance/jco-std": "^0.1.0",
-    "hono": "^4.12.27"
+    "@bytecodealliance/jco-std": "^0.2.0",
+    "hono": "^4.12.31"
   },
   "devDependencies": {
-    "@bytecodealliance/jco": "1.19.0",
+    "@bytecodealliance/jco": "1.25.2",
     "nodemon": "^3.1.9",
     "rimraf": "^6.1.2",
-    "rolldown": "^1.0.0",
-    "typescript": "^6.0.3"
+    "rolldown": "^1.2.0",
+    "typescript": "^7.0.2"
   }
 }
