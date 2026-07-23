@@ -60,10 +60,11 @@ app.get('/', (c) => {
 /**
  * POST /task
  *
- * Body: { "worker": "task-worker", "payload": "Hello World" }
+ * Body: { "worker": "leet", "payload": "Hello World" }
  *
  * Publishes a request to "tasks.{worker}" via wasmcloud:messaging and
- * returns the worker's reply as plain text.
+ * returns the worker's reply as plain text. The worker name selects the
+ * subject, routing to the worker subscribed to it (see .wash/config.yaml).
  */
 app.post('/task', async (c) => {
   let body: TaskRequest;
@@ -77,7 +78,7 @@ app.post('/task', async (c) => {
     return c.text('Missing required field: payload', 400);
   }
 
-  const subject = `tasks.${body.worker ?? 'default'}`;
+  const subject = `tasks.${body.worker ?? 'leet'}`;
   const msgBody = encoder.encode(body.payload);
 
   try {
