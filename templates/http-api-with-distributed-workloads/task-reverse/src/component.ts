@@ -1,12 +1,16 @@
 /**
- * Leet-speak task worker component.
+ * Reverse task worker component.
  *
  * Implements wasmcloud:messaging/handler by processing messages published to
- * "tasks.task-worker". On receipt:
+ * "tasks.reverse". On receipt:
  *   1. Decodes the message body as UTF-8.
- *   2. Applies a leet-speak character substitution.
+ *   2. Reverses the text (by character or by word).
  *   3. Publishes the result back to the reply-to subject via
  *      wasmcloud:messaging/consumer.
+ *
+ * Behavior is driven by per-component config read from wasi:config/store —
+ * workload-level defaults overridden by this worker's `dev.components` entry
+ * (see .wash/config.yaml). Mirrors the Rust `task-reverse` component.
  *
  * wasmcloud:messaging usage:
  *   import { publish } from 'wasmcloud:messaging/consumer@0.2.0';
@@ -19,6 +23,7 @@
  */
 
 import { publish } from 'wasmcloud:messaging/consumer@0.2.0';
+import { get } from 'wasi:config/store@0.2.0-rc.1';
 import type { BrokerMessage } from 'wasmcloud:messaging/types@0.2.0';
 
 // ---------------------------------------------------------------------------
@@ -29,31 +34,40 @@ const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
 // ---------------------------------------------------------------------------
-// Leet-speak transformation (mirrors the Rust task-leet component)
+// Per-component configuration (wasi:config/store)
 // ---------------------------------------------------------------------------
 
 /**
- * Convert a string to leet speak by substituting select characters.
- *
- * Mapping: a→4, e→3, i→1, o→0, s→5, t→7, l→1
- * Case is preserved for all other characters.
+ * Per-worker behavior read from wasi:config/store. Values come from the
+ * workload-level `config:` block, with this component's `dev.components`
+ * entry overriding on a per-key basis (see .wash/config.yaml).
  */
-function toLeetSpeak(input: string): string {
-  return input
-    .split('')
-    .map((ch) => {
-      switch (ch.toLowerCase()) {
-        case 'a': return '4';
-        case 'e': return '3';
-        case 'i': return '1';
-        case 'o': return '0';
-        case 's': return '5';
-        case 't': return '7';
-        case 'l': return '1';
-        default: return ch;
-      }
-    })
-    .join('');
+interface Settings {
+  /** `chars` reverses the characters; `words` reverses the word order. */
+  byWords: boolean;
+  /** Prepended to every reply. Empty by default. */
+  prefix: string;
+}
+
+function loadSettings(): Settings {
+  // `get` returns the value or undefined when unset; fall back to the
+  // character-reversal, unprefixed defaults.
+  return {
+    byWords: get('reverse.mode') === 'words',
+    prefix: get('reverse.prefix') ?? '',
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Reverse transformation (mirrors the Rust task-reverse component)
+// ---------------------------------------------------------------------------
+
+/** Reverse the characters, or the word order when `byWords` is set. */
+function reverse(input: string, settings: Settings): string {
+  if (settings.byWords) {
+    return input.split(/\s+/).filter(Boolean).reverse().join(' ');
+  }
+  return input.split('').reverse().join('');
 }
 
 // ---------------------------------------------------------------------------
@@ -62,9 +76,6 @@ function toLeetSpeak(input: string): string {
 
 /**
  * wasmcloud:messaging/handler interface export.
- *
- * componentize-js maps `export wasmcloud:messaging/handler@0.2.0` to a
- * named export object `handler` with a `handleMessage` method.
  *
  * The wasmCloud runtime calls handleMessage() for each message delivered
  * to a subscribed subject.
@@ -76,7 +87,8 @@ export const handler = {
     }
 
     const payload = decoder.decode(msg.body);
-    const result = toLeetSpeak(payload);
+    const settings = loadSettings();
+    const result = `${settings.prefix}${reverse(payload, settings)}`;
 
     const reply: BrokerMessage = {
       subject: msg.replyTo,

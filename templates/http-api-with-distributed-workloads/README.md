@@ -1,33 +1,35 @@
 # http-api-with-distributed-workloads
 
-A wasmCloud template demonstrating HTTP API with distributed workloads via
-[`wasmcloud:messaging`][messaging]. Two WebAssembly components communicate
-through the messaging interface: one dispatches tasks, the other processes them.
+A wasmCloud template demonstrating an HTTP API with distributed workloads via
+[`wasmcloud:messaging`][messaging]. An HTTP API receives requests and delegates
+processing to background worker components over the messaging interface, with
+each worker subscribed to its own subject.
 
 [messaging]: https://github.com/wasmCloud/wasmCloud/tree/main/wit/messaging
 
 | Part | Type | What it does |
 |---|---|---|
-| `http-api/` | wasmCloud **component** | HTTP API — `POST /task` dispatches work via `wasmcloud:messaging/consumer` and returns the reply |
-| `task-worker/` | wasmCloud **component** | Task processor — exports `wasmcloud:messaging/handler`, converts payloads to leet speak |
+| `http-api/` | wasmCloud **component** | HTTP API — `POST /task` dispatches work to `tasks.{worker}` via `wasmcloud:messaging/consumer` and returns the reply |
+| `task-leet/` | wasmCloud **component** | Worker subscribed to `tasks.leet` — exports `wasmcloud:messaging/handler`, converts payloads to leet speak |
+| `task-reverse/` | wasmCloud **component** | Worker subscribed to `tasks.reverse` — exports `wasmcloud:messaging/handler`, reverses the text |
 
 ## Architecture
 
 ```
-HTTP client
-    │  POST /task { worker, payload }
-    ▼
-http-api component          (exports wasi:http/incoming-handler)
-    │  consumer::request("tasks.task-worker", body, 5000ms)
-    ▼
-wasmCloud runtime
-    │  routes to task-worker handler
-    ▼
-task-worker component        (exports wasmcloud:messaging/handler)
-    │  toLeetSpeak(payload) → reply
-    ▼
-http-api component          returns reply body to HTTP client
+┌────────┐      ┌──────────┐      ┌────────────────┐      ┌──────────────┐
+│ Client │─────▶│ HTTP API │─────▶│ Message Broker │──┬──▶│ task-leet    │  tasks.leet
+│        │◀─────│ (:8000)  │◀─────│ (in-memory or  │  │   └──────────────┘
+└────────┘      └──────────┘      │     NATS)      │  │   ┌──────────────┐
+                    │             └────────────────┘  └──▶│ task-reverse │  tasks.reverse
+              POST /task                                   └──────────────┘
+              { worker, payload }
 ```
+
+1. Client sends a POST request to `/task` with a JSON payload.
+2. `http-api` publishes a request to subject `tasks.{worker}` (default: `tasks.leet`).
+3. The broker routes the message to the worker subscribed to that subject.
+4. The worker processes the payload and publishes the response to the `reply_to` subject.
+5. `http-api` returns the transformed response to the HTTP client.
 
 During development with `wash dev`, the wasmCloud runtime routes calls between
 components in-process — no NATS server required. In production, the runtime's
@@ -71,30 +73,81 @@ wash dev
 Then open http://localhost:8000 to use the web UI, or test with curl:
 
 ```shell
+# Routes to task-leet (tasks.leet)
 curl -s -X POST http://localhost:8000/task \
   -H 'Content-Type: application/json' \
-  -d '{"worker": "task-worker", "payload": "Hello World"}'
-# => H3110 W0r1d
+  -d '{"worker": "leet", "payload": "Hello World"}'
+# => 🤖 H3110 W0r1d
+
+# Routes to task-reverse (tasks.reverse)
+curl -s -X POST http://localhost:8000/task \
+  -H 'Content-Type: application/json' \
+  -d '{"worker": "reverse", "payload": "Hello World"}'
+# => 🔁 World Hello
 ```
+
+The `worker` field selects the subject (`tasks.{worker}`), routing the request
+to the worker subscribed to it: `leet` → task-leet, `reverse` → task-reverse.
+The request has a 5-second timeout for the worker to respond.
 
 ## Project structure
 
 ```
 .
-├── .wash/config.yaml          # wash build & dev configuration
+├── .wash/config.yaml          # wash build & dev configuration (workload + per-component config)
 ├── nodemon.json               # file-watch config for `npm run dev`
 ├── package.json               # npm workspace root
 │
 ├── http-api/                  # HTTP front-end component
 │   ├── src/component.ts       # Hono app + messaging consumer usage
+│   ├── src/index.html         # branded task-submission UI
 │   ├── wit/world.wit          # imports consumer, exports http/incoming-handler
 │   └── ...
 │
-└── task-worker/               # Leet-speak task worker component
-    ├── src/component.ts       # messaging handler export + leet-speak logic
-    ├── wit/world.wit          # imports consumer, exports messaging/handler
+├── task-leet/                 # Leet-speak worker (tasks.leet)
+│   ├── src/component.ts       # messaging handler + wasi:config + leet logic
+│   ├── wit/world.wit          # imports consumer + wasi:config, exports messaging/handler
+│   └── ...
+│
+└── task-reverse/              # Reverse worker (tasks.reverse)
+    ├── src/component.ts       # messaging handler + wasi:config + reverse logic
+    ├── wit/world.wit          # imports consumer + wasi:config, exports messaging/handler
     └── ...
 ```
+
+## Per-component configuration
+
+`.wash/config.yaml` shows how config is layered across a multi-component
+workload.
+
+```yaml
+dev:
+  components:
+    - name: task-leet
+      file: task-leet/dist/task_leet.wasm
+      config:                  # this worker's overrides
+        subscriptions: tasks.leet
+        leet.mode: aggressive
+        leet.prefix: "🤖 "
+    - name: task-reverse
+      file: task-reverse/dist/task_reverse.wasm
+      config:
+        subscriptions: tasks.reverse
+        reverse.mode: words
+        reverse.prefix: "🔁 "
+```
+
+Two kinds of per-component config are at work:
+
+- **`subscriptions`** is read by the messaging backend (in-memory for
+  `wash dev`, or NATS) to decide which subjects each worker receives. This is
+  what makes `tasks.leet` route to task-leet and `tasks.reverse` to
+  task-reverse rather than both workers competing for every message.
+- **`leet.*` / `reverse.*`** are read by the worker itself via
+  `wasi:config/store` (see `task-leet/src/component.ts`,
+  `task-reverse/src/component.ts`). `leet.mode` toggles whether `l`/`t` are also
+  substituted; `reverse.mode` switches between reversing characters and words;
+  the `*.prefix` is prepended to each reply.
 
 ## wasmcloud:messaging
 
@@ -105,17 +158,18 @@ This template demonstrates both sides of the `wasmcloud:messaging` interface:
 | `wasmcloud:messaging/consumer` | import | Send messages (`request`, `publish`) |
 | `wasmcloud:messaging/handler` | export | Receive messages (`handleMessage`) |
 
-Both components import `consumer` — `http-api` to dispatch tasks via `request()`,
-`task-worker` to publish replies via `publish()`. Only `task-worker` exports `handler`.
+All three components import `consumer` — `http-api` to dispatch tasks via
+`request()`, the workers to publish replies via `publish()`. Each worker exports
+`handler` and subscribes to its own subject.
 
-The `rolldown.config.mjs` in each component must extend the externals pattern to cover
-`wasmcloud:` imports in addition to the default `wasi:`:
+The `rolldown.config.mjs` in each component must extend the externals pattern to
+cover `wasmcloud:` and `wasi:` imports:
 
 ```js
 external: [/wasi:.*/, /wasmcloud:.*/],
 ```
 
-## Build Wasm binary
+## Build Wasm binaries
 
 ```bash
 npm run build
@@ -123,7 +177,8 @@ npm run build
 
 Artifacts:
 - `http-api/dist/http_api.wasm`
-- `task-worker/dist/task_worker.wasm`
+- `task-leet/dist/task_leet.wasm`
+- `task-reverse/dist/task_reverse.wasm`
 
 ## WIT interfaces
 
@@ -136,16 +191,18 @@ world typescript-http-api-with-distributed-workloads-api {
 ```
 
 ```wit
-// task-worker/wit/world.wit
+// task-leet/wit/world.wit and task-reverse/wit/world.wit
 world typescript-http-api-with-distributed-workloads-worker {
   import wasmcloud:messaging/consumer@0.2.0;
+  import wasi:config/store@0.2.0-rc.1;
   export wasmcloud:messaging/handler@0.2.0;
 }
 ```
 
 ## Production deployment
 
-Both components run on the same wasmCloud host. Deploy both components together using a `WorkloadDeployment` manifest:
+All three components run on the same wasmCloud host. Deploy them together using
+a `WorkloadDeployment` manifest, giving each worker its own `subscriptions`:
 
 ```yaml
 apiVersion: runtime.wasmcloud.dev/v1alpha1
@@ -163,24 +220,29 @@ spec:
             - incoming-handler
           config:
             host: your-domain.example.com    # HTTP Host header used for routing
-        - namespace: wasmcloud
-          package: messaging
-          interfaces:
-            - consumer
-            - handler
-          config:
-            subscriptions: "tasks.>"         # NATS subjects the task-worker subscribes to
       components:
         - name: http-api
           image: <registry>/http_api:latest
-        - name: task-worker
-          image: <registry>/task_worker:latest
+        - name: task-leet
+          image: <registry>/task_leet:latest
+          localResources:
+            config:
+              subscriptions: tasks.leet      # subjects this worker subscribes to
+              leet.mode: aggressive
+              leet.prefix: "🤖 "
+        - name: task-reverse
+          image: <registry>/task_reverse:latest
+          localResources:
+            config:
+              subscriptions: tasks.reverse
+              reverse.mode: words
+              reverse.prefix: "🔁 "
 ```
 
-The `hostInterfaces` block declares which built-in capabilities the workload needs.
-No separate HTTP server or NATS messaging component is required; both are provided
-by the runtime. Subscriptions are comma-separated NATS subject patterns; `tasks.>`
-matches any subject starting with `tasks.`.
+The `hostInterfaces` block declares which built-in capabilities the workload
+needs. No separate HTTP server or NATS messaging component is required; both are
+provided by the runtime. `subscriptions` is comma-separated NATS subject
+patterns; e.g. `tasks.>` matches any subject starting with `tasks.`.
 
 For Kubernetes deployment, see the
 [runtime-operator documentation](https://github.com/wasmCloud/wasmCloud/tree/main/runtime-operator).

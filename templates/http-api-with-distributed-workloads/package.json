@@ -5,13 +5,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "setup:wit": "npm run setup:wit --workspace=http-api && npm run setup:wit --workspace=task-worker",
-    "build": "npm run build --workspace=http-api && npm run build --workspace=task-worker",
+    "setup:wit": "npm run setup:wit --workspace=http-api && npm run setup:wit --workspace=task-leet && npm run setup:wit --workspace=task-reverse",
+    "build": "npm run build --workspace=http-api && npm run build --workspace=task-leet && npm run build --workspace=task-reverse",
     "dev": "nodemon"
   },
   "workspaces": [
     "http-api",
-    "task-worker"
+    "task-leet",
+    "task-reverse"
   ],
   "devDependencies": {
     "nodemon": "^3.1.9"
