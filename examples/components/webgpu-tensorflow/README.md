@@ -18,7 +18,7 @@ See `service/models/ATTRIBUTION.md` for source and licensing details.
 HTTP client
     │  POST /stylize  {contentImage: dataUrl, styleImage: dataUrl}
     ▼
-component  (wasi:http/incoming-handler)
+component  (wasi:http/handler@0.3.0)
     │  TCP connect 127.0.0.1:7878
     │  send: u32 contentLen | content JPEG | u32 styleLen | style JPEG
     ▼
@@ -31,18 +31,20 @@ component
 HTTP client  (image/jpeg)
 ```
 
-Both workloads run in the same wasmCloud host and share an in-process loopback network. Services bind to `0.0.0.0` but the runtime rewrites that to `127.0.0.1` — services are never reachable from outside the host.
+Both workloads run in the same wasmCloud host and share an in-process loopback network. The service binds to `127.0.0.1`, so it is never reachable from outside the host.
+
+Both workloads target WASI 0.3 (`wasi:http@0.3.0`, `wasi:sockets@0.3.0`, `wasi:cli@0.3.0`) and are built with the QuickJS engine (`jco componentize --backend qjs`).
 
 ## Prerequisites
 
-- [Wasm Shell (`wash`)](https://wasmcloud.com/docs/installation) **≥ 2.1.0** — WebGPU in services landed in 2.1.0.
+- [Wasm Shell (`wash`)](https://wasmcloud.com/docs/installation) with WebGPU and WASI 0.3 support (tested with 2.10.3).
 - Node.js ≥ 20 and npm ≥ 10
 - A GPU on the host machine running `wash dev`
 
 ## Quickstart
 
 ```bash
-# Install dependencies (also applies the componentize-js patch)
+# Install dependencies
 npm install
 
 # Build, deploy, and watch for changes
@@ -61,13 +63,13 @@ Pick a content image and a style image and click **Stylize**.
 
 ## How it works
 
-The thing this example demonstrates is GPU-accelerated ML running as a long-lived wasmCloud workload. The component imports `wasi:http`; the service imports `wasi:webgpu` and exports `wasi:cli/run`. The runtime wires `wasi:webgpu` up to the real GPU on the host running `wash dev`.
+The thing this example demonstrates is GPU-accelerated ML running as a long-lived wasmCloud workload. The component exports `wasi:http/handler`; the service imports `wasi:webgpu` and exports `wasi:cli/run`. The runtime wires `wasi:webgpu` up to the real GPU on the host running `wash dev`.
 
 ### Roles
 
 - **Service** ([service/](service/)) — exports `wasi:cli/run`. Started once by the host at deploy and runs continuously. Owns the GPU device, the loaded TF.js models, and the WGSL shader cache. Listens on TCP `127.0.0.1:7878` for stylize requests.
-- **Component** ([component/](component/)) — exports `wasi:http/incoming-handler`. Stateless. Each HTTP request gets a fresh invocation. Serves the UI, validates the request body, opens a TCP connection to the service, forwards the JPEGs, returns the stylized result.
-- **Loopback TCP between them** — both workloads run inside the same wasmCloud host and share an in-process network. The service binds to `0.0.0.0` but the runtime rewrites that to `127.0.0.1`, so the connection never leaves the host.
+- **Component** ([component/](component/)) — exports `wasi:http/handler`. Stateless. Each HTTP request gets a fresh invocation. Serves the UI, validates the request body, opens a TCP connection to the service, forwards the JPEGs, returns the stylized result.
+- **Loopback TCP between them** — both workloads run inside the same wasmCloud host and share an in-process network. The service binds to `127.0.0.1` (binding `0.0.0.0` is denied under `wasi:sockets@0.3`), so the connection never leaves the host.
 
 ### Warmup
 
@@ -92,21 +94,26 @@ After warmup the service logs `[stylize-service] ready in <N>ms`. Subsequent inf
 ```
 webgpu-tensorflow/
 ├── .wash/config.yaml         # wash project config (wasi_webgpu, service_file)
-├── patches/                  # patch-package fixes for componentize-js
 ├── package.json              # npm workspace root
+├── qjs-polyfill.js           # globals QuickJS lacks, shared by both workloads
 │
 ├── service/                  # TF/WebGPU style-transfer engine
 │   ├── .wash/config.yaml     # subpackage anchor for wash wit commands
 │   ├── src/service.ts        # wasi:cli/run TCP server
+│   ├── src/streams.ts        # stream<u8> reader and response framing
 │   ├── src/image-stylizer.ts # TensorFlow.js + WebGPU model code
 │   ├── models/               # bundled model weights (~52 MB)
-│   ├── polyfill.js           # Math.random shim, navigator.gpu placeholder
-│   ├── wit/world.wit         # imports wasi:webgpu + sockets, exports wasi:cli/run
-│   └── wit/deps.toml         # wit-deps config (webgpu WITs are not on OCI)
+│   ├── polyfill.js           # TF.js-specific globals (location, navigator.gpu placeholder)
+│   ├── node-util-types-polyfill.js # node:util/types for unenv
+│   └── wit/world.wit         # imports wasi:webgpu + sockets, exports wasi:cli/run
 │
 └── component/                # HTTP front-end
     ├── .wash/config.yaml     # subpackage anchor for wash wit commands
-    ├── src/component.ts      # Hono app + TCP client + static UI
+    ├── src/component.ts      # wasi:http handler and routes
+    ├── src/http.ts           # wasi:http request/response helpers
+    ├── src/service-client.ts # TCP client for the service
+    ├── src/streams.ts        # stream<u8> reader
+    ├── src/data-url.ts       # data URL decoding
     ├── src/static/           # HTML, CSS, JS, sample JPEGs
     └── wit/world.wit         # imports sockets, exports wasi:http
 ```
@@ -117,13 +124,13 @@ webgpu-tensorflow/
 
 The root `package.json` defines two npm workspaces (`service` and `component`). `npm run build` orchestrates both.
 
-### Patched componentize-js
+### QuickJS backend and polyfills
 
-Building `wasi:sockets` components requires a fix to `@bytecodealliance/componentize-js`. The spidermonkey-embedding-splicer does not generate a JavaScript class for WIT resource types declared in method-less interfaces (such as `wasi:sockets/network`). Without the class, `instanceNetwork()` and socket operations throw a `ReferenceError` at runtime.
+Both workloads are built with `jco componentize --backend qjs`, whose QuickJS engine supports the WASI 0.3 async ABI (`async func`, `stream<T>`, `future<T>`) that `wasi:webgpu@0.3.0-rc.2` and `wasi:sockets@0.3.0` use. QuickJS has fewer built-in globals than a browser or Node, so [qjs-polyfill.js](qjs-polyfill.js) adds the ones both workloads need: `TextEncoder`/`TextDecoder` (UTF-8 only), `crypto.getRandomValues` (not cryptographically secure), and a `console` that writes to `wasi:cli/stdout` and `stderr`. Import it before anything that uses those globals.
 
-The patch at `patches/@bytecodealliance+componentize-js+0.20.0.patch` injects the missing class definitions. It runs automatically via `patch-package` during `npm install`.
+QuickJS also has no `Request`/`Response`, so the component handles `wasi:http` requests directly instead of using a web framework.
 
-Each subpackage's `scripts/componentize.js` calls `@bytecodealliance/componentize-js` directly (rather than via `jco componentize`) to ensure the patched top-level version is used.
+WIT dependencies are fetched with `wash wit fetch` (see `wkg.lock` in each subpackage).
 
 ### `.wash/config.yaml` anchors
 
@@ -131,7 +138,7 @@ The root `.wash/config.yaml` tells `wash dev` how to build, where to find the bu
 
 ### Node polyfills (`unenv`)
 
-TensorFlow.js was written for the browser and Node, so it pulls in things like `node:util/types`, `node:buffer`, `node:process`, etc. SpiderMonkey-in-wasm has none of those. The service rollup config wires up [`unenv`](https://github.com/unjs/unenv) to provide stub implementations, plus a hand-written [service/node-util-types-polyfill.js](service/node-util-types-polyfill.js) for `node:util/types` (which `unenv` doesn't yet ship — see [unjs/unenv#540](https://github.com/unjs/unenv/pull/540)). Without these, the service won't even load.
+TensorFlow.js was written for the browser and Node, so it pulls in things like `node:util/types`, `node:buffer`, `node:process`, etc. QuickJS-in-wasm has none of those. The service rollup config wires up [`unenv`](https://github.com/unjs/unenv) to provide stub implementations, plus a hand-written [service/node-util-types-polyfill.js](service/node-util-types-polyfill.js) for `node:util/types` (which `unenv` doesn't yet ship — see [unjs/unenv#540](https://github.com/unjs/unenv/pull/540)). Without these, the service won't even load.
 
 ### TF.js / wasi:webgpu compatibility shim
 
@@ -139,11 +146,9 @@ TensorFlow.js was written for the browser and Node, so it pulls in things like `
 
 ## Known limitations
 
-A few rough edges to be aware of:
+A rough edge to be aware of:
 
-- **`Math.random` is currently constant.** [service/polyfill.js](service/polyfill.js) overrides `globalThis.Math.random` to always return `0.5` as a temporary shim until `wizer` initializes `wasi:random` (support is coming soon upstream). Anything that depends on randomness will be deterministic in unexpected ways in the meantime.
-- **The service uses `wit-deps` instead of `wash wit fetch`.** The component uses the standard `wash wit fetch` flow, but the service falls back to [`wit-deps`](https://github.com/bytecodealliance/wit-deps) because the WebGPU-related WITs aren't yet published to OCI. Once they are, the service should switch over too.
-- **The resulting `service.wasm` is large.** TensorFlow.js, its WebGPU backend, the bundled WGSL shaders, the unenv Node polyfills, and ~52 MB of model weights all get statically linked, so the output is much larger than a typical wasm component — expect tens of MB rather than the usual hundreds of KB.
+- **The resulting `service.wasm` is large.** TensorFlow.js, its WebGPU backend, the bundled WGSL shaders, the unenv Node polyfills, and ~52 MB of model weights (base64-encoded) all get statically linked, so the output is around 240 MB rather than the usual hundreds of KB.
 
 ## Customizing
 
@@ -153,11 +158,11 @@ Edit [`service/src/image-stylizer.ts`](service/src/image-stylizer.ts). The `Styl
 
 ### Add HTTP routes
 
-Edit [`component/src/component.ts`](component/src/component.ts). Add routes to the Hono app using the standard Hono API. The `callStylizeService()` helper encapsulates the TCP client logic; extend it or add new helpers that connect to the service for additional inference endpoints.
+Edit [`component/src/component.ts`](component/src/component.ts). Add a branch to `handler.handle`, which routes on method and path; the `respond()` and `readRequestBody()` helpers in [`component/src/http.ts`](component/src/http.ts) build responses and read request bodies. `callStylizeService()` in [`component/src/service-client.ts`](component/src/service-client.ts) encapsulates the TCP client logic; extend it or add new helpers that connect to the service for additional inference endpoints.
 
 ### Change the TCP port
 
-The port is `const PORT = 7878` in [`service/src/service.ts`](service/src/service.ts). Update `SERVICE_PORT` in [`component/src/component.ts`](component/src/component.ts) to match.
+The port is `const PORT = 7878` in [`service/src/service.ts`](service/src/service.ts). Update `SERVICE_PORT` in [`component/src/service-client.ts`](component/src/service-client.ts) to match.
 
 ## Adding Capabilities
 
@@ -166,4 +171,4 @@ To learn how to extend this example with additional capabilities, see the [Addin
 [ts]: https://www.typescriptlang.org/
 [tfjs]: https://www.tensorflow.org/js
 [tfjs-webgpu]: https://www.npmjs.com/package/@tensorflow/tfjs-backend-webgpu
-[wasi-webgpu]: https://github.com/WebAssembly/wasi-gfx
+[wasi-webgpu]: https://github.com/WebAssembly/wasi-webgpu
