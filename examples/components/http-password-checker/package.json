@@ -17,7 +17,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@bytecodealliance/jco": "^1.19.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
