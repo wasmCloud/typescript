@@ -18,7 +18,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@bytecodealliance/jco": "^1.19.0",
     "@rsbuild/plugin-node-polyfill": "^1.4.4",
