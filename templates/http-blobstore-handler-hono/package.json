@@ -20,8 +20,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bytecodealliance/jco-std": "^0.1.0",
-    "hono": "^4.12.25",
-    "zod": "^4.0.0"
+    "hono": "^4.13.11",
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "^1.15.4",
