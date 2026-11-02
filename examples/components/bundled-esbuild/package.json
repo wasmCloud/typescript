@@ -21,7 +21,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.19.0",
+    "@bytecodealliance/jco": "^1.40.0",
     "@types/jsonpath": "^0.2.4",
     "@types/node": "^24.12.2",
     "esbuild": "^0.28.1",
