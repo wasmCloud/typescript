@@ -17,7 +17,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "zod": "^4.3.6"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "^1.40.0",
