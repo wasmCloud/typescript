@@ -260,6 +260,18 @@ Before creating a PR, ensure that your contribution(s) meet the following criter
 - [ ] All commits are signed off
 - [ ] CI checks are passing
 
+## Code Scanning
+
+[CodeQL](.github/workflows/codeql.yml) analyzes the TypeScript and JavaScript sources and the GitHub
+Actions workflows on every pull request, on every push to `main`, and weekly. Its alerts appear in
+the repository's Security tab.
+
+- A pull request that adds a high or critical severity CodeQL alert is blocked from merging until
+  the alert is fixed or dismissed with a stated reason.
+- Alerts open on `main` must be fixed, or dismissed with a stated reason, within 7 days for
+  critical, 14 days for high and 90 days for medium severity. Low severity alerts are fixed on a
+  best-effort basis.
+
 ## Working with wasmCloud
 
 To run and test examples locally you'll need the [wash CLI](https://wasmcloud.com/docs/installation).
