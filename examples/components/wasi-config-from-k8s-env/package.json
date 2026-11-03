@@ -22,7 +22,7 @@
     "hono": "^4.13.11"
   },
   "devDependencies": {
-    "@bytecodealliance/jco": "1.19.0",
+    "@bytecodealliance/jco": "1.40.0",
     "nodemon": "^3.1.9",
     "rimraf": "^6.1.2",
     "rolldown": "^1.0.0",

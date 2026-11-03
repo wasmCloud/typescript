@@ -1,5 +1,5 @@
-import { declareGlobals } from '@wasi-gfx/js-webgpu/globals';
 import '../polyfill.js';
+import { declareGlobals } from '@wasi-gfx/js-webgpu/globals';
 
 import jpeg from "jpeg-js";
 import * as tf from '@tensorflow/tfjs';
