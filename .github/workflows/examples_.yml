@@ -35,7 +35,7 @@ jobs:
 
 
   components:
-    name: ${{ matrix.example.folder }}
+    name: Example (${{ matrix.example.folder }})
     if: needs.meta.outputs.changed-ci == 'true' || needs.meta.outputs.changed-components == 'true'
     needs: [meta]
     secrets: inherit
@@ -109,9 +109,13 @@ jobs:
             skip-wash-dev: true
             test-command: ''
 
+  # The required check for this workflow. It runs even when a job above fails
+  # or is skipped, and fails if any of them failed.
   examples-check:
-    needs: [components]
-    if: ${{ always() }}
-    uses: ./.github/workflows/workflow_check.yml
-    with:
-      pass-condition: ${{ contains(needs.*.result, 'failure') == false }}
+    needs: [meta, components]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if a job failed
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
