@@ -6,11 +6,11 @@
   "main": "dist/service.js",
   "type": "module",
   "scripts": {
-    "fetch:wit": "wit-deps update",
+    "fetch:wit": "wash wit fetch",
     "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "setup:wit": "npm run fetch:wit && npm run generate:types",
     "build:ts": "rollup -c",
-    "build:component": "node scripts/componentize.js",
+    "build:component": "jco componentize dist/service.js --wit wit --world-name service --backend qjs -o dist/service.wasm",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component"
   },
   "keywords": [],
@@ -19,11 +19,11 @@
   "dependencies": {
     "@tensorflow/tfjs": "^4.22.0",
     "@tensorflow/tfjs-backend-webgpu": "^4.22.0",
-    "@wasi-gfx/js-webgpu": "^0.2.0",
+    "@wasi-gfx/js-webgpu": "^0.3.0",
     "jpeg-js": "^0.4.4"
   },
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.17.9",
+    "@bytecodealliance/jco": "^1.40.0",
     "@rollup/plugin-alias": "^6.0.0",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-inject": "^5.0.5",
