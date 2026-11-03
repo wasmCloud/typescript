@@ -11,10 +11,10 @@ async function calculateScore(data: InputData): Promise<number> {
     json = JSON.parse(data.val);
   }
 
-  const scoresData: unknown[] = JSONPath({
+  const scoresData = JSONPath({
     path: '$[*].score',
     json,
-  });
+  }) as unknown[];
 
   const total = R.piped(
     R.map((x: unknown) => parseInt(x as string, 10)),
