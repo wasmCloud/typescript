@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "csvtojson": "^2.0.14",
-    "jsonpath-plus": "^10.4.0",
+    "jsonpath-plus": "^11.2.2",
     "remeda": "^2.34.0"
   }
 }
