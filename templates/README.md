@@ -42,6 +42,9 @@ Each template may be used with `wash new`. For example, to create a new project 
 wash new https://github.com/wasmCloud/typescript.git --name http-client --subfolder templates/http-client
 ```
 
+To use a template from a release rather than `main`, add `--git-ref` with the release tag, for
+example `--git-ref v2.12.0`. See [Versioned releases](../README.md#versioned-releases).
+
 Templates include a `wash` configuration file (`.wash/config.yaml`) that runs `npm install` when a template is cloned with `wash new`.
 
 After running `wash new`, you will be prompted to execute the template's setup command. Hit enter for yes (the default).

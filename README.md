@@ -45,6 +45,27 @@ wash new https://github.com/wasmCloud/typescript.git --name my-project --subfold
 
 See the [templates README](./templates/README.md) for more details.
 
+### Versioned releases
+
+The examples and templates are released as `vX.Y.Z` [GitHub Releases][releases]. Add `--git-ref`
+to `wash new` to use a template from a release instead of `main`:
+
+```bash
+wash new https://github.com/wasmCloud/typescript.git --name my-project --subfolder templates/<template-name> --git-ref v2.12.0
+```
+
+Each release attaches `wasmcloud-typescript-vX.Y.Z.tar.gz`, the source of the tag, with its SPDX
+SBOM, a `SHA256SUMS` file and Sigstore bundles. To verify a download with the
+[GitHub CLI](https://cli.github.com/):
+
+```bash
+gh attestation verify wasmcloud-typescript-v2.12.0.tar.gz --repo wasmCloud/typescript
+```
+
+[SUPPORT.md](./SUPPORT.md) says which release is supported.
+
+[releases]: https://github.com/wasmCloud/typescript/releases
+
 ## 🛠️ Contributing
 
 For development setup, workflow, and contribution guidelines, see the [Contributing Guide](./CONTRIBUTING.md).

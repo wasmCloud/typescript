@@ -1,0 +1,28 @@
+# Groups the generated notes of vX.Y.Z releases by pull request label.
+# See .github/workflows/release.yml.
+changelog:
+  exclude:
+    labels:
+      - do-not-merge
+      - duplicate
+      - invalid
+      - wontfix
+  categories:
+    - title: Security fixes
+      labels:
+        - security
+    - title: Features
+      labels:
+        - enhancement
+    - title: Bug fixes
+      labels:
+        - bug
+    - title: Dependency updates
+      labels:
+        - dependencies
+    - title: Documentation
+      labels:
+        - documentation
+    - title: Other changes
+      labels:
+        - '*'

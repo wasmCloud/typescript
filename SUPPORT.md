@@ -2,16 +2,27 @@
 
 ## Examples and templates
 
-`main` holds TypeScript examples and project templates. They aren't released or versioned: use them
-from `main`, for example with `wash new`.
+`main` holds TypeScript examples and project templates for wasmCloud 2.x. They're released as
+`vX.Y.Z` [GitHub Releases](https://github.com/wasmCloud/typescript/releases), each a tag on `main`
+with a signed source tarball. To pin a template to a release, pass the tag to `wash new`:
 
-- They track the latest wasmCloud release.
-- Bug fixes and security fixes, including dependency updates, land on `main`. There are no release
-  branches and no backports.
+```bash
+wash new https://github.com/wasmCloud/typescript.git --name my-project --subfolder templates/<template-name> --git-ref v2.12.0
+```
+
+- The supported release is the latest `vX.Y.Z` release. It tracks the current wasmCloud 2.x
+  release.
+- Bug fixes and security fixes, including dependency updates, land on `main` and ship in the next
+  release. There are no release branches and no backports: an older `vX.Y.Z` release receives no
+  fixes once a newer one is out.
+- `main` itself is always usable with `wash new` (leave out `--git-ref`), and may carry fixes that
+  haven't been released yet.
+
+The [README](README.md#versioned-releases) describes how to verify a release.
 
 ## wasmCloud 1.x packages
 
-The GitHub releases in this repository were published from the `v1` branch for wasmCloud 1.x:
+The other GitHub releases in this repository were published from the `v1` branch for wasmCloud 1.x:
 `washboard-ui`, `@wasmcloud/lattice-client-core`, `@wasmcloud/lattice-client-react` and
 `@wasmcloud/eslint-config`. wasmCloud 1.x is
 [end of life](https://github.com/wasmCloud/wasmCloud/blob/main/SUPPORT.md#wasmcloud-1x), and these

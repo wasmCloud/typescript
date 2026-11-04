@@ -1,0 +1,216 @@
+name: Release
+
+# Cuts a versioned release of the examples and templates on main:
+#
+#   1. Checks that the version is X.Y.Z, that vX.Y.Z doesn't exist yet, and
+#      finds the previous vX.Y.Z tag for the notes range.
+#   2. Packs the commit with `git archive` into a source tarball, generates an
+#      SPDX SBOM from the tarball's package-lock.json files, and writes
+#      SHA256SUMS for both.
+#   3. Attests SLSA build provenance for the tarball, the SBOM and SHA256SUMS,
+#      and attests the SBOM against the tarball. Both are Sigstore-signed and
+#      verifiable with `gh attestation verify --repo wasmCloud/typescript`.
+#   4. Creates the vX.Y.Z tag and GitHub Release at the commit, with generated
+#      notes under a Changelog heading and the tarball, SBOM, SHA256SUMS and
+#      Sigstore bundles attached.
+#
+# release-tag.yml in wasmCloud/wasmCloud starts it with a wasmcloud-release
+# repository_dispatch after each stable wasmCloud release, so this release takes
+# wasmCloud's version. workflow_dispatch is for a manual or recovery release.
+#
+# Templates are used straight from the tag with
+# `wash new ... --subfolder templates/<name> --git-ref vX.Y.Z`; the tarball is
+# the signed copy of the same tree.
+#
+# The v1 releases (washboard-ui@*, @wasmcloud/*@*) were cut from the v1 branch
+# and use different tag names, so they never enter the notes range.
+
+on:
+  repository_dispatch:
+    types: [wasmcloud-release]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release, as X.Y.Z (tagged vX.Y.Z)'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  SYFT_VERSION: v1.55.0
+  VERSION: ${{ github.event.client_payload.version || inputs.version }}
+
+jobs:
+  release:
+    name: Tag and release
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: github.repository == 'wasmCloud/typescript' && github.ref == 'refs/heads/main'
+    permissions:
+      # Creating the tag and the GitHub Release.
+      contents: write
+      # Sigstore signing and the attestation store.
+      id-token: write
+      attestations: write
+      # actions/attest writes an artifact storage record alongside the
+      # attestation; without this it warns on every subject.
+      artifact-metadata: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Check version
+        id: ver
+        run: |
+          set -euo pipefail
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::version '$VERSION' is not X.Y.Z"
+            exit 1
+          fi
+          tag="v$VERSION"
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null; then
+            echo "::error::$tag already exists. Tags are immutable; release a new version instead."
+            exit 1
+          fi
+
+          # Newest vX.Y.Z tag below this one, for the notes range. Before the
+          # first release grep matches nothing, which pipefail would turn into
+          # a failure.
+          previous_tag=$(git tag -l 'v*' \
+            | { grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' || true; } \
+            | { cat; echo "$tag"; } \
+            | sort -uV | grep -B1 -xF "$tag" | head -n1)
+          [ "$previous_tag" = "$tag" ] && previous_tag=""
+
+          {
+            echo "tag=$tag"
+            echo "previous_tag=$previous_tag"
+            echo "sha=$(git rev-parse HEAD)"
+            echo "name=wasmcloud-typescript-$tag"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Pack source tarball
+        env:
+          NAME: ${{ steps.ver.outputs.name }}
+          SHA: ${{ steps.ver.outputs.sha }}
+        run: |
+          set -euo pipefail
+          mkdir dist
+          # gzip -n leaves out the timestamp, so the tarball is reproducible
+          # from the commit.
+          git archive --format=tar --prefix="$NAME/" "$SHA" | gzip -n -9 > "dist/$NAME.tar.gz"
+          mkdir "$RUNNER_TEMP/src"
+          tar -xzf "dist/$NAME.tar.gz" -C "$RUNNER_TEMP/src"
+
+      - name: Install Syft
+        uses: anchore/sbom-action/download-syft@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
+        with:
+          syft-version: ${{ env.SYFT_VERSION }}
+
+      - name: Generate SBOM
+        env:
+          NAME: ${{ steps.ver.outputs.name }}
+        run: |
+          set -euo pipefail
+          syft scan "dir:$RUNNER_TEMP/src/$NAME" \
+            --source-name wasmcloud-typescript \
+            --source-version "$VERSION" \
+            --output "spdx-json=dist/$NAME.spdx.json"
+
+      - name: Write checksums
+        working-directory: dist
+        env:
+          NAME: ${{ steps.ver.outputs.name }}
+        run: sha256sum "$NAME.tar.gz" "$NAME.spdx.json" > SHA256SUMS
+
+      - name: Attest build provenance
+        id: provenance
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: |
+            dist/${{ steps.ver.outputs.name }}.tar.gz
+            dist/${{ steps.ver.outputs.name }}.spdx.json
+            dist/SHA256SUMS
+
+      - name: Attest SBOM
+        id: sbom
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: dist/${{ steps.ver.outputs.name }}.tar.gz
+          sbom-path: dist/${{ steps.ver.outputs.name }}.spdx.json
+
+      - name: Stage Sigstore bundles
+        env:
+          NAME: ${{ steps.ver.outputs.name }}
+          PROVENANCE_BUNDLE: ${{ steps.provenance.outputs.bundle-path }}
+          SBOM_BUNDLE: ${{ steps.sbom.outputs.bundle-path }}
+        run: |
+          set -euo pipefail
+          cp "$PROVENANCE_BUNDLE" "dist/$NAME.provenance.sigstore.json"
+          cp "$SBOM_BUNDLE" "dist/$NAME.sbom.sigstore.json"
+
+      - name: Write release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.ver.outputs.tag }}
+          PREVIOUS_TAG: ${{ steps.ver.outputs.previous_tag }}
+          SHA: ${{ steps.ver.outputs.sha }}
+          NAME: ${{ steps.ver.outputs.name }}
+        run: |
+          set -euo pipefail
+          {
+            echo "## Changelog"
+            echo
+            if [ -n "$PREVIOUS_TAG" ]; then
+              # Pin the start tag: left to itself GitHub would start from the
+              # latest release, which may be a v1-branch package release.
+              gh api "repos/$GITHUB_REPOSITORY/releases/generate-notes" \
+                -f tag_name="$TAG" \
+                -f target_commitish="$SHA" \
+                -f previous_tag_name="$PREVIOUS_TAG" \
+                --jq .body
+            else
+              echo "First versioned release of the TypeScript examples and templates for wasmCloud 2.x."
+              echo "Earlier changes are in the [commit history](https://github.com/$GITHUB_REPOSITORY/commits/$TAG)."
+            fi
+            echo
+            echo "## Using this release"
+            echo
+            echo '```bash'
+            echo "wash new https://github.com/$GITHUB_REPOSITORY.git --name my-project --subfolder templates/<template-name> --git-ref $TAG"
+            echo '```'
+            echo
+            echo "## Verifying this release"
+            echo
+            echo "\`$NAME.tar.gz\` is the source of this tag, packed with \`git archive\`. \`$NAME.spdx.json\` is its SPDX SBOM."
+            echo "Both carry Sigstore-signed SLSA build provenance, and \`SHA256SUMS\` lists their SHA-256 digests."
+            echo
+            echo '```bash'
+            echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY"
+            echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY --predicate-type https://spdx.dev/Document/v2.3"
+            echo "sha256sum --check SHA256SUMS"
+            echo '```'
+          } > "$RUNNER_TEMP/notes.md"
+          cat "$RUNNER_TEMP/notes.md"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.ver.outputs.tag }}
+          SHA: ${{ steps.ver.outputs.sha }}
+        run: |
+          set -euo pipefail
+          gh release create "$TAG" dist/* \
+            --target "$SHA" \
+            --title "$TAG" \
+            --notes-file "$RUNNER_TEMP/notes.md" \
+            --latest
