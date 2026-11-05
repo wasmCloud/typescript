@@ -68,35 +68,15 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .tool-versions
+          package-manager-cache: false
+
       - name: Check version
         id: ver
-        run: |
-          set -euo pipefail
-          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "::error::version '$VERSION' is not X.Y.Z"
-            exit 1
-          fi
-          tag="v$VERSION"
-          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null; then
-            echo "::error::$tag already exists. Tags are immutable; release a new version instead."
-            exit 1
-          fi
-
-          # Newest vX.Y.Z tag below this one, for the notes range. Before the
-          # first release grep matches nothing, which pipefail would turn into
-          # a failure.
-          previous_tag=$(git tag -l 'v*' \
-            | { grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' || true; } \
-            | { cat; echo "$tag"; } \
-            | sort -uV | grep -B1 -xF "$tag" | head -n1)
-          [ "$previous_tag" = "$tag" ] && previous_tag=""
-
-          {
-            echo "tag=$tag"
-            echo "previous_tag=$previous_tag"
-            echo "sha=$(git rev-parse HEAD)"
-            echo "name=wasmcloud-typescript-$tag"
-          } >> "$GITHUB_OUTPUT"
+        run: node scripts/release-check-version.mjs
 
       - name: Pack source tarball
         env:
@@ -173,43 +153,7 @@ jobs:
           PREVIOUS_TAG: ${{ steps.ver.outputs.previous_tag }}
           SHA: ${{ steps.ver.outputs.sha }}
           NAME: ${{ steps.ver.outputs.name }}
-        run: |
-          set -euo pipefail
-          {
-            echo "## Changelog"
-            echo
-            if [ -n "$PREVIOUS_TAG" ]; then
-              # Pin the start tag: left to itself GitHub would start from the
-              # latest release, which may be a v1-branch package release.
-              gh api "repos/$GITHUB_REPOSITORY/releases/generate-notes" \
-                -f tag_name="$TAG" \
-                -f target_commitish="$SHA" \
-                -f previous_tag_name="$PREVIOUS_TAG" \
-                --jq .body
-            else
-              echo "First versioned release of the TypeScript examples and templates for wasmCloud 2.x."
-              echo "Earlier changes are in the [commit history](https://github.com/$GITHUB_REPOSITORY/commits/$TAG)."
-            fi
-            echo
-            echo "## Using this release"
-            echo
-            echo '```bash'
-            echo "wash new https://github.com/$GITHUB_REPOSITORY.git --name my-project --subfolder templates/<template-name> --git-ref $TAG"
-            echo '```'
-            echo
-            echo "## Verifying this release"
-            echo
-            echo "\`$NAME.tar.gz\` is the source of this tag, packed with \`git archive\`. \`$NAME.spdx.json\` is its SPDX SBOM."
-            echo "\`$NAME.openvex.json\` is the OpenVEX document of advisories that don't affect this release."
-            echo "All three carry Sigstore-signed SLSA build provenance, and \`$NAME.SHA256SUMS\` lists their SHA-256 digests."
-            echo
-            echo '```bash'
-            echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY --signer-workflow $GITHUB_REPOSITORY/.github/workflows/release.yml"
-            echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY --signer-workflow $GITHUB_REPOSITORY/.github/workflows/release.yml --predicate-type https://spdx.dev/Document/v2.3"
-            echo "sha256sum --check $NAME.SHA256SUMS"
-            echo '```'
-          } > "$RUNNER_TEMP/notes.md"
-          cat "$RUNNER_TEMP/notes.md"
+        run: node scripts/release-notes.mjs
 
       - name: Create GitHub Release
         env:
