@@ -11,6 +11,9 @@ Thank you for your interest in contributing to the wasmCloud TypeScript ecosyste
 - [Testing](#testing)
 - [Commit Guidelines](#commit-guidelines)
 - [Pull Request Process](#pull-request-process)
+- [Dependencies](#dependencies)
+- [Code Scanning](#code-scanning)
+- [Releases](#releases)
 - [Working with wasmCloud](#working-with-wasmcloud)
 - [Debugging](#debugging)
 - [Getting Help](#getting-help)
@@ -260,6 +263,47 @@ Before creating a PR, ensure that your contribution(s) meet the following criter
 - [ ] All commits are signed off
 - [ ] CI checks are passing
 
+## Dependencies
+
+Each example and template is a standalone npm package
+with its own `package.json` and a committed `package-lock.json`.
+
+### Selecting dependencies
+
+Before adding a dependency, check that it:
+
+- is needed: prefer what WASI, jco or the platform already provides
+- is actively maintained and widely used
+- has an [OSI-approved](https://opensource.org/licenses) license compatible with Apache-2.0
+- adds as few transitive dependencies as possible
+
+### Obtaining dependencies
+
+- npm packages come from the npm registry,
+  at the versions pinned in each package's `package-lock.json`.
+- GitHub Actions are pinned to a full commit SHA,
+  with the version in a comment.
+
+### Tracking dependencies
+
+- [Dependabot](.github/dependabot.yml) opens weekly version updates
+  for the examples, the templates and the GitHub Actions,
+  after a cooldown so new releases have time to settle.
+- Dependabot alerts and security updates cover every `package-lock.json`.
+- Each release attaches an SPDX SBOM of the dependencies in its source tarball.
+
+### Vulnerable dependencies
+
+Dependabot alerts open on `main` must be fixed,
+or dismissed with a stated reason,
+within 7 days for critical, 14 days for high and 90 days for medium severity.
+Low severity alerts are fixed on a best-effort basis.
+
+- A dependency whose license is not OSI-approved must be removed
+  before the next release.
+- Critical and high severity alerts must be fixed or dismissed
+  before a release is cut.
+
 ## Code Scanning
 
 [CodeQL](.github/workflows/codeql.yml) analyzes the TypeScript and JavaScript sources and the GitHub
@@ -316,7 +360,6 @@ wash down
 ## Getting Help
 
 - **Issues**: Check existing [GitHub issues](https://github.com/wasmCloud/typescript/issues)
-- **Discussions**: Use [GitHub Discussions](https://github.com/wasmCloud/typescript/discussions)
 - **Community**: Join the [wasmCloud Slack](https://slack.wasmcloud.com/)
 - **Documentation**: See [wasmCloud docs](https://wasmcloud.com/docs)
 

@@ -42,6 +42,7 @@ repository:
     expression: Apache-2.0
   documentation:
     contributing-guide: https://github.com/wasmCloud/typescript/blob/main/CONTRIBUTING.md
+    dependency-management-policy: https://github.com/wasmCloud/typescript/blob/main/CONTRIBUTING.md#dependencies
     governance: https://github.com/wasmCloud/wasmCloud/blob/main/GOVERNANCE.md
     security-policy: https://github.com/wasmCloud/.github/blob/main/SECURITY.md
   release:
