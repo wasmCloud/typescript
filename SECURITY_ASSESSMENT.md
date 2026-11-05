@@ -109,6 +109,12 @@ Before deploying one, users should know that:
 - `examples/components/webgpu-tensorflow` commits pre-trained model weights
   as binary files that can't be reviewed.
 
-## Reporting a vulnerability
+## Vulnerabilities
 
-See the wasmCloud [security policy](https://github.com/wasmCloud/typescript/security/policy).
+- Report a vulnerability as described in the wasmCloud
+  [security policy](https://github.com/wasmCloud/typescript/security/policy).
+- Fixed vulnerabilities are published as
+  [GitHub Security Advisories](https://github.com/wasmCloud/typescript/security/advisories)
+  in this repository,
+  and listed under Security fixes in the notes of the release that fixes them.
+  None have been published so far.
