@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { fire } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
+import { fire } from '@bytecodealliance/jco-std/wasi/0.2.6/http/adapters/hono/server';
 
 import { increment } from 'wasi:keyvalue/atomics@0.2.0-draft';
 import { open } from 'wasi:keyvalue/store@0.2.0-draft';
@@ -19,4 +19,4 @@ app.notFound((c) => {
 
 fire(app);
 
-export { incomingHandler } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
+export { incomingHandler } from '@bytecodealliance/jco-std/wasi/0.2.6/http/adapters/hono/server';
