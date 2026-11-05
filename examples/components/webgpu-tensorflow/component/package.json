@@ -9,7 +9,7 @@
     "fetch:wit": "wash wit fetch",
     "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "setup:wit": "npm run fetch:wit && npm run generate:types",
-    "build:ts": "rollup -c",
+    "build:ts": "rolldown -c rolldown.config.mjs",
     "build:component": "jco componentize dist/component.js --wit wit --world-name component --backend qjs -o dist/component.wasm",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component"
   },
@@ -21,13 +21,9 @@
   },
   "devDependencies": {
     "@bytecodealliance/jco": "^1.40.0",
-    "@rollup/plugin-commonjs": "^29.0.3",
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-typescript": "^12.3.1",
     "@rollup/plugin-url": "^8.0.2",
     "rimraf": "^6.1.2",
-    "rollup": "^4.67.3",
+    "rolldown": "^1.2.16",
     "typescript": "^6.0.3"
   }
 }
