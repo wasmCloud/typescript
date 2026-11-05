@@ -81,8 +81,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          cache: 'npm'
-          cache-dependency-path: './examples/components/${{ inputs.folder }}/package-lock.json'
+          # No dependency cache: the Examples workflow also runs on tag pushes,
+          # which must not restore a cache a pull request could have poisoned.
+          package-manager-cache: false
           node-version-file: './examples/components/${{ inputs.folder }}/.nvmrc'
 
       - name: Install Wash
@@ -128,6 +129,7 @@ jobs:
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: './examples/components/${{ inputs.folder }}/.nvmrc'
+          package-manager-cache: false
 
       - name: Install JS Wasm Tools
         if: ${{ inputs.skip-wash-dev }}
