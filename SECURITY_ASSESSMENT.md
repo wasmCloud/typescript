@@ -30,6 +30,35 @@ Project/repository assets that should be watched closely:
 - the GitHub Actions workflows and the tokens they get
 - the repository settings and the `main` ruleset
 
+## Attack surface
+
+These are the ways code or data from outside reaches those assets,
+from least to most privileged:
+
+- **Pull requests**, usually from forks.
+  The Examples, Templates, CodeQL and zizmor workflows run their code
+  with a read-only token and no secrets, on fresh GitHub-hosted runners.
+  A pull request's `npm ci` and build scripts run there too.
+- **npm packages**, installed from each package's `package-lock.json`
+  in CI and in users' projects.
+- **WIT packages**, fetched from the `wasi.dev` registry by `wash wit fetch`
+  at the versions and digests in each package's `wkg.lock`.
+- **Pushes to `main` and tags.**
+  They run the same workflows as pull requests.
+  None restores a dependency cache, so a pull request can't plant one.
+- **The weekly baseline scan**, which gets an OIDC token
+  to sign and publish its results to grc.store.
+- **The release dispatch.**
+  Only wasmCloud's `release-tag.yml` can send it,
+  and maintainers can start the same workflow by hand on `main`.
+  Its only input is a version, which the workflow rejects unless it's `X.Y.Z`.
+  The release job is the only one with write access:
+  it creates the tag and release, and signs the assets.
+  It runs only on `main`, and builds nothing from a pull request.
+
+The critical paths are therefore the merge into `main`, which the ruleset guards,
+and the release job, which only a trusted dispatch on `main` can start.
+
 ## Threats and mitigations
 
 ### Malicious or mistaken code merged into a template
