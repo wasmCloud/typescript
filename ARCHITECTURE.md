@@ -94,7 +94,7 @@ Each template's README documents them, and its `wit/world.wit` declares them.
 | [http-filesystem-handler-hono](templates/http-filesystem-handler-hono/) | `wasi:http/incoming-handler@0.2.6` | `wasi:filesystem/types`, `wasi:filesystem/preopens` (`0.2.2`) |
 | [http-logging-handler-hono](templates/http-logging-handler-hono/) | `wasi:http/incoming-handler@0.2.6` | `wasi:logging/logging@0.1.0-draft` |
 | [http-api-with-distributed-workloads](templates/http-api-with-distributed-workloads/): `http-api` | `wasi:http/incoming-handler@0.2.6` | `wasmcloud:messaging/consumer@0.2.0` |
-| [http-api-with-distributed-workloads](templates/http-api-with-distributed-workloads/): `task-worker` | `wasmcloud:messaging/handler@0.2.0` | `wasmcloud:messaging/consumer@0.2.0` |
+| [http-api-with-distributed-workloads](templates/http-api-with-distributed-workloads/): `task-leet`, `task-reverse` | `wasmcloud:messaging/handler@0.2.0` | `wasmcloud:messaging/consumer@0.2.0`, `wasi:config/store@0.2.0-rc.1` |
 | [service-tcp-echo](templates/service-tcp-echo/): `service` | `wasi:cli/run@0.2.0` | `wasi:sockets` TCP (`0.2.3`), `wasi:io/poll@0.2.0` |
 | [service-tcp-echo](templates/service-tcp-echo/): `component` | `wasi:http/incoming-handler@0.2.6` | `wasi:sockets` TCP (`0.2.3`), `wasi:io/poll@0.2.0` |
 
