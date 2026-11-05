@@ -11,7 +11,7 @@ const MEGABYTE = 1024 * 1024;
 export default defineConfig({
   input: 'src/service.ts',
   external: /wasi:.*/,
-  platform: 'node',
+  platform: 'browser',
   // @rollup/plugin-url turns the weight shards into JS modules that export a data URL.
   moduleTypes: {
     '.bin': 'js',
