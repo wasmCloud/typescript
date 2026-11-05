@@ -120,9 +120,9 @@ CI checks every pull request instead:
   with `npm ci` and `npm run build`,
   and smoke-tests the HTTP ones under `wash dev`.
 
-When you add an example or template, add it to the matrix in that workflow:
-a `test-command` for an example,
-or a `test-path` and `test-expect` for an HTTP template.
+When you add an example or template, add it to the matrix in that workflow,
+with the `checks` that [scripts/smoke-test.mjs](scripts/smoke-test.mjs) runs against it.
+The script's header describes each kind of check.
 If you add tests to an example, run them from its `test` script:
 CI runs `npm run test` for each example that has one.
 

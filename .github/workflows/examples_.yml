@@ -33,6 +33,7 @@ jobs:
             ci:
               - '.github/workflows/examples_.yml'
               - '.github/workflows/examples_component.yml'
+              - 'scripts/**'
             components:
               - 'examples/components/**'
 
@@ -48,7 +49,7 @@ jobs:
     with:
       folder: ${{ matrix.example.folder }}
       wasm-bin: ${{ matrix.example.wasm-bin }}
-      test-command: ${{ matrix.example.test-command }}
+      checks: ${{ matrix.example.checks && toJSON(matrix.example.checks) || '' }}
       skip-wash-dev: ${{ matrix.example.skip-wash-dev && true || false }}
       dist-dir: ${{ matrix.example.dist-dir || 'dist' }}
       force: ${{ needs.meta.outputs.changed-ci == 'true' }}
@@ -58,70 +59,68 @@ jobs:
         example:
           - folder: http-password-checker
             wasm-bin: http-password-checker.wasm
-            test-command: |
-              RESPONSE=$(curl http://127.0.0.1:8000/api/v1/check -d '{"value": "test"}' | jq -r '.status' || echo '')
-              [[ "$RESPONSE" == 'success' ]] && TEST_RESULT=1 || TEST_RESULT=0
+            checks:
+              - path: /api/v1/check
+                method: POST
+                body: '{"value": "test"}'
+                field: status
+                equals: success
 
           - folder: http-server-with-hono
             wasm-bin: http_server_with_hono.wasm
-            test-command: |
-              EXPECTED_DATA="This is some JSON data."
-              RESPONSE_DATA=$(curl http://127.0.0.1:8000/api/data | jq -r '.message')
-              [[ "$RESPONSE_DATA" == "$EXPECTED_DATA" ]] && TEST_DATA=1 || TEST_DATA=0
-
-              EXPECTED_CONFIG='{"theme":"dark","version":"1.0.0","features":["logging","metrics"]}'
-              RESPONSE_CONFIG=$(curl http://127.0.0.1:8000/api/config)
-              [[ "$RESPONSE_CONFIG" == "$EXPECTED_CONFIG" ]] && TEST_CONFIG=1 || TEST_CONFIG=0
-
-              [[ "$TEST_DATA" == '1' && "$TEST_CONFIG" == '1' ]] && TEST_RESULT=1 || TEST_RESULT=0
+            checks:
+              - path: /api/data
+                field: message
+                equals: This is some JSON data.
+              - path: /api/config
+                equals: '{"theme":"dark","version":"1.0.0","features":["logging","metrics"]}'
 
           - folder: http-streaming
             wasm-bin: http-streaming.wasm
-            test-command: |
-              RESPONSE=$(curl http://127.0.0.1:8000 | base64 -d | wc -c)
-              [[ "$RESPONSE" == '1048576' ]] && TEST_RESULT=1 || TEST_RESULT=0
+            checks:
+              - path: /
+                decode: base64
+                length: 1048576
 
           - folder: bundled-rsbuild
             wasm-bin: bundled-rsbuild.wasm
             skip-wash-dev: true
-            test-command: |
-              npm ci && npm run transpile
-              RESPONSE=$(npm run --silent demo)
-              [[ "$RESPONSE" == '15' ]] && TEST_RESULT=1 || TEST_RESULT=0
+            checks:
+              - run: demo
+                equals: '15'
 
           - folder: bundled-esbuild
             wasm-bin: bundled-esbuild.wasm
             skip-wash-dev: true
-            test-command: |
-              npm ci && npm run transpile
-              RESPONSE=$(npm run --silent demo)
-              [[ "$RESPONSE" == '8' ]] && TEST_RESULT=1 || TEST_RESULT=0
+            checks:
+              - run: demo
+                equals: '8'
 
           - folder: http-axios
             wasm-bin: http-axios.wasm
             skip-wash-dev: true
-            test-command: |
-              npm ci && npm run transpile
-              RESPONSE=$(npm run --silent demo | jq -r '.id')
-              [[ "$RESPONSE" == '1' ]] && TEST_RESULT=1 || TEST_RESULT=0
+            checks:
+              - run: demo
+                field: id
+                equals: '1'
 
           - folder: http-hello-world
             wasm-bin: http-hello-world.wasm
-            test-command: |
-              RESPONSE=$(curl http://127.0.0.1:8000)
-              [[ "$RESPONSE" == 'Hello from Typescript!' ]] && TEST_RESULT=1 || TEST_RESULT=0
+            checks:
+              - path: /
+                equals: Hello from Typescript!
 
           - folder: http-stdio
             wasm-bin: http_stdout.wasm
-            test-command: |
-              RESPONSE=$(curl 'http://127.0.0.1:8000/?name=ci')
-              [[ "$RESPONSE" == 'Hello ci!' ]] && TEST_RESULT=1 || TEST_RESULT=0
+            checks:
+              - path: /?name=ci
+                equals: Hello ci!
 
           - folder: wasi-config-from-k8s-env
             wasm-bin: wasi_config_from_k8s_env.wasm
-            test-command: |
-              RESPONSE=$(curl http://127.0.0.1:8000)
-              [[ "$RESPONSE" == 'wasi-config-from-k8s-env example'* ]] && TEST_RESULT=1 || TEST_RESULT=0
+            checks:
+              - path: /
+                startsWith: wasi-config-from-k8s-env example
 
           # Build-only: wash dev runs the service on wasi:webgpu,
           # which needs a GPU the runners don't have.
@@ -129,7 +128,6 @@ jobs:
             wasm-bin: component.wasm
             dist-dir: component/dist
             skip-wash-dev: true
-            test-command: ''
 
           # Docs companion for the wasmcloud.com quickstart's "Add persistent
           # storage" step. Build-only: skip-wash-dev: true because the
@@ -139,7 +137,6 @@ jobs:
           - folder: http-hello-world-hono-persistent-storage
             wasm-bin: http_hello_world_hono_persistent_storage.wasm
             skip-wash-dev: true
-            test-command: ''
 
   # The required check for this workflow. It runs even when a job above fails
   # or is skipped, and fails if any of them failed.

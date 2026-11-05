@@ -37,6 +37,7 @@ jobs:
             templates:
               - 'templates/**'
               - '.github/workflows/templates.yml'
+              - 'scripts/**'
 
   template:
     name: Template (${{ matrix.template.folder }})
@@ -51,31 +52,39 @@ jobs:
       matrix:
         template:
           - folder: http-hello-world-fetch
-            test-path: /
-            test-expect: Hello from TypeScript!
+            checks:
+              - path: /
+                contains: Hello from TypeScript!
           - folder: http-hello-world-hono
-            test-path: /
-            test-expect: Hello from TypeScript!
+            checks:
+              - path: /
+                contains: Hello from TypeScript!
           - folder: http-client
-            test-path: /
-            test-expect: outgoing HTTP requests
+            checks:
+              - path: /
+                contains: outgoing HTTP requests
           - folder: http-handler-hono
-            test-path: /health
-            test-expect: '"status":"healthy"'
+            checks:
+              - path: /health
+                contains: '"status":"healthy"'
           - folder: http-logging-handler-hono
-            test-path: /health
-            test-expect: '"status":"healthy"'
+            checks:
+              - path: /health
+                contains: '"status":"healthy"'
           - folder: http-kv-handler-hono
-            test-path: /health
-            test-expect: '"status":"healthy"'
+            checks:
+              - path: /health
+                contains: '"status":"healthy"'
           - folder: http-blobstore-handler-hono
-            test-path: /health
-            test-expect: '"status":"healthy"'
+            checks:
+              - path: /health
+                contains: '"status":"healthy"'
           - folder: http-filesystem-handler-hono
             # wash dev mounts ./data at /data.
             prepare: mkdir -p data
-            test-path: /
-            test-expect: '"path":"/data"'
+            checks:
+              - path: /
+                contains: '"path":"/data"'
           # Multi-component workspaces: build only.
           - folder: http-api-with-distributed-workloads
           - folder: service-tcp-echo
@@ -111,32 +120,19 @@ jobs:
         run: eval "$PREPARE"
 
       - name: Start wash dev
-        if: matrix.template.test-path != ''
+        if: matrix.template.checks
         run: wash dev --non-interactive > "$RUNNER_TEMP/wash-dev.log" 2>&1 &
 
       - name: Test
-        if: matrix.template.test-path != ''
+        if: matrix.template.checks
         env:
-          TEST_PATH: ${{ matrix.template.test-path }}
-          TEST_EXPECT: ${{ matrix.template.test-expect }}
-        run: |
-          set -u
-          body=''
-          for _ in $(seq 1 180); do
-            if body=$(curl -sf "http://127.0.0.1:8000$TEST_PATH") && grep -qF -- "$TEST_EXPECT" <<<"$body"; then
-              echo "✅ GET $TEST_PATH returned the expected body"
-              exit 0
-            fi
-            sleep 1
-          done
-          echo "❌ GET $TEST_PATH did not return '$TEST_EXPECT'. Last body:"
-          echo "$body"
-          echo "--- wash dev log"
-          cat "$RUNNER_TEMP/wash-dev.log"
-          exit 1
+          CHECKS: ${{ toJSON(matrix.template.checks) }}
+          RETRIES: 180
+          LOG_FILE: ${{ runner.temp }}/wash-dev.log
+        run: node "$GITHUB_WORKSPACE/scripts/smoke-test.mjs"
 
       - name: Stop wash dev
-        if: always() && matrix.template.test-path != ''
+        if: always() && matrix.template.checks
         run: pkill -f "wash dev" || true
 
   # The required check for this workflow. It runs even when a job above fails
