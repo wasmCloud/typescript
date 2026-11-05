@@ -39,7 +39,7 @@ The wasmCloud host that runs the components is covered by wasmCloud's own
 
 1. A contributor opens a pull request against `main`.
 2. CI runs on the pull request:
-   - **Examples** builds the examples that changed and runs each under `wash dev` or jco.
+   - **Examples** builds the examples that changed, and tests most of them under `wash dev` or jco.
    - **Templates** builds every template and smoke-tests the HTTP ones under `wash dev`.
    - **CodeQL** analyzes the TypeScript, JavaScript and workflow sources.
    - **zizmor** audits the workflows.

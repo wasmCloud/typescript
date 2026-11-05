@@ -21,7 +21,7 @@ Thank you for your interest in contributing to the wasmCloud TypeScript ecosyste
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (version specified in `.tool-versions`)
+- [Node.js](https://nodejs.org/) (the version in `.tool-versions`; each example pins its own in `.nvmrc`)
 - [wash CLI](https://wasmcloud.com/docs/installation) (for working with wasmCloud applications)
 
 ### Initial Setup
@@ -67,7 +67,7 @@ To create a new example component, copy the structure of an existing example. Se
 
 ## Development Workflow
 
-Each example and template is a standalone npm package. Navigate to the directory you're working in and use npm scripts directly.
+Each example and template is a standalone npm package. Navigate to the directory you're working in and use its npm scripts.
 
 ### Build
 
@@ -75,37 +75,14 @@ Each example and template is a standalone npm package. Navigate to the directory
 npm run build
 ```
 
-### Test
+### Run
 
 ```bash
-npm test
+wash dev
 ```
 
-### Lint and Format
-
-Check code style and linting:
-
-```bash
-npm run lint
-```
-
-Automatically fix linting issues:
-
-```bash
-npm run lint:fix
-```
-
-Check code formatting:
-
-```bash
-npm run format
-```
-
-Automatically fix formatting issues:
-
-```bash
-npm run format:fix
-```
+`wash dev` builds the component, starts a local wasmCloud host and deploys the component to it.
+HTTP components are served on `127.0.0.1:8000`.
 
 ## Code Standards
 
@@ -118,11 +95,9 @@ npm run format:fix
 
 ### Code Style
 
-We use ESLint and Prettier for consistent code formatting:
-
-- **ESLint**: Enforces code quality and consistency rules
-- **Prettier**: Handles code formatting
-- **Import ordering**: Imports should be ordered (external, internal, relative)
+There is no linter or formatter configuration yet.
+Match the style of the code around your change,
+and order imports external, internal, then relative.
 
 ### Naming Conventions
 
@@ -134,45 +109,22 @@ We use ESLint and Prettier for consistent code formatting:
 
 ## Testing
 
-### Unit Tests
+Examples and templates have no unit tests yet.
+CI checks every pull request instead:
 
-- Write unit tests for all business logic
-- Use descriptive test names
-- Follow the Arrange-Act-Assert pattern
-- Mock external dependencies
+- **Examples** ([examples_.yml](.github/workflows/examples_.yml)) builds each example that changed.
+  Most then run under `wash dev` and must answer an HTTP request with the expected body.
+  Some are transpiled with jco instead, and their `demo` output is checked.
+  A few are only built.
+- **Templates** ([templates.yml](.github/workflows/templates.yml)) builds every template
+  with `npm ci` and `npm run build`,
+  and smoke-tests the HTTP ones under `wash dev`.
 
-### Integration Tests
-
-- Test component interactions
-- Verify API contracts
-- Test error scenarios
-- Avoid mocks where possible (prefer containerized dependencies for realistic testing environments)
-
-### E2E Tests
-
-- Test complete user workflows
-- Require running wasmCloud infrastructure
-- Use realistic test data
-
-### Test Organization
-
-```typescript
-suite('Component', () => {
-  describe('feature', () => {
-    test('should handle normal case', () => {
-      // Test implementation
-    });
-
-    test('should handle edge case', () => {
-      // Test implementation
-    });
-
-    test('should throw error for invalid input', () => {
-      // Test implementation
-    });
-  });
-});
-```
+When you add an example or template, add it to the matrix in that workflow:
+a `test-command` for an example,
+or a `test-path` and `test-expect` for an HTTP template.
+If you add tests to an example, run them from its `test` script:
+CI runs `npm run test` for each example that has one.
 
 ## Commit Guidelines
 
@@ -230,12 +182,11 @@ docs(readme): update installation instructions
    git checkout -b feat/your-feature-name
    ```
 
-2. **Make your changes and test:**
+2. **Make your changes and check them:**
 
    ```bash
    npm run build
-   npm run lint
-   npm test
+   wash dev
    ```
 
 3. **Commit with sign-off:**
@@ -251,14 +202,14 @@ Before creating a PR, ensure that your contribution(s) meet the following criter
 - **Descriptive title**: Use conventional commit format
 - **Clear description**: Explain what changes and why
 - **Link issues**: Reference related issues with "Fixes #123"
-- **Tests**: Include tests for new functionality
+- **CI coverage**: Add new examples and templates to the CI matrix (see [Testing](#testing))
 - **Documentation**: Update docs for user-facing changes
 
 ### PR Checklist
 
 - [ ] Code follows project style guidelines
 - [ ] Self-review completed
-- [ ] Tests added/updated and passing
+- [ ] New examples or templates added to the CI matrix
 - [ ] Documentation updated if needed
 - [ ] All commits are signed off
 - [ ] CI checks are passing
@@ -336,26 +287,17 @@ ship in the release for the next one. Tags are immutable: a mistake is fixed in 
 
 ## Working with wasmCloud
 
-To run and test examples locally you'll need the [wash CLI](https://wasmcloud.com/docs/installation).
-
-Start a local wasmCloud environment:
-
-```bash
-wash up
-```
-
-Stop it when done:
-
-```bash
-wash down
-```
+To run examples and templates locally you'll need the [wash CLI](https://wasmcloud.com/docs/installation).
+From a package directory, `wash dev` builds the component,
+starts a local wasmCloud host and deploys the component to it.
+Stop it with Ctrl+C.
 
 ## Debugging
 
 ### Common Issues
 
 - **Build errors**: Ensure dependencies are installed (`npm install`) and try `npm run build`
-- **Connection issues**: Verify wasmCloud and NATS are running (`wash up`)
+- **Missing WIT packages**: Run `wash wit fetch`; most packages already do this in `npm run build`
 
 ## Getting Help
 
