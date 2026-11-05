@@ -49,12 +49,20 @@ interface Settings {
   prefix: string;
 }
 
+/** Read a config value, treating a store error the same as an unset key. */
+function readConfig(key: string): string | undefined {
+  try {
+    return get(key);
+  } catch {
+    return undefined;
+  }
+}
+
 function loadSettings(): Settings {
-  // `get` returns the value or undefined when unset; fall back to the basic,
-  // unprefixed defaults.
+  // Fall back to the basic, unprefixed defaults.
   return {
-    aggressive: get('leet.mode') === 'aggressive',
-    prefix: get('leet.prefix') ?? '',
+    aggressive: readConfig('leet.mode') === 'aggressive',
+    prefix: readConfig('leet.prefix') ?? '',
   };
 }
 

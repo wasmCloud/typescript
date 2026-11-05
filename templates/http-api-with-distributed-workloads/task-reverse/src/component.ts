@@ -49,12 +49,20 @@ interface Settings {
   prefix: string;
 }
 
+/** Read a config value, treating a store error the same as an unset key. */
+function readConfig(key: string): string | undefined {
+  try {
+    return get(key);
+  } catch {
+    return undefined;
+  }
+}
+
 function loadSettings(): Settings {
-  // `get` returns the value or undefined when unset; fall back to the
-  // character-reversal, unprefixed defaults.
+  // Fall back to the character-reversal, unprefixed defaults.
   return {
-    byWords: get('reverse.mode') === 'words',
-    prefix: get('reverse.prefix') ?? '',
+    byWords: readConfig('reverse.mode') === 'words',
+    prefix: readConfig('reverse.prefix') ?? '',
   };
 }
 
@@ -67,7 +75,9 @@ function reverse(input: string, settings: Settings): string {
   if (settings.byWords) {
     return input.split(/\s+/).filter(Boolean).reverse().join(' ');
   }
-  return input.split('').reverse().join('');
+  // Array.from splits by code point, so emoji and other astral characters
+  // survive the reversal intact.
+  return Array.from(input).reverse().join('');
 }
 
 // ---------------------------------------------------------------------------

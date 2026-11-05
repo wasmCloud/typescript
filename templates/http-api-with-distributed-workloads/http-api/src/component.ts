@@ -8,8 +8,8 @@
  *                  wasmcloud:messaging/consumer, and streams the response
  *                  back to the caller.
  *
- * The component communicates with the task-worker component through the
- * wasmcloud:messaging interface. The request() call blocks until a reply
+ * The component communicates with the task-leet and task-reverse components
+ * through the wasmcloud:messaging interface. The request() call blocks until a reply
  * arrives (up to REQUEST_TIMEOUT_MS milliseconds).
  *
  * wasmcloud:messaging usage:
