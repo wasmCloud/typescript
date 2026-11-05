@@ -27,6 +27,7 @@ on:
 permissions: {}
 
 env:
+  COMPONENTIZE_JS_VERSION: 0.23.0
   DEPLOY_RETRIES: 60
   DEPLOY_TIMEOUT: 1
   TEST_RETRIES: 60
@@ -92,11 +93,11 @@ jobs:
           JCO_VERSION: ${{ matrix.jco-version }}
         run: |
           npm install -g "@bytecodealliance/jco@$JCO_VERSION"
-          npm install -g @bytecodealliance/componentize-js
+          npm install -g "@bytecodealliance/componentize-js@$COMPONENTIZE_JS_VERSION"
 
       - name: Build
         working-directory: './examples/components/${{ inputs.folder }}'
-        run: npm run install-and-build
+        run: npm ci && npm run build
 
       - name: run tests
         working-directory: './examples/components/${{ inputs.folder }}'
@@ -146,7 +147,7 @@ jobs:
       - name: Install dependencies
         if: ${{ !inputs.skip-wash-dev }}
         working-directory: './examples/components/${{ inputs.folder }}'
-        run: npm install
+        run: npm ci
 
       - name: Start wash dev
         if: ${{ !inputs.skip-wash-dev }}
