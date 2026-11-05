@@ -5,11 +5,9 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    # Dependabot rejects the semver-*-days cooldowns for github-actions.
     cooldown:
       default-days: 7
-      semver-major-days: 14
-      semver-minor-days: 7
-      semver-patch-days: 3
 
   # NPM Dependencies
   - package-ecosystem: 'npm'
