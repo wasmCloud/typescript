@@ -1,0 +1,9 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://github.com/wasmCloud/typescript/blob/main/vex.openvex.json",
+  "author": "wasmCloud maintainers <security@wasmcloud.com>",
+  "role": "Project maintainers",
+  "timestamp": "2026-11-05T00:00:00Z",
+  "version": 1,
+  "statements": []
+}

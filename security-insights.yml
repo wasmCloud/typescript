@@ -32,7 +32,7 @@ repository:
         comment: >-
           vX.Y.Z GitHub Releases of the examples and templates on main, cut by
           .github/workflows/release.yml. Each carries a git archive source
-          tarball, its SPDX SBOM, SHA256SUMS and their Sigstore bundles. The
+          tarball, its SPDX SBOM, an OpenVEX document, SHA256SUMS and their Sigstore bundles. The
           earlier washboard-ui and @wasmcloud/* releases are wasmCloud 1.x
           packages from the v1 branch and are end of life; see SUPPORT.md.
       - uri: https://github.com/wasmCloud/typescript/tags
