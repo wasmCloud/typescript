@@ -56,13 +56,14 @@ repository:
   security:
     assessments:
       self:
-        name: wasmCloud security self-assessment
-        evidence: https://github.com/wasmCloud/wasmCloud/blob/main/SELF_ASSESSMENT.md
-        date: '2026-10-27'
+        name: wasmCloud TypeScript security self-assessment
+        evidence: https://github.com/wasmCloud/typescript/blob/main/SECURITY_ASSESSMENT.md
+        date: '2026-11-05'
         comment: >-
-          The wasmCloud project self-assessment. The threat model it refers to,
-          wasmCloud/wasmCloud THREAT_MODEL.md, covers the host sandbox that
-          the TypeScript examples and templates run in.
+          Covers this repository's templates, CI and releases, and the risks
+          users inherit from the templates. The host sandbox the components
+          run in is covered by the wasmCloud self-assessment and
+          THREAT_MODEL.md in wasmCloud/wasmCloud.
     tools:
       - name: CodeQL
         type: SAST
