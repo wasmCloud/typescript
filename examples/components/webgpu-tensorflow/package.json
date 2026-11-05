@@ -2,6 +2,7 @@
   "name": "webgpu-tensorflow",
   "version": "0.1.0",
   "description": "A wasmCloud service-and-component example: GPU-accelerated TensorFlow.js style transfer running as a service, fronted by an HTTP component",
+  "license": "Apache-2.0",
   "private": true,
   "type": "module",
   "scripts": {

@@ -2,6 +2,7 @@
   "name": "http-server-with-hono",
   "version": "0.0.1",
   "description": "A wasmCloud component using Hono for HTTP routing based on wasi:http.",
+  "license": "Apache-2.0",
   "main": "dist/index.bundled.js",
   "scripts": {
     "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",

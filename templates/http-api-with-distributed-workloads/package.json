@@ -2,6 +2,7 @@
   "name": "http-api-with-distributed-workloads",
   "version": "0.1.0",
   "description": "A wasmCloud template demonstrating HTTP API with distributed workloads via wasmcloud:messaging",
+  "license": "Apache-2.0",
   "private": true,
   "type": "module",
   "scripts": {
