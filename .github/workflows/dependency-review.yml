@@ -1,0 +1,32 @@
+name: Dependency review
+
+# Blocks a pull request that adds or updates a dependency to a version with a
+# known vulnerability in the GitHub Advisory Database, at any severity and in
+# any scope. The policy is in CONTRIBUTING.md#vulnerable-dependencies.
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Review dependency changes
+        uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          fail-on-severity: low
+          fail-on-scopes: runtime, development, unknown
+          # Licenses are checked before each release instead; see
+          # CONTRIBUTING.md#vulnerable-dependencies.
+          license-check: false
+          # Advisories that don't affect this project, each with its reason
+          # recorded in a dismissed Dependabot alert. Keep this list empty
+          # unless a vulnerable version can't be avoided.
+          allow-ghsas: ''

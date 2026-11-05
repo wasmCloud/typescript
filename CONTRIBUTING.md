@@ -256,6 +256,14 @@ or dismissed with a stated reason,
 within 7 days for critical, 14 days for high and 90 days for medium severity.
 Low severity alerts are fixed on a best-effort basis.
 
+[Dependency review](.github/workflows/dependency-review.yml) checks every pull request
+against the GitHub Advisory Database.
+A pull request that adds or updates a dependency to a version with a known vulnerability,
+of any severity, can't merge until it uses a fixed version.
+An advisory that doesn't affect this project can be allowed
+by adding its ID to `allow-ghsas` in that workflow,
+with the reason recorded in the dismissed Dependabot alert.
+
 - A dependency whose license is not OSI-approved must be removed
   before the next release.
 - Critical and high severity alerts must be fixed or dismissed

@@ -78,6 +78,8 @@ and the release job, which only a trusted dispatch on `main` can start.
   and CI installs from it with `npm ci`.
 - Dependabot opens version updates after a cooldown,
   so a newly published malicious version has time to be caught and pulled.
+- Dependency review blocks a pull request that adds a dependency version
+  with a known vulnerability.
 - Dependabot alerts have fix deadlines, in
   [CONTRIBUTING.md](CONTRIBUTING.md#vulnerable-dependencies).
 - Each release attaches an SPDX SBOM, so users can check what a tag pinned.
@@ -131,8 +133,6 @@ Before deploying one, users should know that:
 
 - Examples and templates have no unit tests;
   CI only builds them and smoke-tests most of them.
-- Pull requests aren't blocked on vulnerable dependencies;
-  Dependabot alerts are handled under the fix deadlines instead.
 - Most packages use npm `overrides` to force a patched `minimatch`
   that their dependencies don't allow yet.
   The overrides should be removed once those dependencies allow the patched version.
