@@ -22,25 +22,11 @@ Code owners for each path are in [CODEOWNERS](.github/CODEOWNERS).
 
 _Covers the TypeScript examples, templates and CI in this repository._
 
-Name: Lachlan Heywood
-GitHub: @lachieh
-Organization: Tambo
-
-Name: Brooks Townsend
-GitHub: @brooksmtownsend
-Organization: Capital One
-
-Name: Mendy Berger
-GitHub: @MendyBerger
-Organization: Cosmonic
-
-Name: Márk Kővári
-GitHub: @markkovari
-Organization: commercetools
-
-Name: Victor Adossi
-GitHub: @vados-cosmonic
-Organization: Cosmonic
+- @lachieh
+- @brooksmtownsend
+- @MendyBerger
+- @markkovari
+- @vados-cosmonic
 
 ## @wasmCloud/org-maintainers
 
