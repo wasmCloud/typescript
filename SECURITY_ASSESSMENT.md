@@ -117,4 +117,3 @@ Before deploying one, users should know that:
   [GitHub Security Advisories](https://github.com/wasmCloud/typescript/security/advisories)
   in this repository,
   and listed under Security fixes in the notes of the release that fixes them.
-  None have been published so far.
