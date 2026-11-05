@@ -19,7 +19,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bytecodealliance/jco-std": "^0.10.0",
-    "hono": "^4.13.14"
+    "hono": "^4.13.16"
   },
   "devDependencies": {
     "@bytecodealliance/jco": "1.40.0",
