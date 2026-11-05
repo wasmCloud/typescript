@@ -1,6 +1,6 @@
 header:
   schema-version: 2.2.0
-  last-updated: '2026-11-03'
+  last-updated: '2026-11-05'
   last-reviewed: '2026-10-30'
   url: https://raw.githubusercontent.com/wasmCloud/typescript/main/security-insights.yml
   project-si-source: https://raw.githubusercontent.com/wasmCloud/wasmCloud/main/security-insights.yml
@@ -15,8 +15,28 @@ repository:
   accepts-automated-change-request: true
   core-team:
     - name: wasmCloud TypeScript maintainers (@wasmCloud/typescript-maintainers)
-      social: https://github.com/wasmCloud/.project/blob/main/maintainers.yaml
+      social: https://github.com/wasmCloud/typescript/blob/main/MAINTAINERS.md
       primary: true
+    - name: Lachlan Heywood
+      affiliation: Tambo
+      social: https://github.com/lachieh
+      primary: false
+    - name: Brooks Townsend
+      affiliation: Capital One
+      social: https://github.com/brooksmtownsend
+      primary: false
+    - name: Mendy Berger
+      affiliation: Cosmonic
+      social: https://github.com/MendyBerger
+      primary: false
+    - name: Márk Kővári
+      affiliation: commercetools
+      social: https://github.com/markkovari
+      primary: false
+    - name: Victor Adossi
+      affiliation: Cosmonic
+      social: https://github.com/vados-cosmonic
+      primary: false
   license:
     url: https://github.com/wasmCloud/typescript/blob/main/LICENSE
     expression: Apache-2.0
