@@ -23,7 +23,7 @@ anything wrong in a template at a release tag
 ends up in every project created from that tag,
 and stays there until its owner copies a newer release.
 
-The assets that matter:
+Project/repository assets that should be watched closely:
 
 - the template and example sources, and their `package-lock.json` files
 - the `vX.Y.Z` tags and the release assets
