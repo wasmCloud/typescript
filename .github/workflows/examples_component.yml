@@ -24,6 +24,9 @@ on:
         description: Force the build and test steps to run, even if no changes are detected
         required: true
 
+permissions:
+  contents: read
+
 env:
   DEPLOY_RETRIES: 60
   DEPLOY_TIMEOUT: 1
