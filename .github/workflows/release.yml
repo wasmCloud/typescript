@@ -6,8 +6,8 @@ name: Release
 #      finds the previous vX.Y.Z tag for the notes range.
 #   2. Packs the commit with `git archive` into a source tarball, generates an
 #      SPDX SBOM from the tarball's package-lock.json files, and writes
-#      SHA256SUMS for both. Every asset is named after the release, as
-#      wasmcloud-typescript-vX.Y.Z.*.
+#      SHA256SUMS for both and the repository's OpenVEX document. Every asset
+#      is named after the release, as wasmcloud-typescript-vX.Y.Z.*.
 #   3. Attests SLSA build provenance for the tarball, the SBOM and SHA256SUMS,
 #      and attests the SBOM against the tarball. Both are Sigstore-signed and
 #      verifiable with `gh attestation verify --repo wasmCloud/typescript`.
@@ -126,11 +126,18 @@ jobs:
             --source-version "$VERSION" \
             --output "spdx-json=dist/$NAME.spdx.json"
 
+      - name: Stage VEX
+        env:
+          NAME: ${{ steps.ver.outputs.name }}
+        # The repository's OpenVEX document: the advisories that don't affect
+        # this project, as of this release.
+        run: cp vex.openvex.json "dist/$NAME.openvex.json"
+
       - name: Write checksums
         working-directory: dist
         env:
           NAME: ${{ steps.ver.outputs.name }}
-        run: sha256sum "$NAME.tar.gz" "$NAME.spdx.json" > "$NAME.SHA256SUMS"
+        run: sha256sum "$NAME.tar.gz" "$NAME.spdx.json" "$NAME.openvex.json" > "$NAME.SHA256SUMS"
 
       - name: Attest build provenance
         id: provenance
@@ -139,6 +146,7 @@ jobs:
           subject-path: |
             dist/${{ steps.ver.outputs.name }}.tar.gz
             dist/${{ steps.ver.outputs.name }}.spdx.json
+            dist/${{ steps.ver.outputs.name }}.openvex.json
             dist/${{ steps.ver.outputs.name }}.SHA256SUMS
 
       - name: Attest SBOM
@@ -192,7 +200,8 @@ jobs:
             echo "## Verifying this release"
             echo
             echo "\`$NAME.tar.gz\` is the source of this tag, packed with \`git archive\`. \`$NAME.spdx.json\` is its SPDX SBOM."
-            echo "Both carry Sigstore-signed SLSA build provenance, and \`$NAME.SHA256SUMS\` lists their SHA-256 digests."
+            echo "\`$NAME.openvex.json\` is the OpenVEX document of advisories that don't affect this release."
+            echo "All three carry Sigstore-signed SLSA build provenance, and \`$NAME.SHA256SUMS\` lists their SHA-256 digests."
             echo
             echo '```bash'
             echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY --signer-workflow $GITHUB_REPOSITORY/.github/workflows/release.yml"
