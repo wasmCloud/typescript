@@ -31,3 +31,23 @@ updates:
       semver-major-days: 14
       semver-minor-days: 7
       semver-patch-days: 3
+
+  - package-ecosystem: 'npm'
+    directories:
+      - '/templates/*'
+    groups:
+      template-dependencies:
+        update-types:
+          - major
+          - minor
+          - patch
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'America/New_York'
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+      semver-minor-days: 7
+      semver-patch-days: 3
