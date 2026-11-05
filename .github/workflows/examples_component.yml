@@ -24,8 +24,7 @@ on:
         description: Force the build and test steps to run, even if no changes are detected
         required: true
 
-permissions:
-  contents: read
+permissions: {}
 
 env:
   DEPLOY_RETRIES: 60
@@ -36,6 +35,8 @@ env:
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       run-build: ${{ steps.force.outputs.force || steps.check-example-changes.outputs.changed == 'true' }}
     steps:
@@ -62,6 +63,8 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     needs: [check]
     if: needs.check.outputs.run-build == 'true'
     strategy:
@@ -108,6 +111,8 @@ jobs:
   test:
     needs: [build]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         jco-version:

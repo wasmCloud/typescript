@@ -10,12 +10,13 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   meta:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       changed-components: ${{ steps.changes.outputs.components }}
       changed-ci: ${{ steps.changes.outputs.ci }}
@@ -40,6 +41,9 @@ jobs:
     name: Example (${{ matrix.example.folder }})
     if: needs.meta.outputs.changed-ci == 'true' || needs.meta.outputs.changed-components == 'true'
     needs: [meta]
+    # The called workflow's jobs can use at most these permissions.
+    permissions:
+      contents: read
     uses: $/.github/workflows/examples_component.yml
     with:
       folder: ${{ matrix.example.folder }}
