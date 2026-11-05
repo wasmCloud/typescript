@@ -195,8 +195,8 @@ jobs:
             echo "Both carry Sigstore-signed SLSA build provenance, and \`SHA256SUMS\` lists their SHA-256 digests."
             echo
             echo '```bash'
-            echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY"
-            echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY --predicate-type https://spdx.dev/Document/v2.3"
+            echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY --signer-workflow $GITHUB_REPOSITORY/.github/workflows/release.yml"
+            echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY --signer-workflow $GITHUB_REPOSITORY/.github/workflows/release.yml --predicate-type https://spdx.dev/Document/v2.3"
             echo "sha256sum --check SHA256SUMS"
             echo '```'
           } > "$RUNNER_TEMP/notes.md"
