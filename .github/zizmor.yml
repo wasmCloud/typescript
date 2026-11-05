@@ -1,0 +1,7 @@
+# zizmor configuration: https://docs.zizmor.sh/configuration/
+rules:
+  adhoc-packages:
+    ignore:
+      # Global installs of the jco and componentize-js CLIs the example
+      # builds run.
+      - examples_component.yml
