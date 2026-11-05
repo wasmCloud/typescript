@@ -11,6 +11,11 @@ on:
         description: "Run the scan but publish nothing (bundles land in the pvtr-bundles artifact)"
         type: boolean
         default: false
+      maturity:
+        description: "Maturity level to evaluate. Level 3 is always a dry run."
+        type: choice
+        options: ['2', '3']
+        default: '2'
   schedule:
     # Weekly Monday at 06:37 UTC.
     - cron: "37 6 * * 1"
@@ -55,7 +60,8 @@ jobs:
     with:
       target: wasmcloud/typescript@${{ needs.version.outputs.version }}
       license: CC0-1.0
-      dry-run: ${{ inputs.dry-run == true }}
+      # Only the level 2 evaluation is published.
+      dry-run: ${{ inputs.dry-run == true || inputs.maturity == '3' }}
     secrets:
       # Inline because the plugin reads its token only from config vars. The
       # job token can't read some settings (branch rulesets, org MFA); those
@@ -68,7 +74,7 @@ jobs:
               catalogs:
                 - osps-baseline
               applicability:
-                - maturity-2
+                - maturity-${{ inputs.maturity || '2' }}
             vars:
               owner: wasmCloud
               repo: typescript
