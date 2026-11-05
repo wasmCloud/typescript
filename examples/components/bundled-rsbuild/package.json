@@ -32,5 +32,16 @@
     "csvtojson": "^2.0.14",
     "jsonpath-plus": "^11.2.2",
     "remeda": "^2.57.0"
+  },
+  "overrides": {
+    "nodemon": {
+      "minimatch": "^11.0.2"
+    },
+    "@bytecodealliance/jco-std": {
+      "minimatch": "^11.0.2"
+    },
+    "glob": {
+      "minimatch": "^11.0.2"
+    }
   }
 }

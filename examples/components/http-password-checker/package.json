@@ -32,5 +32,16 @@
   "dependencies": {
     "check-password-strength": "^3.0.0",
     "valibot": "^1.5.0"
+  },
+  "overrides": {
+    "nodemon": {
+      "minimatch": "^11.0.2"
+    },
+    "@bytecodealliance/jco-std": {
+      "minimatch": "^11.0.2"
+    },
+    "glob": {
+      "minimatch": "^11.0.2"
+    }
   }
 }

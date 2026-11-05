@@ -31,5 +31,16 @@
   "dependencies": {
     "fast-xml-parser": "^5.11.2",
     "remeda": "^2.57.0"
+  },
+  "overrides": {
+    "nodemon": {
+      "minimatch": "^11.0.2"
+    },
+    "@bytecodealliance/jco-std": {
+      "minimatch": "^11.0.2"
+    },
+    "glob": {
+      "minimatch": "^11.0.2"
+    }
   }
 }
