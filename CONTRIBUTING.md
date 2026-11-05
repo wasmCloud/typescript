@@ -126,6 +126,12 @@ or a `test-path` and `test-expect` for an HTTP template.
 If you add tests to an example, run them from its `test` script:
 CI runs `npm run test` for each example that has one.
 
+A major change must add or update the CI test of what it changes, in the same pull request.
+Major changes include a new example or template,
+a new or changed route, interface or response,
+and a change to how a package builds or runs.
+Reviewers don't approve a major change without one.
+
 ## Commit Guidelines
 
 We follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages:
