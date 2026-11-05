@@ -138,7 +138,7 @@ The root `.wash/config.yaml` tells `wash dev` how to build, where to find the bu
 
 ### Node polyfills (`unenv`)
 
-TensorFlow.js was written for the browser and Node, so it pulls in things like `node:util/types`, `node:buffer`, `node:process`, etc. QuickJS-in-wasm has none of those. The service rollup config wires up [`unenv`](https://github.com/unjs/unenv) to provide stub implementations, plus a hand-written [service/node-util-types-polyfill.js](service/node-util-types-polyfill.js) for `node:util/types` (which `unenv` doesn't yet ship — see [unjs/unenv#540](https://github.com/unjs/unenv/pull/540)). Without these, the service won't even load.
+TensorFlow.js was written for the browser and Node, so it pulls in things like `node:util/types`, `node:buffer`, `node:process`, etc. QuickJS-in-wasm has none of those. The [service rolldown config](service/rolldown.config.mjs) wires up [`unenv`](https://github.com/unjs/unenv) to provide stub implementations, plus a hand-written [service/node-util-types-polyfill.js](service/node-util-types-polyfill.js) for `node:util/types` (which `unenv` doesn't yet ship — see [unjs/unenv#540](https://github.com/unjs/unenv/pull/540)). Without these, the service won't even load.
 
 ### TF.js / wasi:webgpu compatibility shim
 

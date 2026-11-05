@@ -6,7 +6,7 @@
   "main": "dist/index.bundled.js",
   "scripts": {
     "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
-    "build:ts": "rollup -c",
+    "build:ts": "rolldown -c rolldown.config.mjs",
     "build:js": "jco componentize -w wit -o dist/http_server_with_hono.wasm dist/index.bundled.js",
     "build": "npm run install:deps && npm run generate:types && npm run build:ts && npm run build:js",
     "install-and-build": "npm install && npm run build",
@@ -20,13 +20,10 @@
   },
   "devDependencies": {
     "@bytecodealliance/jco": "^1.40.0",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-typescript": "^12.3.1",
     "@types/node": "^26.6.6",
     "nodemon": "^3.1.14",
     "rimraf": "^6.1.3",
-    "rollup": "^4.67.3",
-    "tslib": "^2.9.1",
+    "rolldown": "^1.2.16",
     "typescript": "^6.0.3"
   },
   "overrides": {
