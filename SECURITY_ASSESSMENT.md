@@ -101,11 +101,12 @@ Before deploying one, users should know that:
 ## Known gaps
 
 - Examples and templates have no unit tests;
-  CI only builds them and smoke-tests their HTTP responses.
+  CI only builds them and smoke-tests most of them.
 - Pull requests aren't blocked on vulnerable dependencies;
   Dependabot alerts are handled under the fix deadlines instead.
-- Some transitive dependency alerts can't be fixed by a lockfile update,
-  because no patched version satisfies the packages that depend on them.
+- Most packages use npm `overrides` to force a patched `minimatch`
+  that their dependencies don't allow yet.
+  The overrides should be removed once those dependencies allow the patched version.
 - `examples/components/webgpu-tensorflow` commits pre-trained model weights
   as binary files that can't be reviewed.
 
