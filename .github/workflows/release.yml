@@ -148,10 +148,8 @@ jobs:
 
       - name: Write release notes
         env:
-          GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.ver.outputs.tag }}
           PREVIOUS_TAG: ${{ steps.ver.outputs.previous_tag }}
-          SHA: ${{ steps.ver.outputs.sha }}
           NAME: ${{ steps.ver.outputs.name }}
         run: node scripts/release-notes.mjs
 
@@ -159,11 +157,18 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.ver.outputs.tag }}
+          PREVIOUS_TAG: ${{ steps.ver.outputs.previous_tag }}
           SHA: ${{ steps.ver.outputs.sha }}
+        # --generate-notes appends the changelog since the previous release,
+        # pinned to it: left to itself GitHub would start from the latest
+        # release, which may be a v1-branch package release.
         run: |
           set -euo pipefail
+          changelog=()
+          [ -n "$PREVIOUS_TAG" ] && changelog=(--generate-notes --notes-start-tag "$PREVIOUS_TAG")
           gh release create "$TAG" dist/* \
             --target "$SHA" \
             --title "$TAG" \
             --notes-file "$RUNNER_TEMP/notes.md" \
-            --latest
+            --latest \
+            "${changelog[@]}"
