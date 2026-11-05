@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { fire } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
+import { fire } from '@bytecodealliance/jco-std/wasi/0.2.6/http/adapters/hono/server';
 import { getStdout } from 'wasi:cli/stdout@0.2.6';
 import { getStderr } from 'wasi:cli/stderr@0.2.6';
 
@@ -23,4 +23,4 @@ app.all('/', (c) => {
 
 fire(app);
 
-export { incomingHandler } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
+export { incomingHandler } from '@bytecodealliance/jco-std/wasi/0.2.6/http/adapters/hono/server';
