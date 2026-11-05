@@ -35,5 +35,9 @@ packages receive no fixes, including security fixes.
 - Report bugs as [GitHub issues](https://github.com/wasmCloud/typescript/issues).
 - Report security vulnerabilities privately, as described in the
   [security policy](https://github.com/wasmCloud/typescript/security/policy).
+- Fixed vulnerabilities are published as
+  [GitHub Security Advisories](https://github.com/wasmCloud/typescript/security/advisories)
+  and listed under Security fixes in the notes of the release that fixes them.
+  None have been published so far.
 
 Support is provided by the community on a best-effort basis.
