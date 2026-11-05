@@ -91,8 +91,9 @@ jobs:
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .tool-versions
-          cache: npm
-          cache-dependency-path: templates/${{ matrix.template.folder }}/package-lock.json
+          # No dependency cache: this workflow also runs on tag pushes, and a
+          # poisoned cache must not reach a release build.
+          package-manager-cache: false
 
       - name: Install Wash
         uses: wasmcloud/setup-wash-action@47756fa211cc82f392c57e39504f43ef46fc0b3e # v2.1.0
