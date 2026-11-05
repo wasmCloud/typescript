@@ -59,8 +59,13 @@ SBOM, a `SHA256SUMS` file and Sigstore bundles. To verify a download with the
 [GitHub CLI](https://cli.github.com/):
 
 ```bash
-gh attestation verify wasmcloud-typescript-v2.12.0.tar.gz --repo wasmCloud/typescript
+gh attestation verify wasmcloud-typescript-v2.12.0.tar.gz \
+  --repo wasmCloud/typescript \
+  --signer-workflow wasmCloud/typescript/.github/workflows/release.yml
 ```
+
+`--signer-workflow` checks that the release was built and signed by this repository's
+[Release](.github/workflows/release.yml) workflow, not just by any workflow in the repository.
 
 [SUPPORT.md](./SUPPORT.md) says which release is supported.
 
@@ -72,7 +77,7 @@ For development setup, workflow, and contribution guidelines, see the [Contribut
 
 ## 📄 License
 
-This project is licensed under the [Apache 2.0 License](https://github.com/wasmCloud/wasmCloud/blob/main/LICENSE).
+This project is licensed under the [Apache 2.0 License](./LICENSE).
 
 ## 🔗 Related
 
