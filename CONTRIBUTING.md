@@ -260,6 +260,7 @@ Low severity alerts are fixed on a best-effort basis.
 against the GitHub Advisory Database.
 A pull request that adds or updates a dependency to a version with a known vulnerability,
 of any severity, can't merge until it uses a fixed version.
+One that adds an npm package version the database lists as malware can't merge at all.
 An advisory that doesn't affect this project can be allowed
 by adding its ID to `allow-ghsas` in that workflow.
 
