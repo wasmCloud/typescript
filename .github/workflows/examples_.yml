@@ -21,6 +21,8 @@ jobs:
       changed-ci: ${{ steps.changes.outputs.ci }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Check for changes
         id: changes
@@ -38,8 +40,7 @@ jobs:
     name: Example (${{ matrix.example.folder }})
     if: needs.meta.outputs.changed-ci == 'true' || needs.meta.outputs.changed-components == 'true'
     needs: [meta]
-    secrets: inherit
-    uses: ./.github/workflows/examples_component.yml
+    uses: $/.github/workflows/examples_component.yml
     with:
       folder: ${{ matrix.example.folder }}
       wasm-bin: ${{ matrix.example.wasm-bin }}
