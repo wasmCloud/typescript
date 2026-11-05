@@ -50,6 +50,7 @@ jobs:
       wasm-bin: ${{ matrix.example.wasm-bin }}
       test-command: ${{ matrix.example.test-command }}
       skip-wash-dev: ${{ matrix.example.skip-wash-dev && true || false }}
+      dist-dir: ${{ matrix.example.dist-dir || 'dist' }}
       force: ${{ needs.meta.outputs.changed-ci == 'true' }}
     strategy:
       fail-fast: false
@@ -122,9 +123,13 @@ jobs:
               RESPONSE=$(curl http://127.0.0.1:8000)
               [[ "$RESPONSE" == 'wasi-config-from-k8s-env example'* ]] && TEST_RESULT=1 || TEST_RESULT=0
 
-          # Build-only, so no wasm-bin: wash dev runs the service on
-          # wasi:webgpu, which needs a GPU the runners don't have.
+          # Build-only: wash dev runs the service on wasi:webgpu,
+          # which needs a GPU the runners don't have.
           - folder: webgpu-tensorflow
+            wasm-bin: component.wasm
+            dist-dir: component/dist
+            skip-wash-dev: true
+            test-command: ''
 
           # Docs companion for the wasmcloud.com quickstart's "Add persistent
           # storage" step. Build-only: skip-wash-dev: true because the
