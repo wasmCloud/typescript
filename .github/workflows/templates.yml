@@ -91,8 +91,8 @@ jobs:
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .tool-versions
-          # No dependency cache: this workflow also runs on tag pushes, and a
-          # poisoned cache must not reach a release build.
+          # No dependency cache: this workflow also runs on tag pushes, which
+          # must not restore a cache a pull request could have poisoned.
           package-manager-cache: false
 
       - name: Install Wash
