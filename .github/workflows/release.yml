@@ -6,7 +6,8 @@ name: Release
 #      finds the previous vX.Y.Z tag for the notes range.
 #   2. Packs the commit with `git archive` into a source tarball, generates an
 #      SPDX SBOM from the tarball's package-lock.json files, and writes
-#      SHA256SUMS for both.
+#      SHA256SUMS for both. Every asset is named after the release, as
+#      wasmcloud-typescript-vX.Y.Z.*.
 #   3. Attests SLSA build provenance for the tarball, the SBOM and SHA256SUMS,
 #      and attests the SBOM against the tarball. Both are Sigstore-signed and
 #      verifiable with `gh attestation verify --repo wasmCloud/typescript`.
@@ -129,7 +130,7 @@ jobs:
         working-directory: dist
         env:
           NAME: ${{ steps.ver.outputs.name }}
-        run: sha256sum "$NAME.tar.gz" "$NAME.spdx.json" > SHA256SUMS
+        run: sha256sum "$NAME.tar.gz" "$NAME.spdx.json" > "$NAME.SHA256SUMS"
 
       - name: Attest build provenance
         id: provenance
@@ -138,7 +139,7 @@ jobs:
           subject-path: |
             dist/${{ steps.ver.outputs.name }}.tar.gz
             dist/${{ steps.ver.outputs.name }}.spdx.json
-            dist/SHA256SUMS
+            dist/${{ steps.ver.outputs.name }}.SHA256SUMS
 
       - name: Attest SBOM
         id: sbom
@@ -191,12 +192,12 @@ jobs:
             echo "## Verifying this release"
             echo
             echo "\`$NAME.tar.gz\` is the source of this tag, packed with \`git archive\`. \`$NAME.spdx.json\` is its SPDX SBOM."
-            echo "Both carry Sigstore-signed SLSA build provenance, and \`SHA256SUMS\` lists their SHA-256 digests."
+            echo "Both carry Sigstore-signed SLSA build provenance, and \`$NAME.SHA256SUMS\` lists their SHA-256 digests."
             echo
             echo '```bash'
             echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY --signer-workflow $GITHUB_REPOSITORY/.github/workflows/release.yml"
             echo "gh attestation verify $NAME.tar.gz --repo $GITHUB_REPOSITORY --signer-workflow $GITHUB_REPOSITORY/.github/workflows/release.yml --predicate-type https://spdx.dev/Document/v2.3"
-            echo "sha256sum --check SHA256SUMS"
+            echo "sha256sum --check $NAME.SHA256SUMS"
             echo '```'
           } > "$RUNNER_TEMP/notes.md"
           cat "$RUNNER_TEMP/notes.md"

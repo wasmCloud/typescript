@@ -55,7 +55,8 @@ wash new https://github.com/wasmCloud/typescript.git --name my-project --subfold
 ```
 
 Each release attaches `wasmcloud-typescript-vX.Y.Z.tar.gz`, the source of the tag, with its SPDX
-SBOM, a `SHA256SUMS` file and Sigstore bundles. To verify a download with the
+SBOM, a `wasmcloud-typescript-vX.Y.Z.SHA256SUMS` file (`SHA256SUMS` up to v2.12.0) and Sigstore
+bundles. To verify a download with the
 [GitHub CLI](https://cli.github.com/):
 
 ```bash

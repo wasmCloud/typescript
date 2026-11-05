@@ -57,7 +57,7 @@ or by hand on `main`:
 
 1. Checks that the version is `X.Y.Z` and that `vX.Y.Z` doesn't exist yet.
 2. Packs the commit with `git archive` into a reproducible source tarball.
-3. Generates an SPDX SBOM of the tarball's dependencies with Syft, and writes `SHA256SUMS`.
+3. Generates an SPDX SBOM of the tarball's dependencies with Syft, and writes `wasmcloud-typescript-vX.Y.Z.SHA256SUMS`.
 4. Attests SLSA build provenance and the SBOM with Sigstore.
 5. Creates the `vX.Y.Z` tag and a GitHub Release with the assets and generated notes.
 

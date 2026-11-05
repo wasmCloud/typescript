@@ -71,7 +71,7 @@ Project/repository assets that should be watched closely:
 - Only wasmCloud's `release-tag.yml` on `main` can send the dispatch that starts one,
   through an [octo-sts trust policy](.github/chainguard/wasmcloud-release-dispatch.sts.yaml).
 - Tags are immutable: the workflow refuses a version that already exists.
-- The tarball, SBOM and `SHA256SUMS` carry Sigstore-signed SLSA provenance.
+- The tarball, SBOM and checksum file carry Sigstore-signed SLSA provenance.
   [README.md](README.md#versioned-releases) shows how to verify it,
   including that `release.yml` signed it.
 
