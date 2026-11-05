@@ -13,6 +13,7 @@ Thank you for your interest in contributing to the wasmCloud TypeScript ecosyste
 - [Pull Request Process](#pull-request-process)
 - [Dependencies](#dependencies)
 - [Code Scanning](#code-scanning)
+- [Escalating to the CRA Steward](#escalating-to-the-cra-steward)
 - [Releases](#releases)
 - [Working with wasmCloud](#working-with-wasmcloud)
 - [Debugging](#debugging)
@@ -289,6 +290,22 @@ the repository's Security tab.
 - Alerts open on `main` must be fixed, or dismissed with a stated reason, within 7 days for
   critical, 14 days for high and 90 days for medium severity. Low severity alerts are fixed on a
   best-effort basis.
+
+## Escalating to the CRA Steward
+
+The wasmCloud security team escalates two kinds of event to the Linux Foundation, wasmCloud's CRA
+steward, at steward@linuxfoundation.org:
+
+- **Actively exploited vulnerabilities:** a vulnerability in this repository's examples or
+  templates for which the security team has reliable evidence that a malicious actor has exploited
+  it.
+- **Severe incidents:** a security compromise of the project's own infrastructure, such as its
+  GitHub organization, release pipeline, signing identities, or published artifacts.
+
+A vulnerability with no evidence of exploitation is not an escalation event and follows the normal
+process in the [security policy](https://github.com/wasmCloud/typescript/security/policy).
+Remediation never waits on the escalation decision. The same policy covers all of wasmCloud; see
+[wasmCloud's CONTRIBUTING.md](https://github.com/wasmCloud/wasmCloud/blob/main/CONTRIBUTING.md#escalating-to-the-cra-steward).
 
 ## Releases
 
