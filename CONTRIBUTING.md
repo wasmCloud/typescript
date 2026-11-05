@@ -212,6 +212,23 @@ Before creating a PR, ensure that your contribution(s) meet the following criter
 - **CI coverage**: Add new examples and templates to the CI matrix (see [Testing](#testing))
 - **Documentation**: Update docs for user-facing changes
 
+### Reviews
+
+The `main` ruleset enforces these for every pull request:
+
+- An approving review from a [code owner](.github/CODEOWNERS),
+  given after the last push by someone other than its author.
+  A new push dismisses earlier approvals.
+- Every required status check passes,
+  including DCO sign-off on every commit.
+- Commits are rebased onto `main`; merge commits aren't allowed.
+
+Reviewers check that the change is in scope for the repository,
+follows the rest of this guide,
+and adds or updates the CI test of anything major it changes (see [Testing](#testing)).
+Changes to workflows, the release process or dependencies
+are also checked against the [security self-assessment](SECURITY_ASSESSMENT.md).
+
 ### PR Checklist
 
 - [ ] Code follows project style guidelines
@@ -252,7 +269,7 @@ Before adding a dependency, check that it:
 
 ### Vulnerable dependencies
 
-Dependabot alerts open on `main` must be fixed,
+Vulnerabilities in dependencies, reported as Dependabot alerts on `main`, must be fixed,
 or dismissed with a stated reason,
 within 7 days for critical, 14 days for high and 90 days for medium severity.
 Low severity alerts are fixed on a best-effort basis.
@@ -276,8 +293,8 @@ Each release attaches the document as `wasmcloud-typescript-vX.Y.Z.openvex.json`
 
 - A dependency whose license is not OSI-approved must be removed
   before the next release.
-- Critical and high severity alerts must be fixed or dismissed
-  before a release is cut.
+- Critical and high severity vulnerabilities found by dependency review or Dependabot
+  must be fixed or dismissed before each release.
 
 ## Code Scanning
 

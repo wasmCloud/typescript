@@ -2,7 +2,8 @@
 
 Last reviewed: 2026-11-05
 
-This assessment covers the wasmCloud/typescript repository:
+This assessment is the threat model and attack surface analysis
+of the wasmCloud/typescript repository:
 its examples and templates, its CI and its releases.
 How the repository works, and the interfaces of each template,
 are in [ARCHITECTURE.md](ARCHITECTURE.md).
@@ -30,7 +31,7 @@ Project/repository assets that should be watched closely:
 - the GitHub Actions workflows and the tokens they get
 - the repository settings and the `main` ruleset
 
-## Attack surface
+## Attack surface analysis
 
 These are the ways code or data from outside reaches those assets,
 from least to most privileged:
@@ -138,11 +139,15 @@ Before deploying one, users should know that:
   The overrides should be removed once those dependencies allow the patched version.
 - `examples/components/webgpu-tensorflow` commits pre-trained model weights
   as binary files that can't be reviewed.
+- The legacy wasmCloud 1.x releases (`washboard-ui@*` and `@wasmcloud/*@*`)
+  were cut before releases carried SBOMs.
+  The `washboard-ui` ones attach a `washboard.tar.gz` with no SBOM or provenance.
+  They're end of life and won't be rebuilt;
+  only the `vX.Y.Z` releases carry signed SBOMs.
 
 ## Vulnerabilities
 
-- Report a vulnerability as described in the wasmCloud
-  [security policy](https://github.com/wasmCloud/typescript/security/policy).
+- Report a vulnerability as described in the [security policy](SECURITY.md).
 - Fixed vulnerabilities are published as
   [GitHub Security Advisories](https://github.com/wasmCloud/typescript/security/advisories)
   in this repository,

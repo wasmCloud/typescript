@@ -28,6 +28,12 @@ The other GitHub releases in this repository were published from the `v1` branch
 [end of life](https://github.com/wasmCloud/wasmCloud/blob/main/SUPPORT.md#wasmcloud-1x), and these
 packages receive no fixes, including security fixes.
 
+These are legacy releases.
+They were cut before releases carried an SBOM, provenance and checksums,
+and they won't be rebuilt to add them.
+Only the `vX.Y.Z` releases can be verified as described in the
+[README](README.md#versioned-releases).
+
 ## Getting help
 
 - Ask questions in [Slack](https://slack.wasmcloud.com/) or bring them to a

@@ -24,7 +24,8 @@ repository:
     contributing-guide: https://github.com/wasmCloud/typescript/blob/main/CONTRIBUTING.md
     dependency-management-policy: https://github.com/wasmCloud/typescript/blob/main/CONTRIBUTING.md#dependencies
     governance: https://github.com/wasmCloud/wasmCloud/blob/main/GOVERNANCE.md
-    security-policy: https://github.com/wasmCloud/.github/blob/main/SECURITY.md
+    review-policy: https://github.com/wasmCloud/typescript/blob/main/CONTRIBUTING.md#reviews
+    security-policy: https://github.com/wasmCloud/typescript/blob/main/SECURITY.md
   release:
     automated-pipeline: true
     distribution-points:
@@ -33,8 +34,10 @@ repository:
           vX.Y.Z GitHub Releases of the examples and templates on main, cut by
           .github/workflows/release.yml. Each carries a git archive source
           tarball, its SPDX SBOM, an OpenVEX document, SHA256SUMS and their Sigstore bundles. The
-          earlier washboard-ui and @wasmcloud/* releases are wasmCloud 1.x
-          packages from the v1 branch and are end of life; see SUPPORT.md.
+          earlier washboard-ui and @wasmcloud/* releases are legacy releases:
+          wasmCloud 1.x packages from the v1 branch, cut before SBOMs were
+          attached, and end of life. They have no SBOM and won't get one; see
+          SUPPORT.md.
       - uri: https://github.com/wasmCloud/typescript/tags
         comment: >-
           The vX.Y.Z git tags, for `wash new --subfolder templates/<name> --git-ref vX.Y.Z`.
@@ -60,8 +63,10 @@ repository:
         evidence: https://github.com/wasmCloud/typescript/blob/main/SECURITY_ASSESSMENT.md
         date: '2026-11-05'
         comment: >-
-          Covers this repository's templates, CI and releases, and the risks
-          users inherit from the templates. The host sandbox the components
+          A threat model and attack surface analysis of this repository's
+          templates, CI and releases: the assets at stake, the ways outside
+          code reaches them, the threats to each and their mitigations, and
+          the risks users inherit from the templates. The host sandbox the components
           run in is covered by the wasmCloud self-assessment and
           THREAT_MODEL.md in wasmCloud/wasmCloud.
     tools:
