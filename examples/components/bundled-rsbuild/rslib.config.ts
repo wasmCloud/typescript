@@ -1,8 +1,6 @@
 import {defineConfig} from '@rslib/core';
-import {pluginNodePolyfill} from '@rsbuild/plugin-node-polyfill';
 
 export default defineConfig({
-  plugins: [pluginNodePolyfill()],
   source: {
     entry: {
       'bundled-rsbuild': './src/bundled-rsbuild.ts',
