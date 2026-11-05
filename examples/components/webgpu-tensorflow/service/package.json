@@ -10,7 +10,7 @@
     "generate:types": "rimraf generated/types && jco guest-types wit/ -o generated/types",
     "setup:wit": "npm run fetch:wit && npm run generate:types",
     "build:ts": "rolldown -c rolldown.config.mjs",
-    "build:component": "jco componentize dist/service.js --wit wit --world-name service --backend qjs -o dist/service.wasm || { cat -n dist/service.js | sed -n 1,70p | cut -c1-400; exit 1; }",
+    "build:component": "jco componentize dist/service.js --wit wit --world-name service --backend qjs -o dist/service.wasm",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component"
   },
   "keywords": [],
