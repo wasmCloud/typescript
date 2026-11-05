@@ -50,6 +50,7 @@ jobs:
       wasm-bin: ${{ matrix.example.wasm-bin }}
       test-command: ${{ matrix.example.test-command }}
       skip-wash-dev: ${{ matrix.example.skip-wash-dev && true || false }}
+      dist-dir: ${{ matrix.example.dist-dir || 'dist' }}
       force: ${{ needs.meta.outputs.changed-ci == 'true' }}
     strategy:
       fail-fast: false
@@ -103,6 +104,32 @@ jobs:
               npm ci && npm run transpile
               RESPONSE=$(npm run --silent demo | jq -r '.id')
               [[ "$RESPONSE" == '1' ]] && TEST_RESULT=1 || TEST_RESULT=0
+
+          - folder: http-hello-world
+            wasm-bin: http-hello-world.wasm
+            test-command: |
+              RESPONSE=$(curl http://127.0.0.1:8000)
+              [[ "$RESPONSE" == 'Hello from Typescript!' ]] && TEST_RESULT=1 || TEST_RESULT=0
+
+          - folder: http-stdio
+            wasm-bin: http_stdout.wasm
+            test-command: |
+              RESPONSE=$(curl 'http://127.0.0.1:8000/?name=ci')
+              [[ "$RESPONSE" == 'Hello ci!' ]] && TEST_RESULT=1 || TEST_RESULT=0
+
+          - folder: wasi-config-from-k8s-env
+            wasm-bin: wasi_config_from_k8s_env.wasm
+            test-command: |
+              RESPONSE=$(curl http://127.0.0.1:8000)
+              [[ "$RESPONSE" == 'wasi-config-from-k8s-env example'* ]] && TEST_RESULT=1 || TEST_RESULT=0
+
+          # Build-only: wash dev runs the service on wasi:webgpu,
+          # which needs a GPU the runners don't have.
+          - folder: webgpu-tensorflow
+            wasm-bin: component.wasm
+            dist-dir: component/dist
+            skip-wash-dev: true
+            test-command: ''
 
           # Docs companion for the wasmcloud.com quickstart's "Add persistent
           # storage" step. Build-only: skip-wash-dev: true because the
