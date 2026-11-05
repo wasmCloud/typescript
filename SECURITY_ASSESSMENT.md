@@ -79,7 +79,7 @@ and the release job, which only a trusted dispatch on `main` can start.
 - Dependabot opens version updates after a cooldown,
   so a newly published malicious version has time to be caught and pulled.
 - Dependency review blocks a pull request that adds a dependency version
-  with a known vulnerability.
+  with a known vulnerability, or one listed as malware.
 - Dependabot alerts have fix deadlines, in
   [CONTRIBUTING.md](CONTRIBUTING.md#vulnerable-dependencies).
 - Each release attaches an SPDX SBOM, so users can check what a tag pinned.

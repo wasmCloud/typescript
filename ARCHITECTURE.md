@@ -43,7 +43,7 @@ The wasmCloud host that runs the components is covered by wasmCloud's own
    - **Templates** builds every template and smoke-tests the HTTP ones under `wash dev`.
    - **CodeQL** analyzes the TypeScript, JavaScript and workflow sources.
    - **zizmor** audits the workflows.
-   - **Dependency review** blocks dependency versions with known vulnerabilities.
+   - **Dependency review** blocks dependency versions with known vulnerabilities or malware.
    - **DCO** checks that every commit is signed off.
 3. A maintainer who didn't push the last commit approves it,
    including a code owner for each changed path.

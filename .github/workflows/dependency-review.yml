@@ -2,7 +2,8 @@ name: Dependency review
 
 # Blocks a pull request that adds or updates a dependency to a version with a
 # known vulnerability in the GitHub Advisory Database, at any severity and in
-# any scope. The policy is in CONTRIBUTING.md#vulnerable-dependencies.
+# any scope, or to an npm version the database lists as malware.
+# The policy is in CONTRIBUTING.md#vulnerable-dependencies.
 
 on:
   pull_request:
@@ -26,7 +27,37 @@ jobs:
           # Licenses are checked before each release instead; see
           # CONTRIBUTING.md#vulnerable-dependencies.
           license-check: false
-          # Advisories that don't affect this project, each with its reason
-          # recorded in a dismissed Dependabot alert. Keep this list empty
-          # unless a vulnerable version can't be avoided.
+          # Advisories that don't affect this project, each with a statement
+          # in vex.openvex.json. Keep this list empty unless a vulnerable
+          # version can't be avoided.
           allow-ghsas: ''
+
+      # The step above checks vulnerability advisories. This one checks the
+      # Advisory Database's malware advisories, which have no exceptions.
+      - name: Check for malware
+        if: ${{ !cancelled() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          added="$RUNNER_TEMP/added.txt"
+          gh api "repos/$GITHUB_REPOSITORY/dependency-graph/compare/$BASE...$HEAD" \
+            --jq '.[] | select(.change_type == "added" and .ecosystem == "npm") | "\(.name)@\(.version)"' \
+            | sort -u > "$added"
+          echo "$(wc -l < "$added") npm package versions added"
+          split -l 50 "$added" "$RUNNER_TEMP/batch-"
+          found=0
+          for batch in "$RUNNER_TEMP"/batch-*; do
+            [ -s "$batch" ] || continue
+            hits=$(gh api -X GET /advisories \
+              -f type=malware -f ecosystem=npm -f per_page=100 \
+              -f affects="$(paste -sd, "$batch")" \
+              --jq '.[] | "\(.ghsa_id) \(.vulnerabilities | map(.package.name) | join(", "))"')
+            if [ -n "$hits" ]; then
+              while read -r line; do echo "::error::Malware advisory $line"; done <<<"$hits"
+              found=1
+            fi
+          done
+          exit "$found"
