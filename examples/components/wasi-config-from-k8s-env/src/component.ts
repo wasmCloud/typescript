@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { fire } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
+import { fire } from '@bytecodealliance/jco-std/wasi/0.2.6/http/adapters/hono/server';
 import { get, getAll } from 'wasi:config/store@0.2.0-rc.1';
 
 const app = new Hono();
@@ -33,4 +33,4 @@ app.get('/config/:key', (c) => {
 
 fire(app);
 
-export { incomingHandler } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
+export { incomingHandler } from '@bytecodealliance/jco-std/wasi/0.2.6/http/adapters/hono/server';
