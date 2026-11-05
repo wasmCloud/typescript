@@ -28,5 +28,16 @@
     "rimraf": "^6.1.2",
     "rolldown": "^1.0.0",
     "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "nodemon": {
+      "minimatch": "^11.0.2"
+    },
+    "@bytecodealliance/jco-std": {
+      "minimatch": "^11.0.2"
+    },
+    "glob": {
+      "minimatch": "^11.0.2"
+    }
   }
 }
