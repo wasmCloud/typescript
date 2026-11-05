@@ -82,8 +82,10 @@ jobs:
         uses: wasmcloud/setup-wash-action@47756fa211cc82f392c57e39504f43ef46fc0b3e # v2.1.0
 
       - name: Install JS Wasm Tools
+        env:
+          JCO_VERSION: ${{ matrix.jco-version }}
         run: |
-          npm install -g @bytecodealliance/jco@${{ matrix.jco-version }}
+          npm install -g "@bytecodealliance/jco@$JCO_VERSION"
           npm install -g @bytecodealliance/componentize-js
 
       - name: Build
@@ -120,7 +122,9 @@ jobs:
 
       - name: Install JS Wasm Tools
         if: ${{ inputs.skip-wash-dev }}
-        run: npm install -g @bytecodealliance/jco@${{ matrix.jco-version }}
+        env:
+          JCO_VERSION: ${{ matrix.jco-version }}
+        run: npm install -g "@bytecodealliance/jco@$JCO_VERSION"
 
       - name: Install Wash
         uses: wasmcloud/setup-wash-action@47756fa211cc82f392c57e39504f43ef46fc0b3e # v2.1.0
