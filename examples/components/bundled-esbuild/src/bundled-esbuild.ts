@@ -15,8 +15,10 @@ async function calculateScore(data: InputData): Promise<number> {
     const parser = new XMLParser({
       ignoreAttributes: true,
       ignoreDeclaration: true,
+      // Parse <item> as a list even when there is only one
+      isArray: (name) => name === 'item',
     });
-    json = parser.parse(data.val)['item'];
+    json = parser.parse(data.val)['item'] ?? [];
   }
 
   return R.pipe(

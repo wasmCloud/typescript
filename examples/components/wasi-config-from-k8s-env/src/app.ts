@@ -23,8 +23,8 @@ app.get('/config', (c) => {
 // Returns a single config value by key.
 app.get('/config/:key', (c) => {
   const key = c.req.param('key');
-  const value: string | null = get(key);
-  if (value === null) {
+  const value = get(key);
+  if (value === undefined) {
     return c.json({ error: `config key '${key}' not found` }, 404);
   }
   return c.json({ [key]: value });

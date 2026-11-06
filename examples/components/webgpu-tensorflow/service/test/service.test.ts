@@ -179,20 +179,21 @@ describe('run', () => {
     expect(decode(parseFrame((await conn.frames())[0]).payload)).toBe('stylize failed: bad jpeg');
   });
 
-  // The reply is sent inside the same try as the inference,
-  // so a failed send is reported as a stylize failure on the same connection.
-  test('reports a failed reply as a stylize failure', async () => {
+  test('logs a failed reply without sending a second frame', async () => {
     const conn = connect(request(encode('a'), encode('b')), [
       { tag: 'err', val: 'connection-reset' },
     ]);
+    const next = connect(request(encode('c'), encode('d')));
 
     await run.run();
 
-    const frames = await conn.frames();
-    expect(frames).toHaveLength(2);
-    expect(decode(parseFrame(frames[1]).payload)).toBe(
-      'stylize failed: send failed: connection-reset',
+    expect(await conn.frames()).toHaveLength(1);
+    expect(conn.disposed).toBe(true);
+    expect(error).toHaveBeenCalledWith(
+      '[stylize-service] reply failed:',
+      'send failed: connection-reset',
     );
+    expect(parseFrame((await next.frames())[0]).status).toBe(0);
   });
 
   test('carries on when the client is gone before a bad-request reply', async () => {

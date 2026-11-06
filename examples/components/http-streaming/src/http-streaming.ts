@@ -75,7 +75,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
 
     outputStream.write(new Uint8Array(data.buffer, Number(written), Number(writableByteCount)));
     written += writableByteCount;
-    remaining -= written;
+    remaining -= writableByteCount;
 
     // While we can track *when* to flush separately and implement our own logic,
     // the simplest way is to flush the written chunk immediately

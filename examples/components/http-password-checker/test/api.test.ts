@@ -23,14 +23,11 @@ describe('PasswordCheckRequest.fromRequest', () => {
     );
   });
 
-  test('rejects a body without a string value', async () => {
+  test('rejects a body without a string value with its validation issues', async () => {
     const err = await fromBody(JSON.stringify({ value: 7 })).catch((e: unknown) => e);
 
-    expect(err).toBeInstanceOf(Error);
-    expect((err as Error).message).toMatch(
-      /^failed to parse incoming data as a PasswordCheckRequest: ValiError/,
-    );
-    expect((err as Error).cause).toMatchObject({ name: 'ValiError' });
+    expect(err).toMatchObject({ name: 'ValiError' });
+    expect((err as Error).message).toBe('Invalid type: Expected string but received 7');
   });
 
   test('rejects an empty body', async () => {

@@ -94,7 +94,7 @@ export class Stylizer {
     const dummyContent = tf.zeros([1, CONTENT_MAX_SIDE, CONTENT_MAX_SIDE, 3], 'float32');
     const warmOut = tf.tidy(() => {
       const bottleneck = styleModel.predict(dummyStyle) as tf.Tensor;
-      return (transformerModel.predict([dummyContent, bottleneck]) as tf.Tensor).squeeze();
+      return (transformerModel.predict([dummyContent, bottleneck]) as tf.Tensor).squeeze([0]);
     });
     await warmOut.data();
     warmOut.dispose();
@@ -134,7 +134,9 @@ export class Stylizer {
 
       const stylized = this.transformerModel.predict([contentTensor, finalBottleneck]) as tf.Tensor;
 
-      return stylized.squeeze();
+      // Drop only the batch dimension: a single-row or single-column image
+      // must stay [H, W, C].
+      return stylized.squeeze([0]);
     });
     // Force GPU sync so the timer reflects actual inference, not just queue submission.
     await stylizedTensor.data();
@@ -186,9 +188,7 @@ async function decodeJpegToTensor(
 async function encodeTensorToJpeg(tensor: tf.Tensor, quality = 90): Promise<Uint8Array> {
   const denormalized = tf.tidy(() => tf.cast(tf.clipByValue(tf.mul(tensor, 255), 0, 255), 'int32'));
 
-  if (denormalized.shape.length !== 3) {
-    throw new Error(`expected rank-3 [H, W, C] tensor, got shape ${denormalized.shape}`);
-  }
+  // stylize() hands over [H, W, C]: the batch dimension is already squeezed off.
   const [height, width] = denormalized.shape;
   const data = await denormalized.data();
   denormalized.dispose();

@@ -48,22 +48,12 @@ describe('GET /config/:key', () => {
     expect(await res.json()).toEqual({ greeting: 'hello' });
   });
 
-  test('answers 404 when the store reports a missing key as null', async () => {
-    vi.spyOn(values, 'get').mockReturnValueOnce(null as unknown as string);
-
+  // The binding returns `undefined` for a missing key (option<string>).
+  test('answers 404 for a missing key', async () => {
     const res = await app.request('/config/missing');
 
     expect(res.status).toBe(404);
     expect(await res.json()).toEqual({ error: "config key 'missing' not found" });
-  });
-
-  // The generated binding returns `undefined` for a missing key (option<string>),
-  // but the handler only checks for `null`, so it answers 200 with an empty object.
-  test('answers 200 with an empty object for a missing key (documents current behaviour)', async () => {
-    const res = await app.request('/config/missing');
-
-    expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({});
   });
 });
 

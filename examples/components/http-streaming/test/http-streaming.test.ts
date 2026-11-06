@@ -74,19 +74,14 @@ describe('when the stream applies back-pressure', () => {
     expect(stream.text()).toBe(expectedBody);
   });
 
-  // The loop subtracts the running total (`written`) from `remaining`
-  // instead of the chunk just written, so it stops early
-  // and the client receives only a prefix of the data.
-  test('sends a truncated body in small chunks (documents current behaviour)', () => {
+  test('sends the whole body in chunks the stream accepts', () => {
     OutputStream.capacity = 4096n;
 
     const { response, stream } = serve();
-    const body = stream.text();
 
     expect(response.statusCode()).toBe(200);
+    expect(stream.chunks.length).toBeGreaterThan(1);
     expect(stream.chunks.every((chunk) => chunk.length <= 4096)).toBe(true);
-    expect(expectedBody.startsWith(body)).toBe(true);
-    expect(body.length).toBe(26 * 4096);
-    expect(body.length).toBeLessThan(expectedBody.length);
+    expect(stream.text()).toBe(expectedBody);
   });
 });

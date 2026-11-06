@@ -79,9 +79,9 @@ async function handleConnection(stylizer: Stylizer, conn: TcpSocket): Promise<vo
       return;
     }
 
+    let result: Uint8Array;
     try {
-      const result = await stylizer.stylize({ contentJpeg, styleJpeg, styleRatio: 1.0 });
-      await sendStatus(conn, 0, result);
+      result = await stylizer.stylize({ contentJpeg, styleJpeg, styleRatio: 1.0 });
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
       console.error('[stylize-service] inference failed:', msg);
@@ -90,6 +90,15 @@ async function handleConnection(stylizer: Stylizer, conn: TcpSocket): Promise<vo
       } catch {
         /* peer gone */
       }
+      return;
+    }
+
+    try {
+      await sendStatus(conn, 0, result);
+    } catch (err) {
+      // The client is gone or the connection broke: there's no one to tell.
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error('[stylize-service] reply failed:', msg);
     }
   } finally {
     data.drop();
