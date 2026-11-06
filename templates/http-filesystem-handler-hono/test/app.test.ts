@@ -72,14 +72,36 @@ describe('GET /read/:filename', () => {
     expect(await res.text()).toBe('');
   });
 
-  // The handler doesn't catch filesystem errors, so a missing file
-  // falls through to Hono's default error handler.
-  test('returns a 500 for a missing file', async () => {
-    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+  test('returns a 404 for a missing file', async () => {
     const res = await app.request('/read/missing.txt');
-    expect(res.status).toBe(500);
-    expect(await res.text()).toBe('Internal Server Error');
+    expect(res.status).toBe(404);
+    expect(await res.text()).toBe('Filesystem error: no-entry\n');
   });
+
+  test('returns a 400 for a directory', async () => {
+    fs.data.openAt({}, 'sub', { create: true, directory: true }, {});
+    const res = await app.request('/read/sub');
+    expect(res.status).toBe(400);
+    expect(await res.text()).toBe('Filesystem error: is-directory\n');
+  });
+
+  test('returns the whole of a file larger than one read', async () => {
+    const text = 'abcdefgh'.repeat(40_000); // 320 KB, five 64 KiB reads
+    writeFile('big.txt', text);
+    const res = await app.request('/read/big.txt');
+    expect(res.status).toBe(200);
+    expect(await res.text()).toBe(text);
+  });
+
+  // URLs resolve `.` and `..` segments before routing, so names like these are what reach the check.
+  test.each(['a%2Fb', 'a%5Cb', 'a%20b', 'x'.repeat(256)])(
+    'rejects the file name %s',
+    async (name) => {
+      const res = await app.request(`/read/${name}`);
+      expect(res.status).toBe(400);
+      expect(await res.text()).toBe('Invalid file name\n');
+    },
+  );
 
   test('returns 500 when /data is not preopened', async () => {
     withoutData();
@@ -102,6 +124,45 @@ describe('POST /write/:filename', () => {
     writeFile('note.txt', 'a much longer original text');
     await app.request('/write/note.txt', { method: 'POST', body: 'short' });
     expect(readFile('note.txt')).toBe('short');
+  });
+
+  test('keeps writing when a write takes only part of the body', async () => {
+    const types = await import('./fakes/wasi-filesystem-types.js');
+    types.limits.maxWrite = 3;
+    const res = await app.request('/write/note.txt', { method: 'POST', body: 'a longer body' });
+    expect(await res.json()).toEqual({ filename: 'note.txt', bytesWritten: 13 });
+    expect(readFile('note.txt')).toBe('a longer body');
+  });
+
+  test('fails rather than loop when a write makes no progress', async () => {
+    const types = await import('./fakes/wasi-filesystem-types.js');
+    types.limits.maxWrite = 0;
+    const res = await app.request('/write/note.txt', { method: 'POST', body: 'x' });
+    expect(res.status).toBe(500);
+    expect(await res.text()).toBe('Internal Server Error\n');
+  });
+
+  test('rejects an invalid file name', async () => {
+    const res = await app.request('/write/a%2F..%2Fb', { method: 'POST', body: 'x' });
+    expect(res.status).toBe(400);
+  });
+
+  test('maps a permission error to 403', async () => {
+    vi.spyOn(fs.data, 'openAt').mockImplementationOnce(() => {
+      throw Object.assign(new Error('access'), { payload: 'access' });
+    });
+    const res = await app.request('/write/note.txt', { method: 'POST', body: 'x' });
+    expect(res.status).toBe(403);
+    expect(await res.text()).toBe('Filesystem error: access\n');
+  });
+
+  test('answers an unknown filesystem error with 500', async () => {
+    vi.spyOn(fs.data, 'openAt').mockImplementationOnce(() => {
+      throw Object.assign(new Error('io'), { payload: 'io' });
+    });
+    const res = await app.request('/write/note.txt', { method: 'POST', body: 'x' });
+    expect(res.status).toBe(500);
+    expect(await res.text()).toBe('Filesystem error: io\n');
   });
 
   test('round-trips through /read', async () => {

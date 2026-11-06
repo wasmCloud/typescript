@@ -58,6 +58,11 @@ npm run dev
 | `/read/:filename` | GET | Read the contents of a file |
 | `/write/:filename` | POST | Write request body to a file (creates or overwrites) |
 
+File names must be a single path segment of 1 to 255 letters, digits, `_`, `.` or `-`;
+other names get `400`.
+A filesystem error is answered with a matching status,
+such as `404` for a missing file, and the WASI error code in the body.
+
 ### Send requests to the running component
 
 ```shell

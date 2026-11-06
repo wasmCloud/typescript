@@ -63,10 +63,10 @@ npm run dev
 
 The handler demonstrates several Hono middleware patterns:
 
-- **CORS** - Cross-origin resource sharing enabled for all origins
 - **Request logging** - All requests are logged with timing information
 - **Response timing** - `X-Response-Time` header added to all responses
-- **Request ID tracking** - Unique `X-Request-Id` header for request tracing
+- **Request ID tracking** - `X-Request-Id` header for request tracing:
+  a client's ID is kept if it's 1 to 128 letters, digits, `_`, `.` or `-`, and replaced with a new one otherwise
 
 ### RESTful CRUD API
 
@@ -114,6 +114,18 @@ The handler includes comprehensive error handling:
 - **HTTPException** for structured error responses
 - **Custom 404 handler** with helpful error messages
 - **Global error handler** for unexpected errors
+- **Input validation**: request bodies are checked with zod,
+  a malformed JSON body returns `400`,
+  and `limit` (1 to 100) and `offset` (0 or more) must be integers
+
+## Test
+
+```bash
+npm test
+```
+
+Runs the unit tests in `test/` with [vitest](https://vitest.dev/) and reports coverage.
+The WASI interfaces the component imports are replaced with fakes in `test/fakes/`.
 
 ## Build Wasm binary
 
@@ -127,7 +139,7 @@ This component exports the following [WIT interfaces](https://component-model.by
 
 ```wit
 world typescript-http-handler-hono {
-  export wasi:http/incoming-handler@0.2.3;
+  export wasi:http/incoming-handler@0.2.6;
 }
 ```
 

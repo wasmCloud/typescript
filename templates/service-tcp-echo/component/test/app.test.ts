@@ -79,16 +79,46 @@ describe('POST /count', () => {
     tcp.setPeer(() => '');
     const res = await count('hi');
     expect(res.status).toBe(502);
-    // The stream error is a plain `{ tag: 'closed' }` object, not an Error,
-    // so String() is all the message gets.
-    expect(await res.json()).toEqual({ error: 'Service error: [object Object]' });
+    expect(await res.json()).toEqual({
+      error: 'Service error: Word-count service closed the connection without replying',
+    });
   });
 
-  test('reads only the first chunk of the reply', async () => {
-    // The reply is read with a single blockingRead(64), so anything past
-    // 64 bytes, or arriving in a later chunk, is never seen.
-    tcp.setPeer(() => `${'1'.repeat(70)}\n`);
+  test('reads a reply that arrives in several chunks', async () => {
+    tcp.limits.maxRead = 1;
+    tcp.setPeer(() => '12\n');
     const res = await count('hi');
-    expect((await res.json()).count).toBe(Number('1'.repeat(64)));
+    expect(await res.json()).toEqual({ text: 'hi', count: 12 });
+  });
+
+  test('rejects a reply that is too long', async () => {
+    tcp.setPeer(() => `${'1'.repeat(200)}\n`);
+    const res = await count('hi');
+    expect(res.status).toBe(502);
+    expect(await res.json()).toEqual({
+      error: 'Service error: Reply from word-count service is too long',
+    });
+  });
+
+  test('sends a body larger than one write', async () => {
+    const text = 'word '.repeat(2000).trim(); // 9999 bytes
+    const res = await count(text);
+    expect(await res.json()).toEqual({ text, count: 2000 });
+    expect(tcp.sockets[0].sent).toBe(`${text}\n`);
+  });
+
+  test('reports a read error other than a closed stream', async () => {
+    tcp.limits.readError = { tag: 'last-operation-failed' };
+    const res = await count('hi');
+    expect(res.status).toBe(502);
+    expect(await res.json()).toEqual({ error: 'Service error: last-operation-failed' });
+  });
+
+  test('reports a tagged stream error by its tag', async () => {
+    tcp.setPeer(() => {
+      throw { tag: 'last-operation-failed' };
+    });
+    const res = await count('hi');
+    expect(await res.json()).toEqual({ error: 'Service error: last-operation-failed' });
   });
 });

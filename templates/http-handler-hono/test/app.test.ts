@@ -56,6 +56,17 @@ describe('middleware', () => {
     expect(res.headers.get('X-Request-Id')).toBe('abc-123');
   });
 
+  test.each([
+    ['too long', 'a'.repeat(129)],
+    ['with a space', 'a b'],
+    ['with markup', '<script>'],
+    ['with a separator', 'a;b'],
+  ])('replaces a request ID %s with a new one', async (_name, id) => {
+    const res = await app.request('/health', { headers: { 'X-Request-Id': id } });
+    expect(res.headers.get('X-Request-Id')).toMatch(/^[0-9a-f-]{36}$/);
+    expect(await res.json()).not.toMatchObject({ requestId: id });
+  });
+
   test('reports the response time', async () => {
     const res = await app.request('/health');
     expect(res.headers.get('X-Response-Time')).toMatch(/^\d+ms$/);
@@ -73,14 +84,12 @@ describe('errors', () => {
   });
 
   test('unexpected errors return a JSON 500', async () => {
-    // Invalid JSON makes the body parser throw a plain error.
-    const res = await app.request('/api/items', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: '{',
+    app.get('/boom', () => {
+      throw new Error('boom');
     });
+    const res = await app.request('/boom');
     expect(res.status).toBe(500);
-    expect(await res.json()).toMatchObject({ error: 'Internal Server Error' });
+    expect(await res.json()).toMatchObject({ error: 'Internal Server Error', message: 'boom' });
   });
 });
 
@@ -120,6 +129,37 @@ describe('/api/items', () => {
     expect(res.status).toBe(200);
     expect(await res.json()).toMatchObject({ id: '1', name: 'Sample Item' });
   });
+
+  test.each([
+    ['limit=0', "'limit' must be an integer from 1 to 100"],
+    ['limit=101', "'limit' must be an integer from 1 to 100"],
+    ['limit=abc', "'limit' must be an integer from 1 to 100"],
+    ['limit=1.5', "'limit' must be an integer from 1 to 100"],
+    ['offset=-1', "'offset' must be an integer from 0 to"],
+  ])('rejects ?%s', async (query, message) => {
+    const res = await app.request(`/api/items?${query}`);
+    expect(res.status).toBe(400);
+    expect((await res.json()).error).toContain(message);
+  });
+
+  test('treats empty pagination parameters as absent', async () => {
+    const res = await app.request('/api/items?limit=&offset=');
+    expect(await res.json()).toMatchObject({ limit: 10, offset: 0 });
+  });
+
+  test.each(['POST /api/items', 'PUT /api/items/1'])(
+    '%s rejects a malformed JSON body',
+    async (route) => {
+      const [method, path] = route.split(' ');
+      const res = await app.request(path, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: '{',
+      });
+      expect(res.status).toBe(400);
+      expect(await res.json()).toMatchObject({ error: 'Request body must be valid JSON' });
+    },
+  );
 
   test('returns 404 for a missing item', async () => {
     const res = await app.request('/api/items/99');
@@ -218,6 +258,15 @@ describe('/api/echo', () => {
       body: 'hello',
     });
     expect(await res.json()).toMatchObject({ contentType: 'text/plain', body: 'hello' });
+  });
+
+  test('POST rejects a malformed JSON body', async () => {
+    const res = await app.request('/api/echo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: 'not json',
+    });
+    expect(res.status).toBe(400);
   });
 
   test('POST without a content type echoes the body as text', async () => {
