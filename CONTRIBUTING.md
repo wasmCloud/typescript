@@ -2,6 +2,9 @@
 
 Thank you for your interest in contributing to the wasmCloud TypeScript ecosystem! This guide will help you get started with contributing to our collection of TypeScript examples and project templates for wasmCloud.
 
+Everyone taking part in the project follows the [Code of Conduct](CODE_OF_CONDUCT.md).
+What's planned is in the wasmCloud [roadmap](https://github.com/wasmCloud/wasmCloud/blob/main/ROADMAP.md).
+
 ## Table of Contents
 
 - [Development Setup](#development-setup)
