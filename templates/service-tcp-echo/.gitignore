@@ -5,3 +5,4 @@ generated/**
 *.tgz
 wit/deps
 *.log
+coverage

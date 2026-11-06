@@ -9,7 +9,8 @@
     "postinstall": "patch-package",
     "setup:wit": "npm run setup:wit --workspace=service && npm run setup:wit --workspace=component",
     "build": "npm run build --workspace=service && npm run build --workspace=component",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "npm test --workspaces --if-present"
   },
   "workspaces": [
     "service",

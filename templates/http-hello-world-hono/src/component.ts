@@ -1,16 +1,8 @@
-import { Hono } from 'hono';
 import { fire } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
+import { app } from './app.js';
 
-const app = new Hono();
-
-app.get('/', (c) => {
-  return c.text('Hello from TypeScript!\n');
-});
-
-app.notFound((c) => {
-  return c.text('Not found\n', 404);
-});
-
+// Serve the app through the WASI HTTP adapter
 fire(app);
 
+// Export the incoming handler for jco
 export { incomingHandler } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
