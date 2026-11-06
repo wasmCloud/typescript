@@ -78,7 +78,7 @@ This begins the security review described below.
 
 Vulnerability information shared with the security team stays within the wasmCloud project.
 It is shared with others only when that's necessary to fix the issue
-or to escalate it to the CRA steward,
+or to [escalate it to the CRA steward](CONTRIBUTING.md#escalating-to-the-cra-steward),
 and then only on a need-to-know basis.
 
 We ask that reporters act in good faith by not disclosing the issue to others.
