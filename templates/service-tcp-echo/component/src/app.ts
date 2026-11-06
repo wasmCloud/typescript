@@ -57,6 +57,12 @@ interface TcpSocket {
 const SERVICE_HOST: Ipv4Address = [127, 0, 0, 1];
 const SERVICE_PORT = 7878;
 
+/** The most bytes one `blocking-write-and-flush` call takes. */
+const MAX_WRITE = 4096;
+
+/** A reply is a count and a newline; one longer than this is an error. */
+const MAX_REPLY = 64;
+
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
@@ -83,16 +89,50 @@ function queryWordCount(text: string): number {
 
   // Strip any embedded newlines so the line-oriented protocol stays intact
   const line = text.replace(/[\r\n]+/g, ' ').trimEnd() + '\n';
-  outputStream.blockingWriteAndFlush(encoder.encode(line));
+  const bytes = encoder.encode(line);
+  for (let offset = 0; offset < bytes.length; offset += MAX_WRITE) {
+    outputStream.blockingWriteAndFlush(bytes.subarray(offset, offset + MAX_WRITE));
+  }
 
-  // Read back the reply ("N\n")
-  const reply = inputStream.blockingRead(64n);
-  const countStr = decoder.decode(reply).trim();
+  // Read back the reply ("N\n"), which may arrive in more than one chunk
+  let reply = '';
+  while (!reply.includes('\n')) {
+    if (reply.length > MAX_REPLY) {
+      throw new Error('Reply from word-count service is too long');
+    }
+    let chunk: Uint8Array;
+    try {
+      chunk = inputStream.blockingRead(BigInt(MAX_REPLY));
+    } catch (err) {
+      if (isStreamClosed(err)) {
+        throw new Error('Word-count service closed the connection without replying', {
+          cause: err,
+        });
+      }
+      throw err;
+    }
+    reply += decoder.decode(chunk, { stream: true });
+  }
+  const countStr = reply.trim();
   const count = parseInt(countStr, 10);
   if (isNaN(count)) {
     throw new Error(`Unexpected reply from word-count service: ${JSON.stringify(countStr)}`);
   }
   return count;
+}
+
+/** Whether `err` is the stream error a closed connection raises. */
+function isStreamClosed(err: unknown): boolean {
+  return (err as { tag?: unknown } | null)?.tag === 'closed';
+}
+
+/** A readable message for an Error, a WASI error code, or a tagged WASI error. */
+function describeError(err: unknown): string {
+  if (err instanceof Error) {
+    return err.message;
+  }
+  const tag = (err as { tag?: unknown } | null)?.tag;
+  return typeof tag === 'string' ? tag : String(err);
 }
 
 // ---------------------------------------------------------------------------
@@ -131,8 +171,7 @@ app.post('/count', async (c) => {
   try {
     count = queryWordCount(text);
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    return c.json({ error: `Service error: ${message}` }, 502);
+    return c.json({ error: `Service error: ${describeError(err)}` }, 502);
   }
 
   return c.json({ text, count });

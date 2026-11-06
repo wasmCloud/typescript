@@ -2,6 +2,8 @@ import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { z } from 'zod/mini';
 
+import { parseIntParam, readJson } from '../validation.js';
+
 // Validation schemas
 const createItemSchema = z.object({
   name: z.string().check(z.minLength(1, 'Name is required and must be a non-empty string')),
@@ -53,8 +55,12 @@ itemsRouter.get('/', (c) => {
     : itemList;
 
   // Support pagination via query parameters
-  const limit = parseInt(c.req.query('limit') || '10', 10);
-  const offset = parseInt(c.req.query('offset') || '0', 10);
+  const limit = parseIntParam(c.req.query('limit'), 'limit', { fallback: 10, min: 1, max: 100 });
+  const offset = parseIntParam(c.req.query('offset'), 'offset', {
+    fallback: 0,
+    min: 0,
+    max: Number.MAX_SAFE_INTEGER,
+  });
   const paginated = filtered.slice(offset, offset + limit);
 
   return c.json({
@@ -79,7 +85,7 @@ itemsRouter.get('/:id', (c) => {
 
 // Create new item
 itemsRouter.post('/', async (c) => {
-  const json = await c.req.json();
+  const json = await readJson(c);
   const result = createItemSchema.safeParse(json);
 
   if (!result.success) {
@@ -113,7 +119,7 @@ itemsRouter.put('/:id', async (c) => {
     throw new HTTPException(404, { message: `Item with id '${id}' not found` });
   }
 
-  const json = await c.req.json();
+  const json = await readJson(c);
   const result = updateItemSchema.safeParse(json);
 
   if (!result.success) {

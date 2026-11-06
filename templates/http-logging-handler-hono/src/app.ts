@@ -9,16 +9,31 @@ interface Variables {
 
 const app = new Hono<{ Variables: Variables }>();
 
+/** Request IDs accepted from clients: short tokens, safe to echo in headers and logs. */
+const REQUEST_ID = /^[\w.-]{1,128}$/;
+
+/** Headers that carry credentials, which are never logged. */
+const REDACTED_HEADERS = new Set(['authorization', 'proxy-authorization', 'cookie']);
+
+function loggableHeaders(headers: Headers): Record<string, string> {
+  const out: Record<string, string> = {};
+  headers.forEach((value, key) => {
+    out[key] = REDACTED_HEADERS.has(key) ? '[redacted]' : value;
+  });
+  return out;
+}
+
 // Attach a request ID and timestamp, then log every request/response
 app.use('*', async (c, next) => {
-  const requestId = c.req.header('X-Request-Id') || crypto.randomUUID();
+  const sentId = c.req.header('X-Request-Id');
+  const requestId = sentId && REQUEST_ID.test(sentId) ? sentId : crypto.randomUUID();
   c.set('requestId', requestId);
   c.set('startTime', Date.now());
   c.header('X-Request-Id', requestId);
 
   const { method, path } = c.req;
   log('info', 'http', `--> ${method} ${path} requestId=${requestId}`);
-  log('debug', 'http', `headers: ${JSON.stringify(Object.fromEntries(c.req.raw.headers))}`);
+  log('debug', 'http', `headers: ${JSON.stringify(loggableHeaders(c.req.raw.headers))}`);
 
   await next();
 

@@ -18,6 +18,9 @@ interface DescriptorFlags {
   write?: boolean;
 }
 
+/** The most bytes one `write` call takes; tests lower it to simulate short writes. */
+export const limits = { maxWrite: Infinity };
+
 function fsError(code: string): Error {
   return Object.assign(new Error(code), { payload: code });
 }
@@ -94,6 +97,7 @@ function makeDescriptor(node: Node, flags: DescriptorFlags = { read: true, write
         throw fsError('bad-descriptor');
       }
       const file = asFile();
+      buffer = buffer.subarray(0, Math.min(buffer.length, limits.maxWrite));
       const start = Number(offset);
       const next = new Uint8Array(Math.max(file.bytes.length, start + buffer.length));
       next.set(file.bytes);

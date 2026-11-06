@@ -4,6 +4,7 @@ import { HTTPException } from 'hono/http-exception';
 import { buildLogger } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
 import { itemsRouter } from './routes/items.js';
 import { echoRouter } from './routes/echo.js';
+import { requestIdFrom } from './validation.js';
 
 // Hono context variables type
 interface Variables {
@@ -33,7 +34,7 @@ app.use('*', async (c, next) => {
 
 // Custom middleware: Request ID tracking
 app.use('*', async (c, next) => {
-  const requestId = c.req.header('X-Request-Id') || crypto.randomUUID();
+  const requestId = requestIdFrom(c.req.header('X-Request-Id'));
   c.set('requestId', requestId);
   c.header('X-Request-Id', requestId);
   await next();

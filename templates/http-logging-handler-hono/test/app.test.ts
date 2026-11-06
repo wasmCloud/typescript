@@ -68,6 +68,36 @@ describe('request logging middleware', () => {
     expect(logged('http')[0].message).toBe(`--> GET / requestId=${id}`);
   });
 
+  test.each([
+    ['too long', 'a'.repeat(129)],
+    ['with a space', 'a b'],
+    ['with a separator', 'a;b'],
+  ])('replaces a request ID %s with a new one', async (_name, id) => {
+    const res = await app.request('/', { headers: { 'X-Request-Id': id } });
+    const sent = res.headers.get('X-Request-Id');
+    expect(sent).toMatch(/^[0-9a-f-]{36}$/);
+    expect(logged('http')[0].message).toBe(`--> GET / requestId=${sent}`);
+  });
+
+  test('never logs credential headers', async () => {
+    await app.request('/', {
+      headers: {
+        Authorization: 'Bearer secret-token',
+        'Proxy-Authorization': 'Basic c2VjcmV0',
+        Cookie: 'session=secret',
+        'X-Test': 'yes',
+      },
+    });
+    const message = logged('http')[1].message;
+    expect(message).not.toContain('secret');
+    expect(JSON.parse(message.replace(/^headers: /, ''))).toMatchObject({
+      authorization: '[redacted]',
+      'proxy-authorization': '[redacted]',
+      cookie: '[redacted]',
+      'x-test': 'yes',
+    });
+  });
+
   test('logs 4xx responses as warnings', async () => {
     await app.request('/nope');
     expect(logged('http').at(-1)).toMatchObject({ level: 'warn' });

@@ -32,6 +32,9 @@ export function wordCountPeer(line: string): string {
   return `${trimmed === '' ? 0 : trimmed.split(/\s+/).length}\n`;
 }
 
+/** Read behaviour tests can change: split replies, or fail reads with an error. */
+export const limits: { maxRead: number; readError?: unknown } = { maxRead: Infinity };
+
 export const sockets: FakeSocket[] = [];
 let peer: Peer = wordCountPeer;
 let connectError: ErrorCode | undefined;
@@ -48,6 +51,8 @@ export function refuseConnections(code: ErrorCode = 'connection-refused'): void 
 
 export function reset(): void {
   sockets.length = 0;
+  limits.maxRead = Infinity;
+  limits.readError = undefined;
   peer = wordCountPeer;
   connectError = undefined;
 }
@@ -62,11 +67,14 @@ export function createTcpSocket(family: string) {
 
   const input = {
     blockingRead(len: bigint): Uint8Array {
+      if (limits.readError !== undefined) {
+        throw limits.readError;
+      }
       if (pending.length === 0) {
         // The peer has nothing more to say and has hung up.
         throw { tag: 'closed' };
       }
-      const chunk = pending.slice(0, Number(len));
+      const chunk = pending.slice(0, Math.min(Number(len), limits.maxRead));
       pending = pending.slice(chunk.length);
       return chunk;
     },
@@ -74,6 +82,10 @@ export function createTcpSocket(family: string) {
 
   const output = {
     blockingWriteAndFlush(contents: Uint8Array): void {
+      // wasi:io allows at most 4096 bytes per blocking-write-and-flush.
+      if (contents.length > 4096) {
+        throw { tag: 'last-operation-failed' };
+      }
       const text = decoder.decode(contents);
       state.sent += text;
       lineBuf += text;

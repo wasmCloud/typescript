@@ -2,6 +2,8 @@ import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { z } from 'zod/mini';
 
+import { parseIntParam, readJson } from '../validation.js';
+
 import { open } from 'wasi:keyvalue/store@0.2.0-draft';
 import { increment } from 'wasi:keyvalue/atomics@0.2.0-draft';
 
@@ -70,8 +72,12 @@ itemsRouter.get('/', (c) => {
     : itemList;
 
   // Support pagination via query parameters
-  const limit = parseInt(c.req.query('limit') || '10', 10);
-  const offset = parseInt(c.req.query('offset') || '0', 10);
+  const limit = parseIntParam(c.req.query('limit'), 'limit', { fallback: 10, min: 1, max: 100 });
+  const offset = parseIntParam(c.req.query('offset'), 'offset', {
+    fallback: 0,
+    min: 0,
+    max: Number.MAX_SAFE_INTEGER,
+  });
   const paginated = filtered.slice(offset, offset + limit);
 
   return c.json({
@@ -97,7 +103,7 @@ itemsRouter.get('/:id', (c) => {
 
 // Create new item
 itemsRouter.post('/', async (c) => {
-  const json = await c.req.json();
+  const json = await readJson(c);
   const result = createItemSchema.safeParse(json);
 
   if (!result.success) {
@@ -135,7 +141,7 @@ itemsRouter.put('/:id', async (c) => {
 
   const existing = deserializeItem(bytes);
 
-  const json = await c.req.json();
+  const json = await readJson(c);
   const result = updateItemSchema.safeParse(json);
 
   if (!result.success) {
