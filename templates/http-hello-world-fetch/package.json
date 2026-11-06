@@ -13,16 +13,19 @@
     "build:component": "jco componentize -w wit -o dist/http_hello_world.wasm dist/component.js",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component",
     "serve": "jco serve dist/http_hello_world.wasm",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
     "@bytecodealliance/jco": "^1.15.4",
+    "@vitest/coverage-v8": "^5.1.0",
     "nodemon": "^3.1.14",
     "rimraf": "^6.1.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
   },
   "overrides": {
     "nodemon": {

@@ -11,7 +11,8 @@
     "setup:wit": "npm run fetch:wit && npm run generate:types",
     "build:ts": "rolldown -c rolldown.config.mjs",
     "build:component": "jco componentize dist/service.js --wit wit --world-name service --backend qjs -o dist/service.wasm",
-    "build": "npm run setup:wit && npm run build:ts && npm run build:component"
+    "build": "npm run setup:wit && npm run build:ts && npm run build:component",
+    "test": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
@@ -27,9 +28,11 @@
     "@rollup/plugin-alias": "^6.0.1",
     "@rollup/plugin-inject": "^5.0.5",
     "@rollup/plugin-url": "^8.0.2",
+    "@vitest/coverage-v8": "^5.1.0",
     "rimraf": "^6.1.4",
     "rolldown": "^1.2.16",
     "typescript": "^6.0.3",
-    "unenv": "2.0.0-rc.24"
+    "unenv": "2.0.0-rc.24",
+    "vitest": "^5.1.0"
   }
 }

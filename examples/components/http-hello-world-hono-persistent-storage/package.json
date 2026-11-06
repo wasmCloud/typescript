@@ -15,7 +15,7 @@
     "install-and-build": "npm install && npm run build",
     "serve": "jco serve dist/http_hello_world_hono_persistent_storage.wasm",
     "dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
@@ -26,10 +26,12 @@
   },
   "devDependencies": {
     "@bytecodealliance/jco": "^1.40.0",
+    "@vitest/coverage-v8": "^5.1.0",
     "nodemon": "^3.1.9",
     "rimraf": "^6.1.4",
     "rolldown": "^1.0.0-beta.47",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0"
   },
   "overrides": {
     "nodemon": {

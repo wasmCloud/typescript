@@ -7,3 +7,4 @@ keys
 wit/deps/
 *.log
 **/wit/deps/
+coverage

@@ -21,5 +21,7 @@
 
     /* Completeness */
     "skipLibCheck": true
-  }
+  },
+  // Only the component is compiled; tests run under vitest.
+  "include": ["src"]
 }

@@ -13,7 +13,8 @@
     "build:component": "jco componentize -w wit -o dist/http_stdout.wasm dist/component.js",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component",
     "serve": "jco serve dist/http_stdout.wasm",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
@@ -24,10 +25,12 @@
   },
   "devDependencies": {
     "@bytecodealliance/jco": "^1.40.0",
+    "@vitest/coverage-v8": "^5.1.0",
     "nodemon": "^3.1.9",
     "rimraf": "^6.1.4",
     "rolldown": "^1.0.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0"
   },
   "overrides": {
     "nodemon": {

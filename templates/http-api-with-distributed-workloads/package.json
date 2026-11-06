@@ -8,7 +8,8 @@
   "scripts": {
     "setup:wit": "npm run setup:wit --workspace=http-api && npm run setup:wit --workspace=task-leet && npm run setup:wit --workspace=task-reverse",
     "build": "npm run build --workspace=http-api && npm run build --workspace=task-leet && npm run build --workspace=task-reverse",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "npm test --workspaces --if-present"
   },
   "workspaces": [
     "http-api",

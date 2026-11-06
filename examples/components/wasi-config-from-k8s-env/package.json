@@ -13,7 +13,8 @@
     "build:component": "jco componentize -w wit -o dist/wasi_config_from_k8s_env.wasm dist/component.js",
     "build": "npm run setup:wit && npm run build:ts && npm run build:component",
     "serve": "jco serve dist/wasi_config_from_k8s_env.wasm",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "vitest run --coverage"
   },
   "keywords": [],
   "license": "Apache-2.0",
@@ -23,10 +24,12 @@
   },
   "devDependencies": {
     "@bytecodealliance/jco": "1.40.0",
+    "@vitest/coverage-v8": "^5.1.0",
     "nodemon": "^3.1.9",
     "rimraf": "^6.1.4",
     "rolldown": "^1.0.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0"
   },
   "overrides": {
     "nodemon": {
