@@ -1,8 +1,8 @@
-import {fileURLToPath} from 'node:url';
-import {env} from 'node:process';
-import {stat} from 'node:fs/promises';
-import {execFile as execFileCb} from 'node:child_process';
-import {promisify} from 'node:util';
+import { fileURLToPath } from 'node:url';
+import { env } from 'node:process';
+import { stat } from 'node:fs/promises';
+import { execFile as execFileCb } from 'node:child_process';
+import { promisify } from 'node:util';
 
 const execFile = promisify(execFileCb);
 
@@ -23,7 +23,7 @@ async function main() {
     throw new Error(`Missing/invalid Wasm binary @ [${WASM_PATH}] (has 'npm run build' been run?)`);
   }
 
-  const {stdout} = await execFile(JCO_PATH, ['run', WASM_PATH]);
+  const { stdout } = await execFile(JCO_PATH, ['run', WASM_PATH]);
   const parsedJson = JSON.parse(stdout);
   process.stdout.write(JSON.stringify(parsedJson.data, null, 2));
 }

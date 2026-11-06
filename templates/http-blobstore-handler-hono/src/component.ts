@@ -1,17 +1,14 @@
 import { Hono } from 'hono';
 import { logger } from 'hono/logger';
 import { HTTPException } from 'hono/http-exception';
-import {
-  fire,
-  buildLogger,
-} from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
+import { fire, buildLogger } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
 import { itemsRouter } from './routes/items.js';
 import { echoRouter } from './routes/echo.js';
 
 // Hono context variables type
-type Variables = {
+interface Variables {
   requestId: string;
-};
+}
 
 // Create the main app with typed variables
 const app = new Hono<{ Variables: Variables }>();
@@ -51,7 +48,8 @@ app.get('/', (c) => {
   return c.json({
     name: 'Hono HTTP Blobstore Handler',
     version: '1.0.0',
-    description: 'A comprehensive HTTP handler built with Hono on wasmCloud, backed by wasi:blobstore',
+    description:
+      'A comprehensive HTTP handler built with Hono on wasmCloud, backed by wasi:blobstore',
     endpoints: {
       '/': 'API information (this page)',
       '/health': 'Health check endpoint',
