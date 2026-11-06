@@ -49,3 +49,23 @@ updates:
       semver-major-days: 14
       semver-minor-days: 7
       semver-patch-days: 3
+
+  # Lint and format tooling in the root package.json
+  - package-ecosystem: 'npm'
+    directory: '/'
+    groups:
+      tooling-dependencies:
+        update-types:
+          - major
+          - minor
+          - patch
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'America/New_York'
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
+      semver-minor-days: 7
+      semver-patch-days: 3

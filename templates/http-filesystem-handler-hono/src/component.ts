@@ -42,12 +42,7 @@ app.get('/read/:filename', (c) => {
 
   const filename = c.req.param('filename');
 
-  const file = dir.openAt(
-    { symlinkFollow: true },
-    filename,
-    {},
-    { read: true },
-  );
+  const file = dir.openAt({ symlinkFollow: true }, filename, {}, { read: true });
 
   const [data, _eof] = file.read(BigInt(1024 * 1024), BigInt(0));
   const text = new TextDecoder().decode(data);

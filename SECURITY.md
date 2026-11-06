@@ -190,6 +190,8 @@ Findings come from:
   on every pull request, on pushes to `main` and weekly.
 - [zizmor](.github/workflows/zizmor.yml) analysis of the workflows,
   on every pull request, on pushes to `main` and weekly.
+- [ESLint](.github/workflows/lint.yml) with typescript-eslint's `strict` rules,
+  on every pull request and push to `main`.
 
 Results appear in the repository's **Security** tab.
 

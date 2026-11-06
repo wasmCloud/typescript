@@ -12,7 +12,7 @@ app.all('/', (c) => {
 
   if (!name) {
     // low-level stderr (equivalent to console.error)
-    getStderr().blockingWriteAndFlush(encoder.encode("missing ?name param\n"));
+    getStderr().blockingWriteAndFlush(encoder.encode('missing ?name param\n'));
     return c.text('Please pass ?name=<your name> so that we can greet you\n', 400);
   }
 

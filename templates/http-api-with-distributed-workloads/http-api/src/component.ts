@@ -36,7 +36,6 @@ const REQUEST_TIMEOUT_MS = 5000;
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
-
 // ---------------------------------------------------------------------------
 // Request / response types
 // ---------------------------------------------------------------------------

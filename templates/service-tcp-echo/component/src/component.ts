@@ -49,10 +49,7 @@ interface OutputStream {
 }
 
 interface TcpSocket {
-  startConnect(
-    network: unknown,
-    remoteAddress: { tag: 'ipv4'; val: Ipv4SocketAddress },
-  ): void;
+  startConnect(network: unknown, remoteAddress: { tag: 'ipv4'; val: Ipv4SocketAddress }): void;
   finishConnect(): [InputStream, OutputStream];
   subscribe(): { block(): void };
 }

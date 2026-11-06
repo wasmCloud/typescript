@@ -1,7 +1,4 @@
-import type {
-  Options as PasswordCheckOptions,
-  FirstOption as PasswordChecKFirstOption,
-} from 'check-password-strength';
+import type { Options as PasswordCheckOptions } from 'check-password-strength';
 
 /** Basic descriptions of password strength */
 export enum PasswordStrength {

@@ -1,10 +1,10 @@
-import {defineConfig} from 'rolldown';
+import { defineConfig } from 'rolldown';
 import alias from '@rollup/plugin-alias';
 import inject from '@rollup/plugin-inject';
 import url from '@rollup/plugin-url';
-import {defineEnv} from 'unenv';
+import { defineEnv } from 'unenv';
 
-const {env} = defineEnv();
+const { env } = defineEnv();
 
 const MEGABYTE = 1024 * 1024;
 

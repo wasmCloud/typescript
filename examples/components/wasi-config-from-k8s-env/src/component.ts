@@ -7,9 +7,9 @@ const app = new Hono();
 app.get('/', (c) => {
   return c.text(
     'wasi-config-from-k8s-env example\n\n' +
-    'Routes:\n' +
-    '  GET /config        — list all config values\n' +
-    '  GET /config/:key   — get a specific config value\n',
+      'Routes:\n' +
+      '  GET /config        — list all config values\n' +
+      '  GET /config/:key   — get a specific config value\n',
   );
 });
 

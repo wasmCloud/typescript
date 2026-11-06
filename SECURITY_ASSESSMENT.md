@@ -37,7 +37,7 @@ These are the ways code or data from outside reaches those assets,
 from least to most privileged:
 
 - **Pull requests**, usually from forks.
-  The Examples, Templates, CodeQL and zizmor workflows run their code
+  The Examples, Templates, Lint, CodeQL and zizmor workflows run their code
   with a read-only token and no secrets, on fresh GitHub-hosted runners.
   A pull request's `npm ci` and build scripts run there too.
 - **npm packages**, installed from each package's `package-lock.json`

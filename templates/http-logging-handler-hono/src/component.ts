@@ -3,10 +3,10 @@ import { HTTPException } from 'hono/http-exception';
 import { fire } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
 import { log } from 'wasi:logging/logging@0.1.0-draft';
 
-type Variables = {
+interface Variables {
   requestId: string;
   startTime: number;
-};
+}
 
 const app = new Hono<{ Variables: Variables }>();
 
@@ -46,7 +46,11 @@ app.get('/', (c) =>
 
 app.get('/health', (c) => {
   log('trace', 'routes', `health check requestId=${c.get('requestId')}`);
-  return c.json({ status: 'healthy', timestamp: new Date().toISOString(), requestId: c.get('requestId') });
+  return c.json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    requestId: c.get('requestId'),
+  });
 });
 
 app.notFound((c) => {

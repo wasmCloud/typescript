@@ -31,4 +31,4 @@ const createLogger = (defaultContext: string) => {
 
 const logging = createLogger('http-server-with-hono');
 
-export {logging, createLogger};
+export { logging, createLogger };

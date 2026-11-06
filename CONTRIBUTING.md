@@ -99,9 +99,29 @@ HTTP components are served on `127.0.0.1:8000`.
 
 ### Code Style
 
-There is no linter or formatter configuration yet.
-Match the style of the code around your change,
-and order imports external, internal, then relative.
+[ESLint](eslint.config.mjs) checks every example, template and script
+with the `recommended` rules and typescript-eslint's `strict` and `stylistic` rules.
+The [Lint](.github/workflows/lint.yml) workflow runs it on every pull request,
+and a pull request can't merge with a lint error.
+
+Run it from the repository root:
+
+```bash
+npm ci
+npm run lint
+npm run lint:fix  # fix what can be fixed automatically
+npm run format:fix  # format with Prettier
+```
+
+[Prettier](.prettierrc.json) formats the TypeScript and JavaScript sources,
+and the Lint workflow fails if `npm run format` finds a file it would change.
+
+The root `package.json` is repository tooling only:
+`wash new` copies a template's own directory, so new projects don't inherit it.
+
+Disable a rule only on the line that needs it,
+with a comment saying why.
+Order imports external, internal, then relative.
 
 ### Naming Conventions
 
@@ -234,7 +254,7 @@ are also checked against the [security self-assessment](SECURITY_ASSESSMENT.md).
 
 ### PR Checklist
 
-- [ ] Code follows project style guidelines
+- [ ] Code follows project style guidelines, and `npm run lint` and `npm run format` pass
 - [ ] Self-review completed
 - [ ] New examples or templates added to the CI matrix
 - [ ] Documentation updated if needed
@@ -265,7 +285,7 @@ Before adding a dependency, check that it:
 ### Tracking dependencies
 
 - [Dependabot](.github/dependabot.yml) opens weekly version updates
-  for the examples, the templates and the GitHub Actions,
+  for the examples, the templates, the root lint tooling and the GitHub Actions,
   after a cooldown so new releases have time to settle.
 - Dependabot alerts and security updates cover every `package-lock.json`.
 - Each release attaches an SPDX SBOM of the dependencies in its source tarball.

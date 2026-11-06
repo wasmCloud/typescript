@@ -18,7 +18,6 @@ const updateItemSchema = z.object({
 
 // Types
 type CreateItemInput = z.infer<typeof createItemSchema>;
-type UpdateItemInput = z.infer<typeof updateItemSchema>;
 
 interface Item extends Required<CreateItemInput> {
   id: string;
@@ -44,9 +43,9 @@ function getBucket() {
   return open('default');
 }
 
-type Variables = {
+interface Variables {
   requestId: string;
-};
+}
 
 const itemsRouter = new Hono<{ Variables: Variables }>();
 

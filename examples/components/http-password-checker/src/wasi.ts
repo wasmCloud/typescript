@@ -22,7 +22,7 @@ const WASI_IO_READ_MAX_BYTES = 4096n;
  * @returns {Promise<Buffer>}
  */
 export function readInputStream(stream: InputStream): Uint8Array {
-  let buf = [];
+  const buf = [];
   while (true) {
     try {
       const chunk = stream.blockingRead(WASI_IO_READ_MAX_BYTES);
@@ -32,7 +32,7 @@ export function readInputStream(stream: InputStream): Uint8Array {
       }
     } catch (err) {
       // Rethrow errors that are *not* the stream being closed
-      if ((err as any)?.payload?.tag === 'closed') {
+      if ((err as { payload?: { tag?: string } })?.payload?.tag === 'closed') {
         return new Uint8Array(buf);
       } else {
         throw err;
@@ -84,10 +84,10 @@ export async function sendResponse(
   const outgoingResponse = new OutgoingResponse(new Fields());
 
   // Access the outgoing response body
-  let outgoingBody = outgoingResponse.body();
+  const outgoingBody = outgoingResponse.body();
   {
     // Create a stream for the response body
-    let outputStream = outgoingBody.write();
+    const outputStream = outgoingBody.write();
     // Write the provided bytes to the output stream
     if (bytes.length <= 4096) {
       outputStream.blockingWriteAndFlush(bytes);
@@ -103,5 +103,5 @@ export async function sendResponse(
   // Finish the response body
   OutgoingBody.finish(outgoingBody, undefined);
   // Set the created response
-  ResponseOutparam.set(resp, {tag: 'ok', val: outgoingResponse});
+  ResponseOutparam.set(resp, { tag: 'ok', val: outgoingResponse });
 }
