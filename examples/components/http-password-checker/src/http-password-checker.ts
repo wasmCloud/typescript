@@ -38,11 +38,7 @@ export const incomingHandler = {
         try {
           cr = await PasswordCheckRequest.fromRequest(req);
         } catch (err) {
-          const msg = v.isValiError(err)
-            ? `[${err.issues.join(',')}]`
-            : ((err as { payload?: string }).payload ??
-              err?.toString() ??
-              'unexpected error while parsing request');
+          const msg = describeParseError(err);
           return await sendResponseJSON(resp, 400, {
             status: 'error',
             message: `invalid request body: ${msg}`,
@@ -76,3 +72,18 @@ export const incomingHandler = {
     }
   },
 };
+
+/** A readable message for an error thrown while parsing a request. */
+function describeParseError(err: unknown): string {
+  if (v.isValiError(err)) {
+    return `[${err.issues.map((issue) => issue.message).join(', ')}]`;
+  }
+  const payload = (err as { payload?: unknown } | null | undefined)?.payload;
+  if (typeof payload === 'string') {
+    return payload;
+  }
+  if (err instanceof Error) {
+    return err.message;
+  }
+  return 'unexpected error while parsing request';
+}

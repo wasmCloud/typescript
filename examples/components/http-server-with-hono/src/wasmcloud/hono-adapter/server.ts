@@ -16,7 +16,7 @@ function serve<E extends Env = Env, S extends Schema = BlankSchema, BasePath ext
   const logger = createLogger('serve()');
   app.onError(handleError);
   self.addEventListener('fetch', (event): void => {
-    logger.debug('Request:', event.request.url);
+    logger.debug(`Request: ${event.request.url}`);
     event.respondWith(app.fetch(event.request, {}));
   });
 }

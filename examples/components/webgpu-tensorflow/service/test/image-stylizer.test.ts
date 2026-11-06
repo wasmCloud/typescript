@@ -195,16 +195,18 @@ describe('Stylizer.stylize', () => {
     ).rejects.toThrow();
   });
 
-  // squeeze() drops every dimension of size 1, not only the batch one.
   // A content image over about 170 times wider than it is tall
-  // is resized to a single row, which squeezes down to rank 2 and can't be encoded.
-  test('rejects a content image that resizes to a single row', async () => {
-    await expect(
-      stylizer.stylize({
-        contentJpeg: solidJpeg(1000, 1, BLUE),
-        styleJpeg: solidJpeg(8, 8, RED),
-        styleRatio: 1.0,
-      }),
-    ).rejects.toThrow('expected rank-3 [H, W, C] tensor, got shape 256,3');
+  // is resized to a single row, which must stay a rank-3 image.
+  test.each([
+    ['row', 1000, 1, [1, 256]],
+    ['column', 1, 1000, [256, 1]],
+  ])('stylizes a content image that resizes to a single %s', async (_, width, height, [h, w]) => {
+    const result = await stylizer.stylize({
+      contentJpeg: solidJpeg(width, height, BLUE),
+      styleJpeg: solidJpeg(8, 8, RED),
+      styleRatio: 1.0,
+    });
+
+    expect(inspect(result)).toMatchObject({ width: w, height: h });
   });
 });

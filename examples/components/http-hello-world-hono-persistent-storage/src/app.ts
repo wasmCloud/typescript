@@ -8,7 +8,7 @@ const app = new Hono();
 app.get('/', (c) => {
   const name = c.req.query('name') || 'World';
   const bucket = open('');
-  const count = increment(bucket, name, 1);
+  const count = increment(bucket, name, 1n);
   return c.text(`Hello x${count}, ${name}!\n`);
 });
 

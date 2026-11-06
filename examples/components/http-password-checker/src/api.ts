@@ -42,6 +42,10 @@ export class PasswordCheckRequest {
       const parsed = v.parse(PasswordCheckRequest.schema(), obj);
       return new PasswordCheckRequest(parsed.value);
     } catch (err) {
+      // Validation errors carry the issues the client needs to fix its request
+      if (v.isValiError(err)) {
+        throw err;
+      }
       throw new Error(
         `failed to parse incoming data as a PasswordCheckRequest: ${err?.toString()}`,
         { cause: err },

@@ -53,10 +53,8 @@ test('run rejects when the request fails', async () => {
   expect(log).not.toHaveBeenCalled();
 });
 
-// The WIT declares `call: func() -> string`, but `call` resolves to `run`'s result,
-// which is undefined.
-test('invoke.call runs the request and resolves to undefined (documents current behaviour)', async () => {
-  await expect(invoke.call()).resolves.toBeUndefined();
-
-  expect(printed().data).toEqual(todo);
+test('invoke.call resolves to the response as JSON', async () => {
+  const resp = JSON.parse(await invoke.call());
+  expect(resp.data).toEqual(todo);
+  expect(log).not.toHaveBeenCalled();
 });

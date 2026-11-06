@@ -83,14 +83,12 @@ describe('incomingHandler.handle', () => {
 
     expect(res.status).toBe(400);
     expect(res.body.status).toBe('error');
-    expect(res.body.message).toMatch(
-      /^invalid request body: Error: failed to parse incoming data as a PasswordCheckRequest: ValiError/,
+    expect(res.body.message).toBe(
+      'invalid request body: [Invalid key: Expected "value" but received undefined]',
     );
   });
 
-  // fromRequest wraps every failure in a plain Error,
-  // so the handler's other error shapes are only reached if that changes.
-  test('reports the issues of a raw validation error', async () => {
+  test('reports the message of every validation issue', async () => {
     const parsed = v.safeParse(PasswordCheckRequest.schema(), {});
     if (parsed.success) throw new Error('an empty object should not parse');
     vi.spyOn(PasswordCheckRequest, 'fromRequest').mockRejectedValueOnce(
@@ -99,8 +97,9 @@ describe('incomingHandler.handle', () => {
 
     const res = await handle('post', '/api/v1/check');
 
-    // Issues are objects, so joining them doesn't produce readable text.
-    expect(res.body.message).toBe('invalid request body: [[object Object]]');
+    expect(res.body.message).toBe(
+      'invalid request body: [Invalid key: Expected "value" but received undefined]',
+    );
   });
 
   test('reports the payload of an error that carries one', async () => {
@@ -111,21 +110,21 @@ describe('incomingHandler.handle', () => {
     expect(res.body.message).toBe('invalid request body: bad stream');
   });
 
-  // The generic fallback message is never reached:
-  // any value with a toString() has a message,
-  // and reading `.payload` off undefined throws before the fallback,
-  // leaving the request without a response.
-  test('sends no response when parsing fails with undefined', async () => {
+  test('still answers when parsing fails with something other than an Error', async () => {
     vi.spyOn(PasswordCheckRequest, 'fromRequest').mockRejectedValueOnce(undefined);
-    const resp = new ResponseOutparam();
 
-    await expect(
-      incomingHandler.handle(
-        request('post', '/api/v1/check') as unknown as WasiIncomingRequest,
-        resp as unknown as WasiResponseOutparam,
-      ),
-    ).rejects.toThrow(TypeError);
-    expect(resp.result).toBeUndefined();
+    const res = await handle('post', '/api/v1/check');
+
+    expect(res.status).toBe(400);
+    expect(res.body.message).toBe('invalid request body: unexpected error while parsing request');
+  });
+
+  test('reports the message of a plain error', async () => {
+    vi.spyOn(PasswordCheckRequest, 'fromRequest').mockRejectedValueOnce(new Error('bad json'));
+
+    const res = await handle('post', '/api/v1/check');
+
+    expect(res.body.message).toBe('invalid request body: bad json');
   });
 
   test('answers 500 when the check itself fails', async () => {

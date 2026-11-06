@@ -50,14 +50,12 @@ describe('serve()', () => {
     expect(await res.text()).toBe('ok');
   });
 
-  // The URL is passed as the context argument, not appended to the message,
-  // and the logger is not nested under the root `http-server-with-hono` context.
-  test('logs each request URL as the debug context', async () => {
+  test('logs each request URL', async () => {
     serve(new Hono());
 
     await dispatch(new Request('http://localhost/path'));
 
-    expect(log).toHaveBeenCalledWith('[DEBUG] serve():http://localhost/path: Request:');
+    expect(log).toHaveBeenCalledWith('[DEBUG] serve(): Request: http://localhost/path');
   });
 });
 

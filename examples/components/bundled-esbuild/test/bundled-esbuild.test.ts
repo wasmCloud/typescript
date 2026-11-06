@@ -54,17 +54,14 @@ describe('calculateScore', () => {
     await expect(calculateScore({ tag: 'xml', val })).resolves.toBe(10);
   });
 
-  // The parser turns a single <item> into an object, not an array,
-  // and no <item> at all into undefined.
-  // Neither can be filtered, so both reject rather than returning a score.
-  test('rejects XML with a single item', async () => {
+  test('scores XML with a single item', async () => {
     const val = '<item><title>Hello</title><score>2</score></item>';
 
-    await expect(calculateScore({ tag: 'xml', val })).rejects.toThrow(TypeError);
+    await expect(calculateScore({ tag: 'xml', val })).resolves.toBe(2);
   });
 
-  test('rejects XML without any item', async () => {
-    await expect(calculateScore({ tag: 'xml', val: '<other/>' })).rejects.toThrow(TypeError);
+  test('scores XML without any item as 0', async () => {
+    await expect(calculateScore({ tag: 'xml', val: '<other/>' })).resolves.toBe(0);
   });
 
   // The WIT variant only has json and xml cases,

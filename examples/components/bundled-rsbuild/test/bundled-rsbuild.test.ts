@@ -37,22 +37,26 @@ describe('calculateScore', () => {
     await expect(calculateScore({ tag: 'json', val: '[]' })).resolves.toBe(0);
   });
 
-  // A non-numeric score isn't skipped, so it turns the whole total into NaN.
-  test('returns NaN when a score is not a number', async () => {
-    const val = JSON.stringify([{ score: 1 }, { score: 'lots' }]);
+  test('skips scores that are not numbers', async () => {
+    const val = JSON.stringify([{ score: 1 }, { score: 'lots' }, { score: null }, { score: 2 }]);
 
-    await expect(calculateScore({ tag: 'json', val })).resolves.toBeNaN();
+    await expect(calculateScore({ tag: 'json', val })).resolves.toBe(3);
+  });
+
+  test('skips CSV scores that are not numbers', async () => {
+    const val = 'title,score\nHello,3\nWorld,n/a';
+
+    await expect(calculateScore({ tag: 'csv', val })).resolves.toBe(3);
   });
 
   test('rejects malformed JSON', async () => {
     await expect(calculateScore({ tag: 'json', val: '[' })).rejects.toThrow(SyntaxError);
   });
 
-  // The WIT variant only has csv and json cases,
-  // but an unknown tag leaves nothing to query, so the sum rejects.
+  // The WIT variant only has csv and json cases.
   test('rejects an unknown input tag', async () => {
     const data = { tag: 'xml', val: '<score>1</score>' } as unknown as InputData;
 
-    await expect(calculateScore(data)).rejects.toThrow(TypeError);
+    await expect(calculateScore(data)).rejects.toThrow("unsupported input type 'xml'");
   });
 });
