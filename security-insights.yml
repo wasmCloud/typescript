@@ -1,6 +1,6 @@
 header:
   schema-version: 2.2.0
-  last-updated: '2026-11-05'
+  last-updated: '2026-11-06'
   last-reviewed: '2026-10-30'
   url: https://raw.githubusercontent.com/wasmCloud/typescript/main/security-insights.yml
   project-si-source: https://raw.githubusercontent.com/wasmCloud/wasmCloud/main/security-insights.yml
@@ -36,8 +36,9 @@ repository:
           tarball, its SPDX SBOM, an OpenVEX document, SHA256SUMS and their Sigstore bundles. The
           earlier washboard-ui and @wasmcloud/* releases are legacy releases:
           wasmCloud 1.x packages from the v1 branch, cut before SBOMs were
-          attached, and end of life. They have no SBOM and won't get one; see
-          SUPPORT.md.
+          attached, and end of life. Each washboard-ui release has since had an
+          unsigned SPDX SBOM, generated from the yarn.lock at its tag, attached;
+          see SUPPORT.md.
       - uri: https://github.com/wasmCloud/typescript/tags
         comment: >-
           The vX.Y.Z git tags, for `wash new --subfolder templates/<name> --git-ref vX.Y.Z`.

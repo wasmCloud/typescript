@@ -140,8 +140,10 @@ Before deploying one, users should know that:
 - `examples/components/webgpu-tensorflow` commits pre-trained model weights
   as binary files that can't be reviewed.
 - The legacy wasmCloud 1.x releases (`washboard-ui@*` and `@wasmcloud/*@*`)
-  were cut before releases carried SBOMs.
-  The `washboard-ui` ones attach a `washboard.tar.gz` with no SBOM or provenance.
+  were cut before releases carried SBOMs or provenance.
+  The `washboard-ui` ones attach a `washboard.tar.gz`,
+  and have since had an SPDX SBOM generated from the `yarn.lock` at each tag attached,
+  but neither carries provenance.
   They're end of life and won't be rebuilt;
   only the `vX.Y.Z` releases carry signed SBOMs.
 
