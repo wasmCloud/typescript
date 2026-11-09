@@ -22,7 +22,7 @@
   "devDependencies": {
     "@bytecodealliance/jco": "^1.40.0",
     "@rollup/plugin-url": "^8.0.2",
-    "rimraf": "^6.1.2",
+    "rimraf": "^6.1.4",
     "rolldown": "^1.2.16",
     "typescript": "^6.0.3"
   }
