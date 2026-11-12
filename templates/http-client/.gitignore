@@ -13,4 +13,5 @@ build
 generated/**
 *.tgz
 
-wit/depscoverage
+wit/deps
+coverage
