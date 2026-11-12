@@ -64,7 +64,7 @@ or by hand on `main`:
 3. Generates an SPDX SBOM of the tarball's dependencies with Syft,
    copies the [VEX document](vex.openvex.json), and writes `wasmcloud-typescript-vX.Y.Z.SHA256SUMS`.
 4. Attests SLSA build provenance and the SBOM with Sigstore.
-5. Creates the `vX.Y.Z` tag and a GitHub Release with the assets and generated notes.
+5. Creates the `vX.Y.Z` tag, signed with gitsign, and a GitHub Release with the assets and generated notes.
 
 The README describes how to
 [verify a release](README.md#versioned-releases).

@@ -105,6 +105,8 @@ and the release job, which only a trusted dispatch on `main` can start.
 - Only wasmCloud's `release-tag.yml` on `main` can send the dispatch that starts one,
   through an [octo-sts trust policy](.github/chainguard/wasmcloud-release-dispatch.sts.yaml).
 - Tags are immutable: the workflow refuses a version that already exists.
+- Tags are annotated and signed with gitsign by the release workflow,
+  which verifies the signature before pushing the tag.
 - The tarball, SBOM and checksum file carry Sigstore-signed SLSA provenance.
   [README.md](README.md#versioned-releases) shows how to verify it,
   including that `release.yml` signed it.
