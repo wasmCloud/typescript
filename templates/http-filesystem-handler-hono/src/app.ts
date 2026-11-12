@@ -1,7 +1,11 @@
 import { Hono } from 'hono';
+import { secureHeaders } from 'hono/secure-headers';
 import { getDirectories } from 'wasi:filesystem/preopens@0.2.2';
 
 const app = new Hono();
+
+// Security headers: nosniff, frame and referrer policies, and the like
+app.use('*', secureHeaders());
 
 /** Bytes read from a file per call. */
 const READ_CHUNK = 64n * 1024n;

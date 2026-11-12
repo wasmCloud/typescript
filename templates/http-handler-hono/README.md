@@ -63,6 +63,7 @@ npm run dev
 
 The handler demonstrates several Hono middleware patterns:
 
+- **Security headers** - `secureHeaders()` sets `X-Content-Type-Options: nosniff`, `X-Frame-Options`, `Referrer-Policy` and similar headers on every response
 - **Request logging** - All requests are logged with timing information
 - **Response timing** - `X-Response-Time` header added to all responses
 - **Request ID tracking** - `X-Request-Id` header for request tracing:

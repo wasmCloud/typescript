@@ -29,6 +29,13 @@ function withoutData(): void {
 }
 
 describe('GET /', () => {
+  test('sets security headers', async () => {
+    const res = await app.request('/');
+    expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    expect(res.headers.get('X-Frame-Options')).toBe('SAMEORIGIN');
+    expect(res.headers.get('Referrer-Policy')).toBe('no-referrer');
+  });
+
   test('lists an empty directory', async () => {
     const res = await app.request('/');
     expect(res.status).toBe(200);

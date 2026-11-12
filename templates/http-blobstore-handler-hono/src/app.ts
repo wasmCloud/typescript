@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 import { logger } from 'hono/logger';
+import { secureHeaders } from 'hono/secure-headers';
 import { HTTPException } from 'hono/http-exception';
 import { buildLogger } from '@bytecodealliance/jco-std/wasi/0.2.x/http/adapters/hono/server';
 import { itemsRouter } from './routes/items.js';
@@ -20,6 +21,9 @@ const log = buildLogger();
 // ---------------------------------------------------------------------------
 // Middleware
 // ---------------------------------------------------------------------------
+
+// Security headers: nosniff, frame and referrer policies, and the like
+app.use('*', secureHeaders());
 
 // Request logging
 app.use('*', logger(log));
