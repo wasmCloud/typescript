@@ -1,0 +1,19 @@
+import { Hono } from 'hono';
+
+import { increment } from 'wasi:keyvalue/atomics@0.2.0-draft';
+import { open } from 'wasi:keyvalue/store@0.2.0-draft';
+
+const app = new Hono();
+
+app.get('/', (c) => {
+  const name = c.req.query('name') || 'World';
+  const bucket = open('');
+  const count = increment(bucket, name, 1n);
+  return c.text(`Hello x${count}, ${name}!\n`);
+});
+
+app.notFound((c) => {
+  return c.text('Not found\n', 404);
+});
+
+export { app };

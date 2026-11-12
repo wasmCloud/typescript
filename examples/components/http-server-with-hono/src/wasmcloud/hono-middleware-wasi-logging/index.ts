@@ -1,11 +1,11 @@
-import {MiddlewareHandler} from 'hono';
-import {logging} from './logging';
+import { MiddlewareHandler } from 'hono';
+import { logging } from './logging';
 
 function wasiLog(): MiddlewareHandler {
   const logger = logging.createLogger('middleware');
 
   return async (c, next) => {
-    const {method, path} = c.req;
+    const { method, path } = c.req;
     const request = `${method} ${path}`;
 
     const startTime = Date.now();
@@ -18,4 +18,4 @@ function wasiLog(): MiddlewareHandler {
   };
 }
 
-export {wasiLog};
+export { wasiLog };

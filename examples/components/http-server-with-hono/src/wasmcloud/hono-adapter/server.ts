@@ -4,11 +4,11 @@
 // See https://github.com/microsoft/TypeScript-DOM-lib-generator/issues/1498
 declare const self: ServiceWorkerGlobalScope;
 
-import type {Env, Hono, Schema} from 'hono';
-import type {BlankSchema} from 'hono/types';
+import type { Env, Hono, Schema } from 'hono';
+import type { BlankSchema } from 'hono/types';
 
-import {handleError} from './errorHandling';
-import {createLogger} from '../logging';
+import { handleError } from './errorHandling';
+import { createLogger } from '../logging';
 
 function serve<E extends Env = Env, S extends Schema = BlankSchema, BasePath extends string = '/'>(
   app: Hono<E, S, BasePath>,
@@ -16,9 +16,9 @@ function serve<E extends Env = Env, S extends Schema = BlankSchema, BasePath ext
   const logger = createLogger('serve()');
   app.onError(handleError);
   self.addEventListener('fetch', (event): void => {
-    logger.debug('Request:', event.request.url);
+    logger.debug(`Request: ${event.request.url}`);
     event.respondWith(app.fetch(event.request, {}));
   });
 }
 
-export {serve};
+export { serve };

@@ -1,0 +1,25 @@
+{
+  "name": "wasmcloud-typescript-tooling",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Lint and format tooling for the examples, templates and scripts in this repository. Templates don't carry it.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check \"**/*.{ts,mts,cts,js,mjs,cjs}\"",
+    "format:fix": "prettier --write \"**/*.{ts,mts,cts,js,mjs,cjs}\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1"
+  },
+  "overrides": {
+    "minimatch": "^11.0.2"
+  }
+}

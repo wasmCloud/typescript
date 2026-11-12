@@ -1,3 +1,3 @@
-export type {WasiEnv} from './types';
+export type { WasiEnv } from './types';
 
-export {serve} from './server';
+export { serve } from './server';

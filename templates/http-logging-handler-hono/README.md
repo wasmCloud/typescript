@@ -68,7 +68,7 @@ WARN  <-- GET /missing 404 0ms requestId=e1bf36e2 context="http"
 | Level      | Where                                        |
 | ---------- | -------------------------------------------- |
 | `trace`    | `/health` handler (high-frequency, low-value)|
-| `debug`    | Full request headers, error stack traces     |
+| `debug`    | Request headers (credentials redacted), error stack traces |
 | `info`     | Every request `-->` and successful `<--`     |
 | `warn`     | 4xx responses, slow responses (>200ms), 404s |
 | `error`    | 5xx responses                                |
@@ -83,6 +83,21 @@ world typescript-http-logging-handler-hono {
   export wasi:http/incoming-handler@0.2.6;
 }
 ```
+
+## Test
+
+```bash
+npm test
+```
+
+Runs the unit tests in `test/` with [vitest](https://vitest.dev/) and reports coverage.
+
+The tests are ordinary Hono tests:
+they run in Node and call `app.request()`, with no Wasm runtime involved.
+`wasi:logging` is an external dependency, as a logging backend would be in any other service,
+so the tests swap it for an in-memory stand-in from `test/fakes/`.
+Nothing in `src/` imports the fakes,
+and `npm run dev` runs the built component against the real host.
 
 ## Build Wasm binary
 

@@ -1,26 +1,7 @@
-import { Hono } from 'hono';
 import { fire } from '@bytecodealliance/jco-std/wasi/0.2.6/http/adapters/hono/server';
-import { getStdout } from 'wasi:cli/stdout@0.2.6';
-import { getStderr } from 'wasi:cli/stderr@0.2.6';
+import { app } from './app.js';
 
-const encoder = new TextEncoder();
-
-const app = new Hono();
-
-app.all('/', (c) => {
-  const name = c.req.query('name');
-
-  if (!name) {
-    // low-level stderr (equivalent to console.error)
-    getStderr().blockingWriteAndFlush(encoder.encode("missing ?name param\n"));
-    return c.text('Please pass ?name=<your name> so that we can greet you\n', 400);
-  }
-
-  // low-level stdout (equivalent to console.log)
-  getStdout().blockingWriteAndFlush(encoder.encode(`${name} called\n`));
-  return c.text(`Hello ${name}!\n`);
-});
-
+// Serve the app through the WASI HTTP adapter
 fire(app);
 
 export { incomingHandler } from '@bytecodealliance/jco-std/wasi/0.2.6/http/adapters/hono/server';

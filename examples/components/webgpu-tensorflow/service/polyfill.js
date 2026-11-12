@@ -1,12 +1,12 @@
-import "../qjs-polyfill.js";
+import '../qjs-polyfill.js';
 
 globalThis.location = {
-    search: "",
+  search: '',
 };
 
 globalThis.global = globalThis;
 
 // to make webgpu availability checks pass
 globalThis.navigator = {
-    gpu: {},
+  gpu: {},
 };

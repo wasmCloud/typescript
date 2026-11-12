@@ -1,14 +1,19 @@
 import axios from 'axios';
 
+/** Fetch the example todo, returning the response as JSON. */
+async function fetchTodo(): Promise<string> {
+  const resp = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+  return JSON.stringify(resp);
+}
+
 export const run = {
   async run() {
-    const resp = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
-    console.log(JSON.stringify(resp));
+    console.log(await fetchTodo());
   },
 };
 
 export const invoke = {
-  async call() {
-    return await run.run();
+  async call(): Promise<string> {
+    return await fetchTodo();
   },
 };

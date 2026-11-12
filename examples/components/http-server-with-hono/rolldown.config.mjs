@@ -1,4 +1,4 @@
-import {defineConfig} from 'rolldown';
+import { defineConfig } from 'rolldown';
 
 // Bundles the component and all of its npm dependencies into a single file
 // for `jco componentize`.

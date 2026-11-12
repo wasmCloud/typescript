@@ -14,7 +14,7 @@
     "install-and-build": "npm install && npm run build",
     "transpile": "jco transpile dist/http-axios.wasm -o dist/transpiled/",
     "demo": "node demo.js",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "vitest run --coverage"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -26,9 +26,11 @@
     "@bytecodealliance/componentize-js": "^0.23.0",
     "@bytecodealliance/jco": "^1.40.0",
     "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "^5.1.0",
     "rimraf": "^6.1.4",
     "rolldown": "^1.2.16",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0"
   },
   "overrides": {
     "nodemon": {

@@ -1,11 +1,11 @@
-import {InputData} from 'wasmcloud:hello/data-utils';
-import {XMLParser} from 'fast-xml-parser';
+import { InputData } from 'wasmcloud:hello/data-utils';
+import { XMLParser } from 'fast-xml-parser';
 import * as R from 'remeda';
 
-type Item = {
+interface Item {
   title: string;
   score: number;
-};
+}
 
 async function calculateScore(data: InputData): Promise<number> {
   let json: Item[] = [];
@@ -15,8 +15,10 @@ async function calculateScore(data: InputData): Promise<number> {
     const parser = new XMLParser({
       ignoreAttributes: true,
       ignoreDeclaration: true,
+      // Parse <item> as a list even when there is only one
+      isArray: (name) => name === 'item',
     });
-    json = parser.parse(data.val)['item'];
+    json = parser.parse(data.val)['item'] ?? [];
   }
 
   return R.pipe(
