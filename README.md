@@ -68,6 +68,16 @@ gh attestation verify wasmcloud-typescript-v2.12.0.tar.gz \
 `--signer-workflow` checks that the release was built and signed by this repository's
 [Release](.github/workflows/release.yml) workflow, not just by any workflow in the repository.
 
+Tags after v2.12.1 are signed with [gitsign](https://github.com/sigstore/gitsign)
+by the same workflow. To verify one in a clone:
+
+```bash
+gitsign verify-tag \
+  --certificate-identity-regexp '^https://github.com/wasmCloud/typescript/.github/workflows/release.yml@' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  vX.Y.Z
+```
+
 [SUPPORT.md](./SUPPORT.md) says which release is supported.
 
 [releases]: https://github.com/wasmCloud/typescript/releases

@@ -11,9 +11,11 @@ name: Release
 #   3. Attests SLSA build provenance for the tarball, the SBOM and SHA256SUMS,
 #      and attests the SBOM against the tarball. Both are Sigstore-signed and
 #      verifiable with `gh attestation verify --repo wasmCloud/typescript`.
-#   4. Creates the vX.Y.Z tag and GitHub Release at the commit, with generated
-#      notes under a Changelog heading and the tarball, SBOM, SHA256SUMS and
-#      Sigstore bundles attached.
+#   4. Creates the vX.Y.Z tag at the commit as an annotated tag signed with
+#      gitsign (keyless Sigstore, tied to this workflow), verifies and pushes it.
+#   5. Creates the GitHub Release for that tag, with generated notes under a
+#      Changelog heading and the tarball, SBOM, SHA256SUMS and Sigstore bundles
+#      attached.
 #
 # release-tag.yml in wasmCloud/wasmCloud starts it with a wasmcloud-release
 # repository_dispatch after each stable wasmCloud release, so this release takes
@@ -53,9 +55,9 @@ jobs:
     timeout-minutes: 30
     if: github.repository == 'wasmCloud/typescript' && github.ref == 'refs/heads/main'
     permissions:
-      # Creating the tag and the GitHub Release.
+      # Pushing the tag and creating the GitHub Release.
       contents: write
-      # Sigstore signing and the attestation store.
+      # Sigstore signing of the tag and the assets, and the attestation store.
       id-token: write
       attestations: write
       # actions/attest writes an artifact storage record alongside the
@@ -153,12 +155,32 @@ jobs:
           NAME: ${{ steps.ver.outputs.name }}
         run: node scripts/release-notes.mjs
 
+      - name: Set up gitsign
+        uses: chainguard-dev/actions/setup-gitsign@a25ce483d875a46f4c837e85e32e0fda602693f5 # v1.8.1
+
+      - name: Sign and push tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.ver.outputs.tag }}
+          SHA: ${{ steps.ver.outputs.sha }}
+        # gitsign signs the annotated tag with a short-lived Sigstore
+        # certificate for this workflow, and records it in the Rekor log.
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -s "$TAG" "$SHA" -m "Release $TAG"
+          gitsign verify-tag \
+            --certificate-identity "${GITHUB_SERVER_URL}/${GITHUB_WORKFLOW_REF}" \
+            --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+            "$TAG"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "refs/tags/$TAG"
+
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.ver.outputs.tag }}
           PREVIOUS_TAG: ${{ steps.ver.outputs.previous_tag }}
-          SHA: ${{ steps.ver.outputs.sha }}
         # --generate-notes appends the changelog since the previous release,
         # pinned to it: left to itself GitHub would start from the latest
         # release, which may be a v1-branch package release.
@@ -166,8 +188,10 @@ jobs:
           set -euo pipefail
           changelog=()
           [ -n "$PREVIOUS_TAG" ] && changelog=(--generate-notes --notes-start-tag "$PREVIOUS_TAG")
+          # --verify-tag uses the signed tag pushed above, and fails rather
+          # than create an unsigned one.
           gh release create "$TAG" dist/* \
-            --target "$SHA" \
+            --verify-tag \
             --title "$TAG" \
             --notes-file "$RUNNER_TEMP/notes.md" \
             --latest \
