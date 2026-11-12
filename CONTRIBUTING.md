@@ -143,6 +143,11 @@ npm test
 - Tests live in each package's `test/` directory and run in Node.
 - WASI and wasmCloud interfaces are provided by the host at runtime,
   so each package's `vitest.config.ts` resolves them to in-memory fakes in `test/fakes/`.
+  These are test doubles for external dependencies, as a mocked database client would be elsewhere:
+  nothing in `src/` imports them,
+  and a README that mentions them says so,
+  so that an example or template doesn't suggest a component needs an unusual architecture.
+  The built component is tested against the real host by the smoke tests below.
 - A package keeps its component entry point thin:
   the Hono app or handler is in its own module (such as `src/app.ts`) that tests import directly.
   Packages built with `tsc` alone, without a bundler, must keep the entry in one module,
