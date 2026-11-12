@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
+import { secureHeaders } from 'hono/secure-headers';
 import { log } from 'wasi:logging/logging@0.1.0-draft';
 
 interface Variables {
@@ -8,6 +9,9 @@ interface Variables {
 }
 
 const app = new Hono<{ Variables: Variables }>();
+
+// Security headers: nosniff, frame and referrer policies, and the like
+app.use('*', secureHeaders());
 
 /** Request IDs accepted from clients: short tokens, safe to echo in headers and logs. */
 const REQUEST_ID = /^[\w.-]{1,128}$/;

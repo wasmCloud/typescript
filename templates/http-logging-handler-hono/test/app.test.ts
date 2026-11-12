@@ -41,6 +41,13 @@ describe('routes', () => {
 });
 
 describe('request logging middleware', () => {
+  test('sets security headers', async () => {
+    const res = await app.request('/');
+    expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    expect(res.headers.get('X-Frame-Options')).toBe('SAMEORIGIN');
+    expect(res.headers.get('Referrer-Policy')).toBe('no-referrer');
+  });
+
   test('logs the request, its headers and the response', async () => {
     const res = await app.request('/', { headers: { 'X-Request-Id': 'abc-123', 'X-Test': 'yes' } });
     expect(res.headers.get('X-Request-Id')).toBe('abc-123');

@@ -179,6 +179,9 @@ and how they're countered:
 - **Cross-site scripting (CWE-79).**
   Routes that echo request data answer with JSON or plain text;
   the HTML routes serve fixed pages.
+- **Clickjacking and content sniffing (CWE-1021).**
+  The Hono handler templates set `X-Frame-Options`, `X-Content-Type-Options: nosniff`
+  and a no-referrer policy on every response with Hono's `secureHeaders()`.
 - **Server-side request forgery (CWE-918).**
   `http-client` fetches whatever URL it's given, by design;
   this is documented below as a risk users inherit.

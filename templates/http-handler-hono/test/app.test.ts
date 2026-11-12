@@ -46,6 +46,13 @@ describe('root routes', () => {
 });
 
 describe('middleware', () => {
+  test('sets security headers', async () => {
+    const res = await app.request('/health');
+    expect(res.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    expect(res.headers.get('X-Frame-Options')).toBe('SAMEORIGIN');
+    expect(res.headers.get('Referrer-Policy')).toBe('no-referrer');
+  });
+
   test('generates a request ID when none is sent', async () => {
     const res = await app.request('/health');
     expect(res.headers.get('X-Request-Id')).toMatch(/^[0-9a-f-]{36}$/);
