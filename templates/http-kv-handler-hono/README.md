@@ -128,7 +128,13 @@ npm test
 ```
 
 Runs the unit tests in `test/` with [vitest](https://vitest.dev/) and reports coverage.
-The WASI interfaces the component imports are replaced with fakes in `test/fakes/`.
+
+The tests are ordinary Hono tests:
+they run in Node and call `app.request()`, with no Wasm runtime involved.
+`wasi:keyvalue` is an external dependency, as a database client would be in any other service,
+so the tests swap it for an in-memory stand-in from `test/fakes/`.
+Nothing in `src/` imports the fakes,
+and `npm run dev` runs the built component against the real host.
 
 ## Build Wasm binary
 
