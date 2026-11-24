@@ -2,6 +2,9 @@
 
 Thank you for your interest in contributing to the wasmCloud TypeScript ecosystem! This guide will help you get started with contributing to our collection of TypeScript examples and project templates for wasmCloud.
 
+Everyone taking part in the project follows the [Code of Conduct](CODE_OF_CONDUCT.md).
+What's planned is in the wasmCloud [roadmap](https://github.com/wasmCloud/wasmCloud/blob/main/ROADMAP.md).
+
 ## Table of Contents
 
 - [Development Setup](#development-setup)
@@ -96,9 +99,29 @@ HTTP components are served on `127.0.0.1:8000`.
 
 ### Code Style
 
-There is no linter or formatter configuration yet.
-Match the style of the code around your change,
-and order imports external, internal, then relative.
+[ESLint](eslint.config.mjs) checks every example, template and script
+with the `recommended` rules and typescript-eslint's `strict` and `stylistic` rules.
+The [Lint](.github/workflows/lint.yml) workflow runs it on every pull request,
+and a pull request can't merge with a lint error.
+
+Run it from the repository root:
+
+```bash
+npm ci
+npm run lint
+npm run lint:fix  # fix what can be fixed automatically
+npm run format:fix  # format with Prettier
+```
+
+[Prettier](.prettierrc.json) formats the TypeScript and JavaScript sources,
+and the Lint workflow fails if `npm run format` finds a file it would change.
+
+The root `package.json` is repository tooling only:
+`wash new` copies a template's own directory, so new projects don't inherit it.
+
+Disable a rule only on the line that needs it,
+with a comment saying why.
+Order imports external, internal, then relative.
 
 ### Naming Conventions
 
@@ -110,28 +133,54 @@ and order imports external, internal, then relative.
 
 ## Testing
 
-Examples and templates have no unit tests yet.
-CI checks every pull request instead:
+Every example and template has unit tests,
+run with [vitest](https://vitest.dev/) from its `test` script:
 
-- **Examples** ([examples_.yml](.github/workflows/examples_.yml)) builds each example that changed.
+```bash
+npm test
+```
+
+- Tests live in each package's `test/` directory and run in Node.
+- WASI and wasmCloud interfaces are provided by the host at runtime,
+  so each package's `vitest.config.ts` resolves them to in-memory fakes in `test/fakes/`.
+  These are test doubles for external dependencies, as a mocked database client would be elsewhere:
+  nothing in `src/` imports them,
+  and a README that mentions them says so,
+  so that an example or template doesn't suggest a component needs an unusual architecture.
+  The built component is tested against the real host by the smoke tests below.
+- A package keeps its component entry point thin:
+  the Hono app or handler is in its own module (such as `src/app.ts`) that tests import directly.
+  Packages built with `tsc` alone, without a bundler, must keep the entry in one module,
+  since `jco componentize` can't load a second one;
+  their tests load the entry and call the `fetch` listener it registers.
+- `npm test` reports coverage, and fails if the tests cover less than 80% of the statements in `src/`.
+  The threshold is in each package's `vitest.config.ts`.
+
+CI runs the unit tests and builds every package on each pull request:
+
+- **Examples** ([examples_.yml](.github/workflows/examples_.yml)) builds each example that changed
+  and runs its unit tests.
   Most then run under `wash dev` and must answer an HTTP request with the expected body.
   Some are transpiled with jco instead, and their `demo` output is checked.
   A few are only built.
-- **Templates** ([templates.yml](.github/workflows/templates.yml)) builds every template
-  with `npm ci` and `npm run build`,
+- **Templates** ([templates.yml](.github/workflows/templates.yml)) runs each template's unit tests,
+  builds it with `npm ci` and `npm run build`,
   and smoke-tests the HTTP ones under `wash dev`.
 
 When you add an example or template, add it to the matrix in that workflow,
 with the `checks` that [scripts/smoke-test.mjs](scripts/smoke-test.mjs) runs against it.
 The script's header describes each kind of check.
-If you add tests to an example, run them from its `test` script:
-CI runs `npm run test` for each example that has one.
 
-A major change must add or update the CI test of what it changes, in the same pull request.
-Major changes include a new example or template,
-a new or changed route, interface or response,
-and a change to how a package builds or runs.
-Reviewers don't approve a major change without one.
+### Test policy
+
+- New functionality comes with unit tests, in the same pull request:
+  a new example or template, a new or changed route, handler, interface or response.
+- A bug fix comes with a unit test that fails without the fix.
+- A major change must also add or update the CI test of what it changes.
+  Major changes include a new example or template,
+  a new or changed route, interface or response,
+  and a change to how a package builds or runs.
+- Reviewers don't approve a change that's missing the tests it needs.
 
 ## Commit Guidelines
 
@@ -192,6 +241,7 @@ docs(readme): update installation instructions
 2. **Make your changes and check them:**
 
    ```bash
+   npm test
    npm run build
    wash dev
    ```
@@ -209,6 +259,7 @@ Before creating a PR, ensure that your contribution(s) meet the following criter
 - **Descriptive title**: Use conventional commit format
 - **Clear description**: Explain what changes and why
 - **Link issues**: Reference related issues with "Fixes #123"
+- **Tests**: Add unit tests for new functionality and bug fixes (see [Test policy](#test-policy))
 - **CI coverage**: Add new examples and templates to the CI matrix (see [Testing](#testing))
 - **Documentation**: Update docs for user-facing changes
 
@@ -225,14 +276,15 @@ The `main` ruleset enforces these for every pull request:
 
 Reviewers check that the change is in scope for the repository,
 follows the rest of this guide,
-and adds or updates the CI test of anything major it changes (see [Testing](#testing)).
+and adds the tests the [test policy](#test-policy) asks for.
 Changes to workflows, the release process or dependencies
 are also checked against the [security self-assessment](SECURITY_ASSESSMENT.md).
 
 ### PR Checklist
 
-- [ ] Code follows project style guidelines
+- [ ] Code follows project style guidelines, and `npm run lint` and `npm run format` pass
 - [ ] Self-review completed
+- [ ] Unit tests added or updated, and `npm test` passes
 - [ ] New examples or templates added to the CI matrix
 - [ ] Documentation updated if needed
 - [ ] All commits are signed off
@@ -262,7 +314,7 @@ Before adding a dependency, check that it:
 ### Tracking dependencies
 
 - [Dependabot](.github/dependabot.yml) opens weekly version updates
-  for the examples, the templates and the GitHub Actions,
+  for the examples, the templates, the root lint tooling and the GitHub Actions,
   after a cooldown so new releases have time to settle.
 - Dependabot alerts and security updates cover every `package-lock.json`.
 - Each release attaches an SPDX SBOM of the dependencies in its source tarball.
@@ -328,7 +380,8 @@ Remediation never waits on the escalation decision. The same policy covers all o
 
 Each stable wasmCloud release starts the [Release](.github/workflows/release.yml) workflow with
 its version, such as `2.12.0`. Maintainers can also run it on `main` by hand. The workflow creates
-the `v2.12.0` tag at the head of `main` and a GitHub Release with:
+the `v2.12.0` tag at the head of `main`, signed with [gitsign](https://github.com/sigstore/gitsign),
+and a GitHub Release with:
 
 - `wasmcloud-typescript-v2.12.0.tar.gz`, the source of the tag packed with `git archive`
 - an SPDX SBOM generated by Syft from the tarball's `package-lock.json` files

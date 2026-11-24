@@ -14,3 +14,4 @@ generated/**
 *.tgz
 
 wit/deps
+coverage

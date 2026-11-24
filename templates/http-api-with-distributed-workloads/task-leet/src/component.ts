@@ -81,14 +81,22 @@ function toLeetSpeak(input: string, settings: Settings): string {
     .split('')
     .map((ch) => {
       switch (ch.toLowerCase()) {
-        case 'a': return '4';
-        case 'e': return '3';
-        case 'i': return '1';
-        case 'o': return '0';
-        case 's': return '5';
-        case 't': return settings.aggressive ? '7' : ch;
-        case 'l': return settings.aggressive ? '1' : ch;
-        default: return ch;
+        case 'a':
+          return '4';
+        case 'e':
+          return '3';
+        case 'i':
+          return '1';
+        case 'o':
+          return '0';
+        case 's':
+          return '5';
+        case 't':
+          return settings.aggressive ? '7' : ch;
+        case 'l':
+          return settings.aggressive ? '1' : ch;
+        default:
+          return ch;
       }
     })
     .join('');

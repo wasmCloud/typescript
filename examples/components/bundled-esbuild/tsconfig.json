@@ -1,4 +1,6 @@
 {
+  // Tests and their config run under vitest, outside the component source.
+  "exclude": ["dist", "test", "vitest.config.ts"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 

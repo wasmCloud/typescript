@@ -1,5 +1,7 @@
 import { Hono } from 'hono';
 
+import { readJson } from '../validation.js';
+
 // Helper to convert Headers to a plain object
 function headersToObject(headers: Headers): Record<string, string> {
   const obj: Record<string, string> = {};
@@ -9,9 +11,9 @@ function headersToObject(headers: Headers): Record<string, string> {
   return obj;
 }
 
-type Variables = {
+interface Variables {
   requestId: string;
-};
+}
 
 const echoRouter = new Hono<{ Variables: Variables }>();
 
@@ -36,9 +38,7 @@ echoRouter.post('/', async (c) => {
   const contentType = c.req.header('Content-Type') || '';
 
   // Parse body based on content type
-  const body = contentType.includes('application/json')
-    ? await c.req.json()
-    : await c.req.text();
+  const body = contentType.includes('application/json') ? await readJson(c) : await c.req.text();
 
   return c.json({
     method: c.req.method,

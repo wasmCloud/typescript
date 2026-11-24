@@ -13,18 +13,20 @@
     "install:deps": "rimraf wit/deps && wash wit fetch",
     "serve": "jco serve dist/http_server_with_hono.wasm",
     "dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "vitest run --coverage"
   },
   "dependencies": {
-    "hono": "^4.13.16"
+    "hono": "^4.13.19"
   },
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.40.0",
+    "@bytecodealliance/jco": "^1.42.0",
     "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "^5.1.1",
     "nodemon": "^3.1.14",
     "rimraf": "^6.1.4",
     "rolldown": "^1.2.16",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.0"
   },
   "overrides": {
     "nodemon": {

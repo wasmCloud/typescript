@@ -1,10 +1,10 @@
-import { defineConfig } from "rolldown";
+import { defineConfig } from 'rolldown';
 
 export default defineConfig({
-  input: "src/service.ts",
+  input: 'src/service.ts',
   external: /wasi:.*/,
   output: {
-    file: "dist/service.js",
-    format: "esm",
+    file: 'dist/service.js',
+    format: 'esm',
   },
 });

@@ -3,16 +3,16 @@
  */
 
 import * as v from 'valibot';
-import {passwordStrength} from 'check-password-strength';
+import { passwordStrength } from 'check-password-strength';
 
 /** START wasi generated imports */
 // NOTE import paths are aliased in tsconfig.json
-import {IncomingRequest} from 'wasi:http/types@0.2.2';
+import { IncomingRequest } from 'wasi:http/types@0.2.2';
 /**  END wasi generated imports */
 
-import {PasswordStrength, PASSWORD_CHECK_RULES} from './passwords.js';
-import {readInputStream} from './wasi.js';
-import {Response} from './http.js';
+import { PasswordStrength, PASSWORD_CHECK_RULES } from './passwords.js';
+import { readInputStream } from './wasi.js';
+import { Response } from './http.js';
 
 /**
  * Represents an API request for checking a password
@@ -37,13 +37,18 @@ export class PasswordCheckRequest {
   /** Parse a PasswordCheckRequest from a wasi:http `IncomingRequest` */
   static async fromRequest(req: IncomingRequest): Promise<PasswordCheckRequest> {
     try {
-      let bytes = readInputStream(req.consume().stream());
-      let obj = JSON.parse(new TextDecoder('utf8').decode(bytes));
+      const bytes = readInputStream(req.consume().stream());
+      const obj = JSON.parse(new TextDecoder('utf8').decode(bytes));
       const parsed = v.parse(PasswordCheckRequest.schema(), obj);
       return new PasswordCheckRequest(parsed.value);
     } catch (err) {
+      // Validation errors carry the issues the client needs to fix its request
+      if (v.isValiError(err)) {
+        throw err;
+      }
       throw new Error(
         `failed to parse incoming data as a PasswordCheckRequest: ${err?.toString()}`,
+        { cause: err },
       );
     }
   }
@@ -68,7 +73,7 @@ interface CheckResult {
 export async function handlePasswordCheck(
   cr: PasswordCheckRequest,
 ): Promise<Response<CheckResult>> {
-  const {value: strength, contains, length} = passwordStrength(cr.value, PASSWORD_CHECK_RULES);
+  const { value: strength, contains, length } = passwordStrength(cr.value, PASSWORD_CHECK_RULES);
 
   return Response.ok({
     strength,

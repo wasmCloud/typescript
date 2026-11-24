@@ -1,4 +1,4 @@
-import {defineConfig} from 'rolldown';
+import { defineConfig } from 'rolldown';
 import url from '@rollup/plugin-url';
 
 const MEGABYTE = 1024 * 1024;

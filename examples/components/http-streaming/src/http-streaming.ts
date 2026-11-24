@@ -16,7 +16,7 @@ import {
   Fields,
 } from 'wasi:http/types@0.2.3';
 
-import {getRandomBytes} from 'wasi:random/random@0.2.3';
+import { getRandomBytes } from 'wasi:random/random@0.2.3';
 
 /**
  * Generate random data to send over the write as our streaming workload
@@ -42,18 +42,18 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
   const outgoingResponse = new OutgoingResponse(new Fields());
 
   // Access the outgoing response body
-  let outgoingBody = outgoingResponse.body();
-  let outputStream = outgoingBody.write();
+  const outgoingBody = outgoingResponse.body();
+  const outputStream = outgoingBody.write();
 
   // Generate data to send out
   //
   // The amount to send is arbitrarily chosen, but over 4096 to make
   // things more interesting than using `wasi:io/streams.blocking-write-and-flush`
-  let text = generateData(1024n * 1024n);
-  let data = new Uint8Array(new TextEncoder().encode(text));
+  const text = generateData(1024n * 1024n);
+  const data = new Uint8Array(new TextEncoder().encode(text));
 
   // Retrieve a Preview 2 I/O pollable to coordinate writing to the output stream
-  let pollable = outputStream.subscribe();
+  const pollable = outputStream.subscribe();
   let written = 0n;
   let remaining = BigInt(data.length);
   while (remaining > 0) {
@@ -75,7 +75,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
 
     outputStream.write(new Uint8Array(data.buffer, Number(written), Number(writableByteCount)));
     written += writableByteCount;
-    remaining -= written;
+    remaining -= writableByteCount;
 
     // While we can track *when* to flush separately and implement our own logic,
     // the simplest way is to flush the written chunk immediately
@@ -90,7 +90,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
 
   outgoingResponse.setStatusCode(200);
   OutgoingBody.finish(outgoingBody, undefined);
-  ResponseOutparam.set(resp, {tag: 'ok', val: outgoingResponse});
+  ResponseOutparam.set(resp, { tag: 'ok', val: outgoingResponse });
 }
 
 export const incomingHandler = {

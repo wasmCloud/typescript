@@ -51,10 +51,18 @@ async function verify(check) {
     value = bytes.toString();
   }
   const failures = [
-    'equals' in check && value !== String(check.equals) && `doesn't equal ${JSON.stringify(check.equals)}`,
-    'startsWith' in check && !value.startsWith(check.startsWith) && `doesn't start with ${JSON.stringify(check.startsWith)}`,
-    'contains' in check && !value.includes(check.contains) && `doesn't contain ${JSON.stringify(check.contains)}`,
-    'length' in check && bytes.length !== check.length && `is ${bytes.length} bytes, not ${check.length}`,
+    'equals' in check &&
+      value !== String(check.equals) &&
+      `doesn't equal ${JSON.stringify(check.equals)}`,
+    'startsWith' in check &&
+      !value.startsWith(check.startsWith) &&
+      `doesn't start with ${JSON.stringify(check.startsWith)}`,
+    'contains' in check &&
+      !value.includes(check.contains) &&
+      `doesn't contain ${JSON.stringify(check.contains)}`,
+    'length' in check &&
+      bytes.length !== check.length &&
+      `is ${bytes.length} bytes, not ${check.length}`,
   ].filter(Boolean);
   if (failures.length > 0) {
     throw new Error(`${JSON.stringify(value.slice(0, 200))} ${failures.join(', ')}`);
@@ -67,7 +75,9 @@ async function main() {
   let errors = [];
   for (let attempt = 1; attempt <= retries; attempt++) {
     const results = await Promise.allSettled(checks.map(verify));
-    errors = results.flatMap((r, i) => (r.status === 'rejected' ? [`check ${i + 1}: ${r.reason.message}`] : []));
+    errors = results.flatMap((r, i) =>
+      r.status === 'rejected' ? [`check ${i + 1}: ${r.reason.message}`] : [],
+    );
     if (errors.length === 0) {
       console.log(`✅ ${checks.length} checks passed on attempt ${attempt}`);
       return;

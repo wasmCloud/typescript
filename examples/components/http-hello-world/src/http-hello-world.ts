@@ -14,10 +14,10 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
   const outgoingResponse = new OutgoingResponse(new Fields());
 
   // Access the outgoing response body
-  let outgoingBody = outgoingResponse.body();
+  const outgoingBody = outgoingResponse.body();
   {
     // Create a stream for the response body
-    let outputStream = outgoingBody.write();
+    const outputStream = outgoingBody.write();
     // Write hello world to the response stream
     outputStream.blockingWriteAndFlush(
       new Uint8Array(new TextEncoder().encode('Hello from Typescript!\n')),
@@ -31,7 +31,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
   // Finish the response body
   OutgoingBody.finish(outgoingBody, undefined);
   // Set the created response
-  ResponseOutparam.set(resp, {tag: 'ok', val: outgoingResponse});
+  ResponseOutparam.set(resp, { tag: 'ok', val: outgoingResponse });
 }
 
 export const incomingHandler = {

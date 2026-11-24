@@ -1,7 +1,7 @@
 name: Templates
 
 # Builds every template in templates/ the way `wash new` users do:
-# `npm ci` and `npm run build`.
+# `npm ci` and `npm run build`, after running its unit tests with `npm test`.
 # Templates with an HTTP entry point then run under `wash dev`,
 # and a request to them must return the expected body.
 
@@ -110,6 +110,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # vitest, with the coverage threshold in each vitest.config.ts.
+      - name: Unit tests
+        run: npm test
+
       - name: Build
         run: npm run build
 
@@ -123,7 +127,7 @@ jobs:
         if: matrix.template.checks
         run: wash dev --non-interactive > "$RUNNER_TEMP/wash-dev.log" 2>&1 &
 
-      - name: Test
+      - name: Smoke test
         if: matrix.template.checks
         env:
           CHECKS: ${{ toJSON(matrix.template.checks) }}

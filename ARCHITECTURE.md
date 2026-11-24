@@ -39,10 +39,13 @@ The wasmCloud host that runs the components is covered by wasmCloud's own
 
 1. A contributor opens a pull request against `main`.
 2. CI runs on the pull request:
-   - **Examples** builds the examples that changed, and tests most of them under `wash dev` or jco.
-   - **Templates** builds every template and smoke-tests the HTTP ones under `wash dev`.
+   - **Examples** builds the examples that changed, runs their unit tests,
+     and tests most of them under `wash dev` or jco.
+   - **Templates** runs every template's unit tests, builds it,
+     and smoke-tests the HTTP ones under `wash dev`.
    - **CodeQL** analyzes the TypeScript, JavaScript and workflow sources.
    - **zizmor** audits the workflows.
+   - **Lint** runs ESLint and a Prettier check on the examples, templates and scripts.
    - **Dependency review** blocks dependency versions with known vulnerabilities or malware.
    - **DCO** checks that every commit is signed off.
 3. A maintainer who didn't push the last commit approves it,
@@ -61,7 +64,7 @@ or by hand on `main`:
 3. Generates an SPDX SBOM of the tarball's dependencies with Syft,
    copies the [VEX document](vex.openvex.json), and writes `wasmcloud-typescript-vX.Y.Z.SHA256SUMS`.
 4. Attests SLSA build provenance and the SBOM with Sigstore.
-5. Creates the `vX.Y.Z` tag and a GitHub Release with the assets and generated notes.
+5. Creates the `vX.Y.Z` tag, signed with gitsign, and a GitHub Release with the assets and generated notes.
 
 The README describes how to
 [verify a release](README.md#versioned-releases).

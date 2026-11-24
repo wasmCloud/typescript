@@ -68,6 +68,16 @@ gh attestation verify wasmcloud-typescript-v2.12.0.tar.gz \
 `--signer-workflow` checks that the release was built and signed by this repository's
 [Release](.github/workflows/release.yml) workflow, not just by any workflow in the repository.
 
+Tags after v2.12.1 are signed with [gitsign](https://github.com/sigstore/gitsign)
+by the same workflow. To verify one in a clone:
+
+```bash
+gitsign verify-tag \
+  --certificate-identity-regexp '^https://github.com/wasmCloud/typescript/.github/workflows/release.yml@' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  vX.Y.Z
+```
+
 [SUPPORT.md](./SUPPORT.md) says which release is supported.
 
 [releases]: https://github.com/wasmCloud/typescript/releases
@@ -75,6 +85,16 @@ gh attestation verify wasmcloud-typescript-v2.12.0.tar.gz \
 ## 🛠️ Contributing
 
 For development setup, workflow, and contribution guidelines, see the [Contributing Guide](./CONTRIBUTING.md).
+Everyone taking part in the project follows the [Code of Conduct](./CODE_OF_CONDUCT.md).
+The project is governed by the wasmCloud [governance](https://github.com/wasmCloud/wasmCloud/blob/main/GOVERNANCE.md);
+[MAINTAINERS.md](./MAINTAINERS.md) lists who maintains this repository.
+
+## 🗺️ Roadmap
+
+This repository follows the wasmCloud [roadmap](https://github.com/wasmCloud/wasmCloud/blob/main/ROADMAP.md):
+each release targets the wasmCloud release of the same version.
+Planned and in-progress work is tracked in the
+[wasmCloud Roadmap project](https://github.com/orgs/wasmCloud/projects/7/views/3).
 
 ## 📄 License
 
