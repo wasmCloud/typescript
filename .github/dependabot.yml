@@ -3,6 +3,11 @@ updates:
   # GitHub Actions/Workflows
   - package-ecosystem: 'github-actions'
     directory: '/'
+    groups:
+      # init and analyze must run the same version, or CodeQL fails.
+      codeql:
+        patterns:
+          - 'github/codeql-action*'
     schedule:
       interval: 'weekly'
     # Dependabot rejects the semver-*-days cooldowns for github-actions.
