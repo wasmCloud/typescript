@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "fast-xml-parser": "^5.12.1",
-    "remeda": "^2.61.0"
+    "remeda": "^2.62.0"
   },
   "overrides": {
     "nodemon": {

@@ -32,7 +32,7 @@
   "dependencies": {
     "csvtojson": "^2.0.14",
     "jsonpath-plus": "^11.3.0",
-    "remeda": "^2.61.0"
+    "remeda": "^2.62.0"
   },
   "overrides": {
     "nodemon": {
