@@ -1,8 +1,8 @@
 node_modules
 dist
 build
-generated/**
+**/generated/
 *.tgz
-wit/deps
+**/wit/deps/
 *.log
 coverage

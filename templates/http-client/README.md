@@ -110,7 +110,7 @@ This component imports and exports the following [WIT interfaces](https://compon
 
 ```wit
 world typescript-http-client {
-  import wasi:http/outgoing-handler@0.2.3;
-  export wasi:http/incoming-handler@0.2.3;
+  import wasi:http/outgoing-handler@0.2.10;
+  export wasi:http/incoming-handler@0.2.10;
 }
 ```

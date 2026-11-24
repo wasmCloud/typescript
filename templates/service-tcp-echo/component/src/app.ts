@@ -20,8 +20,8 @@
  *   createTcpSocket → startConnect/finishConnect → read reply → write text
  */
 
-import { instanceNetwork } from 'wasi:sockets/instance-network@0.2.3';
-import { createTcpSocket } from 'wasi:sockets/tcp-create-socket@0.2.3';
+import { instanceNetwork } from 'wasi:sockets/instance-network@0.2.12';
+import { createTcpSocket } from 'wasi:sockets/tcp-create-socket@0.2.12';
 
 import { Hono } from 'hono';
 

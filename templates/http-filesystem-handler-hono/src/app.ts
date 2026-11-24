@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { secureHeaders } from 'hono/secure-headers';
-import { getDirectories } from 'wasi:filesystem/preopens@0.2.2';
+import { getDirectories } from 'wasi:filesystem/preopens@0.2.12';
 
 const app = new Hono();
 

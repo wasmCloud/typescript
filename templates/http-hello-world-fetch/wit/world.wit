@@ -1,5 +1,5 @@
 package wasmcloud:templates@0.1.0;
 
 world typescript-http-hello-world {
-  export wasi:http/incoming-handler@0.2.3;
+  export wasi:http/incoming-handler@0.2.10;
 }

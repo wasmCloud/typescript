@@ -68,6 +68,6 @@ package wasmcloud:templates@0.1.0;
 // language: typescript
 // use-case: http-handler-hono
 world typescript-http-handler-hono {
-  export wasi:http/incoming-handler@0.2.3;
+  export wasi:http/incoming-handler@0.2.12;
 }
 ```

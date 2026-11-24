@@ -25,8 +25,8 @@
  *   Uint8Array. Throws with { tag: 'closed' } on EOF.
  */
 
-import { instanceNetwork } from 'wasi:sockets/instance-network@0.2.3';
-import { createTcpSocket } from 'wasi:sockets/tcp-create-socket@0.2.3';
+import { instanceNetwork } from 'wasi:sockets/instance-network@0.2.12';
+import { createTcpSocket } from 'wasi:sockets/tcp-create-socket@0.2.12';
 
 // ---------------------------------------------------------------------------
 // Types (mirrors of generated/types/interfaces/wasi-sockets-*.d.ts)
