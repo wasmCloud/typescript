@@ -4,6 +4,7 @@
     "module": "es2022",
     "moduleResolution": "bundler",
     "lib": ["es2024", "dom"],
+    "rootDir": "./src",
     "outDir": "./dist/",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
