@@ -20,7 +20,7 @@
   "author": "",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@bytecodealliance/jco": "^1.15.4",
+    "@bytecodealliance/jco": "^1.42.0",
     "@vitest/coverage-v8": "^5.1.0",
     "nodemon": "^3.1.14",
     "rimraf": "^6.1.2",

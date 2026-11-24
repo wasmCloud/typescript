@@ -104,9 +104,11 @@ npm run setup:wit      # fetches WIT deps and generates TypeScript types
 
 Building wasi:sockets components requires a fix to `@bytecodealliance/componentize-js`. The spidermonkey-embedding-splicer does not generate a JavaScript class for WIT resource types declared in method-less interfaces (such as `wasi:sockets/network`). Without the class, `instanceNetwork()` and socket operations throw a `ReferenceError` at runtime.
 
-The patch at `patches/@bytecodealliance+componentize-js+0.19.4-rc.1.patch` injects the missing class definitions after scanning for finalization registries that have no matching class. It runs automatically via `patch-package` during `npm install`.
+The patch at `patches/@bytecodealliance+componentize-js+0.23.0.patch` injects the missing class definitions after scanning for finalization registries that have no matching class. It runs automatically via `patch-package` during `npm install`.
 
-Each subpackage's `scripts/componentize.mjs` calls `@bytecodealliance/componentize-js` directly (rather than via `jco componentize`) to ensure the patched top-level version is used.
+`jco componentize` uses this patched copy because `@bytecodealliance/jco` and the root `package.json` require the same `@bytecodealliance/componentize-js` version range, so npm installs only one copy. Keep the two ranges in sync: if they diverge, jco gets its own unpatched copy.
+
+TODO: The fix is merged upstream ([ComponentizeJS#357](https://github.com/bytecodealliance/ComponentizeJS/pull/357)) but not yet released. Once a componentize-js release includes it, remove the patch, `patch-package` and the `postinstall` script.
 
 ### `.wash/config.yaml` anchors
 

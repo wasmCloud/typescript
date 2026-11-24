@@ -7,24 +7,24 @@ name = "wasi:cli"
 registry = "wasi.dev"
 
 [[packages.versions]]
-requirement = "=0.2.0"
-version = "0.2.0"
-digest = "sha256:e7e85458e11caf76554b724ebf4f113259decf0f3b1ee2e2930de096f72114a7"
+requirement = "=0.2.12"
+version = "0.2.12"
+digest = "sha256:d548a7ee2a3ff65e29c452e4327b7e625813420f4bdd7e16f7e46d32c5dff8c6"
 
 [[packages]]
 name = "wasi:io"
 registry = "wasi.dev"
 
 [[packages.versions]]
-requirement = "=0.2.0"
-version = "0.2.0"
-digest = "sha256:c33b1dbf050f64229ff4decbf9a3d3420e0643a86f5f0cea29f81054820020a6"
+requirement = "=0.2.12"
+version = "0.2.12"
+digest = "sha256:910ed36e3589ab4c16c9942528152b80485e659852297916313318da47b44af8"
 
 [[packages]]
 name = "wasi:sockets"
 registry = "wasi.dev"
 
 [[packages.versions]]
-requirement = "=0.2.3"
-version = "0.2.3"
-digest = "sha256:dcbe3e55d025d3b3a7ee959c4f74119be0d7d85d1289d4ac6d29a4a37b4d47d7"
+requirement = "=0.2.12"
+version = "0.2.12"
+digest = "sha256:63568c95cf05361602a64362fe4a68a4263395269a12b0b3e1cc8396eb710714"

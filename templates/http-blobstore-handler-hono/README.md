@@ -150,7 +150,7 @@ This component uses the following [WIT interfaces](https://component-model.bytec
 world typescript-http-blobstore-handler-hono {
   import wasi:blobstore/blobstore@0.2.0-draft;
 
-  export wasi:http/incoming-handler@0.2.6;
+  export wasi:http/incoming-handler@0.2.12;
 }
 ```
 

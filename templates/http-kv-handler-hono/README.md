@@ -151,7 +151,7 @@ world typescript-http-kv-handler-hono {
   import wasi:keyvalue/store@0.2.0-draft;
   import wasi:keyvalue/atomics@0.2.0-draft;
 
-  export wasi:http/incoming-handler@0.2.6;
+  export wasi:http/incoming-handler@0.2.12;
 }
 ```
 

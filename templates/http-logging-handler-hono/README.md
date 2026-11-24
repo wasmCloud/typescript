@@ -80,7 +80,7 @@ WARN  <-- GET /missing 404 0ms requestId=e1bf36e2 context="http"
 world typescript-http-logging-handler-hono {
   import wasi:logging/logging@0.1.0-draft;
 
-  export wasi:http/incoming-handler@0.2.6;
+  export wasi:http/incoming-handler@0.2.12;
 }
 ```
 

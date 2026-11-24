@@ -146,7 +146,7 @@ This component exports the following [WIT interfaces](https://component-model.by
 
 ```wit
 world typescript-http-handler-hono {
-  export wasi:http/incoming-handler@0.2.6;
+  export wasi:http/incoming-handler@0.2.12;
 }
 ```
 

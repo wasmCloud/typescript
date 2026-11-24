@@ -120,10 +120,10 @@ This component uses the following [WIT interfaces](https://component-model.bytec
 
 ```wit
 world typescript-http-filesystem-handler-hono {
-  import wasi:filesystem/types@0.2.2;
-  import wasi:filesystem/preopens@0.2.2;
+  import wasi:filesystem/types@0.2.12;
+  import wasi:filesystem/preopens@0.2.12;
 
-  export wasi:http/incoming-handler@0.2.6;
+  export wasi:http/incoming-handler@0.2.12;
 }
 ```
 
